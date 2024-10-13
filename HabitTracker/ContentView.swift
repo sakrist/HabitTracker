@@ -10,13 +10,26 @@ import SwiftData
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-
+    @Environment(ModelData.self) private var modelData
+    
     var body: some View {
-        DailyHabitListView()
+        TabView {
+            Tab("Day", systemImage: "sun.max.fill") {
+                DailyHabitListView()
+                    .environment(modelData)
+            }
+            Tab("Calendar", systemImage: "calendar") {
+                Text("Calendar")
+            }
+            Tab("Habits", systemImage: "list.bullet") {
+                HabitsListView()
+            }
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .environment(ModelData())
         .modelContainer(SampleData.shared.modelContainer)
 }

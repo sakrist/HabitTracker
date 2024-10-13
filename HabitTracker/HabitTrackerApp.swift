@@ -10,12 +10,17 @@ import SwiftData
 
 @main
 struct HabitTrackerApp: App {
-    let sharedModelContainer = createSharedModelContainer()
+    let modelData = ModelData()
     
+    // this will clear storage and populate sample data
+    let sample = SampleData.shared
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(modelData.modelContainer)
+        .environment(modelData)
     }
 }

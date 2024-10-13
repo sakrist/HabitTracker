@@ -32,6 +32,10 @@ final class HabitItem {
         active.toggle()
     }
     
+    var isActive: Bool {
+        return active
+    }
+    
     func getColor() -> Color {
         return Color(hex: color) ?? .secondary
     }

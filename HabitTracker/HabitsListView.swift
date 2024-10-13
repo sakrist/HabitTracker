@@ -11,16 +11,22 @@ import SwiftData
 
 struct HabitsListView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [HabitItem]
+    
+    @State private var items: [HabitItem] = []
+    @State private var showingAddHabitView = false
     
     var body: some View {
         NavigationSplitView {
             List {
                 ForEach(items) { item in
-                    HabitItemCell(item: item)
+                    NavigationLink(destination: AddHabitView(habitItem: item)) {
+                        HabitItemCell(item: item)
+                    }
                 }
                 .onDelete(perform: deleteItems)
-            }.listStyle(.plain)
+            }
+            .navigationTitle("Habits")
+            .listStyle(.plain)
 #if os(macOS)
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
 #endif
@@ -31,13 +37,23 @@ struct HabitsListView: View {
                 }
 #endif
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: {
+                        showingAddHabitView = true
+                    }) {
                         Label("Add Item", systemImage: "plus")
                     }
+                    .sheet(isPresented: $showingAddHabitView) {
+                        AddHabitView()
+                    }
+//                    Button(action: addItem) {
+//                        Label("Add Item", systemImage: "plus")
+//                    }
                 }
             }
         } detail: {
             Text("Select an item")
+        }.onAppear {
+            items = fetchActiveHabits(modelContext: modelContext)
         }
     }
     
@@ -45,14 +61,16 @@ struct HabitsListView: View {
         withAnimation {
             let newItem = HabitItem(title: "New habit", color: .blue, timestamp: Date())
             modelContext.insert(newItem)
+            items.append(newItem)
         }
     }
 
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                modelContext.delete(items[index])
+                items[index].active.toggle()
             }
+            items.remove(atOffsets: offsets)
         }
     }
 }

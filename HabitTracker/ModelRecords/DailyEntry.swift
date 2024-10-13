@@ -12,15 +12,18 @@ import SwiftData
 
 @Model
 class DailyEntry : ObservableObject {
-    var title: String?
-    var habit: HabitItem?
+    var habit: HabitItem
     var date: Date
     var isCompleted: Bool = false
     
-    init(title: String?, habit: HabitItem?, date: Date, isCompleted: Bool) {
+    init(habit: HabitItem, date: Date, isCompleted: Bool) {
         self.date = date
         self.isCompleted = isCompleted
         self.habit = habit
+    }
+    
+    var title:String {
+        return self.habit.title
     }
 
 }

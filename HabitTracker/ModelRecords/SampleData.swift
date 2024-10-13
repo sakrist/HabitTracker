@@ -19,7 +19,8 @@ class SampleData {
     }
     
     private init() {
-        modelContainer = createSharedModelContainer()
+        let model = ModelData()
+        modelContainer = model.modelContainer
         clearAllData()
         insertSampleData()
     }
@@ -82,19 +83,5 @@ class SampleData {
             print("Sample data context failed to save.")
         }
     }
-    
 }
 
-func createSharedModelContainer() -> ModelContainer {
-    let schema = Schema([
-        HabitItem.self,
-        DailyEntry.self,
-    ])
-    let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-    do {
-        return try ModelContainer(for: schema, configurations: [modelConfiguration])
-    } catch {
-        fatalError("Could not create ModelContainer: \(error)")
-    }
-}
