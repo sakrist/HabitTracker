@@ -72,9 +72,11 @@ class SampleData {
         if (isSampleDataPresent()) {
             return
         }
-        
-        for movie in HabitItem.sampleData {
-            context.insert(movie)
+        var orderCount = 0
+        for item in HabitItem.sampleData {
+            item.order = orderCount
+            context.insert(item)
+            orderCount += 1
         }
 
         do {

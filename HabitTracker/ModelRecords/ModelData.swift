@@ -36,7 +36,7 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
     // Query for existing entries
     let existingEntries = fetchEntries(for: date, modelContext: modelContext)
     
-    let items = fetchActiveHabits(modelContext: modelContext)
+    let items = fetchHabits(modelContext: modelContext, predicate: #Predicate<HabitItem>{item in item.active })
     
     // Generate missing entries for the selected date
     var updatedEntries = generateDailyEntries(for: items, existingEntries: existingEntries, date: date)
@@ -45,7 +45,17 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
     for entry in updatedEntries where !existingEntries.contains(entry) {
         modelContext.insert(entry)
     }
-    updatedEntries = updatedEntries.sorted { $0.title < $1.title }
+    do {
+        updatedEntries = try updatedEntries.filter(#Predicate<DailyEntry>{ item in item.habit.active })
+    } catch {
+        
+    }
+    updatedEntries = updatedEntries.sorted { $0.habit.order < $1.habit.order }
+    
+    for item in updatedEntries {
+        print("item \(item.habit.order) ")
+    }
+    
     try? modelContext.save()
     return updatedEntries
 }
@@ -70,15 +80,12 @@ func generateDailyEntries(for habits: [HabitItem], existingEntries: [DailyEntry]
     return dailyEntries
 }
 
-func fetchActiveHabits(modelContext: ModelContext) -> [HabitItem] {
-    let predicate = #Predicate<HabitItem> { habit in
-            habit.active == true
-        }
+func fetchHabits(modelContext: ModelContext, predicate: Predicate<HabitItem>? = nil) -> [HabitItem] {
     
     let fetchDescriptor = FetchDescriptor<HabitItem>(predicate: predicate)
     do {
         var habits = try modelContext.fetch(fetchDescriptor)
-        habits = habits.sorted { $0.title < $1.title }
+        habits = habits.sorted { $0.order < $1.order }
         return habits
     } catch {
         print("Error fetching active habits: \(error)")

@@ -12,7 +12,10 @@ import SwiftData
 struct HabitsListView: View {
     @Environment(\.modelContext) private var modelContext
     
-    @State private var items: [HabitItem] = []
+    @Query(filter: #Predicate<HabitItem> { item in
+        item.active
+    }, sort: \HabitItem.order) var items: [HabitItem]
+    
     @State private var showingAddHabitView = false
     
     var body: some View {
@@ -24,6 +27,7 @@ struct HabitsListView: View {
                     }
                 }
                 .onDelete(perform: deleteItems)
+                .onMove(perform: moveItem)
             }
             .navigationTitle("Habits")
             .listStyle(.plain)
@@ -45,24 +49,24 @@ struct HabitsListView: View {
                     .sheet(isPresented: $showingAddHabitView) {
                         AddHabitView()
                     }
-//                    Button(action: addItem) {
-//                        Label("Add Item", systemImage: "plus")
-//                    }
                 }
             }
         } detail: {
             Text("Select an item")
-        }.onAppear {
-            items = fetchActiveHabits(modelContext: modelContext)
         }
     }
     
-    private func addItem() {
-        withAnimation {
-            let newItem = HabitItem(title: "New habit", color: .blue, timestamp: Date())
-            modelContext.insert(newItem)
-            items.append(newItem)
+    // Handle reordering
+    private func moveItem(from source: IndexSet, to destination: Int) {
+        var copyItems = items
+        copyItems.move(fromOffsets: source, toOffset: destination)
+    
+        var index:Int = 0
+        for item in copyItems {
+            item.order = index
+            index += 1
         }
+        try? modelContext.save()
     }
 
     private func deleteItems(offsets: IndexSet) {
@@ -70,7 +74,6 @@ struct HabitsListView: View {
             for index in offsets {
                 items[index].active.toggle()
             }
-            items.remove(atOffsets: offsets)
         }
     }
 }

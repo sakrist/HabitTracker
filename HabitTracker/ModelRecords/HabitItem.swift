@@ -15,11 +15,16 @@ import SwiftUI
 final class HabitItem {
     var title: String
     var color: String = "#FF0000"
+    var time: Date?
+    
     // created date
     var timestamp: Date
-    var note: String?
     var id: String
+    
+    var note: String?
+    
     var active: Bool = true
+    var order: Int = 0
     
     init(id:String? = nil, title:String, color: Color, timestamp: Date? = nil) {
         self.id = id ?? UUID().uuidString
