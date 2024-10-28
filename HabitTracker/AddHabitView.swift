@@ -16,20 +16,30 @@ struct AddHabitView: View {
     @State private var selectedColor: Color
     @State private var note: String
     
-    @State private var time: Date = Date.now
-    
-    @State private var timeSensetive = false
+    @State private var time: Date
+    @State private var timeSensetive: Bool
     
     @State private var showingDuplicateAlert = false
     @State private var existingItem: HabitItem? = nil
     
-    var habitItem: HabitItem?
+    @State private var activeWeekdays: Set<HabitItem.Weekday>
+
+    private var habitItem: HabitItem?
 
     init(habitItem: HabitItem? = nil) {
         _title = State(initialValue: habitItem?.title ?? "")
         _selectedColor = State(initialValue: habitItem?.getColor() ?? .blue)
         _note = State(initialValue: habitItem?.note ?? "")
         self.habitItem = habitItem
+        if let habitItem = habitItem {
+            activeWeekdays = habitItem.weekdays
+            timeSensetive = (habitItem.time != nil)
+            time = habitItem.time ?? Date.now
+        } else {
+            activeWeekdays = Set(HabitItem.Weekday.allCases)
+            timeSensetive = false
+            time = Date.now
+        }
     }
     
     var body: some View {
@@ -39,8 +49,28 @@ struct AddHabitView: View {
                     TextField("Title", text: $title)
                 }
                 
-                Section(header: Text("Color")) {
-                    ColorPicker("Select Color", selection: $selectedColor)
+                
+                Section(header: Text("Active Days")) {
+                    // Custom multi-segment control for weekdays
+                    HStack(spacing: 2) {
+                        ForEach(HabitItem.Weekday.allCases) { day in
+                            Button(action: {
+                                toggleDaySelection(day)
+                            }) {
+                                Text(day.displayName)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(8)
+                                    .background(activeWeekdays.contains(day) ? Color.blue : Color.clear)
+                                    .foregroundColor(activeWeekdays.contains(day) ? .white : .blue)
+                            }
+                            .buttonStyle(PlainButtonStyle())  // Remove default button style
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.blue, lineWidth: 1)
+                            )
+                            .cornerRadius(8)
+                        }
+                    }
                 }
                 
                 Section(header: Text("Time")) {
@@ -53,6 +83,11 @@ struct AddHabitView: View {
                         DatePicker("Select Time", selection: $time, displayedComponents: .hourAndMinute)
                     }
                 }
+                
+                Section(header: Text("Color")) {
+                    ColorPicker("Select Color", selection: $selectedColor)
+                }
+                
             }
             .navigationTitle(habitItem == nil ? "Add New Habit" : "Edit Habit")
             .toolbar {
@@ -84,6 +119,8 @@ struct AddHabitView: View {
             // Editing an existing habit
             habitItem.title = title
             habitItem.color = selectedColor.toHex() ?? "#00FF00"
+            habitItem.weekdays = activeWeekdays
+            habitItem.time = (timeSensetive) ? time : nil
         } else {
             
             let exists = fetchHabits(modelContext: modelContext, predicate: #Predicate<HabitItem> {item in item.title == title && !item.active})
@@ -99,6 +136,14 @@ struct AddHabitView: View {
         
         saveContext()
         dismiss()
+    }
+    
+    private func toggleDaySelection(_ day: HabitItem.Weekday) {
+        if activeWeekdays.contains(day) {
+            activeWeekdays.remove(day)
+        } else {
+            activeWeekdays.insert(day)
+        }
     }
     
     private func recoverOldItem() {
@@ -118,6 +163,10 @@ struct AddHabitView: View {
         
         // Creating a new habit
         let newHabit = HabitItem(title: title, color: selectedColor, timestamp: Date())
+        newHabit.weekdays = activeWeekdays
+        if (timeSensetive) {
+            newHabit.time = time
+        }
         newHabit.order = habits.count
         modelContext.insert(newHabit)
         

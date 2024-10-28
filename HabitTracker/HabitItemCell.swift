@@ -35,12 +35,18 @@ struct HabitItemCell: View {
     var entry: DailyEntry?
     
     var body: some View {
-        Toggle(item.title, isOn: (entry != nil) ? Binding(
-            get: { entry!.isCompleted },
-            set: { entry!.isCompleted = $0 }
-        ) : .constant(false))
+        HStack {
+            Toggle(item.title, isOn: (entry != nil) ? Binding(
+                get: { entry!.isCompleted },
+                set: { entry!.isCompleted = $0 }
+            ) : .constant(false))
             .toggleStyle(CheckboxStyle(checkColor: item.getColor())) // Applying custom checkbox style
             .padding(0)
+            
+            Spacer()
+
+            Text(item.formattedTime)
+        }
     }
 }
 
