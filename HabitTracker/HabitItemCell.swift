@@ -52,6 +52,6 @@ struct HabitItemCell: View {
 
 
 #Preview {
-    let item = HabitItem.init(title: "Task 1", color: .red, timestamp: .now)
+    let item = HabitItem.init(title: "Task 1", color: Color.red.toHex(), timestamp: .now)
     HabitItemCell(item: item)
 }

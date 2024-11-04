@@ -10,9 +10,9 @@ import SwiftUI
 
 extension Color {
     // Convert Color to hex string
-    func toHex() -> String? {
+    func toHex() -> String {
         guard let components = UIColor(self).cgColor.components else {
-            return nil
+            return "#000000"
         }
         let r = Int(components[0] * 255.0)
         let g = Int(components[1] * 255.0)

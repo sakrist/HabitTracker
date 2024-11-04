@@ -21,4 +21,15 @@ extension Date {
         let calendar = Calendar.current
         return calendar.isDate(self, inSameDayAs: date2)
     }
+    
+    func days(in endDate: Date) -> [Date] {
+        var dates: [Date] = []
+        var currentDate = self
+        while currentDate <= endDate {
+            dates.append(currentDate)
+            currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate)!
+        }
+        return dates
+    }
+    
 }

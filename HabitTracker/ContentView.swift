@@ -8,6 +8,9 @@
 import SwiftUI
 import SwiftData
 
+let monthCompletionData: [Int] = (1...30).map { _ in Int.random(in: 0...5) }
+
+
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(ModelData.self) private var modelData
@@ -19,7 +22,7 @@ struct ContentView: View {
                     .environment(modelData)
             }
             Tab("Calendar", systemImage: "calendar") {
-                Text("Calendar")
+                CalendarView()
             }
             Tab("Habits", systemImage: "list.bullet") {
                 HabitsListView()

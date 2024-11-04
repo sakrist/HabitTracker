@@ -162,7 +162,7 @@ struct AddHabitView: View {
         let habits = fetchHabits(modelContext: modelContext)
         
         // Creating a new habit
-        let newHabit = HabitItem(title: title, color: selectedColor, timestamp: Date())
+        let newHabit = HabitItem(title: title, color: selectedColor.toHex(), timestamp: Date())
         newHabit.weekdays = activeWeekdays
         if (timeSensetive) {
             newHabit.time = time
@@ -191,7 +191,7 @@ struct AddHabitView: View {
 #Preview("Edit Habit") {
     AddHabitView(habitItem: HabitItem(
         title: "Morning Run",
-        color: .green,
+        color: Color.green.toHex(),
         timestamp: Date()
     ))
 }

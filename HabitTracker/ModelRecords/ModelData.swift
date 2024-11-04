@@ -55,11 +55,8 @@ func sortDailyHabits(item1: DailyEntry, item2: DailyEntry) -> Bool {
 func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntry] {
     
     // Extract the weekday from the date
-    let calendar = Calendar.current
-    let weekday = calendar.component(.weekday, from: date)
-    guard let taget = HabitItem.Weekday(rawValue: weekday) else {
-        return []
-    }
+    let weekday = HabitItem.Weekday(date: date)
+    
     // Query for existing entries
     let existingEntries = fetchEntries(for: date, modelContext: modelContext)
     
@@ -76,7 +73,7 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
     }
     do {
         updatedEntries = try updatedEntries.filter(#Predicate<DailyEntry>{ item in
-            item.habit.active && item.habit.weekdays.contains(taget)
+            item.habit.active && item.habit.weekdays.contains(weekday)
         })
     } catch {
         print("Error fetchHabitEntries habits: \(error)")
@@ -124,15 +121,19 @@ func fetchHabits(modelContext: ModelContext, predicate: Predicate<HabitItem>? = 
     return []
 }
 
-// Fetch entries for a specific date
-private func fetchEntries(for date: Date, modelContext: ModelContext) -> [DailyEntry] {
+func fetchEntries(for date: Date, modelContext: ModelContext) -> [DailyEntry] {
     let calendar = Calendar.current
     let startOfDay = calendar.startOfDay(for: date)
     let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
-    print("fetchEntries \(startOfDay) to \(endOfDay)")
+    return fetchEntries(start: startOfDay, end: endOfDay, modelContext: modelContext)
+}
+
+// Fetch entries for a specific date
+func fetchEntries(start: Date, end: Date, modelContext: ModelContext) -> [DailyEntry] {
+    let calendar = Calendar.current
     // Create a predicate for fetching entries for the specific date
     let predicate = #Predicate { (entry: DailyEntry) in
-        entry.date >= startOfDay && entry.date < endOfDay
+        entry.date >= start && entry.date < end
     }
 
     // Perform the fetch using the modelContext

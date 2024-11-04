@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D25585AA2CD02F930077F0B3 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25585A92CD02F8B0077F0B3 /* CalendarView.swift */; };
 		D25A7A852CA5D7EF0000E843 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D25A7A7C2CA5D7EE0000E843 /* Preview Assets.xcassets */; };
 		D25A7A862CA5D7EF0000E843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D25A7A7F2CA5D7EE0000E843 /* Assets.xcassets */; };
 		D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A802CA5D7EE0000E843 /* ContentView.swift */; };
@@ -24,6 +25,9 @@
 		D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */; };
 		D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */; };
 		D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */; };
+		D2D481022CD8244F00B1DF7C /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481012CD8244F00B1DF7C /* CircularProgressView.swift */; };
+		D2D481042CD8246100B1DF7C /* WeeklyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481032CD8246100B1DF7C /* WeeklyView.swift */; };
+		D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481052CD8246C00B1DF7C /* MonthlyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D25585A92CD02F8B0077F0B3 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		D25A7A352CA5D64B0000E843 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25A7A482CA5D64D0000E843 /* HabitTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25A7A522CA5D64D0000E843 /* HabitTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +70,9 @@
 		D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListView.swift; sourceTree = "<group>"; };
 		D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
+		D2D481012CD8244F00B1DF7C /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		D2D481032CD8246100B1DF7C /* WeeklyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyView.swift; sourceTree = "<group>"; };
+		D2D481052CD8246C00B1DF7C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +136,10 @@
 				D25A7A7F2CA5D7EE0000E843 /* Assets.xcassets */,
 				D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */,
 				D25A7A802CA5D7EE0000E843 /* ContentView.swift */,
+				D25585A92CD02F8B0077F0B3 /* CalendarView.swift */,
+				D2D481052CD8246C00B1DF7C /* MonthlyView.swift */,
+				D2D481032CD8246100B1DF7C /* WeeklyView.swift */,
+				D2D481012CD8244F00B1DF7C /* CircularProgressView.swift */,
 				D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */,
 				D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */,
 				D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */,
@@ -312,7 +324,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25585AA2CD02F930077F0B3 /* CalendarView.swift in Sources */,
 				D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */,
+				D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */,
+				D2D481042CD8246100B1DF7C /* WeeklyView.swift in Sources */,
 				D2C1264B2CB7371D005E5941 /* Date.swift in Sources */,
 				D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */,
 				D28309DA2CA9B32100C6B22A /* DailyEntry.swift in Sources */,
@@ -321,6 +336,7 @@
 				D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */,
 				D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */,
 				D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */,
+				D2D481022CD8244F00B1DF7C /* CircularProgressView.swift in Sources */,
 				D25A7A8A2CA5D7EF0000E843 /* HabitItem.swift in Sources */,
 				D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */,
 				D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */,

@@ -13,7 +13,7 @@ struct HabitTrackerApp: App {
     let modelData = ModelData()
     
     // this will clear storage and populate sample data
-    let sample = SampleData.shared
+//    let sample = SampleData.shared
 
     var body: some Scene {
         WindowGroup {
