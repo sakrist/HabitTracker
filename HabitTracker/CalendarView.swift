@@ -90,11 +90,8 @@ struct CalendarView: View {
                 .padding(.leading)
             }
             
-            if selectedViewType == .week {
-                WeeklyView(startDate: currentDate)
-            } else {
-                MonthlyView(startDate: currentDate)
-            }
+            MonthlyView(startDate: currentDate)
+            
             Spacer()
         } detail: {
             

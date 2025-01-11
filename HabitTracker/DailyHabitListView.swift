@@ -12,6 +12,7 @@ import SwiftData
 
 struct DailyHabitListView: View {
     @Environment(\.modelContext) private var modelContext
+    @Binding var selectedTab: Int
     
     @State private var entries: [DailyEntry] = []
     @State private var selectedDate: Date = Date()  // The currently selected date
@@ -48,12 +49,26 @@ struct DailyHabitListView: View {
                 }
                 .padding()
 
-                List {
-                    ForEach(entries) { entry in
-                        HabitItemCell(item: entry.habit, entry: entry)
+                VStack {
+                    if (entries.count == 0) {
+                        // show button add habits which will navigate to Habits tab
+                        Spacer()
+                        Button(action: {
+                            // navigate to Habits tab
+                            selectedTab = 1
+                        }) {
+                            Text("Add habits")
+                        }
+                        Spacer()
+                    } else {
+                        List {
+                            ForEach(entries) { entry in
+                                HabitItemCell(item: entry.habit, entry: entry)
+                            }
+                        }
+                        .listStyle(.plain)
                     }
                 }
-                .listStyle(.plain)
                 .onAppear {
                     entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
                 }
@@ -68,7 +83,7 @@ struct DailyHabitListView: View {
 
 #Preview {
     let model = ModelData()
-    DailyHabitListView()
+    DailyHabitListView(selectedTab: .constant(0))
         .environment(model)
         .modelContainer(model.modelContainer)
 }
