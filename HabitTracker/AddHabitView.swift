@@ -24,17 +24,22 @@ struct AddHabitView: View {
     
     @State private var activeWeekdays: Set<HabitItem.Weekday>
 
+    @State private var selectedCategory: HabitCategory
+    @State private var categories: [HabitCategory] = []
     private var habitItem: HabitItem?
 
     init(habitItem: HabitItem? = nil) {
         _title = State(initialValue: habitItem?.title ?? "")
         _selectedColor = State(initialValue: habitItem?.getColor() ?? .blue)
         _note = State(initialValue: habitItem?.note ?? "")
+        _selectedCategory = State(initialValue: habitItem?.category ?? HabitCategory.defaultCategory)
+
         self.habitItem = habitItem
         if let habitItem = habitItem {
             activeWeekdays = habitItem.weekdays
             timeSensetive = (habitItem.time != nil)
             time = habitItem.time ?? Date.now
+            selectedCategory = habitItem.category
         } else {
             activeWeekdays = Set(HabitItem.Weekday.allCases)
             timeSensetive = false
@@ -51,33 +56,12 @@ struct AddHabitView: View {
                 
                 
                 Section(header: Text("Active Days")) {
-                    // Custom multi-segment control for weekdays
-                    HStack(spacing: 2) {
-                        ForEach(HabitItem.Weekday.allCases) { day in
-                            Button(action: {
-                                toggleDaySelection(day)
-                            }) {
-                                Text(day.displayName)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(8)
-                                    .background(activeWeekdays.contains(day) ? Color.blue : Color.clear)
-                                    .foregroundColor(activeWeekdays.contains(day) ? .white : .blue)
-                            }
-                            .buttonStyle(PlainButtonStyle())  // Remove default button style
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(Color.blue, lineWidth: 1)
-                            )
-                            .cornerRadius(8)
-                        }
-                    }
+
+                    WeekdaysView(activeWeekdays:$activeWeekdays)
                 }
                 
                 Section(header: Text("Time")) {
-                    Toggle("Time sensetime", isOn: $timeSensetive).onSubmit {
-                        
-                    }
-                    
+                    Toggle("Time sensetime", isOn: $timeSensetive)
                     
                     if timeSensetive {
                         DatePicker("Select Time", selection: $time, displayedComponents: .hourAndMinute)
@@ -86,6 +70,19 @@ struct AddHabitView: View {
                 
                 Section(header: Text("Color")) {
                     ColorPicker("Select Color", selection: $selectedColor)
+                }
+                
+                Section(header: Text("Category")) {
+                    Picker("Select Category", selection: $selectedCategory) {
+                        ForEach(categories, id: \.id) { category in
+                            Text(category.title)
+                                .tag(category)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    .onAppear {
+                        loadCategories()
+                    }
                 }
                 
             }
@@ -113,14 +110,19 @@ struct AddHabitView: View {
         }
     }
     
+    private func loadCategories() {
+        categories = fetchCategories(modelContext: modelContext)
+    }
+    
     private func saveHabit() {
         
         if let habitItem = habitItem {
             // Editing an existing habit
             habitItem.title = title
-            habitItem.color = selectedColor.toHex() ?? "#00FF00"
+            habitItem.color = selectedColor.toHex()
             habitItem.weekdays = activeWeekdays
             habitItem.time = (timeSensetive) ? time : nil
+            habitItem.category = selectedCategory
         } else {
             
             let exists = fetchHabits(modelContext: modelContext, predicate: #Predicate<HabitItem> {item in item.title == title && !item.active})
@@ -136,14 +138,6 @@ struct AddHabitView: View {
         
         saveContext()
         dismiss()
-    }
-    
-    private func toggleDaySelection(_ day: HabitItem.Weekday) {
-        if activeWeekdays.contains(day) {
-            activeWeekdays.remove(day)
-        } else {
-            activeWeekdays.insert(day)
-        }
     }
     
     private func recoverOldItem() {
@@ -162,7 +156,7 @@ struct AddHabitView: View {
         let habits = fetchHabits(modelContext: modelContext)
         
         // Creating a new habit
-        let newHabit = HabitItem(title: title, color: selectedColor.toHex(), timestamp: Date())
+        let newHabit = HabitItem(title: title, color: selectedColor.toHex(), category: selectedCategory, timestamp: Date())
         newHabit.weekdays = activeWeekdays
         if (timeSensetive) {
             newHabit.time = time
@@ -192,6 +186,9 @@ struct AddHabitView: View {
     AddHabitView(habitItem: HabitItem(
         title: "Morning Run",
         color: Color.green.toHex(),
+        category: HabitCategory.defaultCategory,
         timestamp: Date()
     ))
 }
+
+

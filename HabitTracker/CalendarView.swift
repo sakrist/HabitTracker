@@ -8,41 +8,6 @@
 import SwiftUI
 
 
-
-//struct WeeklyView: View {
-//    let startDate: Date
-//    @Environment(\.modelContext) private var modelContext
-//    var calendar = Calendar.current
-//    
-//    var body: some View {
-//        let weekDates = getWeekDates(from: startDate)
-//        let entries = fetchEntries(start: weekDates.first!, end: weekDates.last!, modelContext: modelContext)
-//        
-//        HStack(spacing: 8) {
-//            ForEach(weekDates, id: \.self) { date in
-//                VStack {
-//                    Text(shortDate(date))
-//                    ProgressView(entries: entries, date: date)
-//                }
-//            }
-//        }
-//    }
-//    
-//    private func getWeekDates(from date: Date) -> [Date] {
-//        guard let weekStart = calendar.dateInterval(of: .weekOfYear, for: date)?.start else { return [] }
-//        return (0..<7).compactMap { calendar.date(byAdding: .day, value: $0, to: weekStart) }
-//    }
-//    
-//    private func shortDate(_ date: Date) -> String {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "E"
-//        return formatter.string(from: date)
-//    }
-//}
-
-
-
-
 struct ProgressView: View {
     let entries: [DailyEntry]
     let date: Date
@@ -67,7 +32,7 @@ struct ProgressView: View {
 
 struct CalendarView: View {
     @State private var currentDate = Date()
-    @State private var selectedViewType: ViewType = .week
+    @State private var selectedViewType: ViewType = .month
     
     enum ViewType {
         case week, month
@@ -82,12 +47,12 @@ struct CalendarView: View {
                 header
                 Divider()
                 
-                Picker("View", selection: $selectedViewType) {
-                    Text("Week").tag(ViewType.week)
-                    Text("Month").tag(ViewType.month)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.leading)
+//                Picker("View", selection: $selectedViewType) {
+//                    Text("Week").tag(ViewType.week)
+//                    Text("Month").tag(ViewType.month)
+//                }
+//                .pickerStyle(SegmentedPickerStyle())
+//                .padding(.leading)
             }
             
             MonthlyView(startDate: currentDate)

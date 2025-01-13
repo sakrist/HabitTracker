@@ -9,6 +9,7 @@ import SwiftData
 import Foundation
 import SwiftUI
 
+@MainActor
 @Observable class ModelData {
     
     let modelContainer: ModelContainer
@@ -16,6 +17,7 @@ import SwiftUI
     init() {
         let schema = Schema([
             HabitItem.self,
+            HabitCategory.self,
             DailyEntry.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
@@ -130,7 +132,7 @@ func fetchEntries(for date: Date, modelContext: ModelContext) -> [DailyEntry] {
 
 // Fetch entries for a specific date
 func fetchEntries(start: Date, end: Date, modelContext: ModelContext) -> [DailyEntry] {
-    let calendar = Calendar.current
+//    let calendar = Calendar.current
     // Create a predicate for fetching entries for the specific date
     let predicate = #Predicate { (entry: DailyEntry) in
         entry.date >= start && entry.date < end
@@ -145,6 +147,18 @@ func fetchEntries(start: Date, end: Date, modelContext: ModelContext) -> [DailyE
         return entries
     } catch {
         print("Error fetching entries: \(error)")
+        return []
+    }
+}
+
+func fetchCategories(modelContext: ModelContext) -> [HabitCategory] {
+    let fetchDescriptor = FetchDescriptor<HabitCategory>()
+    do {
+        let categories = try modelContext.fetch(fetchDescriptor)
+        print("fetchCategories \(categories)")
+        return categories
+    } catch {
+        print("Error fetching categories: \(error)")
         return []
     }
 }

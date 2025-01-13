@@ -16,6 +16,7 @@ final class HabitItem : Codable {
     var id: String
     var title: String
     var color: String = "#FF0000"
+    var category: HabitCategory
     var time: Date?
     var note: String?
     var weekdays: Set<HabitItem.Weekday>
@@ -68,12 +69,13 @@ final class HabitItem : Codable {
     
     // Custom CodingKeys to handle encoding/decoding if needed
     private enum CodingKeys: String, CodingKey {
-        case id, title, color, time, note, weekdays, order, timestamp, active
+        case id, title, color, category, time, note, weekdays, order, timestamp, active
     }
     
     init(id: String = UUID().uuidString,
          title: String,
          color: String = "#FF0000",
+         category: HabitCategory = HabitCategory.defaultCategory,
          time: Date? = nil,
          note: String? = nil,
          weekdays: Set<Weekday> = [],
@@ -83,6 +85,7 @@ final class HabitItem : Codable {
         self.id = id
         self.title = title
         self.color = color
+        self.category = category
         self.time = time
         self.note = note
         self.weekdays = weekdays
@@ -97,6 +100,7 @@ final class HabitItem : Codable {
         try container.encode(id, forKey: .id)
         try container.encode(title, forKey: .title)
         try container.encode(color, forKey: .color)
+        try container.encode(category, forKey: .category)
         try container.encode(time, forKey: .time)
         try container.encode(note, forKey: .note)
         try container.encode(weekdays, forKey: .weekdays)
@@ -111,6 +115,7 @@ final class HabitItem : Codable {
         let id = try container.decode(String.self, forKey: .id)
         let title = try container.decode(String.self, forKey: .title)
         let color = try container.decode(String.self, forKey: .color)
+        let category = try container.decode(HabitCategory.self, forKey: .category)
         let time = try container.decodeIfPresent(Date.self, forKey: .time)
         let note = try container.decodeIfPresent(String.self, forKey: .note)
         let weekdays = try container.decode(Set<Weekday>.self, forKey: .weekdays)
@@ -121,6 +126,7 @@ final class HabitItem : Codable {
         self.init(id: id,
                   title: title,
                   color: color,
+                  category: category,
                   time: time,
                   note: note,
                   weekdays: weekdays,
@@ -163,69 +169,4 @@ final class HabitItem : Codable {
         return Calendar.current.date(from: components)
     }
     
-//    static let sampleData:[HabitItem] = [
-//        .init(id:"1", title: "Run", color: Color.red.toHex(), weekdays: .init(Weekday.allCases)),
-//        .init(id:"2", title: "Workout", color: Color.blue.toHex(), weekdays: .init(Weekday.allCases)),
-//        .init(id:"3", title: "Meditate", color: Color.blue.toHex(), weekdays: .init(Weekday.allCases)),
-//        .init(id:"4", title: "Write", color: Color.green.toHex(), weekdays: .init(Weekday.allCases))
-//    ]
-    
-    static let sampleData: [HabitItem] = [
-        HabitItem(
-            title: "Morning Meditation",
-            color: "#3498DB",
-            time: Calendar.current.date(bySettingHour: 7, minute: 0, second: 0, of: Date()),
-            note: "15 minutes of meditation",
-            weekdays: [.monday, .wednesday, .friday],
-            order: 1
-        ),
-        HabitItem(
-            title: "Exercise",
-            color: "#E74C3C",
-            time: Calendar.current.date(bySettingHour: 6, minute: 30, second: 0, of: Date()),
-            note: "30 minutes of running",
-            weekdays: [.tuesday, .thursday, .saturday],
-            order: 2
-        ),
-        HabitItem(
-            title: "Read a Book",
-            color: "#9B59B6",
-            time: Calendar.current.date(bySettingHour: 20, minute: 0, second: 0, of: Date()),
-            note: "Read for 30 minutes",
-            weekdays: [.monday, .wednesday, .friday, .sunday],
-            order: 3
-        ),
-        HabitItem(
-            title: "Drink Water",
-            color: "#1ABC9C",
-            time: nil,
-            note: "8 glasses of water",
-            weekdays: .init(Weekday.allCases),
-            order: 4
-        ),
-        HabitItem(
-            title: "Plan Tomorrow",
-            color: "#F1C40F",
-            time: Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date()),
-            note: "10 minutes to plan the next day",
-            weekdays: .init(Weekday.allCases),
-            order: 5
-        ),
-        HabitItem(
-            title: "Stretch",
-            color: "#2ECC71",
-            time: Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date()),
-            note: "5 minutes of stretching",
-            weekdays: [.tuesday, .thursday, .saturday],
-            order: 6
-        ),
-        HabitItem(
-            title: "Write Journal",
-            color: "#E67E22",
-            time: Calendar.current.date(bySettingHour: 22, minute: 0, second: 0, of: Date()),
-            note: "Reflect on the day",
-            weekdays: [.sunday],
-            order: 7
-        )
-    ]
 }
