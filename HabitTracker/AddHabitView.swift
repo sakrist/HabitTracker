@@ -188,7 +188,7 @@ struct AddHabitView: View {
         color: Color.green.toHex(),
         category: HabitCategory.defaultCategory,
         timestamp: Date()
-    ))
+    )).modelContainer(SampleData.shared.modelContainer)
 }
 
 

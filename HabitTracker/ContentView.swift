@@ -36,6 +36,6 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environment(ModelData())
+        .environment(ModelData.shared)
         .modelContainer(SampleData.shared.modelContainer)
 }

@@ -134,6 +134,6 @@ struct CalendarView: View {
 
 #Preview {
     CalendarView()
-        .environment(ModelData())
+        .environment(ModelData.shared)
         .modelContainer(SampleData.shared.modelContainer)
 }

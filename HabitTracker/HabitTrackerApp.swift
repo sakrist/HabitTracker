@@ -10,7 +10,7 @@ import SwiftData
 
 @main
 struct HabitTrackerApp: App {
-    let modelData = ModelData()
+    let modelData = ModelData.shared
     
     // this will clear storage and populate sample data
     let sample = SampleData.shared

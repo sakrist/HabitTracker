@@ -170,3 +170,25 @@ final class HabitItem : Codable {
     }
     
 }
+
+func sortHabits(item1: HabitItem, item2: HabitItem) -> Bool {
+    if item1.isTimeSensitive != item2.isTimeSensitive {
+        return item1.isTimeSensitive // Time-sensitive items come first
+    }
+    
+    if let time1 = item1.time, let time2 = item2.time {
+        // Both times are non-nil; compare directly
+        if time1 != time2 {
+            return time1 < time2
+        }
+    } else if item1.time != nil {
+        // item1 has a time, item2 does not; item1 should come first
+        return true
+    } else if item2.time != nil {
+        // item2 has a time, item1 does not; item2 should come first
+        return false
+    }
+    
+    // If times are equal or both are nil, fall back to order
+    return item1.order < item2.order
+}

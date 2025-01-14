@@ -10,6 +10,20 @@ import SwiftUI
 import SwiftData
 
 
+struct HabitsList: View {
+    
+    @Binding var entries: [DailyEntry]
+    
+    var body: some View {
+        List {
+            ForEach(entries) { entry in
+                HabitItemCell(item: entry.habit, entry: entry)
+            }
+        }
+        .listStyle(.plain)
+    }
+}
+
 struct DailyHabitListView: View {
     @Environment(\.modelContext) private var modelContext
     @Binding var selectedTab: Int
@@ -61,12 +75,7 @@ struct DailyHabitListView: View {
                         }
                         Spacer()
                     } else {
-                        List {
-                            ForEach(entries) { entry in
-                                HabitItemCell(item: entry.habit, entry: entry)
-                            }
-                        }
-                        .listStyle(.plain)
+                        HabitsList(entries: $entries)
                     }
                 }
                 .onAppear {
@@ -82,8 +91,8 @@ struct DailyHabitListView: View {
 }
 
 #Preview {
-    let model = ModelData()
+    let model = ModelData.shared
     DailyHabitListView(selectedTab: .constant(0))
-        .environment(model)
+        .environment(ModelData.shared)
         .modelContainer(model.modelContainer)
 }

@@ -20,7 +20,7 @@ class SampleData {
     }
     
     private init() {
-        let model = ModelData()
+        let model = ModelData.shared
         modelContainer = model.modelContainer
         clearAllData()
         insertSampleData()
