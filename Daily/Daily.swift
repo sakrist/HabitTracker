@@ -44,15 +44,9 @@ struct Provider: TimelineProvider {
 
 struct DailyEntryView : View {
     var entry: Provider.Entry
-    @State private var dailyEntries: [DailyEntry]
-    
-    init(entry: Provider.Entry) {
-            self.entry = entry
-            _dailyEntries = State(initialValue: entry.dailyEntries)
-        }
     
     var body: some View {
-        HabitsList(entries: $dailyEntries)
+        HabitsList(entries: entry.dailyEntries)
     }
 }
 

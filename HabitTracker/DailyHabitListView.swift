@@ -12,7 +12,7 @@ import SwiftData
 
 struct HabitsList: View {
     
-    @Binding var entries: [DailyEntry]
+    let entries: [DailyEntry]
     
     var body: some View {
         List {
@@ -75,7 +75,7 @@ struct DailyHabitListView: View {
                         }
                         Spacer()
                     } else {
-                        HabitsList(entries: $entries)
+                        HabitsList(entries: entries)
                     }
                 }
                 .onAppear {
