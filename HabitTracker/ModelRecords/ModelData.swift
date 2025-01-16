@@ -63,7 +63,7 @@ import WidgetKit
         do {
             let categories = try modelContainer.mainContext.fetch(fetchRequestCategories)
             if (!categories.isEmpty) {
-                return categories
+                return categories.sorted { $0.title < $1.title }
             }
         } catch {
             fatalError("Error getting categories: \(error)")
