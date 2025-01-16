@@ -88,8 +88,8 @@ struct Daily: Widget {
             }
                 
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Current Day")
+        .description("Display habits for the current day")
     }
 }
 
