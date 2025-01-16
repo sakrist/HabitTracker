@@ -76,6 +76,7 @@ struct HabitsListView: View {
                     }
                 }
                 
+                /*
                 ToolbarItem {
                     Button(action: {
                         showImportFilePicker = true
@@ -94,7 +95,7 @@ struct HabitsListView: View {
                             }
                         }
                     )
-                }
+                }*/
                 
                 ToolbarItem {
                     Button(action: {
@@ -153,7 +154,7 @@ struct HabitsListView: View {
             item.order = index
             index += 1
         }
-        try? modelContext.save()
+        ModelData.shared.saveContext()
     }
 
     private func deleteItems(offsets: IndexSet) {
@@ -162,6 +163,7 @@ struct HabitsListView: View {
                 sortedItems[index].active.toggle()
             }
         }
+        ModelData.shared.saveContext()
     }
 }
 

@@ -8,6 +8,7 @@
 import SwiftData
 import Foundation
 import SwiftUI
+import WidgetKit
 
 @MainActor
 @Observable class ModelData {
@@ -28,7 +29,16 @@ import SwiftUI
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
+    }
+    
+    func saveContext() {
+        do {
+            try modelContainer.mainContext.save()  // Explicitly save the changes to the modelContext
+        } catch {
+            print("Error saving model context: \(error)")
+        }
         
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }
 

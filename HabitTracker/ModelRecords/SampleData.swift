@@ -167,3 +167,14 @@ extension HabitItem {
         )
     ]
 }
+
+
+func sampleDailyEntries() -> [DailyEntry] {
+    [
+        DailyEntry(habit: HabitItem.sampleData[0], date: Date(), isCompleted: false),
+        DailyEntry(habit: HabitItem.sampleData[1], date: Date(), isCompleted: true),
+        DailyEntry(habit: HabitItem.sampleData[2], date: Date(), isCompleted: false),
+        DailyEntry(habit: HabitItem.sampleData[3], date: Date(), isCompleted: false),
+        DailyEntry(habit: HabitItem.sampleData[4], date: Date(), isCompleted: false)
+    ]
+}

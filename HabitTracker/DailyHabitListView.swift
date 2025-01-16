@@ -8,19 +8,28 @@
 import Foundation
 import SwiftUI
 import SwiftData
-
+import ConfettiSwiftUI
 
 struct HabitsList: View {
     
     let entries: [DailyEntry]
     
+    @State private var counter: Int = 0
+    
     var body: some View {
         List {
             ForEach(entries) { entry in
                 HabitItemCell(item: entry.habit, entry: entry)
+                    .onChange(of: entry.isCompleted) { old, newValue in
+                        ModelData.shared.saveContext()
+                        if (newValue) {
+                            counter += 1
+                        }
+                    }
             }
         }
         .listStyle(.plain)
+        .confettiCannon(trigger: $counter, num: 60, rainHeight: 100)
     }
 }
 

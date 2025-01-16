@@ -16,6 +16,14 @@ struct HabitWidgetEntry: TimelineEntry {
 
 
 struct Provider: TimelineProvider {
+    
+    let modelData:ModelData
+    
+    @MainActor
+    func fetchEntries() -> [DailyEntry] {
+        return fetchHabitEntries(modelContext: modelData.modelContainer.mainContext, for: Date())
+    }
+    
     func placeholder(in context: Context) -> HabitWidgetEntry {
         HabitWidgetEntry(date: Date(), dailyEntries: sampleDailyEntries())
     }
@@ -26,14 +34,10 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<HabitWidgetEntry>) -> Void) {
-        @MainActor
-        func fetchEntries() -> [DailyEntry] {
-            let modelData = ModelData.shared
-            return fetchHabitEntries(modelContext: modelData.modelContainer.mainContext, for: Date())
-        }
-
+    
         Task {
             let entries = await fetchEntries()
+            print(entries.count)
             let timelineEntry = HabitWidgetEntry(date: Date(), dailyEntries: entries)
             let timeline = Timeline(entries: [timelineEntry], policy: .atEnd)
             completion(timeline)
@@ -46,15 +50,18 @@ struct DailyEntryView : View {
     var entry: Provider.Entry
     
     var body: some View {
-        HabitsList(entries: entry.dailyEntries)
+        WidgetHabitsList(entries: entry.dailyEntries)
+            .padding(0)
     }
 }
 
 struct Daily: Widget {
     let kind: String = "Daily"
 
+    let modelData = ModelData.shared
+    
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider(modelData:modelData)) { entry in
             if #available(macOS 14.0, iOS 17.0, *) {
                 DailyEntryView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)
@@ -77,10 +84,3 @@ struct Daily: Widget {
 }
 
 
-func sampleDailyEntries() -> [DailyEntry] {
-    [
-        DailyEntry(habit: HabitItem.sampleData[0], date: Date(), isCompleted: false),
-        DailyEntry(habit: HabitItem.sampleData[1], date: Date(), isCompleted: true),
-        DailyEntry(habit: HabitItem.sampleData[2], date: Date(), isCompleted: false)
-    ]
-}

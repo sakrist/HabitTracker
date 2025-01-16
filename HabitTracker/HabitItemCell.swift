@@ -39,7 +39,7 @@ struct HabitItemCell: View {
             Toggle(item.title, isOn: (entry != nil) ? Binding(
                 get: { entry!.isCompleted },
                 set: { entry!.isCompleted = $0 }
-            ) : .constant(false))
+            ) : .constant(true))
             .toggleStyle(CheckboxStyle(checkColor: item.getColor())) // Applying custom checkbox style
             .padding(0)
             
@@ -53,5 +53,6 @@ struct HabitItemCell: View {
 
 #Preview {
     let item = HabitItem.init(title: "Task 1", color: Color.red.toHex(), timestamp: .now)
-    HabitItemCell(item: item)
+    let entry = DailyEntry.init(habit: item, date: Date(), isCompleted: false)
+    HabitItemCell(item: item, entry: entry)
 }

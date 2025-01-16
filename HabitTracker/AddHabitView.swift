@@ -136,7 +136,7 @@ struct AddHabitView: View {
             }
         }
         
-        saveContext()
+        ModelData.shared.saveContext()
         dismiss()
     }
     
@@ -145,7 +145,7 @@ struct AddHabitView: View {
         
         if let existingItem {
             existingItem.active = true
-            saveContext()
+            ModelData.shared.saveContext()
         }
         dismiss()
     }
@@ -164,17 +164,10 @@ struct AddHabitView: View {
         newHabit.order = habits.count
         modelContext.insert(newHabit)
         
-        saveContext()
+        ModelData.shared.saveContext()
         dismiss()
     }
     
-    private func saveContext() {
-        do {
-            try modelContext.save()  // Explicitly save the changes to the modelContext
-        } catch {
-            print("Error saving model context: \(error)")
-        }
-    }
 }
 
 
