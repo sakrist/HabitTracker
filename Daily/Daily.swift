@@ -60,7 +60,7 @@ struct DailyEntryView : View {
         let filtered = (entry.showCompleted) ?  entry.dailyEntries : entry.dailyEntries.filter { !$0.isCompleted }
         
         WidgetHabitsList(entries: filtered)
-            .frame(maxHeight: .infinity, alignment: .top)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading )
             .padding(0)
         
         if filtered.isEmpty {
