@@ -24,7 +24,7 @@ struct AddHabitView: View {
     
     @State private var activeWeekdays: Set<HabitItem.Weekday>
 
-    @State private var selectedCategory: HabitCategory
+    @State private var selectedCategory: HabitCategory?
     @State private var categories: [HabitCategory] = []
     private var habitItem: HabitItem?
 
@@ -32,7 +32,8 @@ struct AddHabitView: View {
         _title = State(initialValue: habitItem?.title ?? "")
         _selectedColor = State(initialValue: habitItem?.getColor() ?? .blue)
         _note = State(initialValue: habitItem?.note ?? "")
-        _selectedCategory = State(initialValue: habitItem?.category ?? HabitCategory.defaultCategory)
+        
+        _selectedCategory = State(initialValue: habitItem?.category ?? ModelData.shared.defaultCategory())
 
         self.habitItem = habitItem
         if let habitItem = habitItem {
@@ -111,7 +112,7 @@ struct AddHabitView: View {
     }
     
     private func loadCategories() {
-        categories = fetchCategories(modelContext: modelContext)
+        categories = ModelData.shared.defaultCategories()
     }
     
     private func saveHabit() {
@@ -179,7 +180,7 @@ struct AddHabitView: View {
     AddHabitView(habitItem: HabitItem(
         title: "Morning Run",
         color: Color.green.toHex(),
-        category: HabitCategory.defaultCategory,
+        category: HabitCategory(id: "default", title: "Other"),
         timestamp: Date()
     )).modelContainer(SampleData.shared.modelContainer)
 }

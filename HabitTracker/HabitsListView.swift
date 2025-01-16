@@ -47,6 +47,7 @@ struct HabitsListView: View {
                 ForEach(sortedItems) { item in
                     NavigationLink(destination: AddHabitView(habitItem: item)) {
                         HabitItemCell(item: item)
+                            .contentShape(Rectangle())
                     }
                     .moveDisabled(item.isTimeSensitive)
                 }

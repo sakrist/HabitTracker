@@ -16,7 +16,7 @@ final class HabitItem : Codable {
     var id: String
     var title: String
     var color: String = "#FF0000"
-    var category: HabitCategory
+    var category: HabitCategory?
     var time: Date?
     var note: String?
     var weekdays: Set<HabitItem.Weekday>
@@ -75,7 +75,7 @@ final class HabitItem : Codable {
     init(id: String = UUID().uuidString,
          title: String,
          color: String = "#FF0000",
-         category: HabitCategory = HabitCategory.defaultCategory,
+         category: HabitCategory?,
          time: Date? = nil,
          note: String? = nil,
          weekdays: Set<Weekday> = [],

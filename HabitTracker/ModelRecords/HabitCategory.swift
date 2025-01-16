@@ -30,8 +30,6 @@ final class HabitCategory : Codable, Equatable, Hashable {
         self.color = color
     }
     
-    public static var defaultCategory = HabitCategory(id: "default", title: "Other")
-    
     // Encoding method for Codable conformance
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -64,18 +62,4 @@ final class HabitCategory : Codable, Equatable, Hashable {
         hasher.combine(color)
     }
 
-}
-
-
-extension HabitCategory {
-    static let defaults: [HabitCategory] = [
-        HabitCategory(id: "health", title: "Health", color: "#FF5733"),     // Red-orange for health
-        HabitCategory(id: "fitness", title: "Fitness", color: "#27AE60"),   // Green for fitness
-        HabitCategory(id: "growth", title: "Growth", color: "#4CAF50"),     // Red-orange for health
-        HabitCategory(id: "learning", title: "Learning", color: "#FF5733"), // Yellow for education
-        HabitCategory(id: "productivity", title: "Productivity", color: "#1E88E5"), // blue for education
-        HabitCategory(id: "hobbies", title: "Hobbies", color: "#8E44AD"),   // Purple for hobbies
-        HabitCategory(id: "social", title: "Social", color: "#16A085"),    // Teal for social
-        HabitCategory.defaultCategory                                      // Default category
-    ]
 }

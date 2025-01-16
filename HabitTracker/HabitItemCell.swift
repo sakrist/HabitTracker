@@ -52,7 +52,7 @@ struct HabitItemCell: View {
 
 
 #Preview {
-    let item = HabitItem.init(title: "Task 1", color: Color.red.toHex(), timestamp: .now)
+    let item = HabitItem.init(title: "Task 1", color: Color.red.toHex(), category: HabitCategory(id: "default", title: "Other"), timestamp: .now)
     let entry = DailyEntry.init(habit: item, date: Date(), isCompleted: false)
     HabitItemCell(item: item, entry: entry)
 }

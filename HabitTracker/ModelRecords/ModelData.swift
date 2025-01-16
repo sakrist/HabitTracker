@@ -29,6 +29,22 @@ import WidgetKit
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
+        insertCategories()
+    }
+    
+    func insertCategories() {
+        let fetchRequestCategories = FetchDescriptor<HabitCategory>()
+        do {
+            let categories = try modelContainer.mainContext.fetch(fetchRequestCategories)
+            if (categories.isEmpty) {
+                for item in _defaultCategories() {
+                    modelContainer.mainContext.insert(item)
+                }
+                try modelContainer.mainContext.save()
+            }
+        } catch {
+            fatalError("Could not create Fetch Request: \(error)")
+        }
     }
     
     func saveContext() {
@@ -39,6 +55,44 @@ import WidgetKit
         }
         
         WidgetCenter.shared.reloadAllTimelines()
+    }
+    
+    func defaultCategories() -> [HabitCategory] {
+        
+        let fetchRequestCategories = FetchDescriptor<HabitCategory>()
+        do {
+            let categories = try modelContainer.mainContext.fetch(fetchRequestCategories)
+            if (!categories.isEmpty) {
+                return categories
+            }
+        } catch {
+            fatalError("Error getting categories: \(error)")
+        }
+        return _defaultCategories()
+    }
+    
+    public func defaultCategory() -> HabitCategory {
+        let c = defaultCategories()
+        for item in c {
+            if (item.id == "default") {
+                return item
+            }
+        }
+        return HabitCategory(id: "default", title: "Other")
+    }
+
+    fileprivate func _defaultCategories() -> [HabitCategory]  {
+        let categories = [
+            HabitCategory(id: "health", title: "Health", color: "#FF5733"),     // Red-orange for health
+            HabitCategory(id: "fitness", title: "Fitness", color: "#27AE60"),   // Green for fitness
+            HabitCategory(id: "growth", title: "Growth", color: "#4CAF50"),     // Red-orange for health
+            HabitCategory(id: "learning", title: "Learning", color: "#FF5733"), // Yellow for education
+            HabitCategory(id: "productivity", title: "Productivity", color: "#1E88E5"), // blue for education
+            HabitCategory(id: "hobbies", title: "Hobbies", color: "#8E44AD"),   // Purple for hobbies
+            HabitCategory(id: "social", title: "Social", color: "#16A085"),    // Teal for social
+            HabitCategory(id: "default", title: "Other")                                      // Default category
+        ]
+        return categories.sorted { $0.title < $1.title }
     }
 }
 
