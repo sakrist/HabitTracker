@@ -39,6 +39,7 @@
 		D2CFF55D2D35A52200D09F01 /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF55C2D35A52200D09F01 /* WeekdaysView.swift */; };
 		D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481052CD8246C00B1DF7C /* MonthlyView.swift */; };
 		D2DB71452D392C35000DC325 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71442D392C35000DC325 /* ConfettiSwiftUI */; };
+		D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,7 @@
 		D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
 		D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
 		D2D481052CD8246C00B1DF7C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
+		D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitMonthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -217,6 +219,7 @@
 				D2D481052CD8246C00B1DF7C /* MonthlyView.swift */,
 				D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */,
 				D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */,
+				D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */,
 				D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */,
 				D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */,
 				D2CFF55C2D35A52200D09F01 /* WeekdaysView.swift */,
@@ -472,6 +475,7 @@
 				D28309DA2CA9B32100C6B22A /* DailyEntry.swift in Sources */,
 				D2C126482CB2DAAC005E5941 /* DailyHabitListView.swift in Sources */,
 				D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */,
+				D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */,
 				D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */,
 				D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */,
 				D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */,

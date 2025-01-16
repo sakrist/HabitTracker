@@ -8,12 +8,13 @@ import SwiftUI
 
 struct MonthlyView: View {
     let startDate: Date
+    let habit: HabitItem?
     @Environment(\.modelContext) private var modelContext
     var calendar = Calendar.current
 
     var body: some View {
         let daysInMonth = getDaysInMonth(from: startDate)
-        let entries = fetchEntries(start: monthStart(), end: monthEnd(), modelContext: modelContext)
+        let entries = fetchEntries(start: monthStart(), end: monthEnd(), habit:habit, modelContext: modelContext)
 
         // Create a grid of days
         let columns = Array(repeating: GridItem(.flexible(minimum: 30, maximum: 40), spacing: 4), count: 7)
@@ -31,7 +32,7 @@ struct MonthlyView: View {
 
                     Text(shortDate(date))
                         .font(.caption)
-                        .foregroundColor(.black) // Change text color to make it more visible
+//                        .foregroundColor(.black) // Change text color to make it more visible
                         .frame(height: 15) // Ensure consistent height for labels
                 }
                 .padding(3) // Padding around each item

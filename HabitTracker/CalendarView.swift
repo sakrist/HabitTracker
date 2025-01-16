@@ -55,7 +55,7 @@ struct CalendarView: View {
 //                .padding(.leading)
             }
             
-            MonthlyView(startDate: currentDate)
+            MonthlyView(startDate: currentDate, habit:nil)
             
             Spacer()
         } detail: {

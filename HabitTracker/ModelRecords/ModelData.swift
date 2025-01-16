@@ -161,9 +161,8 @@ func fetchHabits(modelContext: ModelContext, predicate: Predicate<HabitItem>? = 
         habits = habits.sorted { $0.order < $1.order }
         return habits
     } catch {
-        print("Error fetching active habits: \(error)")
+        fatalError("Error fetching active habits: \(error)")
     }
-    return []
 }
 
 func fetchEntries(for date: Date, modelContext: ModelContext) -> [DailyEntry] {
@@ -174,11 +173,19 @@ func fetchEntries(for date: Date, modelContext: ModelContext) -> [DailyEntry] {
 }
 
 // Fetch entries for a specific date
-func fetchEntries(start: Date, end: Date, modelContext: ModelContext) -> [DailyEntry] {
+func fetchEntries(start: Date, end: Date, habit: HabitItem? = nil, modelContext: ModelContext) -> [DailyEntry] {
 //    let calendar = Calendar.current
     // Create a predicate for fetching entries for the specific date
-    let predicate = #Predicate { (entry: DailyEntry) in
-        entry.date >= start && entry.date < end
+    
+    var predicate: Predicate<DailyEntry>
+    if let habitID = habit?.id {
+        predicate = #Predicate { (entry: DailyEntry) in
+            entry.date >= start && entry.date < end && entry.habit.id == habitID
+            }
+    } else {
+        predicate = #Predicate { (entry: DailyEntry) in
+            entry.date >= start && entry.date < end
+        }
     }
 
     // Perform the fetch using the modelContext
@@ -189,10 +196,11 @@ func fetchEntries(start: Date, end: Date, modelContext: ModelContext) -> [DailyE
         print("fetchEntries \(entries)")
         return entries
     } catch {
-        print("Error fetching entries: \(error)")
-        return []
+        fatalError("Error fetching entries: \(error)")
     }
 }
+
+
 
 func fetchCategories(modelContext: ModelContext) -> [HabitCategory] {
     let fetchDescriptor = FetchDescriptor<HabitCategory>()
@@ -201,7 +209,6 @@ func fetchCategories(modelContext: ModelContext) -> [HabitCategory] {
         print("fetchCategories \(categories)")
         return categories
     } catch {
-        print("Error fetching categories: \(error)")
-        return []
+        fatalError("Error fetching categories: \(error)")
     }
 }

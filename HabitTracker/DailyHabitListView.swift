@@ -11,7 +11,7 @@ import SwiftData
 import ConfettiSwiftUI
 
 struct HabitsList: View {
-    
+    let date:Date
     let entries: [DailyEntry]
     
     @State private var counter: Int = 0
@@ -19,13 +19,16 @@ struct HabitsList: View {
     var body: some View {
         List {
             ForEach(entries) { entry in
-                HabitItemCell(item: entry.habit, entry: entry)
-                    .onChange(of: entry.isCompleted) { old, newValue in
-                        ModelData.shared.saveContext()
-                        if (newValue) {
-                            counter += 1
+                NavigationLink(destination: HabitMonthView(date: date, habit:entry.habit)) {
+                    HabitItemCell(item: entry.habit, entry: entry)
+                        .contentShape(Rectangle())
+                        .onChange(of: entry.isCompleted) { old, newValue in
+                            ModelData.shared.saveContext()
+                            if (newValue) {
+                                counter += 1
+                            }
                         }
-                    }
+                }
             }
         }
         .listStyle(.plain)
@@ -40,6 +43,8 @@ struct DailyHabitListView: View {
     @State private var entries: [DailyEntry] = []
     @State private var selectedDate: Date = Date()  // The currently selected date
 
+    @State private var counter: Int = 0
+    
     var body: some View {
         NavigationSplitView {
             VStack {
@@ -98,7 +103,7 @@ struct DailyHabitListView: View {
                         Spacer()
                         Spacer()
                     } else {
-                        HabitsList(entries: entries)
+                        HabitsList(date: selectedDate, entries: entries)
                     }
                 }
                 .onAppear {
