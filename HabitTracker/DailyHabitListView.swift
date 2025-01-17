@@ -9,12 +9,14 @@ import Foundation
 import SwiftUI
 import SwiftData
 import ConfettiSwiftUI
+import AVFoundation
 
 struct HabitsList: View {
     let date:Date
     let entries: [DailyEntry]
     
     @State private var counter: Int = 0
+    @State private var audioPlayer: AVAudioPlayer?
     
     var body: some View {
         List {
@@ -26,6 +28,7 @@ struct HabitsList: View {
                             ModelData.shared.saveContext()
                             if (newValue) {
                                 counter += 1
+                                playSound()
                             }
                         }
                 }
@@ -33,7 +36,30 @@ struct HabitsList: View {
         }
         .listStyle(.plain)
         .confettiCannon(trigger: $counter, num: 60, rainHeight: 100)
+        .onAppear {
+            setupAudioPlayer()
+        }
     }
+    
+    // Set up the audio player
+        private func setupAudioPlayer() {
+            guard let soundURL =  Bundle.main.url(forResource: "Balloon Pop", withExtension: "caf") else {
+                print("Audio file not found.")
+                return
+            }
+
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                audioPlayer?.prepareToPlay()
+            } catch {
+                print("Error initializing audio player: \(error)")
+            }
+        }
+
+        // Play the audio
+        private func playSound() {
+            audioPlayer?.play()
+        }
 }
 
 struct DailyHabitListView: View {
