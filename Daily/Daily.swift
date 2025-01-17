@@ -59,14 +59,15 @@ struct DailyEntryView : View {
     var body: some View {
         let filtered = (entry.showCompleted) ?  entry.dailyEntries : entry.dailyEntries.filter { !$0.isCompleted }
         
-        WidgetHabitsList(entries: filtered)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading )
-            .padding(0)
-        
         if filtered.isEmpty {
             Text(entry.showCompleted ? "No remaining habits!" : "All habits completed!")
                 .font(.footnote)
+                .multilineTextAlignment(.center)
                 .foregroundColor(.gray)
+        } else {
+            WidgetHabitsList(entries: filtered)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading )
+                .padding(0)
         }
     }
 }

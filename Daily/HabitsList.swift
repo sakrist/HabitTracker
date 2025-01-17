@@ -16,11 +16,12 @@ struct SimpleHabitItemCell: View {
             // Static checkbox representation
             Image(systemName: (entry?.isCompleted ?? false) ? "checkmark.circle.fill" : "circle")
                 .foregroundColor(item.getColor())
-                .font(.system(size: 24))
+//                .font(.system(size: 24))
 
             // Habit title
             Text(item.title)
                 .foregroundColor(.primary)
+                .font(.system(size: 14))
                 .lineLimit(1)
         }.padding(0)
     }
@@ -29,7 +30,7 @@ struct SimpleHabitItemCell: View {
 struct WidgetHabitsList: View {
     let entries: [DailyEntry]
 
-    let showCount = 4
+    let showCount = 5
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -37,13 +38,13 @@ struct WidgetHabitsList: View {
                 SimpleHabitItemCell(item: entry.habit, entry: entry)
             }.padding(0)
             
-            if entries.count > 4 {
+            if entries.count > 5 {
                 HStack {
                     Spacer()
                     Text("…and more")
                         .font(.footnote)
                         .foregroundColor(.gray)
-                        .padding(.top, -10)
+                        .padding(.top, -4)
                     
                 }.padding(0)
             }

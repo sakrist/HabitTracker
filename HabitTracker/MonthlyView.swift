@@ -19,26 +19,52 @@ struct MonthlyView: View {
         // Create a grid of days
         let columns = Array(repeating: GridItem(.flexible(minimum: 30, maximum: 40), spacing: 4), count: 7)
 
-        LazyVGrid(columns: columns, spacing: 6) {
-            ForEach(daysInMonth, id: \.self) { date in
-                let completionRate = completionPercentage(for: date, in: entries)
-                let color = colorForCompletionRate(completionRate)
-
-                VStack {
-                    Rectangle()
-                        .fill(color)
-                        .frame(height: 30) // Smaller height for squares
-                        .cornerRadius(4)
-
-                    Text(shortDate(date))
+        VStack(spacing: 6) {
+            // Add weekday labels
+//            HStack(spacing: 4) {
+//                ForEach(HabitItem.Weekday.allCases, id: \.self) { weekday in
+//                    Text(weekday.displayName)
+//                        .font(.caption)
+//                        .frame(maxWidth: .infinity)
+//                        .multilineTextAlignment(.center)
+//                }
+//            }
+//            
+            LazyVGrid(columns: columns, spacing: 6) {
+                ForEach(HabitItem.Weekday.allCases, id: \.self) { weekday in
+                    Text(weekday.displayName)
                         .font(.caption)
-//                        .foregroundColor(.black) // Change text color to make it more visible
-                        .frame(height: 15) // Ensure consistent height for labels
+                        .frame(maxWidth: .infinity)
+                        .multilineTextAlignment(.center)
                 }
-                .padding(3) // Padding around each item
+                
+                // Add empty spaces for alignment if the first day doesn't start on the calendar's first weekday
+                    ForEach(0..<getWeekdayShift(from: daysInMonth.first!), id: \.self) { _ in
+                        Rectangle()
+                            .fill(Color.clear)
+                            .frame(height: 30)
+                    }
+    
+                ForEach(daysInMonth, id: \.self) { date in
+                    let completionRate = completionPercentage(for: date, in: entries)
+                    let color = colorForCompletionRate(completionRate)
+                    
+                    VStack {
+                        Rectangle()
+                            .fill(color)
+                            .frame(height: 30) // Smaller height for squares
+                            .cornerRadius(4)
+                        
+                        Text(shortDate(date))
+                            .font(.caption)
+                        //                        .foregroundColor(.black) // Change text color to make it more visible
+                            .frame(height: 15) // Ensure consistent height for labels
+                    }
+                    .padding(3) // Padding around each item
+                }
             }
+            .padding()
         }
-        .padding()
     }
 
     private func getDaysInMonth(from date: Date) -> [Date] {
@@ -51,6 +77,11 @@ struct MonthlyView: View {
         }
     }
 
+    private func getWeekdayShift(from date: Date) -> Int {
+            let weekdayIndex = calendar.component(.weekday, from: date)
+            return (weekdayIndex - calendar.firstWeekday + 7) % 7
+        }
+    
     private func monthStart() -> Date {
         calendar.date(from: calendar.dateComponents([.year, .month], from: startDate))!
     }
@@ -84,4 +115,9 @@ struct MonthlyView: View {
         default: return Color.clear
         }
     }
+}
+
+#Preview {
+    MonthlyView(startDate: Date(), habit: nil)
+        .modelContainer(ModelData.shared.modelContainer)
 }
