@@ -17,6 +17,7 @@ struct HabitsList: View {
     
     @State private var counter: Int = 0
     @State private var audioPlayer: AVAudioPlayer?
+    @State private var audioPlayer2: AVAudioPlayer?
     
     var body: some View {
         List {
@@ -40,20 +41,25 @@ struct HabitsList: View {
     private func changed(entry:DailyEntry, _ old:Bool, _ new:Bool) {
         ModelData.shared.saveContext()
         if (new) {
-            counter += 1
             playSound()
-        }
-        
-        if (new) {
             silenceTodaysNotification(identifier: entry.habit.id)
         } else {
             reScheduleWeekdayNotification(habitItem: entry.habit)
+        }
+        
+        var entriesFiltered = entries.filter { $0.isCompleted }
+        if (entriesFiltered.count == entries.count) {
+            // dispatch to main queue after 0.5 sec
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                counter += 1
+                playPopSound()
+            }
         }
     }
     
     // Set up the audio player
     private func setupAudioPlayer() {
-        guard let soundURL =  Bundle.main.url(forResource: "Balloon Pop", withExtension: "caf") else {
+        guard let soundURL =  Bundle.main.url(forResource: "sparkle", withExtension: "wav") else {
             print("Audio file not found.")
             return
         }
@@ -70,6 +76,24 @@ struct HabitsList: View {
     private func playSound() {
         audioPlayer?.play()
     }
+    
+    // Set up the audio player
+    private func playPopSound() {
+        guard let soundURL =  Bundle.main.url(forResource: "Balloon Pop", withExtension: "caf") else {
+            print("Audio file not found.")
+            return
+        }
+
+        do {
+            audioPlayer2 = try AVAudioPlayer(contentsOf: soundURL)
+            audioPlayer2?.prepareToPlay()
+        } catch {
+            print("Error initializing audio player: \(error)")
+        }
+        audioPlayer2?.play()
+    }
+    
+    
 }
 
 struct DailyHabitListView: View {

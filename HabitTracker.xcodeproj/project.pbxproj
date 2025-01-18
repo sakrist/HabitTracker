@@ -39,8 +39,9 @@
 		D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481052CD8246C00B1DF7C /* MonthlyView.swift */; };
 		D2DB71452D392C35000DC325 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71442D392C35000DC325 /* ConfettiSwiftUI */; };
 		D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */; };
-		D2DB715E2D3AD97A000DC325 /* Balloon Pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = D2DB715D2D3AD97A000DC325 /* Balloon Pop.caf */; };
 		D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */; };
+		D2DB71682D3C6A6F000DC325 /* Balloon Pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = D2DB71652D3C6A6F000DC325 /* Balloon Pop.caf */; };
+		D2DB71692D3C6A6F000DC325 /* sparkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = D2DB71662D3C6A6F000DC325 /* sparkle.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,8 +111,9 @@
 		D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
 		D2D481052CD8246C00B1DF7C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 		D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitMonthView.swift; sourceTree = "<group>"; };
-		D2DB715D2D3AD97A000DC325 /* Balloon Pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Balloon Pop.caf"; sourceTree = "<group>"; };
 		D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
+		D2DB71652D3C6A6F000DC325 /* Balloon Pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Balloon Pop.caf"; sourceTree = "<group>"; };
+		D2DB71662D3C6A6F000DC325 /* sparkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sparkle.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -214,7 +216,7 @@
 			children = (
 				D25A7A7D2CA5D7EE0000E843 /* Preview Content */,
 				D25A7A812CA5D7EE0000E843 /* HabitTracker.entitlements */,
-				D2DB715D2D3AD97A000DC325 /* Balloon Pop.caf */,
+				D2DB71672D3C6A6F000DC325 /* Sounds */,
 				D25A7A7F2CA5D7EE0000E843 /* Assets.xcassets */,
 				D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */,
 				D25A7A802CA5D7EE0000E843 /* ContentView.swift */,
@@ -309,6 +311,15 @@
 				D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */,
 			);
 			path = Systems;
+			sourceTree = "<group>";
+		};
+		D2DB71672D3C6A6F000DC325 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				D2DB71652D3C6A6F000DC325 /* Balloon Pop.caf */,
+				D2DB71662D3C6A6F000DC325 /* sparkle.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -462,7 +473,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D25A7A852CA5D7EF0000E843 /* Preview Assets.xcassets in Resources */,
-				D2DB715E2D3AD97A000DC325 /* Balloon Pop.caf in Resources */,
+				D2DB71682D3C6A6F000DC325 /* Balloon Pop.caf in Resources */,
+				D2DB71692D3C6A6F000DC325 /* sparkle.wav in Resources */,
 				D25A7A862CA5D7EF0000E843 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
