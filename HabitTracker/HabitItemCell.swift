@@ -30,18 +30,48 @@ struct CheckboxStyle: ToggleStyle {
     }
 }
 
+struct CirclyStyle: ToggleStyle {
+    
+    let checkColor:Color
+    
+    func makeBody(configuration: Configuration) -> some View {
+        HStack {
+            // Checkbox icon
+            Image(systemName: "circle.fill")
+                .foregroundColor(checkColor)
+                .font(.system(size: 24))
+                
+
+            // Toggle label
+            configuration.label
+        }.onTapGesture {
+            withAnimation(.easeInOut(duration: 0.15)) {
+                configuration.isOn.toggle()
+            }
+        }
+    }
+}
+
+
 struct HabitItemCell: View {
     let item:HabitItem
     var entry: DailyEntry?
     
     var body: some View {
+        
         HStack {
-            Toggle(item.title, isOn: (entry != nil) ? Binding(
-                get: { entry!.isCompleted },
-                set: { entry!.isCompleted = $0 }
-            ) : .constant(true))
-            .toggleStyle(CheckboxStyle(checkColor: item.getColor())) // Applying custom checkbox style
-            .padding(0)
+            if let entry = entry {
+                    Toggle(item.title, isOn: Binding(
+                        get: { entry.isCompleted },
+                        set: { entry.isCompleted = $0 }
+                    ))
+                    .toggleStyle(CheckboxStyle(checkColor: item.getColor()))
+                    .padding(0)
+                } else {
+                    Toggle(item.title, isOn: .constant(true))
+                        .toggleStyle(CirclyStyle(checkColor: item.getColor()))
+                        .padding(0)
+                }
             
             Spacer()
 
@@ -55,4 +85,6 @@ struct HabitItemCell: View {
     let item = HabitItem.init(title: "Task 1", color: Color.red.toHex(), category: HabitCategory(id: "default", title: "Other"), timestamp: .now)
     let entry = DailyEntry.init(habit: item, date: Date(), isCompleted: false)
     HabitItemCell(item: item, entry: entry)
+    
+    HabitItemCell(item: item, entry: nil)
 }
