@@ -14,6 +14,8 @@ import WidgetKit
 @Observable class ModelData {
     static let shared = ModelData()
     
+    var notificationsEnabled: Bool = false
+    
     let modelContainer: ModelContainer
     
     init() {

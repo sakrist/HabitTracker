@@ -14,11 +14,15 @@ struct HabitTrackerApp: App {
     
     // this will clear storage and populate sample data
 //    let sample = SampleData.shared
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                
+                .onAppear {
+                    checkNotificationPermission { value in
+                        modelData.notificationsEnabled = value
+                    }
+                }
         }
         .modelContainer(modelData.modelContainer)
         .environment(modelData)

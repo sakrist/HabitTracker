@@ -67,6 +67,10 @@ struct AddHabitView: View {
                     if timeSensetive {
                         DatePicker("Select Time", selection: $time, displayedComponents: .hourAndMinute)
                     }
+                }.onChange(of: timeSensetive) { value, newValue in
+                    if (!ModelData.shared.notificationsEnabled) {
+                        requestNotificationPermission()
+                    }
                 }
                 
                 Section(header: Text("Color")) {
@@ -137,6 +141,8 @@ struct AddHabitView: View {
             }
         }
         
+        setupNotificaitons()
+        
         ModelData.shared.saveContext()
         dismiss()
     }
@@ -165,8 +171,16 @@ struct AddHabitView: View {
         newHabit.order = habits.count
         modelContext.insert(newHabit)
         
+        setupNotificaitons()
+        
         ModelData.shared.saveContext()
         dismiss()
+    }
+    
+    func setupNotificaitons() {
+        if let habitItem = habitItem {
+            reScheduleWeekdayNotification(habitItem: habitItem)
+        }
     }
     
 }

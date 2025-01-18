@@ -25,41 +25,51 @@ struct HabitsList: View {
                     HabitItemCell(item: entry.habit, entry: entry)
                         .contentShape(Rectangle())
                         .onChange(of: entry.isCompleted) { old, newValue in
-                            ModelData.shared.saveContext()
-                            if (newValue) {
-                                counter += 1
-                                playSound()
-                            }
+                            changed(entry: entry, old, newValue)
                         }
                 }
             }
         }
         .listStyle(.plain)
-        .confettiCannon(trigger: $counter, num: 60, rainHeight: 100)
+        .confettiCannon(trigger: $counter, num: 100, rainHeight: 300)
         .onAppear {
             setupAudioPlayer()
         }
     }
     
+    private func changed(entry:DailyEntry, _ old:Bool, _ new:Bool) {
+        ModelData.shared.saveContext()
+        if (new) {
+            counter += 1
+            playSound()
+        }
+        
+        if (new) {
+            silenceTodaysNotification(identifier: entry.habit.id)
+        } else {
+            reScheduleWeekdayNotification(habitItem: entry.habit)
+        }
+    }
+    
     // Set up the audio player
-        private func setupAudioPlayer() {
-            guard let soundURL =  Bundle.main.url(forResource: "Balloon Pop", withExtension: "caf") else {
-                print("Audio file not found.")
-                return
-            }
-
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-                audioPlayer?.prepareToPlay()
-            } catch {
-                print("Error initializing audio player: \(error)")
-            }
+    private func setupAudioPlayer() {
+        guard let soundURL =  Bundle.main.url(forResource: "Balloon Pop", withExtension: "caf") else {
+            print("Audio file not found.")
+            return
         }
 
-        // Play the audio
-        private func playSound() {
-            audioPlayer?.play()
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            audioPlayer?.prepareToPlay()
+        } catch {
+            print("Error initializing audio player: \(error)")
         }
+    }
+
+    // Play the audio
+    private func playSound() {
+        audioPlayer?.play()
+    }
 }
 
 struct DailyHabitListView: View {

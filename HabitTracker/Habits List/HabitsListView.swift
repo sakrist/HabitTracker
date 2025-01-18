@@ -162,6 +162,8 @@ struct HabitsListView: View {
         withAnimation {
             for index in offsets {
                 sortedItems[index].active.toggle()
+                
+                cancelNotifications(baseIdentifier: sortedItems[index].id)
             }
         }
         ModelData.shared.saveContext()

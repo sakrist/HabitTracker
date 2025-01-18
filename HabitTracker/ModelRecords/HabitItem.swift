@@ -151,6 +151,14 @@ final class HabitItem : Codable {
         return Color(hex: color) ?? .secondary
     }
     
+    func calendarWeekdays() -> [Int] {
+        var weekdaysArray: [Int] = .init()
+        for weekday in weekdays {
+            weekdaysArray.append(weekday.rawValue+1)
+        }
+        return weekdaysArray
+    }
+    
     // Computed property to format the time as a string
     var formattedTime: String {
         if let time = time {

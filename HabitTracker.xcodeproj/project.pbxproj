@@ -35,11 +35,12 @@
 		D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */; };
 		D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */; };
 		D2CFF5592D35885500D09F01 /* HabitCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory.swift */; };
-		D2CFF55D2D35A52200D09F01 /* WeekdaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF55C2D35A52200D09F01 /* WeekdaysView.swift */; };
+		D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */; };
 		D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481052CD8246C00B1DF7C /* MonthlyView.swift */; };
 		D2DB71452D392C35000DC325 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71442D392C35000DC325 /* ConfettiSwiftUI */; };
 		D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */; };
 		D2DB715E2D3AD97A000DC325 /* Balloon Pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = D2DB715D2D3AD97A000DC325 /* Balloon Pop.caf */; };
+		D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,12 +105,13 @@
 		D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		D2CFF5582D35884E00D09F01 /* HabitCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCategory.swift; sourceTree = "<group>"; };
-		D2CFF55C2D35A52200D09F01 /* WeekdaysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysView.swift; sourceTree = "<group>"; };
+		D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysSelectorView.swift; sourceTree = "<group>"; };
 		D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
 		D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
 		D2D481052CD8246C00B1DF7C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 		D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitMonthView.swift; sourceTree = "<group>"; };
 		D2DB715D2D3AD97A000DC325 /* Balloon Pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Balloon Pop.caf"; sourceTree = "<group>"; };
+		D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -216,9 +218,8 @@
 				D25A7A7F2CA5D7EE0000E843 /* Assets.xcassets */,
 				D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */,
 				D25A7A802CA5D7EE0000E843 /* ContentView.swift */,
-				D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */,
-				D2D481052CD8246C00B1DF7C /* MonthlyView.swift */,
-				D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */,
+				D2DB71622D3C48BF000DC325 /* Systems */,
+				D2DB71612D3BC877000DC325 /* Views */,
 				D2DB71602D3BC54A000DC325 /* Day View */,
 				D2DB715F2D3BC521000DC325 /* Habits List */,
 				D28309DB2CA9B33800C6B22A /* ModelRecords */,
@@ -279,7 +280,7 @@
 			children = (
 				D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */,
 				D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */,
-				D2CFF55C2D35A52200D09F01 /* WeekdaysView.swift */,
+				D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */,
 			);
 			path = "Habits List";
 			sourceTree = "<group>";
@@ -290,6 +291,24 @@
 				D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */,
 			);
 			path = "Day View";
+			sourceTree = "<group>";
+		};
+		D2DB71612D3BC877000DC325 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */,
+				D2D481052CD8246C00B1DF7C /* MonthlyView.swift */,
+				D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D2DB71622D3C48BF000DC325 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */,
+			);
+			path = Systems;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -489,13 +508,14 @@
 				D2CFF5592D35885500D09F01 /* HabitCategory.swift in Sources */,
 				D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */,
 				D28309DA2CA9B32100C6B22A /* DailyEntry.swift in Sources */,
+				D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */,
 				D2C126482CB2DAAC005E5941 /* DailyHabitListView.swift in Sources */,
 				D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */,
 				D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */,
 				D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */,
 				D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */,
 				D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */,
-				D2CFF55D2D35A52200D09F01 /* WeekdaysView.swift in Sources */,
+				D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */,
 				D25A7A8A2CA5D7EF0000E843 /* HabitItem.swift in Sources */,
 				D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */,
 				D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */,
