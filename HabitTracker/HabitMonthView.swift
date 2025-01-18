@@ -13,33 +13,30 @@ struct HabitMonthView : View {
     let habit: HabitItem?
     @Environment(\.modelContext) private var modelContext
     var calendar = Calendar.current
-
+    
+    private var header: some View {
+        HStack {
+            Button(action: {
+                date = moveDate(-1)
+            }) {
+                Image(systemName: "arrow.left")
+            }
+            
+            Text(dateString)
+                .font(.title.bold())
+            
+            Button(action: {
+                date = moveDate(1)
+            }) {
+                Image(systemName: "arrow.right")
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        date = Calendar.current.date(byAdding: .month, value: -1, to: date) ?? Date()
-                    }) {
-                        Image(systemName: "arrow.left")
-                    }
-                    
-                    Spacer()
-                    
-                    Text("\(monthDate(date))")  // Show the current selected date
-                        .font(.title.bold())
-                        .frame(width: 150)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        date = Calendar.current.date(byAdding: .month, value: 1, to: date) ?? Date()
-                    }) {
-                        Image(systemName: "arrow.right")
-                    }
-                    Spacer()
-                }
+                header
                 
                 MonthlyView(startDate: date, habit: habit)
                 
@@ -49,9 +46,14 @@ struct HabitMonthView : View {
 
     }
     
-    private func monthDate(_ date: Date) -> String {
+    private func moveDate(_ offset: Int) -> Date {
+        let component: Calendar.Component = .month
+        return calendar.date(byAdding: component, value: offset, to: date) ?? date
+    }
+    
+    private var dateString: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM" // Display day of the month
+        formatter.dateFormat = "MMMM yyyy"
         return formatter.string(from: date)
     }
 }
