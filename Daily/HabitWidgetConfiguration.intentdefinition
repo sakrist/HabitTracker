@@ -63,46 +63,18 @@
 		<dict>
 			<key>INIntentCategory</key>
 			<string>toggle</string>
-			<key>INIntentConfigurable</key>
-			<true/>
 			<key>INIntentDescription</key>
 			<string>Show completed habits</string>
 			<key>INIntentDescriptionID</key>
 			<string>UVzjAc</string>
 			<key>INIntentEligibleForWidgets</key>
 			<true/>
+			<key>INIntentIneligibleForSuggestions</key>
+			<true/>
 			<key>INIntentLastParameterTag</key>
 			<integer>2</integer>
-			<key>INIntentManagedParameterCombinations</key>
-			<dict>
-				<key>state</key>
-				<dict>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Turn ${state}</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>KWF2OD</string>
-					<key>INIntentParameterCombinationUpdatesLinked</key>
-					<true/>
-				</dict>
-			</dict>
 			<key>INIntentName</key>
 			<string>HabitWidgetConfiguration</string>
-			<key>INIntentParameterCombinations</key>
-			<dict>
-				<key>state</key>
-				<dict>
-					<key>INIntentParameterCombinationIsLinked</key>
-					<true/>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string>Turn ${state}</string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>N108uI</string>
-				</dict>
-			</dict>
 			<key>INIntentParameters</key>
 			<array>
 				<dict>

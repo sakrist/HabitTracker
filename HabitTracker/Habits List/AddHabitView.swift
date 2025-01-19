@@ -93,14 +93,22 @@ struct AddHabitView: View {
             }
             .navigationTitle(habitItem == nil ? "Add New Habit" : "Edit Habit")
             .toolbar {
+                
+#if os(iOS)
+                let placementleading:ToolbarItemPlacement = .navigationBarLeading
+                let placementTailing:ToolbarItemPlacement = .navigationBarTrailing
+#elseif os(macOS)
+                let placementleading:ToolbarItemPlacement = .automatic
+                let placementTailing:ToolbarItemPlacement = .automatic
+#endif
                 if habitItem == nil {  // Show toolbar only if adding a new habit
-                    ToolbarItem(placement: .navigationBarLeading) {
+                    ToolbarItem(placement: placementleading) {
                         Button("Cancel") {
                             dismiss()
                         }
                     }
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
+                ToolbarItem(placement: placementTailing) {
                     Button("Save") {
                         saveHabit()
                     }

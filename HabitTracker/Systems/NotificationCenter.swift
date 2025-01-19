@@ -6,7 +6,9 @@
 //
 
 import UserNotifications
+#if os(iOS)
 import UIKit
+#endif
 
 @MainActor
 func requestNotificationPermission() {
@@ -49,7 +51,9 @@ func checkNotificationPermission(completion: @escaping (Bool) -> Void) {
     }
 }
 
+
 func openAppSettings() {
+#if os(iOS)
     if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
         UIApplication.shared.open(settingsURL) { success in
             if success {
@@ -57,6 +61,9 @@ func openAppSettings() {
             }
         }
     }
+#else
+    assert(false, "Unsupported platform")
+#endif
 }
 
 

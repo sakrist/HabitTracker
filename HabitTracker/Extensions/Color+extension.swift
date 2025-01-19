@@ -8,10 +8,16 @@
 import Foundation
 import SwiftUI
 
+#if os(iOS)
+typealias AColor = UIColor
+#elseif os(macOS)
+typealias AColor = NSColor
+#endif
+
 extension Color {
     // Convert Color to hex string
     func toHex() -> String {
-        guard let components = UIColor(self).cgColor.components else {
+        guard let components = AColor(self).cgColor.components else {
             return "#000000"
         }
         let r = Int(components[0] * 255.0)

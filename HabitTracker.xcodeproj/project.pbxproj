@@ -29,6 +29,8 @@
 		D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */; };
 		D28309DA2CA9B32100C6B22A /* DailyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry.swift */; };
 		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
+		D2A78AA32D3D74000091DFB2 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AA22D3D74000091DFB2 /* Shiny */; };
+		D2A78AA62D3D741F0091DFB2 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AA52D3D741F0091DFB2 /* ConfettiSwiftUI */; };
 		D2C126482CB2DAAC005E5941 /* DailyHabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */; };
 		D2C1264B2CB7371D005E5941 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1264A2CB73717005E5941 /* Date.swift */; };
 		D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */; };
@@ -37,11 +39,20 @@
 		D2CFF5592D35885500D09F01 /* HabitCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory.swift */; };
 		D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */; };
 		D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481052CD8246C00B1DF7C /* MonthlyView.swift */; };
-		D2DB71452D392C35000DC325 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71442D392C35000DC325 /* ConfettiSwiftUI */; };
 		D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */; };
 		D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */; };
 		D2DB71682D3C6A6F000DC325 /* Balloon Pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = D2DB71652D3C6A6F000DC325 /* Balloon Pop.caf */; };
 		D2DB71692D3C6A6F000DC325 /* sparkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = D2DB71662D3C6A6F000DC325 /* sparkle.wav */; };
+		D2DB716B2D3D2A46000DC325 /* clang.wav in Resources */ = {isa = PBXBuildFile; fileRef = D2DB716A2D3D2A46000DC325 /* clang.wav */; };
+		D2DB716D2D3D2F99000DC325 /* HabitsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB716C2D3D2F99000DC325 /* HabitsList.swift */; };
+		D2DB71762D3D30DB000DC325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2DB716E2D3D30DB000DC325 /* Assets.xcassets */; };
+		D2DB71782D3D30DB000DC325 /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71702D3D30DB000DC325 /* Daily.swift */; };
+		D2DB71792D3D30DB000DC325 /* DailyBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71712D3D30DB000DC325 /* DailyBundle.swift */; };
+		D2DB717A2D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71722D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition */; };
+		D2DB717B2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71742D3D30DB000DC325 /* WidgetHabitsList.swift */; };
+		D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71742D3D30DB000DC325 /* WidgetHabitsList.swift */; };
+		D2DB71822D3D473B000DC325 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71812D3D473B000DC325 /* Shiny */; };
+		D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,36 +125,16 @@
 		D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		D2DB71652D3C6A6F000DC325 /* Balloon Pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Balloon Pop.caf"; sourceTree = "<group>"; };
 		D2DB71662D3C6A6F000DC325 /* sparkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sparkle.wav; sourceTree = "<group>"; };
+		D2DB716A2D3D2A46000DC325 /* clang.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clang.wav; sourceTree = "<group>"; };
+		D2DB716C2D3D2F99000DC325 /* HabitsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsList.swift; sourceTree = "<group>"; };
+		D2DB716E2D3D30DB000DC325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D2DB716F2D3D30DB000DC325 /* Daily.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Daily.entitlements; sourceTree = "<group>"; };
+		D2DB71702D3D30DB000DC325 /* Daily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
+		D2DB71712D3D30DB000DC325 /* DailyBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBundle.swift; sourceTree = "<group>"; };
+		D2DB71722D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = HabitWidgetConfiguration.intentdefinition; sourceTree = "<group>"; };
+		D2DB71732D3D30DB000DC325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2DB71742D3D30DB000DC325 /* WidgetHabitsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetHabitsList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		D25246362D370617003CEBF9 /* Exceptions for "Daily" folder in "DailyExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = D25246262D370615003CEBF9 /* DailyExtension */;
-		};
-		D2DB71422D3904D7000DC325 /* Exceptions for "Daily" folder in "HabitTracker" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				HabitsList.swift,
-			);
-			target = D25A7A342CA5D64B0000E843 /* HabitTracker */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		D252462A2D370615003CEBF9 /* Daily */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				D2DB71422D3904D7000DC325 /* Exceptions for "Daily" folder in "HabitTracker" target */,
-				D25246362D370617003CEBF9 /* Exceptions for "Daily" folder in "DailyExtension" target */,
-			);
-			path = Daily;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D25246242D370615003CEBF9 /* Frameworks */ = {
@@ -159,7 +150,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2DB71452D392C35000DC325 /* ConfettiSwiftUI in Frameworks */,
+				D2A78AA32D3D74000091DFB2 /* Shiny in Frameworks */,
+				D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */,
+				D2A78AA62D3D741F0091DFB2 /* ConfettiSwiftUI in Frameworks */,
+				D2DB71822D3D473B000DC325 /* Shiny in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +180,7 @@
 				D25A7A842CA5D7EE0000E843 /* HabitTracker */,
 				D25A7A8C2CA5D8120000E843 /* HabitTrackerTests */,
 				D25A7A902CA5D8120000E843 /* HabitTrackerUITests */,
-				D252462A2D370615003CEBF9 /* Daily */,
+				D2DB71752D3D30DB000DC325 /* Daily */,
 				D2CFF5632D35ABE200D09F01 /* Frameworks */,
 				D25A7A362CA5D64B0000E843 /* Products */,
 			);
@@ -290,6 +284,7 @@
 		D2DB71602D3BC54A000DC325 /* Day View */ = {
 			isa = PBXGroup;
 			children = (
+				D2DB716C2D3D2F99000DC325 /* HabitsList.swift */,
 				D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */,
 			);
 			path = "Day View";
@@ -318,8 +313,23 @@
 			children = (
 				D2DB71652D3C6A6F000DC325 /* Balloon Pop.caf */,
 				D2DB71662D3C6A6F000DC325 /* sparkle.wav */,
+				D2DB716A2D3D2A46000DC325 /* clang.wav */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		D2DB71752D3D30DB000DC325 /* Daily */ = {
+			isa = PBXGroup;
+			children = (
+				D2DB716E2D3D30DB000DC325 /* Assets.xcassets */,
+				D2DB716F2D3D30DB000DC325 /* Daily.entitlements */,
+				D2DB71702D3D30DB000DC325 /* Daily.swift */,
+				D2DB71712D3D30DB000DC325 /* DailyBundle.swift */,
+				D2DB71742D3D30DB000DC325 /* WidgetHabitsList.swift */,
+				D2DB71722D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition */,
+				D2DB71732D3D30DB000DC325 /* Info.plist */,
+			);
+			path = Daily;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,9 +346,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				D252462A2D370615003CEBF9 /* Daily */,
 			);
 			name = DailyExtension;
 			packageProductDependencies = (
@@ -363,7 +370,10 @@
 			);
 			name = HabitTracker;
 			packageProductDependencies = (
-				D2DB71442D392C35000DC325 /* ConfettiSwiftUI */,
+				D2DB71812D3D473B000DC325 /* Shiny */,
+				D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */,
+				D2A78AA22D3D74000091DFB2 /* Shiny */,
+				D2A78AA52D3D741F0091DFB2 /* ConfettiSwiftUI */,
 			);
 			productName = HabitTracker;
 			productReference = D25A7A352CA5D64B0000E843 /* HabitTracker.app */;
@@ -445,7 +455,8 @@
 			mainGroup = D25A7A2C2CA5D64B0000E843;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				D2DB71432D392B73000DC325 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				D2A78AA12D3D74000091DFB2 /* XCRemoteSwiftPackageReference "shiny" */,
+				D2A78AA42D3D741F0091DFB2 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D25A7A362CA5D64B0000E843 /* Products */;
@@ -465,6 +476,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2DB71762D3D30DB000DC325 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +484,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2DB716B2D3D2A46000DC325 /* clang.wav in Resources */,
 				D25A7A852CA5D7EF0000E843 /* Preview Assets.xcassets in Resources */,
 				D2DB71682D3C6A6F000DC325 /* Balloon Pop.caf in Resources */,
 				D2DB71692D3C6A6F000DC325 /* sparkle.wav in Resources */,
@@ -504,6 +517,10 @@
 				D25246422D3706A3003CEBF9 /* Color+extension.swift in Sources */,
 				D252463A2D370659003CEBF9 /* HabitCategory.swift in Sources */,
 				D252463C2D370659003CEBF9 /* ModelData.swift in Sources */,
+				D2DB71782D3D30DB000DC325 /* Daily.swift in Sources */,
+				D2DB71792D3D30DB000DC325 /* DailyBundle.swift in Sources */,
+				D2DB717A2D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition in Sources */,
+				D2DB717B2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
 				D252463D2D370659003CEBF9 /* SampleData.swift in Sources */,
 				D252463E2D370659003CEBF9 /* DailyEntry.swift in Sources */,
 				D252463F2D370659003CEBF9 /* HabitItem.swift in Sources */,
@@ -526,7 +543,9 @@
 				D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */,
 				D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */,
 				D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */,
+				D2DB716D2D3D2F99000DC325 /* HabitsList.swift in Sources */,
 				D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */,
+				D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
 				D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */,
 				D25A7A8A2CA5D7EF0000E843 /* HabitItem.swift in Sources */,
 				D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */,
@@ -983,20 +1002,41 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D2DB71432D392B73000DC325 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+		D2A78AA12D3D74000091DFB2 /* XCRemoteSwiftPackageReference "shiny" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maustinstar/shiny.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		D2A78AA42D3D741F0091DFB2 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.1;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D2DB71442D392C35000DC325 /* ConfettiSwiftUI */ = {
+		D2A78AA22D3D74000091DFB2 /* Shiny */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D2DB71432D392B73000DC325 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			package = D2A78AA12D3D74000091DFB2 /* XCRemoteSwiftPackageReference "shiny" */;
+			productName = Shiny;
+		};
+		D2A78AA52D3D741F0091DFB2 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2A78AA42D3D741F0091DFB2 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		D2DB71812D3D473B000DC325 /* Shiny */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shiny;
+		};
+		D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = ConfettiSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */

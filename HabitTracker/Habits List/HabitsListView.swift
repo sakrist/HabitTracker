@@ -11,7 +11,7 @@ import SwiftData
 
 import UniformTypeIdentifiers
 
-
+#if os(iOS)
 struct ActivityView: UIViewControllerRepresentable {
     var activityItems: [Any]
     var applicationActivities: [UIActivity]? = nil
@@ -22,6 +22,7 @@ struct ActivityView: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
+#endif
 
 struct HabitsListView: View {
     @Environment(\.modelContext) private var modelContext
@@ -65,6 +66,8 @@ struct HabitsListView: View {
                     EditButton()
                 }
 #endif
+                
+                /*
                 ToolbarItem {
                     Button(action: {
                         showExportActivityView = true
@@ -77,7 +80,6 @@ struct HabitsListView: View {
                     }
                 }
                 
-                /*
                 ToolbarItem {
                     Button(action: {
                         showImportFilePicker = true

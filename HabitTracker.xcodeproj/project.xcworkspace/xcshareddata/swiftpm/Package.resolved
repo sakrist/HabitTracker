@@ -1,13 +1,22 @@
 {
-  "originHash" : "6ad1e0d3ae43bde33043d3286afc3d98e5be09945ac257218cb6a9dba14466c3",
+  "originHash" : "a6546f61a17cb1148c566cf73eadc39930f8bf0b2df215df48278cc2b846c44f",
   "pins" : [
     {
       "identity" : "confettiswiftui",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/simibac/ConfettiSwiftUI.git",
       "state" : {
-        "revision" : "7ce83d0716d8c4326bdee20b99584b6d509c1315",
-        "version" : "2.0.1"
+        "branch" : "master",
+        "revision" : "ff0538934f2da2e9f69f38e9d2d435fc587851e8"
+      }
+    },
+    {
+      "identity" : "shiny",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/maustinstar/shiny.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "862360b8ab6b9ea9eb1156569a30f154b22625a5"
       }
     }
   ],
