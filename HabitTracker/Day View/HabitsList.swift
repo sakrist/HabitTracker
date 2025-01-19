@@ -65,20 +65,22 @@ struct HabitsList: View {
 
     private func changed(entry:DailyEntry, _ old:Bool, _ new:Bool) {
         ModelData.shared.saveContext()
-        if (new) {
-            playSound()
-            silenceTodaysNotification(identifier: entry.habit.id)
-        } else {
-            reScheduleWeekdayNotification(habitItem: entry.habit)
-        }
+
+        if (date.isToday()) {
+            if (new) {
+                silenceTodaysNotification(identifier: entry.habit.id)
+            } else {
+                reScheduleWeekdayNotification(habitItem: entry.habit)
+            }
         
-        let contCompleted = entries.reduce(0) { $0 + ($1.isCompleted ? 1 : 0)}
-        if (contCompleted == entries.count) {
-            // dispatch to main queue after 0.5 sec
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                counter += 1
-                playPopSound()
-                completeHabits()
+            let contCompleted = entries.reduce(0) { $0 + ($1.isCompleted ? 1 : 0)}
+            
+            if (contCompleted == entries.count) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    counter += 1
+                    playPopSound()
+                    completeHabits()
+                }
             }
         }
     }

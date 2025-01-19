@@ -20,7 +20,7 @@ struct DailyHabitListView: View {
     @State private var counter: Int = 0
     
     var body: some View {
-        NavigationSplitView {
+        NavigationView {
             VStack {
                 // Display the selected date
                 HStack {
@@ -62,8 +62,6 @@ struct DailyHabitListView: View {
                     entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
                 }
             }
-        } detail: {
-            Text("Select an item")
         }.onReceive(notificationPublisher) { _ in
             // check if selected date is the same
             selectedDate = Date()

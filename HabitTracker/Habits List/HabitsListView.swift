@@ -43,7 +43,7 @@ struct HabitsListView: View {
     
     
     var body: some View {
-        NavigationSplitView {
+        NavigationView {
             List {
                 ForEach(sortedItems) { item in
                     NavigationLink(destination: AddHabitView(habitItem: item)) {
@@ -112,8 +112,6 @@ struct HabitsListView: View {
                 }
                 
             }
-        } detail: {
-            Text("Select an item")
         }
     }
     
