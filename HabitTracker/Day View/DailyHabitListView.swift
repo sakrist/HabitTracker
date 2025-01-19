@@ -53,29 +53,7 @@ struct DailyHabitListView: View {
 
                 VStack {
                     if (entries.count == 0) {
-                        // show button add habits which will navigate to Habits tab
-                        Spacer()
-                        Text("Start by adding habits you already do daily.\n")
-                        
-                        Text(" · · · ")
-                        
-                        Text("If you want to build a new habits, \nstart by adding one habit at a time.\n")
-                            .multilineTextAlignment(.center)
-                        
-                        // 3 dots
-                        Text(" · · · ")
-                        
-                        Text("Science says - \nit takes around 66 days to make a habit stick.\n")
-                            .multilineTextAlignment(.center)
-                        
-                        Button(action: {
-                            // navigate to Habits tab
-                            selectedTab = 1
-                        }) {
-                            Text("Add habits")
-                        }
-                        Spacer()
-                        Spacer()
+                        NoHabitsYet(selectedTab: $selectedTab)
                     } else {
                         HabitsList(date: selectedDate, entries: entries)
                     }

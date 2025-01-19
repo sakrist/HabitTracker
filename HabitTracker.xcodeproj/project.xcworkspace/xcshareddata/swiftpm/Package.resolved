@@ -1,5 +1,5 @@
 {
-  "originHash" : "a6546f61a17cb1148c566cf73eadc39930f8bf0b2df215df48278cc2b846c44f",
+  "originHash" : "a02153c491e650d5b0bf92af9b04421091e34e106707db9c1c0b2bb7e38ef7d9",
   "pins" : [
     {
       "identity" : "confettiswiftui",
@@ -8,6 +8,15 @@
       "state" : {
         "branch" : "master",
         "revision" : "ff0538934f2da2e9f69f38e9d2d435fc587851e8"
+      }
+    },
+    {
+      "identity" : "rainbowbutton",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sakrist/RainbowButton",
+      "state" : {
+        "branch" : "main",
+        "revision" : "75bdabff39031d79910c01d11c6a107288172d21"
       }
     },
     {

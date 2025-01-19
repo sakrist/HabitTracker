@@ -51,8 +51,8 @@ struct AddHabitView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Title")) {
-                    TextField("Title", text: $title)
+                Section(header: Text("Name")) {
+                    TextField("Enter a habit name here..", text: $title)
                 }
                 
                 

@@ -31,6 +31,8 @@
 		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
 		D2A78AA32D3D74000091DFB2 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AA22D3D74000091DFB2 /* Shiny */; };
 		D2A78AA62D3D741F0091DFB2 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AA52D3D741F0091DFB2 /* ConfettiSwiftUI */; };
+		D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */; };
+		D2A78AB02D3D8EBB0091DFB2 /* RainbowButton in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */; };
 		D2C126482CB2DAAC005E5941 /* DailyHabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */; };
 		D2C1264B2CB7371D005E5941 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1264A2CB73717005E5941 /* Date.swift */; };
 		D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */; };
@@ -111,6 +113,7 @@
 		D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitItemCell.swift; sourceTree = "<group>"; };
 		D28309D92CA9B32100C6B22A /* DailyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyEntry.swift; sourceTree = "<group>"; };
 		D28309DC2CA9B3F200C6B22A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoHabitsYet.swift; sourceTree = "<group>"; };
 		D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyHabitListView.swift; sourceTree = "<group>"; };
 		D2C1264A2CB73717005E5941 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListView.swift; sourceTree = "<group>"; };
@@ -150,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A78AB02D3D8EBB0091DFB2 /* RainbowButton in Frameworks */,
 				D2A78AA32D3D74000091DFB2 /* Shiny in Frameworks */,
 				D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */,
 				D2A78AA62D3D741F0091DFB2 /* ConfettiSwiftUI in Frameworks */,
@@ -285,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				D2DB716C2D3D2F99000DC325 /* HabitsList.swift */,
+				D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */,
 				D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */,
 			);
 			path = "Day View";
@@ -374,6 +379,7 @@
 				D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */,
 				D2A78AA22D3D74000091DFB2 /* Shiny */,
 				D2A78AA52D3D741F0091DFB2 /* ConfettiSwiftUI */,
+				D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */,
 			);
 			productName = HabitTracker;
 			productReference = D25A7A352CA5D64B0000E843 /* HabitTracker.app */;
@@ -457,6 +463,7 @@
 			packageReferences = (
 				D2A78AA12D3D74000091DFB2 /* XCRemoteSwiftPackageReference "shiny" */,
 				D2A78AA42D3D741F0091DFB2 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				D2A78AB12D3D93370091DFB2 /* XCRemoteSwiftPackageReference "RainbowButton" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D25A7A362CA5D64B0000E843 /* Products */;
@@ -533,6 +540,7 @@
 			files = (
 				D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */,
 				D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */,
+				D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */,
 				D2C1264B2CB7371D005E5941 /* Date.swift in Sources */,
 				D2CFF5592D35885500D09F01 /* HabitCategory.swift in Sources */,
 				D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */,
@@ -1018,6 +1026,14 @@
 				kind = branch;
 			};
 		};
+		D2A78AB12D3D93370091DFB2 /* XCRemoteSwiftPackageReference "RainbowButton" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sakrist/RainbowButton";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1030,6 +1046,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D2A78AA42D3D741F0091DFB2 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
+		};
+		D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RainbowButton;
 		};
 		D2DB71812D3D473B000DC325 /* Shiny */ = {
 			isa = XCSwiftPackageProductDependency;
