@@ -233,9 +233,7 @@ func fetchEntries(start: Date, end: Date, habit: HabitItem? = nil, modelContext:
     let fetchDescriptor = FetchDescriptor<DailyEntry>(predicate: predicate)
     
     do {
-        let entries = try modelContext.fetch(fetchDescriptor)
-        print("fetchEntries \(entries)")
-        return entries
+        return try modelContext.fetch(fetchDescriptor)
     } catch {
         fatalError("Error fetching entries: \(error)")
     }
@@ -245,9 +243,7 @@ func fetchEntries(start: Date, end: Date, habit: HabitItem? = nil, modelContext:
 func fetchCategories(modelContext: ModelContext) -> [HabitCategory] {
     let fetchDescriptor = FetchDescriptor<HabitCategory>()
     do {
-        let categories = try modelContext.fetch(fetchDescriptor)
-        print("fetchCategories \(categories)")
-        return categories
+        return try modelContext.fetch(fetchDescriptor)
     } catch {
         fatalError("Error fetching categories: \(error)")
     }

@@ -34,7 +34,7 @@ struct ContentView: View {
 //            VStack {
 //                Button("health") {
 //                    Task {
-//                        await Health.shared.requestHealth {
+//                        await Health.shared.requestHealth { _ in
 //                            
 //                        }
 //                    }

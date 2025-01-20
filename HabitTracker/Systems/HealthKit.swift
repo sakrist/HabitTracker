@@ -13,19 +13,23 @@ class Health {
     static let shared = Health()
     let healthStore = HKHealthStore()
     
-    func requestHealth(complete: @escaping () -> Void) async {
+    func requestHealth(complete: @escaping (Bool) -> Void) async {
         
-        let mindfulnessType = HKObjectType.categoryType(forIdentifier: .mindfulSession)!
-        let toothbrushingCategory = HKCategoryType.categoryType(forIdentifier: .toothbrushingEvent)!
-        
-        let allTypes: Set = [
+        var allTypes: Set<HKObjectType> = [
             HKQuantityType.workoutType(),
             HKQuantityType(.distanceCycling),
             HKQuantityType(.distanceWalkingRunning),
             HKQuantityType(.distanceWheelchair),
             HKQuantityType(.dietaryWater),
-            mindfulnessType
         ]
+        
+        if let toothbrushingType = HKObjectType.categoryType(forIdentifier: .toothbrushingEvent) {
+            allTypes.insert(toothbrushingType)
+        }
+        
+        if let mindfulnessType = HKObjectType.categoryType(forIdentifier: .mindfulSession) {
+            allTypes.insert(mindfulnessType)
+        }
         
         do {
             // Check that Health data is available on the device.
@@ -39,9 +43,11 @@ class Health {
             // Typically, authorization requests only fail if you haven't set the
             // usage and share descriptions in your app's Info.plist, or if
             // Health data isn't available on the current device.
-            fatalError("*** An unexpected error occurred while requesting authorization: \(error.localizedDescription) ***")
+            print("*** An unexpected error occurred while requesting authorization: \(error.localizedDescription) ***")
+            complete(false)
+            return
         }
-        complete()
+        complete(true)
     }
     
 }
