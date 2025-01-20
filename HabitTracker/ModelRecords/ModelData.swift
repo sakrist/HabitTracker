@@ -96,6 +96,45 @@ import WidgetKit
         ]
         return categories.sorted { $0.title < $1.title }
     }
+    
+    
+    func calculateStreak(habit: HabitItem, month:Date) -> (Int, Int) {
+        
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: Date())
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        
+        let start = calendar.date(byAdding: .day, value: -1, to: habit.timestamp) ?? habit.timestamp
+        var entries = fetchEntries(start: start, end: endOfDay, habit: habit, modelContext: modelContainer.mainContext)
+        entries.sort { $0.date < $1.date }
+        
+        var streak:Int = 0
+        var countStreak = true
+        
+        var completedInMonth:Int = 0
+        var totalInMonth:Int = 0
+        
+        for item in entries.reversed() {
+            
+            if (countStreak && item.isCompleted) {
+                streak += 1
+            } else {
+                countStreak = false
+            }
+            
+            if (item.date.isSameMonth(date: month)) {
+                if (item.isCompleted) {
+                    completedInMonth += 1
+                }
+                totalInMonth += 1
+            }
+        }
+        
+        let rate:Int = Int(Double(completedInMonth) / Double(totalInMonth) * 100.0)
+        
+        return (streak, rate)
+    }
+
 }
 
 // Load habit entries for the given date
@@ -146,7 +185,7 @@ func generateDailyEntries(for habits: [HabitItem], existingEntries: [DailyEntry]
         }
         
         // If no entry exists for the selected date, create a new one
-        if existingEntry == nil {
+        if existingEntry == nil && habit.timestamp <= date {
             let newEntry = DailyEntry(habit: habit, date: date, isCompleted: false)
             dailyEntries.append(newEntry)
         }
@@ -182,11 +221,11 @@ func fetchEntries(start: Date, end: Date, habit: HabitItem? = nil, modelContext:
     var predicate: Predicate<DailyEntry>
     if let habitID = habit?.id {
         predicate = #Predicate { (entry: DailyEntry) in
-            entry.date >= start && entry.date < end && entry.habit.id == habitID
-            }
+            entry.date >= start && entry.date <= end && entry.habit.id == habitID
+        }
     } else {
         predicate = #Predicate { (entry: DailyEntry) in
-            entry.date >= start && entry.date < end
+            entry.date >= start && entry.date <= end
         }
     }
 
@@ -201,7 +240,6 @@ func fetchEntries(start: Date, end: Date, habit: HabitItem? = nil, modelContext:
         fatalError("Error fetching entries: \(error)")
     }
 }
-
 
 
 func fetchCategories(modelContext: ModelContext) -> [HabitCategory] {

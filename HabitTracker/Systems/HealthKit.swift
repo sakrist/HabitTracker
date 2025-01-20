@@ -7,18 +7,24 @@
 
 import HealthKit
 
+// https://github.com/christophhagen/HealthKitExtensions.git  - try
+
 class Health {
     static let shared = Health()
     let healthStore = HKHealthStore()
     
     func requestHealth(complete: @escaping () -> Void) async {
         
+        let mindfulnessType = HKObjectType.categoryType(forIdentifier: .mindfulSession)!
+        let toothbrushingCategory = HKCategoryType.categoryType(forIdentifier: .toothbrushingEvent)!
+        
         let allTypes: Set = [
             HKQuantityType.workoutType(),
             HKQuantityType(.distanceCycling),
             HKQuantityType(.distanceWalkingRunning),
             HKQuantityType(.distanceWheelchair),
-            HKQuantityType(.dietaryWater)
+            HKQuantityType(.dietaryWater),
+            mindfulnessType
         ]
         
         do {

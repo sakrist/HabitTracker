@@ -14,21 +14,31 @@ struct HabitMonthView : View {
     @Environment(\.modelContext) private var modelContext
     var calendar = Calendar.current
     
-    private var header: some View {
+    @State var streak: Int = 0
+    @State var completionRate: Int = 0
+    
+    private var monthSelector: some View {
         HStack {
             Button(action: {
                 date = moveDate(-1)
+                updateProgress()
             }) {
-                Image(systemName: "arrow.left")
+                Image(systemName: "chevron.left")
             }
             
             Text(dateString)
-                .font(.title.bold())
+                .font(.title2.bold())
+                .frame(width: 250)
             
-            Button(action: {
-                date = moveDate(1)
-            }) {
-                Image(systemName: "arrow.right")
+            if !date.isCurrentMonth() {
+                Button(action: {
+                    date = moveDate(1)
+                    updateProgress()
+                }) {
+                    Image(systemName: "chevron.right")
+                }
+            } else {
+                Image(systemName: "chevron.right").opacity(0)
             }
         }
     }
@@ -36,14 +46,34 @@ struct HabitMonthView : View {
     var body: some View {
         NavigationView {
             VStack {
-                header
-                
-                MonthlyView(startDate: date, habit: habit)
+
+                VStack {
+                    monthSelector
+                    Divider()
+                    MonthlyView(startDate: date, habit: habit)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.systemGray6))
+                ).padding()
+                    
+                ProgressCardView(currentStreak: streak, completionRate: completionRate)
                 
                 Spacer()
             }
         }.navigationTitle("Habit: \(habit?.title ?? "")")
-
+            .onAppear() {
+                updateProgress()
+            }
+    }
+    
+    private func updateProgress() {
+        if let habit = habit {
+            Task {
+                (streak, completionRate) = ModelData.shared.calculateStreak(habit: habit, month: date)
+            }
+        }
     }
     
     private func moveDate(_ offset: Int) -> Date {
@@ -59,6 +89,33 @@ struct HabitMonthView : View {
 }
 
 
+struct Preview_HabitMonthView : View {
+    
+    @State var isLinkActive = false
+
+    var body: some View {
+        let entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext, for: Date())
+        TabView() {
+            NavigationView {
+                VStack {
+                    
+                    NavigationLink(destination: HabitMonthView(date: Date(), habit:entries[0].habit), isActive: $isLinkActive
+                    ) {
+                        // Button to activate the NavigationLink
+                        Button("Go to Detail View") {
+                            isLinkActive = true
+                        }
+                    }
+                }
+            }
+        }.onAppear {
+            isLinkActive = true
+        }
+    }
+}
+ 
+
 #Preview {
-    HabitMonthView(date: Date(), habit: nil)
+//    HabitMonthView(date: Date(), habit: nil)
+    Preview_HabitMonthView()
 }

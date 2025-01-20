@@ -28,7 +28,8 @@ struct NoHabitsYet: View {
             Button("Add Habits") {
                 // navigate to Habits tab
                 selectedTab = 1
-            }.font(.largeTitle)
+            }
+            .font(.title)
             .buttonStyle(RainbowButtonStyle())
             
             Spacer()

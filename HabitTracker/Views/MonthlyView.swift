@@ -21,9 +21,10 @@ struct MonthlyView: View {
 
         LazyVGrid(columns: columns, spacing: 6) {
             ForEach(HabitItem.Weekday.allCases, id: \.self) { weekday in
-                Text(weekday.displayName)
+                Text(weekday.abbreviatedName)
                     .font(.caption)
                     .frame(maxWidth: .infinity)
+                    .frame(height: 15)
                     .multilineTextAlignment(.center)
             }
             
@@ -42,11 +43,10 @@ struct MonthlyView: View {
                     Rectangle()
                         .fill(color)
                         .frame(height: 30) // Smaller height for squares
-                        .cornerRadius(4)
+                        .cornerRadius(6)
                     
                     Text(shortDate(date))
                         .font(.caption)
-                    //                        .foregroundColor(.black) // Change text color to make it more visible
                         .frame(height: 15) // Ensure consistent height for labels
                 }
                 .padding(3) // Padding around each item

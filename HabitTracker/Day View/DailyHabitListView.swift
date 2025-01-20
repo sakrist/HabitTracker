@@ -28,25 +28,23 @@ struct DailyHabitListView: View {
                         selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: selectedDate) ?? Date()
                         entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
                     }) {
-                        Image(systemName: "arrow.left")
+                        Image(systemName: "chevron.left")
                     }
                     
-                    Spacer()
                     
                     Text(selectedDate, style: .date)  // Show the current selected date
                         .font(.title.bold())
-                    
-                    Spacer()
+                        .frame(width: 270)
                     
                     if !selectedDate.isToday() {
                         Button(action: {
                             selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) ?? Date()
                             entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
                         }) {
-                            Image(systemName: "arrow.right")
+                            Image(systemName: "chevron.right")
                         }
                     } else {
-                        Image(systemName: "arrow.right").opacity(0)
+                        Image(systemName: "chevron.right").opacity(0)
                     }
                 }
                 .padding()

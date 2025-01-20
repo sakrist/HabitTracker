@@ -65,6 +65,19 @@ final class HabitItem : Codable {
             case .sunday: return "S"
             }
         }
+    
+        /// Returns a localized abbreviated name for the weekday
+        var abbreviatedName: String {
+            let calendar = Calendar.current
+            let formatter = DateFormatter()
+            formatter.locale = Locale.current // Use the device's current locale
+            formatter.dateFormat = "E" // Abbreviated weekday format
+            
+            // Find the first date in the week corresponding to this weekday
+            let weekdayIndex = rawValue + 2 // Weekday indices start from 1 (Sunday) in Calendar
+            let date = calendar.date(from: DateComponents(weekday: weekdayIndex)) ?? Date()
+            return formatter.string(from: date)
+        }
     }
     
     // Custom CodingKeys to handle encoding/decoding if needed

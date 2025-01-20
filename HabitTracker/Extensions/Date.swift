@@ -15,6 +15,19 @@ extension Date {
         let calendar = Calendar.current
         return calendar.isDateInToday(self)
     }
+    
+    func isCurrentMonth() -> Bool {
+        return isSameMonth(date:Date())
+    }
+    
+    func isSameMonth(date:Date) -> Bool {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        
+        // Compare the year and month components
+        return calendar.component(.year, from: currentDate) == calendar.component(.year, from: self) &&
+               calendar.component(.month, from: currentDate) == calendar.component(.month, from: self)
+    }
 
     // Helper function to compare dates by day
     func isSameDay(as date2: Date) -> Bool {
