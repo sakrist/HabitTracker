@@ -50,6 +50,64 @@ class Health {
         complete(true)
     }
     
+    func enableMindfulnessBackgroundDelivery() {
+        guard let mindfulnessType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
+            print("Mindfulness type is not available")
+            return
+        }
+
+        healthStore.enableBackgroundDelivery(for: mindfulnessType, frequency: .immediate) { success, error in
+            if success {
+                print("Background delivery enabled for mindfulness sessions")
+            } else if let error = error {
+                print("Error enabling background delivery: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func setupMindfulnessObserverQuery() {
+        guard let mindfulnessType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
+            print("Mindfulness type is not available")
+            return
+        }
+
+        let query = HKObserverQuery(sampleType: mindfulnessType, predicate: nil) { _, completionHandler, error in
+            if let error = error {
+                print("Observer query error: \(error.localizedDescription)")
+                return
+            }
+
+            // Fetch new mindfulness data
+            self.fetchMindfulnessSessions()
+
+            // Signal that the background task is complete
+            completionHandler()
+        }
+
+        healthStore.execute(query)
+    }
+
+    func fetchMindfulnessSessions() {
+        guard let mindfulnessType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else { return }
+
+        let query = HKSampleQuery(
+            sampleType: mindfulnessType,
+            predicate: nil,
+            limit: HKObjectQueryNoLimit,
+            sortDescriptors: nil
+        ) { query, samples, error in
+            if let error = error {
+                print("Error fetching mindfulness sessions: \(error.localizedDescription)")
+            } else if let samples = samples as? [HKCategorySample] {
+                for sample in samples {
+                    print("Mindfulness session: \(sample)")
+                }
+            }
+        }
+
+        healthStore.execute(query)
+    }
+    
 }
 
 
