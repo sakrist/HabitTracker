@@ -63,7 +63,7 @@ struct HabitItemCell: View {
             if let entry = entry {
                     Toggle(item.title, isOn: Binding(
                         get: { entry.isCompleted },
-                        set: { entry.isCompleted = $0 }
+                        set: { entry.setCompleted($0) }
                     ))
                     .toggleStyle(CheckboxStyle(checkColor: item.getColor()))
                     .padding(0)

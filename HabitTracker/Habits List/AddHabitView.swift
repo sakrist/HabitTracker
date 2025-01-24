@@ -26,6 +26,11 @@ struct AddHabitView: View {
 
     @State private var selectedCategory: HabitCategory?
     @State private var categories: [HabitCategory] = []
+    
+    @State private var enableAutocomplete: Bool = false
+    @State private var canEnableAutocomplete: Bool = false
+    @State private var showInfo:Bool = false
+    
     private var habitItem: HabitItem?
 
     init(habitItem: HabitItem? = nil) {
@@ -53,6 +58,42 @@ struct AddHabitView: View {
             Form {
                 Section(header: Text("Name")) {
                     TextField("Enter a habit name here..", text: $title)
+                        .onChange(of: title) { _, _ in
+                            // Trigger animation when the title changes
+                            withAnimation {
+                                canEnableAutocomplete = Health.shared.isSupported(title)
+                            }
+                        }
+                    
+                }
+                
+                if canEnableAutocomplete {
+                    Section(header: Text("Health and Fitness")) {
+                        HStack {
+                            Toggle("Autocomplete", isOn: $enableAutocomplete)
+                                .onChange(of: enableAutocomplete) { oldValue, newValue in
+                                    if (!Health.shared.available()) {
+                                        Task {
+                                            await Health.shared.requestHealth { value in
+                                                enableAutocomplete = value
+                                            }
+                                        }
+                                    }
+                                }
+                            
+                            Button {
+                                showInfo = true
+                            } label: {
+                                Image(systemName: "info.circle")
+                            }.popover(isPresented: $showInfo) {
+                                Text("Enable this feature to automatically complete\nhabit based on your Health activity history.")
+                                    .multilineTextAlignment(.center)
+                                    .padding()
+                                    .presentationCompactAdaptation(.popover)
+                            }
+                        }
+                        
+                    }.transition(.opacity)
                 }
                 
                 
@@ -127,6 +168,16 @@ struct AddHabitView: View {
         categories = ModelData.shared.defaultCategories()
     }
     
+    private func recoverOldItem() {
+        showingDuplicateAlert = false
+        
+        if let existingItem {
+            existingItem.active = true
+            ModelData.shared.saveContext()
+        }
+        dismiss()
+    }
+    
     private func saveHabit() {
         
         if let habitItem = habitItem {
@@ -149,20 +200,9 @@ struct AddHabitView: View {
             }
         }
         
-        setupNotificaitons()
-        
-        ModelData.shared.saveContext()
-        dismiss()
-    }
-    
-    private func recoverOldItem() {
-        showingDuplicateAlert = false
-        
-        if let existingItem {
-            existingItem.active = true
-            ModelData.shared.saveContext()
+        if let habitItem = habitItem {
+            finalise(habitItem)
         }
-        dismiss()
     }
     
     private func createNewHabit() {
@@ -179,16 +219,26 @@ struct AddHabitView: View {
         newHabit.order = habits.count
         modelContext.insert(newHabit)
         
-        setupNotificaitons()
-        
-        ModelData.shared.saveContext()
-        dismiss()
+        finalise(newHabit)
     }
     
-    func setupNotificaitons() {
-        if let habitItem = habitItem {
-            reScheduleWeekdayNotification(habitItem: habitItem)
+    
+    
+    func finalise(_ habit:HabitItem) {
+        
+        if enableAutocomplete {
+            Health.shared.enableHabitBackgroundDelivery(habit:habit)
+        } else {
+            Health.shared.enableHabitBackgroundDelivery(habit:habit)
         }
+        
+        // setup Notificaitons
+        reScheduleWeekdayNotification(habitItem: habit)
+        
+        // save
+        ModelData.shared.saveContext()
+        
+        dismiss()
     }
     
 }

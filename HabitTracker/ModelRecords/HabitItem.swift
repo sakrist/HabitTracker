@@ -15,10 +15,10 @@ import SwiftUI
 final class HabitItem : Codable {
     var id: String
     var title: String
-    var color: String = "#FF0000"
+    var color: String = "#0000FF"
     var category: HabitCategory?
     var time: Date?
-    var note: String?
+    var note: String = ""
     var weekdays: Set<HabitItem.Weekday>
     
     var order: Int = 0
@@ -90,7 +90,7 @@ final class HabitItem : Codable {
          color: String = "#FF0000",
          category: HabitCategory?,
          time: Date? = nil,
-         note: String? = nil,
+         note: String = "",
          weekdays: Set<Weekday> = [],
          order: Int = 0,
          timestamp: Date = Date(),
@@ -130,7 +130,7 @@ final class HabitItem : Codable {
         let color = try container.decode(String.self, forKey: .color)
         let category = try container.decode(HabitCategory.self, forKey: .category)
         let time = try container.decodeIfPresent(Date.self, forKey: .time)
-        let note = try container.decodeIfPresent(String.self, forKey: .note)
+        let note = try container.decodeIfPresent(String.self, forKey: .note) ?? ""
         let weekdays = try container.decode(Set<Weekday>.self, forKey: .weekdays)
         let order = try container.decode(Int.self, forKey: .order)
         let timestamp = try container.decode(Date.self, forKey: .timestamp)
@@ -161,7 +161,7 @@ final class HabitItem : Codable {
     }
     
     func getColor() -> Color {
-        return Color(hex: color) ?? .secondary
+        return Color(hex: color) ?? .blue
     }
     
     func calendarWeekdays() -> [Int] {

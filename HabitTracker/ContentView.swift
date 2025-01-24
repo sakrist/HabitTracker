@@ -14,7 +14,9 @@ let monthCompletionData: [Int] = (1...30).map { _ in Int.random(in: 0...5) }
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(ModelData.self) private var modelData
-    @State private var selectedTab = 0
+    @State private var selectedTab = -1
+    @State private var firstTab = 0
+    
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -23,7 +25,13 @@ struct ContentView: View {
                 .tabItem {
                     Label("Day", systemImage: "sun.max.fill")
                 }
-                .tag(0)
+                .tag(firstTab)
+                .onChange(of: selectedTab) { oldValue, newValue in
+                    if (firstTab == selectedTab) {
+                        firstTab = (selectedTab == 0) ? -1 : 0
+                        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
+                    }
+                }
             
             HabitsListView()
                 .tabItem {
@@ -35,7 +43,8 @@ struct ContentView: View {
 //                Button("health") {
 //                    Task {
 //                        await Health.shared.requestHealth { _ in
-//                            
+//                            Health.shared.enableMindfulnessBackgroundDelivery()
+////                            Health.shared.setupMindfulnessObserverQuery()
 //                        }
 //                    }
 //                }

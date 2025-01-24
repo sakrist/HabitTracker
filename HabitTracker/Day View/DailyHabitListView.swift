@@ -63,6 +63,7 @@ struct DailyHabitListView: View {
         }.onReceive(notificationPublisher) { _ in
             // check if selected date is the same
             selectedDate = Date()
+            entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
         }
     }
     
