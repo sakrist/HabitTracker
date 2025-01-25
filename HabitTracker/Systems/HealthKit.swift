@@ -43,9 +43,6 @@ class Health {
     func requestHealth(complete: @escaping (Bool) -> Void) async {
         var allTypes: Set<HKObjectType> = [
             HKQuantityType.workoutType(),
-            HKQuantityType(.distanceCycling),
-            HKQuantityType(.distanceWalkingRunning),
-            HKQuantityType(.distanceWheelchair),
             HKQuantityType(.dietaryWater),
         ]
         
@@ -59,11 +56,11 @@ class Health {
         
         do {
             // Check that Health data is available on the device.
-            if HKHealthStore.isHealthDataAvailable() {
+//            if !HKHealthStore.isHealthDataAvailable() {
                 
                 // Asynchronously request authorization to the data.
                 try await healthStore.requestAuthorization(toShare: [], read: allTypes)
-            }
+//            }
         } catch {
             
             // Typically, authorization requests only fail if you haven't set the
@@ -76,12 +73,32 @@ class Health {
         complete(true)
     }
     
-    
-    func enableHabitBackgroundDelivery(habit:HabitItem) {
-        if let type = supportedActivities[habit.title] {
-            enablBackgroundDelivery(type)
+    func isHabitAuthroised(title:String) -> Bool {
+        if let type = supportedActivities[title] {
+            if let object = HKObjectType.categoryType(forIdentifier: type) {
+                return healthStore.authorizationStatus(for: object) != .sharingAuthorized
+            }
         }
-        
+        return false
+    }
+    
+    func requestHabitAuthroisation(habit:HabitItem, completion: @escaping (Bool) -> Void) {
+    
+        if let type = supportedActivities[habit.title] {
+            if let object = HKObjectType.categoryType(forIdentifier: type) {
+                healthStore.requestAuthorization(toShare: [], read: [object]) { (success, error) in
+                    completion(success)
+                }
+            }
+        }
+    }
+    
+    // MARK: --
+    
+    func enableHabitBackgroundDelivery(habit:HabitItem, completion: @escaping (Bool) -> Void) {
+        if let type = supportedActivities[habit.title] {
+            enablBackgroundDelivery(type, completion: completion)
+        }
     }
     
     func disableHabitBackgroundDelivery(habit:HabitItem) {
@@ -91,19 +108,21 @@ class Health {
     }
     
     
-    // MARK:  --- acti
-    
-    func enablBackgroundDelivery(_ identifier: HKCategoryTypeIdentifier) {
+    func enablBackgroundDelivery(_ identifier: HKCategoryTypeIdentifier, completion: @escaping (Bool) -> Void) {
         guard let object = HKObjectType.categoryType(forIdentifier: identifier) else {
-            print("Mindfulness type is not available")
+            print("Category type \(identifier.rawValue) is not available")
+            completion(false)
             return
         }
-
+        
         healthStore.enableBackgroundDelivery(for: object, frequency: .immediate) { success, error in
             if success {
                 print("Background delivery enabled for mindfulness sessions")
+                self.setupObserverQuery(object)
+                completion(true)
             } else if let error = error {
                 print("Error enabling background delivery: \(error.localizedDescription)")
+                completion(false)
             }
         }
     }
@@ -111,27 +130,23 @@ class Health {
     func disableBackgroundDelivery(_ identifier: HKCategoryTypeIdentifier) {
         Task {
             guard let object = HKObjectType.categoryType(forIdentifier: identifier) else {
-                print("Mindfulness type is not available")
+                print("Category type \(identifier.rawValue) is not available")
                 return
             }
             try? await healthStore.disableBackgroundDelivery(for: object)
         }
     }
     
-    func setupMindfulnessObserverQuery() {
-        guard let mindfulnessType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else {
-            print("Mindfulness type is not available")
-            return
-        }
+    func setupObserverQuery(_ type: HKCategoryType) {
 
-        let query = HKObserverQuery(sampleType: mindfulnessType, predicate: nil) { query, completionHandler, error in
+        let query = HKObserverQuery(sampleType: type, predicate: nil) { query, completionHandler, error in
             if let error = error {
                 print("Observer query error: \(error.localizedDescription)")
                 return
             }
 
             // Fetch new mindfulness data
-            self.fetchSessions(type: query.objectType)
+            self.fetchSessions(type: type)
 
             // Signal that the background task is complete
             completionHandler()
@@ -140,25 +155,28 @@ class Health {
         healthStore.execute(query)
     }
 
-    func fetchSessions(type: HKObjectType?) {
-//        guard let mindfulnessType = HKObjectType.categoryType(forIdentifier: .mindfulSession) else { return }
-//
-//        let query = HKSampleQuery(
-//            sampleType: type,
-//            predicate: nil,
-//            limit: HKObjectQueryNoLimit,
-//            sortDescriptors: nil
-//        ) { query, samples, error in
-//            if let error = error {
-//                print("Error fetching mindfulness sessions: \(error.localizedDescription)")
-//            } else if let samples = samples as? [HKCategorySample] {
-//                for sample in samples {
-//                    print("Mindfulness session: \(sample)")
-//                }
-//            }
-//        }
-//
-//        healthStore.execute(query)
+    func fetchSessions(type: HKCategoryType) {
+        let today = todayPredicate()
+        let descriptor = HKQueryDescriptor(sampleType:type, predicate: today)
+        
+        let query = HKSampleQuery(queryDescriptors: [descriptor],
+            limit: HKObjectQueryNoLimit
+        ) { query, samples, error in
+            if let error = error {
+                print("Error fetching mindfulness sessions: \(error.localizedDescription)")
+            } else if let samples = samples as? [HKCategorySample] {
+                for sample in samples {
+                    print("Mindfulness session: \(sample)")
+                }
+            }
+        }
+
+        healthStore.execute(query)
+    }
+    
+    private func todayPredicate() -> NSPredicate {
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        return HKQuery.predicateForSamples(withStart: startOfDay, end: .now)
     }
     
     // MARK:  --- sport
