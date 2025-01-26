@@ -27,7 +27,7 @@ struct AddHabitView: View {
     @State private var selectedCategory: HabitCategory?
     @State private var categories: [HabitCategory] = []
     
-    @State private var enableAutocomplete: Bool = false
+    @State private var enableAutocomplete: Bool =  false
     @State private var canEnableAutocomplete: Bool = false
     @State private var showInfo:Bool = false
     
@@ -37,7 +37,8 @@ struct AddHabitView: View {
         _title = State(initialValue: habitItem?.title ?? "")
         _selectedColor = State(initialValue: habitItem?.getColor() ?? .blue)
         _note = State(initialValue: habitItem?.note ?? "")
-        
+        _enableAutocomplete = State(initialValue:(habitItem?.trackingType == .autocomplete))
+        _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(_title.wrappedValue))
         _selectedCategory = State(initialValue: habitItem?.category ?? ModelData.shared.defaultCategory())
 
         self.habitItem = habitItem
@@ -51,6 +52,57 @@ struct AddHabitView: View {
             timeSensetive = false
             time = Date.now
         }
+    }
+    
+    func openSettings() {
+//        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+//            return
+//        }
+        guard let settingsUrl = URL(string: "x-apple-health://") else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl) { success in
+                if success {
+                    print("Settings opened successfully.")
+                }
+            }
+        }
+    }
+    
+    func showReauthorizationAlert() {
+        let alert = UIAlertController(
+            title: "HealthKit Access Needed",
+            message: "To track your health data, please enable HealthKit access in the Settings app.",
+            preferredStyle: .alert
+        )
+
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+            self.openSettings()
+        })
+
+        if let topController = UIApplication.shared.windows.first?.rootViewController {
+            topController.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func healthAutocomplete() {
+        let status = Health.shared.isHabitAuthroised(title: title)
+        if (status == .notDetermined) {
+            Task {
+                Health.shared.requestHabitAuthroisation(title: title) { value in
+                    enableAutocomplete = value
+                }
+            }
+        }
+        
+        // apple not indicating if read data is available
+        // https://developer.apple.com/documentation/healthkit/hkhealthstore/1614154-authorizationstatus#discussion
+//        else if (status == .sharingDenied) {
+//            enableAutocomplete = false
+//            showReauthorizationAlert()
+//        }
     }
     
     var body: some View {
@@ -72,12 +124,8 @@ struct AddHabitView: View {
                         HStack {
                             Toggle("Autocomplete", isOn: $enableAutocomplete)
                                 .onChange(of: enableAutocomplete) { oldValue, newValue in
-                                    if (!Health.shared.available()) {
-                                        Task {
-                                            await Health.shared.requestHealth { value in
-                                                enableAutocomplete = value
-                                            }
-                                        }
+                                    if (newValue) {
+                                        healthAutocomplete()
                                     }
                                 }
                             
@@ -165,7 +213,7 @@ struct AddHabitView: View {
     }
     
     private func loadCategories() {
-        categories = ModelData.shared.defaultCategories()
+        categories = ModelData.shared.fetchCategories()
     }
     
     private func recoverOldItem() {
@@ -226,11 +274,22 @@ struct AddHabitView: View {
     
     func finalise(_ habit:HabitItem) {
         
-        if enableAutocomplete {
-            Health.shared.enableHabitBackgroundDelivery(habit:habit)
-        } else {
-            Health.shared.enableHabitBackgroundDelivery(habit:habit)
+        if (canEnableAutocomplete) {
+            habit.trackingType = .trackable
+            if (enableAutocomplete) {
+                habit.trackingType = .autocomplete
+            }
         }
+        
+        if habit.trackingType == .autocomplete {
+            Health.shared.enableHabitBackgroundDelivery(habit:habit) { value in
+                // TODO: show error
+            }
+        }
+        if habit.trackingType == .trackable {
+            Health.shared.disableHabitBackgroundDelivery(habit:habit)
+        }
+        
         
         // setup Notificaitons
         reScheduleWeekdayNotification(habitItem: habit)

@@ -40,53 +40,37 @@ class Health {
         return HKHealthStore.isHealthDataAvailable()
     }
     
-    func requestHealth(complete: @escaping (Bool) -> Void) async {
-        var allTypes: Set<HKObjectType> = [
-            HKQuantityType.workoutType(),
-            HKQuantityType(.dietaryWater),
-        ]
-        
-        if let toothbrushingType = HKObjectType.categoryType(forIdentifier: .toothbrushingEvent) {
-            allTypes.insert(toothbrushingType)
-        }
-        
-        if let mindfulnessType = HKObjectType.categoryType(forIdentifier: .mindfulSession) {
-            allTypes.insert(mindfulnessType)
-        }
-        
-        do {
-            // Check that Health data is available on the device.
-//            if !HKHealthStore.isHealthDataAvailable() {
-                
-                // Asynchronously request authorization to the data.
-                try await healthStore.requestAuthorization(toShare: [], read: allTypes)
-//            }
-        } catch {
-            
-            // Typically, authorization requests only fail if you haven't set the
-            // usage and share descriptions in your app's Info.plist, or if
-            // Health data isn't available on the current device.
-            print("*** An unexpected error occurred while requesting authorization: \(error.localizedDescription) ***")
-            complete(false)
-            return
-        }
-        complete(true)
-    }
     
-    func isHabitAuthroised(title:String) -> Bool {
+    func isHabitAuthroised(title:String) -> HKAuthorizationStatus {
         if let type = supportedActivities[title] {
             if let object = HKObjectType.categoryType(forIdentifier: type) {
-                return healthStore.authorizationStatus(for: object) != .sharingAuthorized
+                return healthStore.authorizationStatus(for: object)
             }
         }
-        return false
+        return .notDetermined
     }
     
-    func requestHabitAuthroisation(habit:HabitItem, completion: @escaping (Bool) -> Void) {
-    
-        if let type = supportedActivities[habit.title] {
+    func isHabitAuthroised2(title:String) async -> HKAuthorizationRequestStatus {
+        if let type = supportedActivities[title] {
             if let object = HKObjectType.categoryType(forIdentifier: type) {
-                healthStore.requestAuthorization(toShare: [], read: [object]) { (success, error) in
+                do {
+                    return try await healthStore.statusForAuthorizationRequest(toShare: [], read: [object])
+                } catch {
+                    
+                }
+            }
+        }
+        return .unknown
+    }
+    
+    
+    
+    
+    
+    func requestHabitAuthroisation(title:String, completion: @escaping (Bool) -> Void) {
+        if let type = supportedActivities[title] {
+            if let object = HKObjectType.categoryType(forIdentifier: type) {
+                healthStore.requestAuthorization(toShare: nil, read: [object]) { success, error in
                     completion(success)
                 }
             }

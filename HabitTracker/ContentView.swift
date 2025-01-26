@@ -38,21 +38,7 @@ struct ContentView: View {
                     Label("Habits", systemImage: "list.bullet")
                 }
                 .tag(1)
-            
-//            VStack {
-//                Button("health") {
-//                    Task {
-//                        await Health.shared.requestHealth { _ in
-//                            Health.shared.enableMindfulnessBackgroundDelivery()
-////                            Health.shared.setupMindfulnessObserverQuery()
-//                        }
-//                    }
-//                }
-//            }
-//                .tabItem {
-//                    Label("test health", systemImage: "heart")
-//                }
-//                .tag(2)
+
         }
     }
 }

@@ -42,30 +42,18 @@ class SampleData {
     }
     
     func clearAllData() {
-        let fetchRequest = FetchDescriptor<HabitItem>()
-        let fetchRequestDaily = FetchDescriptor<DailyEntry>()
         let fetchRequestCategories = FetchDescriptor<HabitCategory>()
         
         do {
-            // Fetch all HabitItems
-            let habitItems = try context.fetch(fetchRequest)
+            try context.delete(model: HabitItem.self)
+            try context.delete(model: DailyEntry.self)
+                        
             
-            // Iterate over the fetched items and delete them from the context
-            for habit in habitItems {
-                context.delete(habit)
-            }
-            
-            let dailyEntries = try context.fetch(fetchRequestDaily)
-            
-            for daily in dailyEntries {
-                context.delete(daily)
-            }
-            
-            // clear categories
-            let categories = try context.fetch(fetchRequestCategories)
-            for category in categories {
-                context.delete(category)
-            }
+//            // clear categories
+//            let categories = try context.fetch(fetchRequestCategories)
+//            for category in categories {
+//                context.delete(category)
+//            }
 
             // Save the context after deletion
             try context.save()
@@ -81,7 +69,7 @@ class SampleData {
             return
         }
         
-        ModelData.shared.insertCategories()
+//        ModelData.shared.insertCategories()
         
         var orderCount = 0
         let data = HabitItem.sampleData()
@@ -102,7 +90,7 @@ class SampleData {
 extension HabitItem {
     @MainActor
     static func sampleData() -> [HabitItem] {
-        let categories = ModelData.shared.defaultCategories()
+        let categories = ModelData.shared.fetchCategories()
         let data = [
             HabitItem(
                 title: "Meditation",

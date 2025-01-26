@@ -9,14 +9,7 @@ import Foundation
 import SwiftData
 
 
-
-@Model
-class DailyEntry : ObservableObject {
-    var habit: HabitItem
-    var date: Date
-    var isCompleted: Bool = false
-    var completionDate: Date?
-    
+extension DailyEntry {
     func setCompleted(_ value:Bool) {
         self.isCompleted = value
         if value {
@@ -24,13 +17,6 @@ class DailyEntry : ObservableObject {
         } else {
             self.completionDate = nil
         }
-    }
-    
-    init(habit: HabitItem, date: Date, isCompleted: Bool, completionDate: Date? = nil) {
-        self.date = date
-        self.isCompleted = isCompleted
-        self.habit = habit
-        self.completionDate = completionDate
     }
     
     var title:String {

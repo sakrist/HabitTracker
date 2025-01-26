@@ -7,30 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D203113E2D3F1A0300EC980F /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */; };
+		D20311412D3F1AB300EC980F /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D20311402D3F1AB300EC980F /* Shiny */; };
 		D25246282D370615003CEBF9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */; };
 		D25246292D370615003CEBF9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */; };
 		D25246352D370617003CEBF9 /* DailyExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D25246272D370615003CEBF9 /* DailyExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D252463A2D370659003CEBF9 /* HabitCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory.swift */; };
+		D252463A2D370659003CEBF9 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */; };
 		D252463C2D370659003CEBF9 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */; };
 		D252463D2D370659003CEBF9 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
-		D252463E2D370659003CEBF9 /* DailyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry.swift */; };
-		D252463F2D370659003CEBF9 /* HabitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A832CA5D7EE0000E843 /* HabitItem.swift */; };
+		D252463E2D370659003CEBF9 /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
+		D252463F2D370659003CEBF9 /* HabitItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */; };
 		D25246412D3706A3003CEBF9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1264A2CB73717005E5941 /* Date.swift */; };
 		D25246422D3706A3003CEBF9 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A952CA5DD420000E843 /* Color+extension.swift */; };
 		D25A7A852CA5D7EF0000E843 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D25A7A7C2CA5D7EE0000E843 /* Preview Assets.xcassets */; };
 		D25A7A862CA5D7EF0000E843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D25A7A7F2CA5D7EE0000E843 /* Assets.xcassets */; };
 		D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A802CA5D7EE0000E843 /* ContentView.swift */; };
 		D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */; };
-		D25A7A8A2CA5D7EF0000E843 /* HabitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A832CA5D7EE0000E843 /* HabitItem.swift */; };
+		D25A7A8A2CA5D7EF0000E843 /* HabitItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */; };
 		D25A7A8D2CA5D8120000E843 /* HabitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A8B2CA5D8120000E843 /* HabitTrackerTests.swift */; };
 		D25A7A912CA5D8120000E843 /* HabitTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A8E2CA5D8120000E843 /* HabitTrackerUITests.swift */; };
 		D25A7A922CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A8F2CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift */; };
 		D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A952CA5DD420000E843 /* Color+extension.swift */; };
 		D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */; };
-		D28309DA2CA9B32100C6B22A /* DailyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry.swift */; };
+		D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
-		D2A78AA32D3D74000091DFB2 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AA22D3D74000091DFB2 /* Shiny */; };
-		D2A78AA62D3D741F0091DFB2 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AA52D3D741F0091DFB2 /* ConfettiSwiftUI */; };
 		D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */; };
 		D2A78AB02D3D8EBB0091DFB2 /* RainbowButton in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */; };
 		D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
@@ -41,8 +41,14 @@
 		D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */; };
 		D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */; };
 		D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */; };
-		D2CFF5592D35885500D09F01 /* HabitCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory.swift */; };
+		D2CFF5592D35885500D09F01 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */; };
 		D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */; };
+		D2D457F12D45942400C67484 /* SchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F02D45942200C67484 /* SchemaV1.swift */; };
+		D2D457F22D45942400C67484 /* SchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F02D45942200C67484 /* SchemaV1.swift */; };
+		D2D457F42D463D9F00C67484 /* SchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F32D463D9A00C67484 /* SchemaV2.swift */; };
+		D2D457F52D463D9F00C67484 /* SchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F32D463D9A00C67484 /* SchemaV2.swift */; };
+		D2D457F72D46559000C67484 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62D46558800C67484 /* ModelData+fetch.swift */; };
+		D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62D46558800C67484 /* ModelData+fetch.swift */; };
 		D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481052CD8246C00B1DF7C /* MonthlyView.swift */; };
 		D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */; };
 		D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */; };
@@ -108,13 +114,13 @@
 		D25A7A802CA5D7EE0000E843 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D25A7A812CA5D7EE0000E843 /* HabitTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HabitTracker.entitlements; sourceTree = "<group>"; };
 		D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
-		D25A7A832CA5D7EE0000E843 /* HabitItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitItem.swift; sourceTree = "<group>"; };
+		D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitItem+extension.swift"; sourceTree = "<group>"; };
 		D25A7A8B2CA5D8120000E843 /* HabitTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerTests.swift; sourceTree = "<group>"; };
 		D25A7A8E2CA5D8120000E843 /* HabitTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITests.swift; sourceTree = "<group>"; };
 		D25A7A8F2CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D25A7A952CA5DD420000E843 /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
 		D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitItemCell.swift; sourceTree = "<group>"; };
-		D28309D92CA9B32100C6B22A /* DailyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyEntry.swift; sourceTree = "<group>"; };
+		D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyEntry+extension.swift"; sourceTree = "<group>"; };
 		D28309DC2CA9B3F200C6B22A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoHabitsYet.swift; sourceTree = "<group>"; };
 		D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
@@ -125,10 +131,13 @@
 		D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListView.swift; sourceTree = "<group>"; };
 		D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
-		D2CFF5582D35884E00D09F01 /* HabitCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCategory.swift; sourceTree = "<group>"; };
+		D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitCategory+extension.swift"; sourceTree = "<group>"; };
 		D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysSelectorView.swift; sourceTree = "<group>"; };
 		D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
 		D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
+		D2D457F02D45942200C67484 /* SchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV1.swift; sourceTree = "<group>"; };
+		D2D457F32D463D9A00C67484 /* SchemaV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV2.swift; sourceTree = "<group>"; };
+		D2D457F62D46558800C67484 /* ModelData+fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+fetch.swift"; sourceTree = "<group>"; };
 		D2D481052CD8246C00B1DF7C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 		D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitMonthView.swift; sourceTree = "<group>"; };
 		D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
@@ -159,11 +168,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20311412D3F1AB300EC980F /* Shiny in Frameworks */,
+				D203113E2D3F1A0300EC980F /* ConfettiSwiftUI in Frameworks */,
 				D2A78AB02D3D8EBB0091DFB2 /* RainbowButton in Frameworks */,
-				D2A78AA32D3D74000091DFB2 /* Shiny in Frameworks */,
 				D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */,
 				D2A78AB62D3D9AFC0091DFB2 /* RainbowButton in Frameworks */,
-				D2A78AA62D3D741F0091DFB2 /* ConfettiSwiftUI in Frameworks */,
 				D2DB71822D3D473B000DC325 /* Shiny in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,9 +267,12 @@
 			children = (
 				D28309DC2CA9B3F200C6B22A /* SampleData.swift */,
 				D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */,
-				D2CFF5582D35884E00D09F01 /* HabitCategory.swift */,
-				D25A7A832CA5D7EE0000E843 /* HabitItem.swift */,
-				D28309D92CA9B32100C6B22A /* DailyEntry.swift */,
+				D2D457F62D46558800C67484 /* ModelData+fetch.swift */,
+				D2D457F02D45942200C67484 /* SchemaV1.swift */,
+				D2D457F32D463D9A00C67484 /* SchemaV2.swift */,
+				D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */,
+				D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */,
+				D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */,
 			);
 			path = ModelRecords;
 			sourceTree = "<group>";
@@ -387,10 +399,10 @@
 			packageProductDependencies = (
 				D2DB71812D3D473B000DC325 /* Shiny */,
 				D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */,
-				D2A78AA22D3D74000091DFB2 /* Shiny */,
-				D2A78AA52D3D741F0091DFB2 /* ConfettiSwiftUI */,
 				D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */,
 				D2A78AB52D3D9AFC0091DFB2 /* RainbowButton */,
+				D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */,
+				D20311402D3F1AB300EC980F /* Shiny */,
 			);
 			productName = HabitTracker;
 			productReference = D25A7A352CA5D64B0000E843 /* HabitTracker.app */;
@@ -472,9 +484,9 @@
 			mainGroup = D25A7A2C2CA5D64B0000E843;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				D2A78AA12D3D74000091DFB2 /* XCRemoteSwiftPackageReference "shiny" */,
-				D2A78AA42D3D741F0091DFB2 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 				D2A78AB42D3D9AFC0091DFB2 /* XCLocalSwiftPackageReference "../RainbowButton" */,
+				D203113C2D3F1A0300EC980F /* XCLocalSwiftPackageReference "../ConfettiSwiftUI" */,
+				D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D25A7A362CA5D64B0000E843 /* Products */;
@@ -533,15 +545,18 @@
 			files = (
 				D25246412D3706A3003CEBF9 /* Date.swift in Sources */,
 				D25246422D3706A3003CEBF9 /* Color+extension.swift in Sources */,
-				D252463A2D370659003CEBF9 /* HabitCategory.swift in Sources */,
+				D252463A2D370659003CEBF9 /* HabitCategory+extension.swift in Sources */,
 				D252463C2D370659003CEBF9 /* ModelData.swift in Sources */,
 				D2DB71782D3D30DB000DC325 /* Daily.swift in Sources */,
 				D2DB71792D3D30DB000DC325 /* DailyBundle.swift in Sources */,
 				D2DB717A2D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition in Sources */,
 				D2DB717B2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
+				D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */,
+				D2D457F42D463D9F00C67484 /* SchemaV2.swift in Sources */,
 				D252463D2D370659003CEBF9 /* SampleData.swift in Sources */,
-				D252463E2D370659003CEBF9 /* DailyEntry.swift in Sources */,
-				D252463F2D370659003CEBF9 /* HabitItem.swift in Sources */,
+				D2D457F12D45942400C67484 /* SchemaV1.swift in Sources */,
+				D252463E2D370659003CEBF9 /* DailyEntry+extension.swift in Sources */,
+				D252463F2D370659003CEBF9 /* HabitItem+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,9 +568,9 @@
 				D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */,
 				D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */,
 				D2C1264B2CB7371D005E5941 /* Date.swift in Sources */,
-				D2CFF5592D35885500D09F01 /* HabitCategory.swift in Sources */,
+				D2CFF5592D35885500D09F01 /* HabitCategory+extension.swift in Sources */,
 				D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */,
-				D28309DA2CA9B32100C6B22A /* DailyEntry.swift in Sources */,
+				D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */,
 				D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */,
 				D2C126482CB2DAAC005E5941 /* DailyHabitListView.swift in Sources */,
 				D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */,
@@ -566,7 +581,10 @@
 				D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */,
 				D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
 				D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */,
-				D25A7A8A2CA5D7EF0000E843 /* HabitItem.swift in Sources */,
+				D25A7A8A2CA5D7EF0000E843 /* HabitItem+extension.swift in Sources */,
+				D2D457F52D463D9F00C67484 /* SchemaV2.swift in Sources */,
+				D2D457F72D46559000C67484 /* ModelData+fetch.swift in Sources */,
+				D2D457F22D45942400C67484 /* SchemaV1.swift in Sources */,
 				D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */,
 				D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */,
 				D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */,
@@ -643,10 +661,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Debug;
@@ -682,10 +701,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;
@@ -1029,41 +1049,28 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		D203113C2D3F1A0300EC980F /* XCLocalSwiftPackageReference "../ConfettiSwiftUI" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../ConfettiSwiftUI;
+		};
+		D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../shiny;
+		};
 		D2A78AB42D3D9AFC0091DFB2 /* XCLocalSwiftPackageReference "../RainbowButton" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../RainbowButton;
 		};
 /* End XCLocalSwiftPackageReference section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		D2A78AA12D3D74000091DFB2 /* XCRemoteSwiftPackageReference "shiny" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/maustinstar/shiny.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		D2A78AA42D3D741F0091DFB2 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sakrist/ConfettiSwiftUI.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		D2A78AA22D3D74000091DFB2 /* Shiny */ = {
+		D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D2A78AA12D3D74000091DFB2 /* XCRemoteSwiftPackageReference "shiny" */;
-			productName = Shiny;
-		};
-		D2A78AA52D3D741F0091DFB2 /* ConfettiSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D2A78AA42D3D741F0091DFB2 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
+		};
+		D20311402D3F1AB300EC980F /* Shiny */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shiny;
 		};
 		D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */ = {
 			isa = XCSwiftPackageProductDependency;
