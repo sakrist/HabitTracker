@@ -146,11 +146,12 @@ class Health {
         let query = HKSampleQuery(queryDescriptors: [descriptor],
             limit: HKObjectQueryNoLimit
         ) { query, samples, error in
-            if let error = error {
-                print("Error fetching mindfulness sessions: \(error.localizedDescription)")
-            } else if let samples = samples as? [HKCategorySample] {
+            if let samples = samples as? [HKCategorySample] {
                 for sample in samples {
-                    print("Mindfulness session: \(sample)")
+                    
+//                    sample.sourceRevision.name
+                    
+//                    print("Mindfulness session: \(sample)")
                 }
             }
         }

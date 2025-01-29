@@ -37,8 +37,8 @@ struct AddHabitView: View {
         _title = State(initialValue: habitItem?.title ?? "")
         _selectedColor = State(initialValue: habitItem?.getColor() ?? .blue)
         _note = State(initialValue: habitItem?.note ?? "")
-        _enableAutocomplete = State(initialValue:(habitItem?.trackingType == .autocomplete))
-        _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(_title.wrappedValue))
+//        _enableAutocomplete = State(initialValue:(habitItem?.trackingType == .autocomplete))
+//        _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(_title.wrappedValue))
         _selectedCategory = State(initialValue: habitItem?.category ?? ModelData.shared.defaultCategory())
 
         self.habitItem = habitItem
@@ -110,12 +110,12 @@ struct AddHabitView: View {
             Form {
                 Section(header: Text("Name")) {
                     TextField("Enter a habit name here..", text: $title)
-                        .onChange(of: title) { _, _ in
-                            // Trigger animation when the title changes
-                            withAnimation {
-                                canEnableAutocomplete = Health.shared.isSupported(title)
-                            }
-                        }
+//                        .onChange(of: title) { _, _ in
+//                            // Trigger animation when the title changes
+//                            withAnimation {
+//                                canEnableAutocomplete = Health.shared.isSupported(title)
+//                            }
+//                        }
                     
                 }
                 
@@ -273,7 +273,7 @@ struct AddHabitView: View {
     
     
     func finalise(_ habit:HabitItem) {
-        
+        /*
         if (canEnableAutocomplete) {
             habit.trackingType = .trackable
             if (enableAutocomplete) {
@@ -289,6 +289,7 @@ struct AddHabitView: View {
         if habit.trackingType == .trackable {
             Health.shared.disableHabitBackgroundDelivery(habit:habit)
         }
+         */
         
         
         // setup Notificaitons

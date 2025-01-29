@@ -32,7 +32,7 @@ class ModelData {
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         
         do {
-            modelContainer = try ModelContainer(for: schema, migrationPlan: MigrationPlanV1toV2.self, configurations: [modelConfiguration])
+            modelContainer = try ModelContainer(for: schema, migrationPlan: nil, configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
