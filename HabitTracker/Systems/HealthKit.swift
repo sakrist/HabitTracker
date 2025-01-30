@@ -101,7 +101,6 @@ class Health {
         
         healthStore.enableBackgroundDelivery(for: object, frequency: .immediate) { success, error in
             if success {
-                print("Background delivery enabled for mindfulness sessions")
                 self.setupObserverQuery(object)
                 completion(true)
             } else if let error = error {
@@ -149,7 +148,7 @@ class Health {
             if let samples = samples as? [HKCategorySample] {
                 for sample in samples {
                     
-//                    sample.sourceRevision.name
+                    print(sample.sourceRevision.source.name)
                     
 //                    print("Mindfulness session: \(sample)")
                 }

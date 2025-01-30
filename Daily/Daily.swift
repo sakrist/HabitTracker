@@ -55,6 +55,7 @@ struct Provider: @preconcurrency IntentTimelineProvider {
 
 struct DailyEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
     
     var body: some View {
         let filtered = (entry.showCompleted) ?  entry.dailyEntries : entry.dailyEntries.filter { !$0.isCompleted }
@@ -65,9 +66,27 @@ struct DailyEntryView : View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(.gray)
         } else {
-            WidgetHabitsList(entries: filtered)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading )
-                .padding(0)
+            if widgetFamily == .systemSmall {
+                WidgetHabitsList(entries: filtered, showCount: 5 )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading )
+                    .padding(0)
+            } else {
+                let perColumn = (widgetFamily == .systemExtraLarge || widgetFamily == .systemLarge) ? 15 : 5
+
+                HStack {
+                    let count = filtered.count
+                    let firstCount = (count > perColumn) ? perColumn-1 : count-1
+                    WidgetHabitsList(entries: Array(filtered[0...firstCount]), showCount: perColumn )
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading )
+                        .padding(0)
+                    if (count > perColumn) {
+                        WidgetHabitsList(entries: Array(filtered[perColumn...count-1]), showCount: perColumn)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading )
+                            .padding(0)
+                    }
+                }
+            }
+                
         }
     }
 }
@@ -104,3 +123,9 @@ struct Daily: Widget {
 }
 
 
+#Preview(as: .systemLarge) {
+    Daily()
+} timeline: {
+    HabitWidgetEntry(date: .now, dailyEntries: sampleDailyEntries(), showCompleted: true)
+    HabitWidgetEntry(date: .now, dailyEntries: sampleDailyEntries(), showCompleted: false)
+}

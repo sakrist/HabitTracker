@@ -131,10 +131,6 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
     }
     updatedEntries = updatedEntries.sorted(by: sortDailyHabits)
     
-    for item in updatedEntries {
-        print("item \(item.habit.order) ")
-    }
-    
     try? modelContext.save()
     return updatedEntries
 }

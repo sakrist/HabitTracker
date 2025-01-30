@@ -30,7 +30,7 @@ struct SimpleHabitItemCell: View {
 struct WidgetHabitsList: View {
     let entries: [DailyEntry]
 
-    let showCount = 5
+    let showCount:Int
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -38,7 +38,7 @@ struct WidgetHabitsList: View {
                 SimpleHabitItemCell(item: entry.habit, entry: entry)
             }.padding(0)
             
-            if entries.count > 5 {
+            if entries.count > showCount {
                 HStack {
                     Spacer()
                     Text("…and more")
@@ -57,6 +57,6 @@ struct WidgetHabitsList: View {
 
 // preview
 #Preview {
-    WidgetHabitsList(entries: sampleDailyEntries())
+    WidgetHabitsList(entries: sampleDailyEntries(), showCount:5)
         .border(.blue, width: 1).frame(width: 150, height: 150, alignment: .center)
 }

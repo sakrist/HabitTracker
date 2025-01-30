@@ -168,6 +168,9 @@ extension HabitItem {
         DailyEntry(habit: sampleData[1], date: Date(), isCompleted: true),
         DailyEntry(habit: sampleData[2], date: Date(), isCompleted: false),
         DailyEntry(habit: sampleData[3], date: Date(), isCompleted: false),
-        DailyEntry(habit: sampleData[4], date: Date(), isCompleted: true)
+        DailyEntry(habit: sampleData[4], date: Date(), isCompleted: true),
+        DailyEntry(habit: sampleData[5], date: Date(), isCompleted: false),
+        DailyEntry(habit: sampleData[6], date: Date(), isCompleted: false),
+        DailyEntry(habit: sampleData[0], date: Date(), isCompleted: false)
     ]
 }

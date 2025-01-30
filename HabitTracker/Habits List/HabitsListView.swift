@@ -28,6 +28,7 @@ struct HabitsListView: View {
     @Environment(\.modelContext) private var modelContext
     
     @Query var allitems: [HabitItem]
+    @Query var progressEntries: [DailyEntry]
     
     @Query(filter: #Predicate<HabitItem> { item in
         item.active

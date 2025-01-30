@@ -20,7 +20,7 @@ struct NoHabitsYet: View {
             
             Text(" · · · ")
             
-            Text("If you want to build a new habits, \nstart by adding one habit at a time.\n")
+            Text("If you want to build a new habit, \nstart by adding one habit at a time.\n")
                 .multilineTextAlignment(.center)
             
             Spacer().frame(height: 150)

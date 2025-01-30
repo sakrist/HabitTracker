@@ -29,7 +29,6 @@ struct AddHabitView: View {
     
     @State private var enableAutocomplete: Bool =  false
     @State private var canEnableAutocomplete: Bool = false
-    @State private var showInfo:Bool = false
     
     private var habitItem: HabitItem?
 
@@ -37,8 +36,8 @@ struct AddHabitView: View {
         _title = State(initialValue: habitItem?.title ?? "")
         _selectedColor = State(initialValue: habitItem?.getColor() ?? .blue)
         _note = State(initialValue: habitItem?.note ?? "")
-//        _enableAutocomplete = State(initialValue:(habitItem?.trackingType == .autocomplete))
-//        _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(_title.wrappedValue))
+        _enableAutocomplete = State(initialValue:(habitItem?.trackingType == .autocomplete))
+        _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(_title.wrappedValue))
         _selectedCategory = State(initialValue: habitItem?.category ?? ModelData.shared.defaultCategory())
 
         self.habitItem = habitItem
@@ -110,48 +109,33 @@ struct AddHabitView: View {
             Form {
                 Section(header: Text("Name")) {
                     TextField("Enter a habit name here..", text: $title)
-//                        .onChange(of: title) { _, _ in
-//                            // Trigger animation when the title changes
-//                            withAnimation {
-//                                canEnableAutocomplete = Health.shared.isSupported(title)
-//                            }
-//                        }
+                        .onChange(of: title) { _, _ in
+                            // Trigger animation when the title changes
+                            withAnimation {
+                                canEnableAutocomplete = Health.shared.isSupported(title)
+                            }
+                        }
                     
                 }
                 
                 if canEnableAutocomplete {
                     Section(header: Text("Health and Fitness")) {
-                        HStack {
-                            Toggle("Autocomplete", isOn: $enableAutocomplete)
-                                .onChange(of: enableAutocomplete) { oldValue, newValue in
-                                    if (newValue) {
-                                        healthAutocomplete()
-                                    }
+                        Toggle("Smart Autocomplete", isOn: $enableAutocomplete)
+                            .onChange(of: enableAutocomplete) { oldValue, newValue in
+                                if (newValue) {
+                                    healthAutocomplete()
                                 }
-                            
-                            Button {
-                                showInfo = true
-                            } label: {
-                                Image(systemName: "info.circle")
-                            }.popover(isPresented: $showInfo) {
-                                Text("Enable this feature to automatically complete\nhabit based on your Health activity history.")
-                                    .multilineTextAlignment(.center)
-                                    .padding()
-                                    .presentationCompactAdaptation(.popover)
                             }
-                        }
-                        
                     }.transition(.opacity)
                 }
                 
                 
                 Section(header: Text("Active Days")) {
-
                     WeekdaysView(activeWeekdays:$activeWeekdays)
                 }
                 
-                Section(header: Text("Time")) {
-                    Toggle("Time sensetime", isOn: $timeSensetive)
+                Section(header: Text("Time Sensitive")) {
+                    Toggle("Reminder", isOn: $timeSensetive)
                     
                     if timeSensetive {
                         DatePicker("Select Time", selection: $time, displayedComponents: .hourAndMinute)
@@ -273,7 +257,7 @@ struct AddHabitView: View {
     
     
     func finalise(_ habit:HabitItem) {
-        /*
+        
         if (canEnableAutocomplete) {
             habit.trackingType = .trackable
             if (enableAutocomplete) {
@@ -284,12 +268,15 @@ struct AddHabitView: View {
         if habit.trackingType == .autocomplete {
             Health.shared.enableHabitBackgroundDelivery(habit:habit) { value in
                 // TODO: show error
+                if (!value) {
+                    habit.trackingType = .trackable
+                    enableAutocomplete = false
+                }
             }
         }
         if habit.trackingType == .trackable {
             Health.shared.disableHabitBackgroundDelivery(habit:habit)
         }
-         */
         
         
         // setup Notificaitons
