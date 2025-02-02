@@ -7,49 +7,59 @@
 
 import HealthKit
 
-// https://github.com/christophhagen/HealthKitExtensions.git  - try
 
 class Health {
     static let shared = Health()
     let healthStore = HKHealthStore()
     
-    let supportedSport: [String: HKWorkoutActivityType] = [
-        "Cycling": .cycling,
-        "Running": .running,
-        "Walking": .walking,
-        "Swimming": .swimming,
-        "Strength Training": .traditionalStrengthTraining,
-        "Cross Training": .crossTraining,
-        "Yoga": .yoga,
-        "Hiking": .hiking,
-        "Pilates": .pilates,
-    ]
-    
-    let supportedCategory: [String: HKCategoryTypeIdentifier] = [
-        "Tooth brushing": .toothbrushingEvent,
-        "Meditate": .mindfulSession,
-        "Journal": .mindfulSession
+    let supportedHabits: [String: HealthType] = [
+        "Manual" : .none,
+        
+        // Workouts
+        "Cycling": .workout(.cycling),
+        "Running": .workout(.running),
+        "Walking": .workout(.walking),
+        "Swimming": .workout(.swimming),
+        "Strength Training": .workout(.traditionalStrengthTraining),
+        "Cross Training": .workout(.crossTraining),
+        "Yoga": .workout(.yoga),
+        "Hiking": .workout(.hiking),
+        "Pilates": .workout(.pilates),
+
+        // Category-Based Activities
+        "Tooth brushing": .category(.toothbrushingEvent),
+        "Meditate": .category(.mindfulSession, .meditate),
+        "Journal": .category(.mindfulSession, .journal),
+
+        // Quantity-Based Activities
+        "Drink Water": .quantity(.dietaryWater)
     ]
     
     func fullList() -> [String] {
-        Array(supportedSport.keys) + Array(supportedCategory.keys)
+        Array(supportedHabits.keys)
     }
     
+    
     func activityObject(for name: String) -> HKSampleType? {
-        if (supportedCategory.keys.contains(name)) {
-            if let type = supportedCategory[name] {
-                return HKObjectType.categoryType(forIdentifier: type)
-            }
-        }
-        if (supportedSport.keys.contains(name)) {
+        guard let habitType = supportedHabits[name] else { return nil }
+        
+        switch habitType {
+        case .none:
+            return nil
+        case .workout(_):
             return HKObjectType.workoutType()
+
+        case .category(let type, _):
+            return HKObjectType.categoryType(forIdentifier: type)
+
+        case .quantity(let type):
+            return HKObjectType.quantityType(forIdentifier: type)
         }
-        return nil
     }
     
     
     func isSupported(_ name:String) -> Bool {
-        supportedSport.keys.contains(name) || supportedCategory.keys.contains(name)
+        supportedHabits.keys.contains(name)
     }
     
     
@@ -59,12 +69,8 @@ class Health {
     
     
     func isHabitAuthroised(title:String) -> HKAuthorizationStatus {
-        if let type = supportedCategory[title] {
-            if let object = HKObjectType.categoryType(forIdentifier: type) {
-                return healthStore.authorizationStatus(for: object)
-            }
-        } else if supportedSport.keys.contains(title) {
-            return healthStore.authorizationStatus(for: HKObjectType.workoutType())
+        if let object = activityObject(for: title) {
+            return healthStore.authorizationStatus(for: object)
         }
         return .notDetermined
     }
@@ -84,14 +90,11 @@ class Health {
     
     
     func requestHabitAuthroisation(title:String, completion: @escaping (Bool) -> Void) {
-        if let type = supportedCategory[title] {
-            if let object = HKObjectType.categoryType(forIdentifier: type) {
-                healthStore.requestAuthorization(toShare: [object], read: [object]) { success, error in
-                    completion(success)
-                }
+
+        if let object = activityObject(for: title) {
+            healthStore.requestAuthorization(toShare: [object], read: [object]) { success, error in
+                completion(success)
             }
-        } else if (supportedSport.keys.contains(title)) {
-            
         } else {
             completion(false)
         }
@@ -100,27 +103,17 @@ class Health {
     // MARK: --
     
     func enableHabitBackgroundDelivery(habit:HabitItem, completion: @escaping (Bool) -> Void) {
-        if let type = supportedCategory[habit.title] {
-            guard let object = HKObjectType.categoryType(forIdentifier: type) else {
-                print("Category type \(type.rawValue) is not available")
-                completion(false)
-                return
-            }
+        if let object = activityObject(for: habit.title) {
             enablBackgroundDelivery(object, completion: completion)
-        } else if (supportedSport.keys.contains(habit.title)) {
-            enablBackgroundDelivery(HKObjectType.workoutType(), completion: completion)
         } else {
             completion(false)
         }
     }
     
     func disableHabitBackgroundDelivery(habit:HabitItem) {
-        if let type = supportedCategory[habit.title] {
-            guard let object = HKObjectType.categoryType(forIdentifier: type) else {
-                print("Category type \(type.rawValue) is not available")
-                return
-            }
-            disableBackgroundDelivery(object)
+        // TODO: dont disable for sport
+        if let object = activityObject(for: habit.title) {
+//            disableBackgroundDelivery(object)
         }
     }
     
@@ -169,7 +162,9 @@ class Health {
                                   limit: HKObjectQueryNoLimit
         ) { query, samples, error in
             if let samples = samples {
-                self.process(samples)
+                Task {
+                    await ModelData.shared.process(samples)
+                }
             }
         }
         
@@ -195,12 +190,6 @@ class Health {
     }
     
     // MARK:  --- process sample
-    
-    func process(_ samples: [HKSample]) {
-//        Task {
-//            let entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext, for: .now)
-//        }
-    }
     
 }
 

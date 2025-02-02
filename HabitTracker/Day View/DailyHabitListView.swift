@@ -26,7 +26,7 @@ struct DailyHabitListView: View {
                 HStack {
                     Button(action: {
                         selectedDate = Calendar.current.date(byAdding: .day, value: -1, to: selectedDate) ?? Date()
-                        entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
+                        fetchEntries()
                     }) {
                         Image(systemName: "chevron.left")
                     }
@@ -39,7 +39,7 @@ struct DailyHabitListView: View {
                     if !selectedDate.isToday() {
                         Button(action: {
                             selectedDate = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate) ?? Date()
-                            entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
+                            fetchEntries()
                         }) {
                             Image(systemName: "chevron.right")
                         }
@@ -57,13 +57,19 @@ struct DailyHabitListView: View {
                     }
                 }
                 .onAppear {
-                    entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
+                    fetchEntries()
                 }
             }
         }.onReceive(notificationPublisher) { _ in
             // check if selected date is the same
             selectedDate = Date()
-            entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
+            fetchEntries()
+        }
+    }
+    
+    func fetchEntries() {
+        Task {
+            self.entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
         }
     }
     

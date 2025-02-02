@@ -30,13 +30,18 @@ struct AddHabitView: View {
     @State private var enableAutocomplete: Bool =  false
     @State private var canEnableAutocomplete: Bool = false
     
+    @State private var predefined:String = "Manual"
+    
     private var habitItem: HabitItem?
+    let supportedHabits = Health.shared.supportedHabits.keys.sorted {
+        $0 == "Manual" ? true : ($1 == "Manual" ? false : $0 < $1)
+    }
 
     init(habitItem: HabitItem? = nil) {
         _title = State(initialValue: habitItem?.title ?? "")
         _selectedColor = State(initialValue: habitItem?.getColor() ?? .blue)
         _note = State(initialValue: habitItem?.note ?? "")
-        _enableAutocomplete = State(initialValue:(habitItem?.trackingType == .autocomplete))
+        _enableAutocomplete = State(initialValue:(habitItem?.healthType != .none))
         _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(_title.wrappedValue))
         _selectedCategory = State(initialValue: habitItem?.category ?? ModelData.shared.defaultCategory())
 
@@ -108,14 +113,37 @@ struct AddHabitView: View {
         NavigationView {
             Form {
                 Section(header: Text("Name")) {
-                    TextField("Enter a habit name here..", text: $title)
-                        .onChange(of: title) { _, _ in
-                            // Trigger animation when the title changes
-                            withAnimation {
-                                canEnableAutocomplete = Health.shared.isSupported(title)
-                            }
+                    HStack {
+                        TextField("Enter a habit or select one..", text: $title)
+                            .disabled(canEnableAutocomplete)
+                            .foregroundColor(.primary.opacity(canEnableAutocomplete ? 0.5 : 1.0))
+
+                        ZStack {
+                            
+                            Picker(selection: $predefined) {
+                                ForEach(supportedHabits, id: \.self) { habitName in
+                                    Text(habitName).tag(habitName as String?)
+                                        .fontWeight(habitName == "Manual" ? .bold : .regular)
+                                }
+                            } label: {
+//                                Image(systemName: (canEnableAutocomplete) ? "heart.fill" : "heart")
+//                                    .foregroundStyle(.red)
+                            } currentValueLabel: {
+                                Image(systemName: (canEnableAutocomplete) ? "heart.fill" : "heart")
+                                    .foregroundStyle(.red)
+                            }.pickerStyle(.menu)
+                                .onChange(of: predefined) { _, _ in
+                                    // Trigger animation when the title changes
+                                    if let habitType = Health.shared.supportedHabits[predefined] {
+                                        withAnimation {
+                                            canEnableAutocomplete = (habitType != .none)
+                                        }
+                                        title = (habitType != .none) ? predefined : ""
+                                        enableAutocomplete = false
+                                    }
+                                }
                         }
-                    
+                    }
                 }
                 
                 if canEnableAutocomplete {
@@ -258,23 +286,21 @@ struct AddHabitView: View {
     
     func finalise(_ habit:HabitItem) {
         
-        if (canEnableAutocomplete) {
-            habit.trackingType = .trackable
-            if (enableAutocomplete) {
-                habit.trackingType = .autocomplete
-            }
+        if (canEnableAutocomplete && enableAutocomplete) {
+            habit.healthType = Health.shared.supportedHabits[title] ?? HealthType.none
+        } else {
+            habit.healthType = HealthType.none
         }
         
-        if habit.trackingType == .autocomplete {
+        if habit.healthType != HealthType.none {
             Health.shared.enableHabitBackgroundDelivery(habit:habit) { value in
                 // TODO: show error
                 if (!value) {
-                    habit.trackingType = .trackable
+                    habit.healthType = HealthType.none
                     enableAutocomplete = false
                 }
             }
-        }
-        if habit.trackingType == .trackable {
+        } else {
             Health.shared.disableHabitBackgroundDelivery(habit:habit)
         }
         

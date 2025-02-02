@@ -1,22 +1,22 @@
 //
-//  SchemaV2.swift
+//  SchemaV3.swift
 //  HabitTracker
 //
-//  Created by Volodymyr Boichentsov on 26/01/2025.
+//  Created by Volodymyr Boichentsov on 02/02/2025.
 //
 
 import SwiftData
 import Foundation
 
-enum SchemaV2: VersionedSchema {
-    static var versionIdentifier = Schema.Version(2, 0, 0)
+enum SchemaV3: VersionedSchema {
+    static var versionIdentifier = Schema.Version(3, 0, 0)
     
     static var models: [any PersistentModel.Type] {
-        [SchemaV2.HabitItem.self, SchemaV2.HabitCategory.self, SchemaV2.DailyEntry.self]
+        [SchemaV3.HabitItem.self, SchemaV3.HabitCategory.self, SchemaV3.DailyEntry.self]
     }
 }
 
-extension SchemaV2 {
+extension SchemaV3 {
     @Model
     final class HabitItem : Codable {
         var id: String
@@ -30,16 +30,8 @@ extension SchemaV2 {
         var order: Int = 0
         var timestamp: Date // created date
         var active: Bool = true
-        var trackingType: TrackingType? = TrackingType.manual // health data and fitness
         
-        enum TrackingType: Int, CaseIterable, Identifiable, Codable {
-            var id: Int { rawValue }
-            
-            case manual = 0 // manualy complete
-            case trackable = 1 // at creation identified as trackable
-            case autocomplete = 2 // linked to service and can be autocomplete
-        }
-        
+        var hType: String? = "none" // health data and fitness
     
         enum Weekday: Int, CaseIterable, Identifiable, Codable {
             
@@ -98,7 +90,7 @@ extension SchemaV2 {
         
         // Custom CodingKeys to handle encoding/decoding if needed
         private enum CodingKeys: String, CodingKey {
-            case id, title, color, category, time, note, weekdays, order, timestamp, active, trackingType
+            case id, title, color, category, time, note, weekdays, order, timestamp, active, healthType
         }
         
         
@@ -112,7 +104,7 @@ extension SchemaV2 {
              order: Int = 0,
              timestamp: Date = Date(),
              active: Bool = true,
-             trackingType: TrackingType = .manual ) {
+             hType: String? = "none") {
             self.id = id
             self.title = title
             self.color = color
@@ -123,7 +115,7 @@ extension SchemaV2 {
             self.order = order
             self.timestamp = timestamp
             self.active = active
-            self.trackingType = trackingType
+            self.hType = hType
         }
         
         // Encoding method for Codable conformance
@@ -139,7 +131,7 @@ extension SchemaV2 {
             try container.encode(order, forKey: .order)
             try container.encode(timestamp, forKey: .timestamp)
             try container.encode(active, forKey: .active)
-            try container.encode(trackingType, forKey: .trackingType)
+            try container.encode(hType, forKey: .healthType)
         }
         
         // Decoding method for Codable conformance
@@ -155,7 +147,7 @@ extension SchemaV2 {
             let order = try container.decode(Int.self, forKey: .order)
             let timestamp = try container.decode(Date.self, forKey: .timestamp)
             let active = try container.decode(Bool.self, forKey: .active)
-            let trackingType = try container.decode(TrackingType.self, forKey: .trackingType)
+            let hType = try container.decode(String.self, forKey: .healthType)
             
             self.init(id: id,
                       title: title,
@@ -167,7 +159,7 @@ extension SchemaV2 {
                       order: order,
                       timestamp: timestamp,
                       active: active,
-                      trackingType: trackingType)
+                      hType: hType)
         }
     }
     
@@ -231,3 +223,16 @@ extension SchemaV2 {
 }
 
 
+extension SchemaV3.HabitItem {
+    var healthType: HealthType? {
+        get {
+            if let healthType = self.hType {
+                return HealthType.fromID(healthType)
+            }
+            return nil
+        }
+        set {
+            hType = newValue?.id
+        }
+    }
+}

@@ -29,6 +29,16 @@
 		D25A7A922CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A8F2CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift */; };
 		D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A952CA5DD420000E843 /* Color+extension.swift */; };
 		D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */; };
+		D262C5DF2D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */; };
+		D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */; };
+		D262C5E22D4FA77A00CDCA0E /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */; };
+		D262C5E32D4FA77A00CDCA0E /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */; };
+		D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E42D4FAE5400CDCA0E /* HealthType.swift */; };
+		D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E42D4FAE5400CDCA0E /* HealthType.swift */; };
+		D262C5E82D4FFCD700CDCA0E /* HealthTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E72D4FFCCE00CDCA0E /* HealthTypeTests.swift */; };
+		D262C5EA2D4FFE4A00CDCA0E /* RainbowButton in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5E92D4FFE4A00CDCA0E /* RainbowButton */; };
+		D262C5EC2D4FFE4A00CDCA0E /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */; };
+		D262C5EE2D4FFE4A00CDCA0E /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5ED2D4FFE4A00CDCA0E /* Shiny */; };
 		D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
 		D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */; };
@@ -121,6 +131,10 @@
 		D25A7A8F2CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D25A7A952CA5DD420000E843 /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
 		D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitItemCell.swift; sourceTree = "<group>"; };
+		D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+Health.swift"; sourceTree = "<group>"; };
+		D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV3.swift; sourceTree = "<group>"; };
+		D262C5E42D4FAE5400CDCA0E /* HealthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthType.swift; sourceTree = "<group>"; };
+		D262C5E72D4FFCCE00CDCA0E /* HealthTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthTypeTests.swift; sourceTree = "<group>"; };
 		D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyEntry+extension.swift"; sourceTree = "<group>"; };
 		D28309DC2CA9B3F200C6B22A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoHabitsYet.swift; sourceTree = "<group>"; };
@@ -183,6 +197,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D262C5EE2D4FFE4A00CDCA0E /* Shiny in Frameworks */,
+				D262C5EC2D4FFE4A00CDCA0E /* ConfettiSwiftUI in Frameworks */,
+				D262C5EA2D4FFE4A00CDCA0E /* RainbowButton in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +267,7 @@
 		D25A7A8C2CA5D8120000E843 /* HabitTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				D262C5E72D4FFCCE00CDCA0E /* HealthTypeTests.swift */,
 				D25A7A8B2CA5D8120000E843 /* HabitTrackerTests.swift */,
 			);
 			path = HabitTrackerTests;
@@ -272,6 +290,7 @@
 				D2D457F62D46558800C67484 /* ModelData+fetch.swift */,
 				D2D457F02D45942200C67484 /* SchemaV1.swift */,
 				D2D457F32D463D9A00C67484 /* SchemaV2.swift */,
+				D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */,
 				D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */,
 				D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */,
 				D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */,
@@ -333,6 +352,8 @@
 			children = (
 				D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */,
 				D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */,
+				D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */,
+				D262C5E42D4FAE5400CDCA0E /* HealthType.swift */,
 				D2D457F92D4AE70C00C67484 /* HealthViewDebug.swift */,
 			);
 			path = Systems;
@@ -426,6 +447,9 @@
 			);
 			name = HabitTrackerTests;
 			packageProductDependencies = (
+				D262C5E92D4FFE4A00CDCA0E /* RainbowButton */,
+				D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */,
+				D262C5ED2D4FFE4A00CDCA0E /* Shiny */,
 			);
 			productName = HabitTrackerTests;
 			productReference = D25A7A482CA5D64D0000E843 /* HabitTrackerTests.xctest */;
@@ -549,13 +573,16 @@
 				D25246412D3706A3003CEBF9 /* Date.swift in Sources */,
 				D25246422D3706A3003CEBF9 /* Color+extension.swift in Sources */,
 				D252463A2D370659003CEBF9 /* HabitCategory+extension.swift in Sources */,
+				D262C5E22D4FA77A00CDCA0E /* SchemaV3.swift in Sources */,
 				D252463C2D370659003CEBF9 /* ModelData.swift in Sources */,
 				D2DB71782D3D30DB000DC325 /* Daily.swift in Sources */,
 				D2DB71792D3D30DB000DC325 /* DailyBundle.swift in Sources */,
 				D2DB717A2D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition in Sources */,
 				D2DB717B2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
 				D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */,
+				D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */,
 				D2D457F42D463D9F00C67484 /* SchemaV2.swift in Sources */,
+				D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
 				D252463D2D370659003CEBF9 /* SampleData.swift in Sources */,
 				D2D457F12D45942400C67484 /* SchemaV1.swift in Sources */,
 				D252463E2D370659003CEBF9 /* DailyEntry+extension.swift in Sources */,
@@ -568,6 +595,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */,
+				D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */,
 				D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */,
 				D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */,
 				D2C1264B2CB7371D005E5941 /* Date.swift in Sources */,
@@ -582,7 +610,9 @@
 				D2D457FA2D4AE71000C67484 /* HealthViewDebug.swift in Sources */,
 				D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */,
 				D2DB716D2D3D2F99000DC325 /* HabitsList.swift in Sources */,
+				D262C5E32D4FA77A00CDCA0E /* SchemaV3.swift in Sources */,
 				D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */,
+				D262C5DF2D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
 				D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
 				D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */,
 				D25A7A8A2CA5D7EF0000E843 /* HabitItem+extension.swift in Sources */,
@@ -601,6 +631,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D25A7A8D2CA5D8120000E843 /* HabitTrackerTests.swift in Sources */,
+				D262C5E82D4FFCD700CDCA0E /* HealthTypeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,7 +866,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -878,7 +909,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -928,10 +959,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HabitTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HabitTracker";
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -951,10 +983,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTrackerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HabitTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HabitTracker";
 				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
@@ -1076,6 +1109,21 @@
 		};
 		D20311402D3F1AB300EC980F /* Shiny */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = Shiny;
+		};
+		D262C5E92D4FFE4A00CDCA0E /* RainbowButton */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2A78AB42D3D9AFC0091DFB2 /* XCLocalSwiftPackageReference "../RainbowButton" */;
+			productName = RainbowButton;
+		};
+		D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D203113C2D3F1A0300EC980F /* XCLocalSwiftPackageReference "../ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+		D262C5ED2D4FFE4A00CDCA0E /* Shiny */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */;
 			productName = Shiny;
 		};
 		D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */ = {

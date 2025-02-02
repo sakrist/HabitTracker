@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 import WidgetKit
 
-typealias SchemaLatest = SchemaV2
+typealias SchemaLatest = SchemaV3
 
 typealias HabitItem = SchemaLatest.HabitItem
 typealias HabitCategory = SchemaLatest.HabitCategory
@@ -28,11 +28,14 @@ class ModelData {
     let modelContainer: ModelContainer
     
     init() {
-        let schema = Schema(versionedSchema: SchemaLatest.self)
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
         
         do {
-            modelContainer = try ModelContainer(for: schema, migrationPlan: nil, configurations: [modelConfiguration])
+            let schema = Schema(versionedSchema: SchemaLatest.self)
+            let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        
+        
+            modelContainer = try ModelContainer(for: schema, migrationPlan: MigrationPlanV2toV3.self,
+                                                configurations: [modelConfiguration])
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }
@@ -53,7 +56,7 @@ class ModelData {
 
 }
 
-// MARK: Migration Plan V1 to V2
+// MARK: Migration Plans
 
 enum MigrationPlanV1toV2: SchemaMigrationPlan {
     static var schemas: [any VersionedSchema.Type] {
@@ -80,6 +83,38 @@ enum MigrationPlanV1toV2: SchemaMigrationPlan {
             // default all animals to not extinct
             for item in habits {
                 item.trackingType = .manual
+            }
+
+            try context.save()
+        }
+    )
+}
+
+enum MigrationPlanV2toV3: SchemaMigrationPlan {
+    static var schemas: [any VersionedSchema.Type] {
+        [SchemaV2.self, SchemaV3.self]
+    }
+    
+    static var stages: [MigrationStage] {
+        [migrateV2toV3]
+    }
+    
+    // MARK: Migration Stages
+    static let migrateV2toV3 = MigrationStage.custom(
+        fromVersion: SchemaV2.self,
+        toVersion: SchemaV3.self,
+        willMigrate: { context in
+            print("migrateV2toV3.willMigrate()")
+        },
+        didMigrate: { context in
+            print("migrateV2toV3.didMigrate()")
+            
+            let habits = try context.fetch(FetchDescriptor<SchemaV3.HabitItem>())
+            print("migrateV2toV3 - found \(habits.count) animals")
+            
+            // default all animals to not extinct
+            for item in habits {
+                item.hType = "none"
             }
 
             try context.save()

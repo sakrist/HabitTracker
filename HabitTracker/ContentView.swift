@@ -38,6 +38,11 @@ struct ContentView: View {
                     Label("Habits", systemImage: "list.bullet")
                 }
                 .tag(1)
+            
+//            HealthViewDebug().tabItem {
+//                Label("Debug", systemImage: "list.bullet")
+//            }
+//            .tag(2)
 
         }
     }
