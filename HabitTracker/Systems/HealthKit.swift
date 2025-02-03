@@ -191,6 +191,18 @@ class Health {
     
     // MARK:  --- process sample
     
+    @MainActor
+    func updateHabits(entries: [DailyEntry], for selectedDate: Date) {
+        for entry in entries {
+            if let healthType = entry.habit.healthType, healthType != .none {
+                if let type = healthType.sampleType() {
+                    query(type: type, predicate: Health.datePredicate(date: selectedDate)) { samples in
+                        ModelData.shared.process(samples, entry:entry)
+                    }
+                }
+            }
+        }
+    }
 }
 
 

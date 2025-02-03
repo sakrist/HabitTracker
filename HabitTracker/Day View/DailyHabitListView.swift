@@ -64,6 +64,10 @@ struct DailyHabitListView: View {
             // check if selected date is the same
             selectedDate = Date()
             fetchEntries()
+        }.refreshable {
+            self.entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
+            
+            Health.shared.updateHabits(entries: self.entries, for: selectedDate)
         }
     }
     

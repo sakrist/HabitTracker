@@ -53,6 +53,19 @@ enum HealthType : CaseIterable, Identifiable, Codable {
         .quantity(.dietaryWater)
     ]
     
+    func sampleType() -> HKSampleType? {
+        switch self {
+        case .none:
+            return nil
+        case .workout:
+            return HKObjectType.workoutType()
+        case .category(let identifier, _):
+            return HKObjectType.categoryType(forIdentifier: identifier)
+        case .quantity(let identifier):
+            return HKObjectType.quantityType(forIdentifier: identifier)
+        }
+    }
+    
     
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
