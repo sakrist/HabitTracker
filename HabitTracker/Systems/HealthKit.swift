@@ -9,11 +9,14 @@ import HealthKit
 
 
 class Health {
+    
+    static let customHabitName = "Custom Habit"
+    
     static let shared = Health()
     let healthStore = HKHealthStore()
     
     let supportedHabits: [String: HealthType] = [
-        "Manual" : .none,
+        customHabitName : .none,
         
         // Workouts
         "Cycling": .workout(.cycling),
@@ -28,11 +31,11 @@ class Health {
 
         // Category-Based Activities
         "Tooth brushing": .category(.toothbrushingEvent),
-        "Meditate": .category(.mindfulSession, .meditate),
-        "Journal": .category(.mindfulSession, .journal),
+        "Meditation": .category(.mindfulSession, .meditate),
+        "Journaling": .category(.mindfulSession, .journal),
 
         // Quantity-Based Activities
-        "Drink Water": .quantity(.dietaryWater)
+        "Water Intake": .quantity(.dietaryWater)
     ]
     
     func fullList() -> [String] {
@@ -185,7 +188,7 @@ class Health {
     
     class func datePredicate(date:Date = Date()) -> NSPredicate {
         let startOfDay = Calendar.current.startOfDay(for: date)
-        let end = date.isToday() ? .now : Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)
+        let end = date.isToday() ? .now : startOfDay.nextDay()
         return HKQuery.predicateForSamples(withStart: startOfDay, end: end)
     }
     

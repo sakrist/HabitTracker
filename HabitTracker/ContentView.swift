@@ -17,10 +17,12 @@ struct ContentView: View {
     @State private var selectedTab = -1
     @State private var firstTab = 0
     
+    // show view to add new habit
+    @State private var showAddHabit = false
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            DailyHabitListView(selectedTab: $selectedTab)
+            DailyHabitListView(selectedTab: $selectedTab, showAddHabit: $showAddHabit)
                 .environment(modelData)
                 .tabItem {
                     Label("Day", systemImage: "sun.max.fill")
@@ -33,7 +35,7 @@ struct ContentView: View {
                     }
                 }
             
-            HabitsListView()
+            HabitsListView(showAddHabit: $showAddHabit)
                 .tabItem {
                     Label("Habits", systemImage: "list.bullet")
                 }

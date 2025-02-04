@@ -64,21 +64,25 @@ extension ModelData {
     }
     
     
-    func calculateStreak(habit: HabitItem, month:Date) -> (Int, Int) {
+    func calculateStreak(habit: HabitItem, for selectedMonth:Date) -> (Int, Int, Int, Int) {
         
         let calendar = Calendar.current
-        let startOfDay = calendar.startOfDay(for: Date())
-        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+        let startDate = habit.timestamp.prevDay() ?? habit.timestamp
+        let endDate = calendar.startOfDay(for: .now).nextDay()!
         
-        let start = calendar.date(byAdding: .day, value: -1, to: habit.timestamp) ?? habit.timestamp
-        var entries = fetchEntries(start: start, end: endOfDay, habit: habit, modelContext: modelContainer.mainContext)
+        var entries = fetchEntries(start: startDate, end: endDate, habit: habit, modelContext: modelContainer.mainContext)
         entries.sort { $0.date < $1.date }
         
         var streak:Int = 0
         var countStreak = true
         
+        var longestStreak:Int = 0
+        var currentStreak:Int = 0
+        
         var completedInMonth:Int = 0
-        var totalInMonth:Int = 0
+        var daysInMonth:Int = 0
+        
+        var total: Int = 0
         
         for item in entries.reversed() {
             
@@ -88,17 +92,26 @@ extension ModelData {
                 countStreak = false
             }
             
-            if (item.date.isSameMonth(date: month)) {
+            if item.isCompleted {
+                total += 1
+                currentStreak += 1
+                longestStreak = max(longestStreak, currentStreak)
+            } else {
+                // If an entry is not completed, reset streak
+                currentStreak = 0
+            }
+            
+            if (item.date.isSameMonth(date: selectedMonth)) {
+                daysInMonth += 1
                 if (item.isCompleted) {
                     completedInMonth += 1
                 }
-                totalInMonth += 1
             }
         }
         
-        let rate:Int = Int(Double(completedInMonth) / Double(totalInMonth) * 100.0)
+        let rate:Int = daysInMonth > 0 ? Int((Double(completedInMonth) / Double(daysInMonth)) * 100.0) : 0
         
-        return (streak, rate)
+        return (streak, rate, longestStreak, total)
     }
 }
 
@@ -170,7 +183,7 @@ func fetchHabits(modelContext: ModelContext, predicate: Predicate<HabitItem>? = 
 func fetchEntries(for date: Date, modelContext: ModelContext) -> [DailyEntry] {
     let calendar = Calendar.current
     let startOfDay = calendar.startOfDay(for: date)
-    let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+    let endOfDay = startOfDay.nextDay()!
     return fetchEntries(start: startOfDay, end: endOfDay, modelContext: modelContext)
 }
 

@@ -30,11 +30,11 @@ struct AddHabitView: View {
     @State private var enableAutocomplete: Bool =  false
     @State private var canEnableAutocomplete: Bool = false
     
-    @State private var predefined:String = "Manual"
+    @State private var predefined:String = Health.customHabitName
     
     private var habitItem: HabitItem?
     let supportedHabits = Health.shared.supportedHabits.keys.sorted {
-        $0 == "Manual" ? true : ($1 == "Manual" ? false : $0 < $1)
+        $0 == Health.customHabitName ? true : ($1 == Health.customHabitName ? false : $0 < $1)
     }
 
     init(habitItem: HabitItem? = nil) {
@@ -114,16 +114,20 @@ struct AddHabitView: View {
             Form {
                 Section(header: Text("Name")) {
                     HStack {
-                        TextField("Enter a habit or select one..", text: $title)
+                        TextField("Enter a habit name...", text: $title)
                             .disabled(canEnableAutocomplete)
                             .foregroundColor(.primary.opacity(canEnableAutocomplete ? 0.5 : 1.0))
+                            .onChange(of: title) { oldValue, newValue in
+                                if supportedHabits.contains(title) && title != Health.customHabitName {
+                                    predefined = title
+                                }
+                            }
 
                         ZStack {
                             
                             Picker(selection: $predefined) {
                                 ForEach(supportedHabits, id: \.self) { habitName in
                                     Text(habitName).tag(habitName as String?)
-                                        .fontWeight(habitName == "Manual" ? .bold : .regular)
                                 }
                             } label: {
 //                                Image(systemName: (canEnableAutocomplete) ? "heart.fill" : "heart")

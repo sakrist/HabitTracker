@@ -11,6 +11,7 @@ import RainbowButton
 struct NoHabitsYet: View {
     
     @Binding var selectedTab: Int
+    @Binding var showAddHabit: Bool
     
     var body: some View {
         VStack {
@@ -28,6 +29,7 @@ struct NoHabitsYet: View {
             Button("Add Habits") {
                 // navigate to Habits tab
                 selectedTab = 1
+                showAddHabit = true
             }
             .font(.title)
             .buttonStyle(RainbowButtonStyle())
@@ -39,5 +41,5 @@ struct NoHabitsYet: View {
 
 
 #Preview {
-    NoHabitsYet(selectedTab: .constant(0))
+    NoHabitsYet(selectedTab: .constant(0), showAddHabit: .constant(false))
 }

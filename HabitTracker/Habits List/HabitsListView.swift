@@ -38,10 +38,10 @@ struct HabitsListView: View {
         items.sorted(by: sortHabits)
     }
     
-    @State private var showingAddHabitView = false
     @State private var showExportActivityView = false
     @State private var showImportFilePicker = false
     
+    @Binding var showAddHabit: Bool
     
     var body: some View {
         NavigationView {
@@ -103,11 +103,11 @@ struct HabitsListView: View {
                 
                 ToolbarItem {
                     Button(action: {
-                        showingAddHabitView = true
+                        showAddHabit = true
                     }) {
                         Label("Add Item", systemImage: "plus")
                     }
-                    .sheet(isPresented: $showingAddHabitView) {
+                    .sheet(isPresented: $showAddHabit) {
                         AddHabitView()
                     }
                 }
@@ -173,6 +173,6 @@ struct HabitsListView: View {
 
 
 #Preview {
-    HabitsListView()
+    HabitsListView(showAddHabit: .constant(false))
         .modelContainer(SampleData.shared.modelContainer)
 }

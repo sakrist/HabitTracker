@@ -8,7 +8,7 @@ import SwiftUI
 
 struct MonthlyView: View {
     let startDate: Date
-    let habit: HabitItem?
+    let habit: HabitItem
     @Environment(\.modelContext) private var modelContext
     var calendar = Calendar.current
 
@@ -40,10 +40,18 @@ struct MonthlyView: View {
                 let color = colorForCompletionRate(completionRate)
                 
                 VStack {
-                    Rectangle()
-                        .fill(color)
-                        .frame(height: 30) // Smaller height for squares
-                        .cornerRadius(6)
+                    ZStack {
+                        Rectangle()
+                            .fill(color)
+                            .frame(height: 30) // Smaller height for squares
+                            .cornerRadius(6)
+                        if (date.isSameDay(as: habit.timestamp)) {
+                            Circle()
+                                .fill(.pink)
+                                .frame(height: 7)
+                        }
+                    }
+                    
                     
                     Text(shortDate(date))
                         .font(.caption)
@@ -106,6 +114,7 @@ struct MonthlyView: View {
 }
 
 #Preview {
-    MonthlyView(startDate: Date(), habit: nil)
+    let entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext, for: Date())
+    MonthlyView(startDate: Date(), habit: entries[0].habit)
         .modelContainer(ModelData.shared.modelContainer)
 }

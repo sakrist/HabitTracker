@@ -10,20 +10,25 @@ import SwiftUI
 
 struct HabitMonthView : View {
     @State var date: Date
-    let habit: HabitItem?
+    let habit: HabitItem
     @Environment(\.modelContext) private var modelContext
     var calendar = Calendar.current
     
     @State var streak: Int = 0
     @State var completionRate: Int = 0
+    @State var longest: Int = 0
+    @State var total: Int = 0
     
     private var monthSelector: some View {
         HStack {
-            Button(action: {
-                date = moveDate(-1)
-                updateProgress()
-            }) {
-                Image(systemName: "chevron.left")
+            
+            if (!habit.timestamp.isSameMonth(date: date)) {
+                Button(action: {
+                    date = moveDate(-1)
+                    updateProgress()
+                }) {
+                    Image(systemName: "chevron.left")
+                }
             }
             
             Text(dateString)
@@ -47,6 +52,7 @@ struct HabitMonthView : View {
         NavigationView {
             VStack {
 
+                Spacer()
                 VStack {
                     monthSelector
                     Divider()
@@ -57,22 +63,53 @@ struct HabitMonthView : View {
                     RoundedRectangle(cornerRadius: 16)
                         .fill(Color(.systemGray6))
                 ).padding()
-                    
-                ProgressCardView(currentStreak: streak, completionRate: completionRate)
+                
+                
+                ProgressCardView(currentStreak: streak,
+                                 completionRate: completionRate)
+                
+                
+                HStack {
+                    // Current Streak Section
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Longest Streak")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        Text("\(longest) days")
+                            .font(.title3.bold())
+                        
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                    // Completion Rate Section
+                    VStack(alignment: .trailing, spacing: 4) {
+                        Text("Total Days")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                        Text("\(total)")
+                            .font(.title3.bold())
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.systemGray6))
+                )
+        //        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+                .padding()
                 
                 Spacer()
             }
-        }.navigationTitle("Habit: \(habit?.title ?? "")")
+        }.navigationTitle("Habit: \(habit.title)")
             .onAppear() {
                 updateProgress()
             }
     }
     
     private func updateProgress() {
-        if let habit = habit {
-            Task {
-                (streak, completionRate) = ModelData.shared.calculateStreak(habit: habit, month: date)
-            }
+        Task {
+            (streak, completionRate, longest, total) = ModelData.shared.calculateStreak(habit: habit, for: date)
         }
     }
     
