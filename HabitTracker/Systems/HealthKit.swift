@@ -166,7 +166,6 @@ class Health {
             if let samples = samples {
                 Task {
                     await ModelData.shared.process(samples)
-                    WidgetCenter.shared.reloadAllTimelines()
                 }
             }
         }
