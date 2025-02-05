@@ -72,8 +72,8 @@ struct DailyHabitListView: View {
             fetchEntries()
         }.refreshable {
             self.entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
-            
             Health.shared.updateHabits(entries: self.entries, for: selectedDate)
+            
         }.gesture(
             DragGesture()
                 .onEnded { value in

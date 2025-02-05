@@ -7,6 +7,7 @@
 
 import Foundation
 import HealthKit
+import WidgetKit
 
 extension ModelData {
     func process(_ samples: [HKSample]) {

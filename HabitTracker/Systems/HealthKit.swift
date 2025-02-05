@@ -6,7 +6,7 @@
 //
 
 import HealthKit
-
+import WidgetKit
 
 class Health {
     
@@ -147,7 +147,6 @@ class Health {
                 return
             }
             
-            // Fetch new mindfulness data
             self.query(type: type)
             
             // Signal that the background task is complete
@@ -167,6 +166,7 @@ class Health {
             if let samples = samples {
                 Task {
                     await ModelData.shared.process(samples)
+                    WidgetCenter.shared.reloadAllTimelines()
                 }
             }
         }

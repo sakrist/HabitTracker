@@ -39,6 +39,7 @@
 		D262C5EA2D4FFE4A00CDCA0E /* RainbowButton in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5E92D4FFE4A00CDCA0E /* RainbowButton */; };
 		D262C5EC2D4FFE4A00CDCA0E /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */; };
 		D262C5EE2D4FFE4A00CDCA0E /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5ED2D4FFE4A00CDCA0E /* Shiny */; };
+		D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
 		D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
 		D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */; };
@@ -582,6 +583,7 @@
 				D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */,
 				D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */,
 				D2D457F42D463D9F00C67484 /* SchemaV2.swift in Sources */,
+				D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */,
 				D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
 				D252463D2D370659003CEBF9 /* SampleData.swift in Sources */,
 				D2D457F12D45942400C67484 /* SchemaV1.swift in Sources */,
