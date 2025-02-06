@@ -93,6 +93,11 @@ struct HabitsList: View {
         }
 
         do {
+            try AVAudioSession.sharedInstance()
+                .setCategory(.playback, options: .duckOthers)
+            try AVAudioSession.sharedInstance()
+                .setActive(true)
+            
             audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
             audioPlayer?.prepareToPlay()
         } catch {
@@ -113,6 +118,10 @@ struct HabitsList: View {
         }
 
         do {
+            try AVAudioSession.sharedInstance()
+                .setCategory(.playback, options: .duckOthers)
+            try AVAudioSession.sharedInstance()
+                .setActive(true)
             audioPlayer2 = try AVAudioPlayer(contentsOf: soundURL)
             audioPlayer2?.prepareToPlay()
         } catch {
