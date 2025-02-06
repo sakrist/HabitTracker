@@ -68,7 +68,7 @@ extension ModelData {
         
         let calendar = Calendar.current
         let startDate = habit.timestamp.prevDay() ?? habit.timestamp
-        let endDate = calendar.startOfDay(for: .now).nextDay()!
+        let endDate = calendar.startOfDay(for: .now)
         
         var entries = fetchEntries(start: startDate, end: endDate, habit: habit, modelContext: modelContainer.mainContext)
         entries.sort { $0.date < $1.date }

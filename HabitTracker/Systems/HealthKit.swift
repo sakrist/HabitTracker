@@ -204,6 +204,7 @@ class Health {
                 }
             }
         }
+        ModelData.shared.saveContext()
     }
 }
 
