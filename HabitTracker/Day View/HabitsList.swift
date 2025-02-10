@@ -9,6 +9,7 @@ import SwiftData
 import ConfettiSwiftUI
 import AVFoundation
 import Shiny
+import RainbowUI
 
 struct HabitsList: View {
     let date:Date
@@ -40,19 +41,14 @@ struct HabitsList: View {
                 setupAudioPlayer()
             }
             
-            // Overlay message
-            if showMessage {
-                Text(message)
-                    .font(.largeTitle)
-                    .fontWeight(.bold).shiny()
-//                    .opacity(showMessage ? 1 : 0) // Fade in and out
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                            withAnimation {
-                                showMessage = false // Hide the message after 1 second
-                            }
-                        }
-                    }
+            VStack {
+                // Overlay message
+//                if showMessage {
+                    Text(message)
+                        .font(.largeTitle)
+                        .fontWeight(.bold).rainbowRun()
+                        .opacity(showMessage ? 1 : 0) // Fade in and out
+//                }
             }
         }
     }
@@ -60,6 +56,11 @@ struct HabitsList: View {
     private func completeHabits() {
         withAnimation {
             showMessage = true // Show the message
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            withAnimation {
+                showMessage = false // Hide the message after 1 second
+            }
         }
     }
 

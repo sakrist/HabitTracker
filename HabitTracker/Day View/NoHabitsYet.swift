@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import RainbowButton
+import RainbowUI
 
 struct NoHabitsYet: View {
     

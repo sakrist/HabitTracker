@@ -36,16 +36,13 @@
 		D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E42D4FAE5400CDCA0E /* HealthType.swift */; };
 		D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E42D4FAE5400CDCA0E /* HealthType.swift */; };
 		D262C5E82D4FFCD700CDCA0E /* HealthTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E72D4FFCCE00CDCA0E /* HealthTypeTests.swift */; };
-		D262C5EA2D4FFE4A00CDCA0E /* RainbowButton in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5E92D4FFE4A00CDCA0E /* RainbowButton */; };
 		D262C5EC2D4FFE4A00CDCA0E /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */; };
 		D262C5EE2D4FFE4A00CDCA0E /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5ED2D4FFE4A00CDCA0E /* Shiny */; };
 		D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
 		D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
 		D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */; };
-		D2A78AB02D3D8EBB0091DFB2 /* RainbowButton in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */; };
 		D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
-		D2A78AB62D3D9AFC0091DFB2 /* RainbowButton in Frameworks */ = {isa = PBXBuildFile; productRef = D2A78AB52D3D9AFC0091DFB2 /* RainbowButton */; };
 		D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */; };
 		D2C126482CB2DAAC005E5941 /* DailyHabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */; };
 		D2C1264B2CB7371D005E5941 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1264A2CB73717005E5941 /* Date.swift */; };
@@ -76,6 +73,7 @@
 		D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71742D3D30DB000DC325 /* WidgetHabitsList.swift */; };
 		D2DB71822D3D473B000DC325 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71812D3D473B000DC325 /* Shiny */; };
 		D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */; };
+		D2ECACD42D569E12007B83C4 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2ECACD32D569E12007B83C4 /* RainbowUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,10 +184,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D20311412D3F1AB300EC980F /* Shiny in Frameworks */,
+				D2ECACD42D569E12007B83C4 /* RainbowUI in Frameworks */,
 				D203113E2D3F1A0300EC980F /* ConfettiSwiftUI in Frameworks */,
-				D2A78AB02D3D8EBB0091DFB2 /* RainbowButton in Frameworks */,
 				D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */,
-				D2A78AB62D3D9AFC0091DFB2 /* RainbowButton in Frameworks */,
 				D2DB71822D3D473B000DC325 /* Shiny in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,7 +197,6 @@
 			files = (
 				D262C5EE2D4FFE4A00CDCA0E /* Shiny in Frameworks */,
 				D262C5EC2D4FFE4A00CDCA0E /* ConfettiSwiftUI in Frameworks */,
-				D262C5EA2D4FFE4A00CDCA0E /* RainbowButton in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,16 +414,16 @@
 			buildRules = (
 			);
 			dependencies = (
+				D2ECACD12D56092F007B83C4 /* PBXTargetDependency */,
 				D25246342D370617003CEBF9 /* PBXTargetDependency */,
 			);
 			name = HabitTracker;
 			packageProductDependencies = (
 				D2DB71812D3D473B000DC325 /* Shiny */,
 				D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */,
-				D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */,
-				D2A78AB52D3D9AFC0091DFB2 /* RainbowButton */,
 				D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */,
 				D20311402D3F1AB300EC980F /* Shiny */,
+				D2ECACD32D569E12007B83C4 /* RainbowUI */,
 			);
 			productName = HabitTracker;
 			productReference = D25A7A352CA5D64B0000E843 /* HabitTracker.app */;
@@ -448,7 +444,6 @@
 			);
 			name = HabitTrackerTests;
 			packageProductDependencies = (
-				D262C5E92D4FFE4A00CDCA0E /* RainbowButton */,
 				D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */,
 				D262C5ED2D4FFE4A00CDCA0E /* Shiny */,
 			);
@@ -512,9 +507,9 @@
 			mainGroup = D25A7A2C2CA5D64B0000E843;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				D2A78AB42D3D9AFC0091DFB2 /* XCLocalSwiftPackageReference "../RainbowButton" */,
 				D203113C2D3F1A0300EC980F /* XCLocalSwiftPackageReference "../ConfettiSwiftUI" */,
 				D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */,
+				D2ECACD22D569E12007B83C4 /* XCLocalSwiftPackageReference "../RainbowUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D25A7A362CA5D64B0000E843 /* Products */;
@@ -663,6 +658,10 @@
 			isa = PBXTargetDependency;
 			target = D25A7A342CA5D64B0000E843 /* HabitTracker */;
 			targetProxy = D25A7A532CA5D64D0000E843 /* PBXContainerItemProxy */;
+		};
+		D2ECACD12D56092F007B83C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = D2ECACD02D56092F007B83C4 /* Shiny */;
 		};
 /* End PBXTargetDependency section */
 
@@ -868,7 +867,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -911,7 +910,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1098,9 +1097,9 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../shiny;
 		};
-		D2A78AB42D3D9AFC0091DFB2 /* XCLocalSwiftPackageReference "../RainbowButton" */ = {
+		D2ECACD22D569E12007B83C4 /* XCLocalSwiftPackageReference "../RainbowUI" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../RainbowButton;
+			relativePath = ../RainbowUI;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -1113,11 +1112,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Shiny;
 		};
-		D262C5E92D4FFE4A00CDCA0E /* RainbowButton */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D2A78AB42D3D9AFC0091DFB2 /* XCLocalSwiftPackageReference "../RainbowButton" */;
-			productName = RainbowButton;
-		};
 		D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D203113C2D3F1A0300EC980F /* XCLocalSwiftPackageReference "../ConfettiSwiftUI" */;
@@ -1128,14 +1122,6 @@
 			package = D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */;
 			productName = Shiny;
 		};
-		D2A78AAF2D3D8EBB0091DFB2 /* RainbowButton */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RainbowButton;
-		};
-		D2A78AB52D3D9AFC0091DFB2 /* RainbowButton */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RainbowButton;
-		};
 		D2DB71812D3D473B000DC325 /* Shiny */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Shiny;
@@ -1143,6 +1129,15 @@
 		D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ConfettiSwiftUI;
+		};
+		D2ECACD02D56092F007B83C4 /* Shiny */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */;
+			productName = Shiny;
+		};
+		D2ECACD32D569E12007B83C4 /* RainbowUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RainbowUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
