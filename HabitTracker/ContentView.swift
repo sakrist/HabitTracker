@@ -19,6 +19,7 @@ struct ContentView: View {
     
     // show view to add new habit
     @State private var showAddHabit = false
+    @State private var habitsNavigationPath = NavigationPath()
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -30,12 +31,14 @@ struct ContentView: View {
                 .tag(firstTab)
                 .onChange(of: selectedTab) { oldValue, newValue in
                     if (firstTab == selectedTab) {
+                        showAddHabit = false
+                        habitsNavigationPath = NavigationPath()
                         firstTab = (selectedTab == 0) ? -1 : 0
-                        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
+                        postActive()
                     }
                 }
             
-            HabitsListView(showAddHabit: $showAddHabit)
+            HabitsListView(showAddHabit: $showAddHabit, navigationPath: $habitsNavigationPath)
                 .tabItem {
                     Label("Habits", systemImage: "list.bullet")
                 }
@@ -47,6 +50,16 @@ struct ContentView: View {
 //            .tag(2)
 
         }
+    }
+    
+    func postActive() {
+        #if canImport(UIKit)
+        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
+        #elseif canImport(AppKit)
+        NotificationCenter.default.post(name: NSApplication.didBecomeActiveNotification, object: nil)
+        #else
+        fatalError("Unsupported platform")
+        #endif
     }
 }
 

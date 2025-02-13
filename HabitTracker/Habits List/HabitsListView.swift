@@ -42,12 +42,13 @@ struct HabitsListView: View {
     @State private var showImportFilePicker = false
     
     @Binding var showAddHabit: Bool
+    @Binding var navigationPath: NavigationPath
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $navigationPath) {
             List {
                 ForEach(sortedItems) { item in
-                    NavigationLink(destination: AddHabitView(habitItem: item)) {
+                    NavigationLink(value: item) { // Use value-based navigation
                         HabitItemCell(item: item)
                             .contentShape(Rectangle())
                     }
@@ -55,6 +56,9 @@ struct HabitsListView: View {
                 }
                 .onDelete(perform: deleteItems)
                 .onMove(perform: moveItem)
+            }
+            .navigationDestination(for: HabitItem.self) { item in
+                AddHabitView(habitItem: item)
             }
             .navigationTitle("Habits")
             .listStyle(.plain)
@@ -173,6 +177,6 @@ struct HabitsListView: View {
 
 
 #Preview {
-    HabitsListView(showAddHabit: .constant(false))
+    HabitsListView(showAddHabit: .constant(false), navigationPath: .constant(.init()))
         .modelContainer(SampleData.shared.modelContainer)
 }
