@@ -26,7 +26,7 @@ struct ContentView: View {
             DailyHabitListView(selectedTab: $selectedTab, showAddHabit: $showAddHabit)
                 .environment(modelData)
                 .tabItem {
-                    Label("Day", systemImage: "sun.max.fill")
+                    Label("Day View", systemImage: "sun.max.fill")
                 }
                 .tag(firstTab)
                 .onChange(of: selectedTab) { oldValue, newValue in
@@ -40,7 +40,7 @@ struct ContentView: View {
             
             HabitsListView(showAddHabit: $showAddHabit, navigationPath: $habitsNavigationPath)
                 .tabItem {
-                    Label("Habits", systemImage: "list.bullet")
+                    Label("Habits List", systemImage: "list.bullet")
                 }
                 .tag(1)
             

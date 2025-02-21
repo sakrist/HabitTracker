@@ -52,14 +52,14 @@ struct DailyHabitListView: View {
                             Image(systemName: "chevron.right").opacity(0)
                         }
                     }
-                    .padding()
+                    
                 }
 
                 VStack {
                     if (entries.count == 0) {
                         NoHabitsYet(selectedTab: $selectedTab, showAddHabit: $showAddHabit)
                     } else {
-                        HabitsList(date: selectedDate, entries: entries)
+                        DayHabitsListView(date: $selectedDate, entries: entries)
                     }
                 }
                 .onAppear {

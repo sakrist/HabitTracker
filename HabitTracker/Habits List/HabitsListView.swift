@@ -60,7 +60,7 @@ struct HabitsListView: View {
             .navigationDestination(for: HabitItem.self) { item in
                 AddHabitView(habitItem: item)
             }
-            .navigationTitle("Habits")
+            .navigationTitle("Habits List")
             .listStyle(.plain)
 #if os(macOS)
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)

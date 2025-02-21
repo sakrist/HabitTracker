@@ -11,9 +11,11 @@ import AVFoundation
 import Shiny
 import RainbowUI
 
-struct HabitsList: View {
-    let date:Date
+struct DayHabitsListView: View {
+    @Binding var date:Date
     let entries: [DailyEntry]
+    
+    @State var showAddHabit: Bool = false
     
     @State private var counter: Int = 0
     @State private var audioPlayer: AVAudioPlayer?
@@ -26,7 +28,7 @@ struct HabitsList: View {
         ZStack {
             List {
                 ForEach(entries) { entry in
-                    NavigationLink(destination: HabitMonthView(date: date, habit:entry.habit)) {
+                    NavigationLink(destination: HabitDetailProgressView(date: date, habit:entry.habit)) {
                         HabitItemCell(item: entry.habit, entry: entry)
                             .contentShape(Rectangle())
                             .onChange(of: entry.isCompleted) { old, newValue in
@@ -137,6 +139,5 @@ struct HabitsList: View {
 
 #Preview {
     let entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext, for: Date())
-    HabitsList(date: Date(),
-               entries: entries)
+    DayHabitsListView(date: .constant(Date()), entries: entries)
 }

@@ -59,12 +59,12 @@
 		D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62D46558800C67484 /* ModelData+fetch.swift */; };
 		D2D457FA2D4AE71000C67484 /* HealthViewDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F92D4AE70C00C67484 /* HealthViewDebug.swift */; };
 		D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481052CD8246C00B1DF7C /* MonthlyView.swift */; };
-		D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */; };
+		D2DB715C2D39B30C000DC325 /* HabitDetailProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */; };
 		D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */; };
 		D2DB71682D3C6A6F000DC325 /* Balloon Pop.caf in Resources */ = {isa = PBXBuildFile; fileRef = D2DB71652D3C6A6F000DC325 /* Balloon Pop.caf */; };
 		D2DB71692D3C6A6F000DC325 /* sparkle.wav in Resources */ = {isa = PBXBuildFile; fileRef = D2DB71662D3C6A6F000DC325 /* sparkle.wav */; };
 		D2DB716B2D3D2A46000DC325 /* clang.wav in Resources */ = {isa = PBXBuildFile; fileRef = D2DB716A2D3D2A46000DC325 /* clang.wav */; };
-		D2DB716D2D3D2F99000DC325 /* HabitsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB716C2D3D2F99000DC325 /* HabitsList.swift */; };
+		D2DB716D2D3D2F99000DC325 /* DayHabitsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB716C2D3D2F99000DC325 /* DayHabitsListView.swift */; };
 		D2DB71762D3D30DB000DC325 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2DB716E2D3D30DB000DC325 /* Assets.xcassets */; };
 		D2DB71782D3D30DB000DC325 /* Daily.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71702D3D30DB000DC325 /* Daily.swift */; };
 		D2DB71792D3D30DB000DC325 /* DailyBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71712D3D30DB000DC325 /* DailyBundle.swift */; };
@@ -154,12 +154,12 @@
 		D2D457F62D46558800C67484 /* ModelData+fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+fetch.swift"; sourceTree = "<group>"; };
 		D2D457F92D4AE70C00C67484 /* HealthViewDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewDebug.swift; sourceTree = "<group>"; };
 		D2D481052CD8246C00B1DF7C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
-		D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitMonthView.swift; sourceTree = "<group>"; };
+		D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailProgressView.swift; sourceTree = "<group>"; };
 		D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
 		D2DB71652D3C6A6F000DC325 /* Balloon Pop.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Balloon Pop.caf"; sourceTree = "<group>"; };
 		D2DB71662D3C6A6F000DC325 /* sparkle.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sparkle.wav; sourceTree = "<group>"; };
 		D2DB716A2D3D2A46000DC325 /* clang.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = clang.wav; sourceTree = "<group>"; };
-		D2DB716C2D3D2F99000DC325 /* HabitsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsList.swift; sourceTree = "<group>"; };
+		D2DB716C2D3D2F99000DC325 /* DayHabitsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHabitsListView.swift; sourceTree = "<group>"; };
 		D2DB716E2D3D30DB000DC325 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2DB716F2D3D30DB000DC325 /* Daily.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Daily.entitlements; sourceTree = "<group>"; };
 		D2DB71702D3D30DB000DC325 /* Daily.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily.swift; sourceTree = "<group>"; };
@@ -326,9 +326,9 @@
 		D2DB71602D3BC54A000DC325 /* Day View */ = {
 			isa = PBXGroup;
 			children = (
-				D2DB716C2D3D2F99000DC325 /* HabitsList.swift */,
-				D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */,
 				D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */,
+				D2DB716C2D3D2F99000DC325 /* DayHabitsListView.swift */,
+				D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */,
 			);
 			path = "Day View";
 			sourceTree = "<group>";
@@ -338,7 +338,7 @@
 			children = (
 				D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */,
 				D2D481052CD8246C00B1DF7C /* MonthlyView.swift */,
-				D2DB715B2D39B2FA000DC325 /* HabitMonthView.swift */,
+				D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */,
 				D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */,
 			);
 			path = Views;
@@ -602,11 +602,11 @@
 				D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */,
 				D2C126482CB2DAAC005E5941 /* DailyHabitListView.swift in Sources */,
 				D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */,
-				D2DB715C2D39B30C000DC325 /* HabitMonthView.swift in Sources */,
+				D2DB715C2D39B30C000DC325 /* HabitDetailProgressView.swift in Sources */,
 				D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */,
 				D2D457FA2D4AE71000C67484 /* HealthViewDebug.swift in Sources */,
 				D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */,
-				D2DB716D2D3D2F99000DC325 /* HabitsList.swift in Sources */,
+				D2DB716D2D3D2F99000DC325 /* DayHabitsListView.swift in Sources */,
 				D262C5E32D4FA77A00CDCA0E /* SchemaV3.swift in Sources */,
 				D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */,
 				D262C5DF2D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
