@@ -23,7 +23,9 @@ struct ContentView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            MainListView(selectedTab: $selectedTab, showAddHabit: $showAddHabit)
+            MainListView(selectedTab: $selectedTab,
+                         showAddHabit: $showAddHabit,
+                         navigationPath: $habitsNavigationPath)
                 .environment(modelData)
                 .tabItem {
                     Label("Day View", systemImage: "sun.max.fill")

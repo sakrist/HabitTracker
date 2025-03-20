@@ -50,57 +50,61 @@ struct HabitDetailProgressView : View {
     
     var body: some View {
         NavigationView {
-            VStack {
-
-                Spacer()
+            ScrollView {
                 VStack {
-                    monthSelector
-                    Divider()
-                    MonthlyView(startDate: date, habit: habit)
-                }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color(.systemGray6))
-                ).padding()
-                
-                
-                ProgressCardView(currentStreak: streak,
-                                 completionRate: completionRate)
-                
-                
-                HStack {
-                    // Current Streak Section
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Longest Streak")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        Text("\(longest) days")
-                            .font(.title3.bold())
+                    
+                    VStack {
+                        monthSelector
+                        Divider()
+                        MonthlyView(startDate: date, habit: habit)
+                    }
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color(.systemGray6))
+                    )
+                    .padding(.horizontal)
+                    .padding(.vertical, 3)
+                    
+                    
+                    ProgressCardView(currentStreak: streak,
+                                     completionRate: completionRate)
+                    .padding(.vertical, 3)
+                    
+                    
+                    HStack {
+                        // Current Streak Section
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Longest Streak")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            Text("\(longest) days")
+                                .font(.title3.bold())
+                            
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        // Completion Rate Section
+                        VStack(alignment: .trailing, spacing: 4) {
+                            Text("Total Days")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                            Text("\(total)")
+                                .font(.title3.bold())
+                        }
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                         
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                    // Completion Rate Section
-                    VStack(alignment: .trailing, spacing: 4) {
-                        Text("Total Days")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        Text("\(total)")
-                            .font(.title3.bold())
-                    }
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color(.systemGray6))
+                    )
+                    .padding(.horizontal)
+                    .padding(.vertical, 3)
                     
+                    Spacer()
                 }
-                .padding()
-                .background(
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color(.systemGray6))
-                )
-        //        .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
-                .padding()
-                
-                Spacer()
             }
         }.navigationTitle("Habit: \(habit.title)")
             .onAppear() {

@@ -52,6 +52,14 @@ class ModelData {
         WidgetCenter.shared.reloadAllTimelines()
     }
     
+    var firstLaunch: Bool {
+        get {
+            return !UserDefaults.standard.bool(forKey: "NotFirstLaunch")
+        }
+        set {
+            UserDefaults.standard.set(!newValue, forKey: "NotFirstLaunch")
+        }
+    }
     // MARK: -- configure
 
 }

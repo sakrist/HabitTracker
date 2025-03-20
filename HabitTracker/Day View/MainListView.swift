@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 import SwiftData
-
+import RainbowUI
 
 struct MainListView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(ModelData.self) private var modelData
     @Binding var selectedTab: Int
     @Binding var showAddHabit: Bool
     
@@ -21,7 +22,11 @@ struct MainListView: View {
     @State private var counter: Int = 0
     @State private var hasEarlyRecords: Bool = true
     
+    @Binding var navigationPath: NavigationPath
+    
+    
     var body: some View {
+//        NavigationStack(path: $navigationPath) {
         NavigationView {
             VStack {
                 // Display the selected date
@@ -56,11 +61,27 @@ struct MainListView: View {
                 }
 
                 VStack {
-                    if (entries.count == 0) {
-                        NoHabitsYet(selectedTab: $selectedTab, showAddHabit: $showAddHabit)
-                    } else {
-                        DayHabitsListView(date: $selectedDate, entries: entries)
+                    DayHabitsListView(date: $selectedDate, entries: entries)
+                    
+                    if(entries.count == 0 || modelData.firstLaunch) {
+                        VStack {
+                            // show button add habits which will navigate to Habits tab
+                            Text("Start by adding habits you already do daily.\n")
+                            Button {
+                                // navigate to Habits tab
+                                selectedTab = 1
+                                showAddHabit = true
+                            } label: {
+                                Text("Add Habits")
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 10)
+                            }
+                            .font(.title)
+                            .buttonStyle(RainbowButtonStyle())
+                            Spacer()
+                        }
                     }
+                    
                 }
                 .onAppear {
                     fetchEntries()
@@ -119,7 +140,9 @@ struct MainListView: View {
 
 #Preview {
     let model = ModelData.shared
-    MainListView(selectedTab: .constant(0), showAddHabit: .constant(false))
+    MainListView(selectedTab: .constant(0),
+                 showAddHabit: .constant(false),
+                 navigationPath: .constant(.init()))
         .environment(ModelData.shared)
         .modelContainer(model.modelContainer)
 }

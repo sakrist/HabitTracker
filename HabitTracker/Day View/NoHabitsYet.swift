@@ -16,15 +16,9 @@ struct NoHabitsYet: View {
     var body: some View {
         VStack {
             // show button add habits which will navigate to Habits tab
-            Spacer()
+            
             Text("Start by adding habits you already do daily.\n")
             
-            Text(" · · · ")
-            
-            Text("If you want to build a new habit, \nstart by adding one habit at a time.\n")
-                .multilineTextAlignment(.center)
-            
-            Spacer().frame(height: 150)
             
             Button {
                 // navigate to Habits tab

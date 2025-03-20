@@ -284,6 +284,10 @@ struct AddHabitView: View {
         modelContext.insert(newHabit)
         
         finalise(newHabit)
+        
+        if ModelData.shared.firstLaunch {
+            ModelData.shared.firstLaunch.toggle()
+        }
     }
     
     
