@@ -44,7 +44,7 @@
 		D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */; };
 		D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
 		D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */; };
-		D2C126482CB2DAAC005E5941 /* DailyHabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */; };
+		D2C126482CB2DAAC005E5941 /* MainListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C126472CB2DA9D005E5941 /* MainListView.swift */; };
 		D2C1264B2CB7371D005E5941 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1264A2CB73717005E5941 /* Date.swift */; };
 		D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */; };
 		D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */; };
@@ -140,7 +140,7 @@
 		D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCardView.swift; sourceTree = "<group>"; };
 		D2A78ABA2D3F0D190091DFB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyHabitListView.swift; sourceTree = "<group>"; };
+		D2C126472CB2DA9D005E5941 /* MainListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListView.swift; sourceTree = "<group>"; };
 		D2C1264A2CB73717005E5941 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListView.swift; sourceTree = "<group>"; };
 		D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 		D2DB71602D3BC54A000DC325 /* Day View */ = {
 			isa = PBXGroup;
 			children = (
-				D2C126472CB2DA9D005E5941 /* DailyHabitListView.swift */,
+				D2C126472CB2DA9D005E5941 /* MainListView.swift */,
 				D2DB716C2D3D2F99000DC325 /* DayHabitsListView.swift */,
 				D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */,
 			);
@@ -600,7 +600,7 @@
 				D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */,
 				D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */,
 				D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */,
-				D2C126482CB2DAAC005E5941 /* DailyHabitListView.swift in Sources */,
+				D2C126482CB2DAAC005E5941 /* MainListView.swift in Sources */,
 				D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */,
 				D2DB715C2D39B30C000DC325 /* HabitDetailProgressView.swift in Sources */,
 				D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */,

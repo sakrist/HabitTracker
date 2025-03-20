@@ -156,6 +156,7 @@ extension HabitItem {
                 order: 7
             )
         ]
+        data[0].healthType = .category(.mindfulSession, .meditate)
         return data
     }
 }

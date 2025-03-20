@@ -74,7 +74,14 @@ struct HabitItemCell: View {
                 }
             
             Spacer()
-
+            
+            if let type = item.healthType {
+                if type != .none {
+                    Image(systemName: "heart.fill")
+                        .foregroundColor(.red)
+                }
+            }
+            
             Text(item.formattedTime)
         }
     }

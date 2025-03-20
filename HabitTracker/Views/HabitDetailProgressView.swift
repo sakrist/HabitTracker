@@ -90,6 +90,7 @@ struct HabitDetailProgressView : View {
                             .font(.title3.bold())
                     }
                     .frame(maxWidth: .infinity, alignment: .trailing)
+                    
                 }
                 .padding()
                 .background(

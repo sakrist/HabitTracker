@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftData
 
 
-struct DailyHabitListView: View {
+struct MainListView: View {
     @Environment(\.modelContext) private var modelContext
     @Binding var selectedTab: Int
     @Binding var showAddHabit: Bool
@@ -119,7 +119,7 @@ struct DailyHabitListView: View {
 
 #Preview {
     let model = ModelData.shared
-    DailyHabitListView(selectedTab: .constant(0), showAddHabit: .constant(false))
+    MainListView(selectedTab: .constant(0), showAddHabit: .constant(false))
         .environment(ModelData.shared)
         .modelContainer(model.modelContainer)
 }
