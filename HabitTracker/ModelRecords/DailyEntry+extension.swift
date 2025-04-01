@@ -17,6 +17,10 @@ extension DailyEntry {
         } else {
             self.completionDate = nil
         }
+        
+        DispatchQueue.main.async {
+            ModelData.shared.completedEntry(entry: self)
+        }
     }
     
     var title:String {

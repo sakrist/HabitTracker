@@ -29,6 +29,8 @@
 		D25A7A922CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A8F2CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift */; };
 		D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A952CA5DD420000E843 /* Color+extension.swift */; };
 		D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */; };
+		D25AED9B2D9C82B0009C4B7B /* ModelData+achivments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AED9A2D9C828E009C4B7B /* ModelData+achivments.swift */; };
+		D25AED9C2D9C82B0009C4B7B /* ModelData+achivments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AED9A2D9C828E009C4B7B /* ModelData+achivments.swift */; };
 		D262C5DF2D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */; };
 		D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */; };
 		D262C5E22D4FA77A00CDCA0E /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */; };
@@ -130,6 +132,7 @@
 		D25A7A8F2CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D25A7A952CA5DD420000E843 /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
 		D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitItemCell.swift; sourceTree = "<group>"; };
+		D25AED9A2D9C828E009C4B7B /* ModelData+achivments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+achivments.swift"; sourceTree = "<group>"; };
 		D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+Health.swift"; sourceTree = "<group>"; };
 		D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV3.swift; sourceTree = "<group>"; };
 		D262C5E42D4FAE5400CDCA0E /* HealthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthType.swift; sourceTree = "<group>"; };
@@ -284,6 +287,7 @@
 			children = (
 				D28309DC2CA9B3F200C6B22A /* SampleData.swift */,
 				D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */,
+				D25AED9A2D9C828E009C4B7B /* ModelData+achivments.swift */,
 				D2D457F62D46558800C67484 /* ModelData+fetch.swift */,
 				D2D457F02D45942200C67484 /* SchemaV1.swift */,
 				D2D457F32D463D9A00C67484 /* SchemaV2.swift */,
@@ -581,6 +585,7 @@
 				D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */,
 				D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
 				D252463D2D370659003CEBF9 /* SampleData.swift in Sources */,
+				D25AED9C2D9C82B0009C4B7B /* ModelData+achivments.swift in Sources */,
 				D2D457F12D45942400C67484 /* SchemaV1.swift in Sources */,
 				D252463E2D370659003CEBF9 /* DailyEntry+extension.swift in Sources */,
 				D252463F2D370659003CEBF9 /* HabitItem+extension.swift in Sources */,
@@ -600,6 +605,7 @@
 				D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */,
 				D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */,
 				D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */,
+				D25AED9B2D9C82B0009C4B7B /* ModelData+achivments.swift in Sources */,
 				D2C126482CB2DAAC005E5941 /* MainListView.swift in Sources */,
 				D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */,
 				D2DB715C2D39B30C000DC325 /* HabitDetailProgressView.swift in Sources */,
@@ -869,7 +875,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -913,7 +919,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
