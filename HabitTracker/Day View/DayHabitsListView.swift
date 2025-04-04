@@ -68,6 +68,7 @@ struct DayHabitsListView: View {
 
     private func changed(entry:DailyEntry, _ old:Bool, _ new:Bool) {
         ModelData.shared.saveContext()
+        ModelData.shared.completedEntry(entry: entry)
 
         if (date.isToday()) {
             if (new) {

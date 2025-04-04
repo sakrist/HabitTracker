@@ -48,7 +48,7 @@ struct MainListView: View {
                         
                         if !selectedDate.isToday() {
                             Button(action: {
-                                selectedDate = selectedDate.nextDay() ?? Date()
+                                selectedDate = selectedDate.nextDay()
                                 fetchEntries()
                             }) {
                                 Image(systemName: "chevron.right")
@@ -102,13 +102,13 @@ struct MainListView: View {
                     if value.translation.width < -threshold {
                         // Swipe Left - Move Forward
                         if (!selectedDate.isToday()) {
-                            selectedDate = selectedDate.nextDay()!
+                            selectedDate = selectedDate.nextDay()
                             fetchEntries()
                         }
                     } else if value.translation.width > threshold {
                         // Swipe Right - Move Backward
                         if (hasEarlyRecords) {
-                            selectedDate = selectedDate.prevDay()!
+                            selectedDate = selectedDate.prevDay()
                             fetchEntries()
                         }
                     }

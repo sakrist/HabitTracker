@@ -8,8 +8,13 @@
 extension ModelData {
     
     func completedEntry(entry: DailyEntry) {
-        let (streak, completionRate, longest, total) = calculateStreak(habit: entry.habit, for: .now)
+        let (streak, completionRate, longest, total) = calculateStreak(habit: entry.habit, for: .endOfDay())
             
+        print("current streak: \(streak)")
+        
+    
+        
+        
         // TODO: do one of this
         /*
          5, 10, 25, 50, 100 completions: Congratulate with a pop-up or animated banner.

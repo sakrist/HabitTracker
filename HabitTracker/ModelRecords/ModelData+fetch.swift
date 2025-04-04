@@ -66,9 +66,8 @@ extension ModelData {
     
     func calculateStreak(habit: HabitItem, for selectedMonth:Date) -> (Int, Int, Int, Int) {
         
-        let calendar = Calendar.current
-        let startDate = habit.timestamp.prevDay() ?? habit.timestamp
-        let endDate = calendar.startOfDay(for: .now)
+        let startDate = habit.timestamp.prevDay()
+        let endDate = Date.endOfDay()
         
         var entries = fetchEntries(start: startDate, end: endDate, habit: habit, modelContext: modelContainer.mainContext)
         entries.sort { $0.date < $1.date }
@@ -83,6 +82,13 @@ extension ModelData {
         var daysInMonth:Int = 0
         
         var total: Int = 0
+        
+        // remove first entry if it is today and not completed to make nice count
+        if !entries.isEmpty {
+            if (entries[0].date.isToday() && !entries[0].isCompleted) {
+                entries.removeFirst()
+            }
+        }
         
         for item in entries.reversed() {
             
@@ -183,7 +189,7 @@ func fetchHabits(modelContext: ModelContext, predicate: Predicate<HabitItem>? = 
 func fetchEntries(for date: Date, modelContext: ModelContext) -> [DailyEntry] {
     let calendar = Calendar.current
     let startOfDay = calendar.startOfDay(for: date)
-    let endOfDay = startOfDay.nextDay()!
+    let endOfDay = startOfDay.nextDay()
     return fetchEntries(start: startOfDay, end: endOfDay, modelContext: modelContext)
 }
 

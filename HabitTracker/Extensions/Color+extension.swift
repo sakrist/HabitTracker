@@ -14,6 +14,13 @@ typealias AColor = UIColor
 typealias AColor = NSColor
 #endif
 
+#if os(macOS)
+extension NSColor {
+    static let systemGray6 = NSColor(named: "systemGray6") ?? NSColor.gray
+}
+#endif
+
+
 extension Color {
     // Convert Color to hex string
     func toHex() -> String {
@@ -46,5 +53,12 @@ extension Color {
             return
         }
         return nil
+    }
+    
+    // Get a random color
+    static func random() -> Color {
+        return Color(red: .random(in: 0...1),
+                     green: .random(in: 0...1),
+                     blue: .random(in: 0...1))
     }
 }

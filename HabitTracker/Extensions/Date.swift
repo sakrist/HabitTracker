@@ -16,12 +16,16 @@ extension Date {
         return calendar.isDateInToday(self)
     }
     
-    func nextDay() -> Date? {
-        return Calendar.current.date(byAdding: .day, value: 1, to: self)
+    static func endOfDay() -> Date {
+        return Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: .now) ?? .now
     }
     
-    func prevDay() -> Date? {
-        return Calendar.current.date(byAdding: .day, value: -1, to: self)
+    func nextDay() -> Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: self) ?? .now
+    }
+    
+    func prevDay() -> Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: self) ?? .now
     }
     
     func isCurrentMonth() -> Bool {

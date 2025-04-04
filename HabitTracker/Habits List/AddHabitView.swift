@@ -39,7 +39,7 @@ struct AddHabitView: View {
 
     init(habitItem: HabitItem? = nil) {
         _title = State(initialValue: habitItem?.title ?? "")
-        _selectedColor = State(initialValue: habitItem?.getColor() ?? .blue)
+        _selectedColor = State(initialValue: habitItem?.getColor() ?? .random())
         _note = State(initialValue: habitItem?.note ?? "")
         _enableAutocomplete = State(initialValue:(habitItem?.healthType != .none))
         _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(_title.wrappedValue))
@@ -75,6 +75,7 @@ struct AddHabitView: View {
     }
     
     func showReauthorizationAlert() {
+#if os(iOS)
         let alert = UIAlertController(
             title: "HealthKit Access Needed",
             message: "To track your health data, please enable HealthKit access in the Settings app.",
@@ -89,6 +90,7 @@ struct AddHabitView: View {
         if let topController = UIApplication.shared.windows.first?.rootViewController {
             topController.present(alert, animated: true, completion: nil)
         }
+#endif
     }
     
     func healthAutocomplete() {
@@ -125,27 +127,31 @@ struct AddHabitView: View {
 
                         ZStack {
                             
-                            Picker(selection: $predefined) {
-                                ForEach(supportedHabits, id: \.self) { habitName in
-                                    Text(habitName).tag(habitName as String?)
-                                }
-                            } label: {
-//                                Image(systemName: (canEnableAutocomplete) ? "heart.fill" : "heart")
-//                                    .foregroundStyle(.red)
-                            } currentValueLabel: {
-                                Image(systemName: (canEnableAutocomplete) ? "heart.fill" : "heart")
-                                    .foregroundStyle(.red)
-                            }.pickerStyle(.menu)
-                                .onChange(of: predefined) { _, _ in
-                                    // Trigger animation when the title changes
-                                    if let habitType = Health.shared.supportedHabits[predefined] {
-                                        withAnimation {
-                                            canEnableAutocomplete = (habitType != .none)
-                                        }
-                                        title = (habitType != .none) ? predefined : ""
-                                        enableAutocomplete = false
+                            if #available(macOS 15.0, *) {
+                                Picker(selection: $predefined) {
+                                    ForEach(supportedHabits, id: \.self) { habitName in
+                                        Text(habitName).tag(habitName as String?)
                                     }
-                                }
+                                } label: {
+                                    //                                Image(systemName: (canEnableAutocomplete) ? "heart.fill" : "heart")
+                                    //                                    .foregroundStyle(.red)
+                                } currentValueLabel: {
+                                    Image(systemName: (canEnableAutocomplete) ? "heart.fill" : "heart")
+                                        .foregroundStyle(.red)
+                                }.pickerStyle(.menu)
+                                    .onChange(of: predefined) { _, _ in
+                                        // Trigger animation when the title changes
+                                        if let habitType = Health.shared.supportedHabits[predefined] {
+                                            withAnimation {
+                                                canEnableAutocomplete = (habitType != .none)
+                                            }
+                                            title = (habitType != .none) ? predefined : ""
+                                            enableAutocomplete = false
+                                        }
+                                    }
+                            } else {
+                                // Fallback on earlier versions
+                            }
                         }
                     }
                 }

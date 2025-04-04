@@ -28,16 +28,21 @@ class ModelData {
     let modelContainer: ModelContainer
     
     init() {
-        
+
+        let schema = Schema(versionedSchema: SchemaLatest.self)
+        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+
         do {
-            let schema = Schema(versionedSchema: SchemaLatest.self)
-            let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-        
         
             modelContainer = try ModelContainer(for: schema, migrationPlan: MigrationPlanV2toV3.self,
                                                 configurations: [modelConfiguration])
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            do {
+                modelContainer = try ModelContainer(for: schema, migrationPlan: nil,
+                                                    configurations: [modelConfiguration])
+            } catch {
+                fatalError("Failed to create model container: \(error)")
+            }
         }
         insertCategories()
     }

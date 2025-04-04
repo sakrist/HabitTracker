@@ -15,7 +15,6 @@
 		D252463A2D370659003CEBF9 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */; };
 		D252463C2D370659003CEBF9 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */; };
 		D252463D2D370659003CEBF9 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
-		D252463E2D370659003CEBF9 /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D252463F2D370659003CEBF9 /* HabitItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */; };
 		D25246412D3706A3003CEBF9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1264A2CB73717005E5941 /* Date.swift */; };
 		D25246422D3706A3003CEBF9 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A952CA5DD420000E843 /* Color+extension.swift */; };
@@ -30,7 +29,6 @@
 		D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A952CA5DD420000E843 /* Color+extension.swift */; };
 		D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */; };
 		D25AED9B2D9C82B0009C4B7B /* ModelData+achivments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AED9A2D9C828E009C4B7B /* ModelData+achivments.swift */; };
-		D25AED9C2D9C82B0009C4B7B /* ModelData+achivments.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AED9A2D9C828E009C4B7B /* ModelData+achivments.swift */; };
 		D262C5DF2D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */; };
 		D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */; };
 		D262C5E22D4FA77A00CDCA0E /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */; };
@@ -46,6 +44,9 @@
 		D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */; };
 		D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
 		D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */; };
+		D2C09DF22DA0680F001DC17D /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C09DF12DA0680F001DC17D /* UIApplication.swift */; };
+		D2C09DF32DA0680F001DC17D /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C09DF12DA0680F001DC17D /* UIApplication.swift */; };
+		D2C09DF42DA07801001DC17D /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D2C126482CB2DAAC005E5941 /* MainListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C126472CB2DA9D005E5941 /* MainListView.swift */; };
 		D2C1264B2CB7371D005E5941 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1264A2CB73717005E5941 /* Date.swift */; };
 		D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */; };
@@ -143,6 +144,7 @@
 		D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCardView.swift; sourceTree = "<group>"; };
 		D2A78ABA2D3F0D190091DFB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D2C09DF12DA0680F001DC17D /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		D2C126472CB2DA9D005E5941 /* MainListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListView.swift; sourceTree = "<group>"; };
 		D2C1264A2CB73717005E5941 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListView.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 		D2C126492CB7370B005E5941 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D2C09DF12DA0680F001DC17D /* UIApplication.swift */,
 				D2C1264A2CB73717005E5941 /* Date.swift */,
 				D25A7A952CA5DD420000E843 /* Color+extension.swift */,
 			);
@@ -576,18 +579,18 @@
 				D262C5E22D4FA77A00CDCA0E /* SchemaV3.swift in Sources */,
 				D252463C2D370659003CEBF9 /* ModelData.swift in Sources */,
 				D2DB71782D3D30DB000DC325 /* Daily.swift in Sources */,
+				D2C09DF32DA0680F001DC17D /* UIApplication.swift in Sources */,
 				D2DB71792D3D30DB000DC325 /* DailyBundle.swift in Sources */,
 				D2DB717A2D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition in Sources */,
 				D2DB717B2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
+				D2C09DF42DA07801001DC17D /* DailyEntry+extension.swift in Sources */,
 				D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */,
 				D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */,
 				D2D457F42D463D9F00C67484 /* SchemaV2.swift in Sources */,
 				D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */,
 				D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
 				D252463D2D370659003CEBF9 /* SampleData.swift in Sources */,
-				D25AED9C2D9C82B0009C4B7B /* ModelData+achivments.swift in Sources */,
 				D2D457F12D45942400C67484 /* SchemaV1.swift in Sources */,
-				D252463E2D370659003CEBF9 /* DailyEntry+extension.swift in Sources */,
 				D252463F2D370659003CEBF9 /* HabitItem+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,6 +614,7 @@
 				D2DB715C2D39B30C000DC325 /* HabitDetailProgressView.swift in Sources */,
 				D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */,
 				D2D457FA2D4AE71000C67484 /* HealthViewDebug.swift in Sources */,
+				D2C09DF22DA0680F001DC17D /* UIApplication.swift in Sources */,
 				D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */,
 				D2DB716D2D3D2F99000DC325 /* DayHabitsListView.swift in Sources */,
 				D262C5E32D4FA77A00CDCA0E /* SchemaV3.swift in Sources */,
