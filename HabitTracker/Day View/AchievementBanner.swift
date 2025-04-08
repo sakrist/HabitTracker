@@ -44,7 +44,6 @@ struct AchievementBanner: View {
                         .font(.title)
                         .fontWeight(.bold)
                         .foregroundStyle(.white)
-//                        .rainbowRun()
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
@@ -52,7 +51,6 @@ struct AchievementBanner: View {
                 .background(
                     RoundedRectangle(cornerRadius: 16)
                         .fill(Color.blue.opacity(0.9))
-//                        .shiny()
                 )
                 .padding(.horizontal, 16)
                 .transition(.move(edge: .top).combined(with: .opacity))

@@ -8,7 +8,6 @@ import SwiftUI
 import SwiftData
 import ConfettiSwiftUI
 import AVFoundation
-import Shiny
 import RainbowUI
 
 struct DayHabitsListView: View {
