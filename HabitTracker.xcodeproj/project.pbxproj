@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D203113E2D3F1A0300EC980F /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */; };
-		D20311412D3F1AB300EC980F /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D20311402D3F1AB300EC980F /* Shiny */; };
+		D21E00F62DA5CE8600F92490 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = D21E00F52DA5CE8600F92490 /* RainbowUI */; };
+		D21E00F92DA5CEC100F92490 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D21E00F82DA5CEC100F92490 /* ConfettiSwiftUI */; };
 		D25246282D370615003CEBF9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */; };
 		D25246292D370615003CEBF9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */; };
 		D25246352D370617003CEBF9 /* DailyExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D25246272D370615003CEBF9 /* DailyExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -36,8 +37,6 @@
 		D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E42D4FAE5400CDCA0E /* HealthType.swift */; };
 		D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E42D4FAE5400CDCA0E /* HealthType.swift */; };
 		D262C5E82D4FFCD700CDCA0E /* HealthTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E72D4FFCCE00CDCA0E /* HealthTypeTests.swift */; };
-		D262C5EC2D4FFE4A00CDCA0E /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */; };
-		D262C5EE2D4FFE4A00CDCA0E /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D262C5ED2D4FFE4A00CDCA0E /* Shiny */; };
 		D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
 		D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
@@ -76,7 +75,6 @@
 		D2DB717A2D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71722D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition */; };
 		D2DB717B2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71742D3D30DB000DC325 /* WidgetHabitsList.swift */; };
 		D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71742D3D30DB000DC325 /* WidgetHabitsList.swift */; };
-		D2DB71822D3D473B000DC325 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71812D3D473B000DC325 /* Shiny */; };
 		D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */; };
 		D2ECACD42D569E12007B83C4 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2ECACD32D569E12007B83C4 /* RainbowUI */; };
 /* End PBXBuildFile section */
@@ -191,12 +189,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D20311412D3F1AB300EC980F /* Shiny in Frameworks */,
+				D21E00F62DA5CE8600F92490 /* RainbowUI in Frameworks */,
 				D2ECACD42D569E12007B83C4 /* RainbowUI in Frameworks */,
 				D203113E2D3F1A0300EC980F /* ConfettiSwiftUI in Frameworks */,
 				D2C09DFA2DA08AAC001DC17D /* JDStatusBarNotification in Frameworks */,
 				D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */,
-				D2DB71822D3D473B000DC325 /* Shiny in Frameworks */,
+				D21E00F92DA5CEC100F92490 /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,8 +202,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D262C5EE2D4FFE4A00CDCA0E /* Shiny in Frameworks */,
-				D262C5EC2D4FFE4A00CDCA0E /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,17 +422,16 @@
 			buildRules = (
 			);
 			dependencies = (
-				D2ECACD12D56092F007B83C4 /* PBXTargetDependency */,
 				D25246342D370617003CEBF9 /* PBXTargetDependency */,
 			);
 			name = HabitTracker;
 			packageProductDependencies = (
-				D2DB71812D3D473B000DC325 /* Shiny */,
 				D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */,
 				D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */,
-				D20311402D3F1AB300EC980F /* Shiny */,
 				D2ECACD32D569E12007B83C4 /* RainbowUI */,
 				D2C09DF92DA08AAC001DC17D /* JDStatusBarNotification */,
+				D21E00F52DA5CE8600F92490 /* RainbowUI */,
+				D21E00F82DA5CEC100F92490 /* ConfettiSwiftUI */,
 			);
 			productName = HabitTracker;
 			productReference = D25A7A352CA5D64B0000E843 /* HabitTracker.app */;
@@ -457,8 +452,6 @@
 			);
 			name = HabitTrackerTests;
 			packageProductDependencies = (
-				D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */,
-				D262C5ED2D4FFE4A00CDCA0E /* Shiny */,
 			);
 			productName = HabitTrackerTests;
 			productReference = D25A7A482CA5D64D0000E843 /* HabitTrackerTests.xctest */;
@@ -520,10 +513,9 @@
 			mainGroup = D25A7A2C2CA5D64B0000E843;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				D203113C2D3F1A0300EC980F /* XCLocalSwiftPackageReference "../ConfettiSwiftUI" */,
-				D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */,
-				D2ECACD22D569E12007B83C4 /* XCLocalSwiftPackageReference "../RainbowUI" */,
 				D2C09DF82DA08AAC001DC17D /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
+				D21E00F42DA5CE8600F92490 /* XCRemoteSwiftPackageReference "RainbowUI" */,
+				D21E00F72DA5CEC100F92490 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D25A7A362CA5D64B0000E843 /* Products */;
@@ -676,10 +668,6 @@
 			isa = PBXTargetDependency;
 			target = D25A7A342CA5D64B0000E843 /* HabitTracker */;
 			targetProxy = D25A7A532CA5D64D0000E843 /* PBXContainerItemProxy */;
-		};
-		D2ECACD12D56092F007B83C4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = D2ECACD02D56092F007B83C4 /* Shiny */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1110,22 +1098,23 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		D203113C2D3F1A0300EC980F /* XCLocalSwiftPackageReference "../ConfettiSwiftUI" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../ConfettiSwiftUI;
-		};
-		D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../shiny;
-		};
-		D2ECACD22D569E12007B83C4 /* XCLocalSwiftPackageReference "../RainbowUI" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../RainbowUI;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
+		D21E00F42DA5CE8600F92490 /* XCRemoteSwiftPackageReference "RainbowUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sakrist/RainbowUI";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		D21E00F72DA5CEC100F92490 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sakrist/ConfettiSwiftUI";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		D2C09DF82DA08AAC001DC17D /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/calimarkus/JDStatusBarNotification.git";
@@ -1141,37 +1130,24 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ConfettiSwiftUI;
 		};
-		D20311402D3F1AB300EC980F /* Shiny */ = {
+		D21E00F52DA5CE8600F92490 /* RainbowUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Shiny;
+			package = D21E00F42DA5CE8600F92490 /* XCRemoteSwiftPackageReference "RainbowUI" */;
+			productName = RainbowUI;
 		};
-		D262C5EB2D4FFE4A00CDCA0E /* ConfettiSwiftUI */ = {
+		D21E00F82DA5CEC100F92490 /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D203113C2D3F1A0300EC980F /* XCLocalSwiftPackageReference "../ConfettiSwiftUI" */;
+			package = D21E00F72DA5CEC100F92490 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
-		};
-		D262C5ED2D4FFE4A00CDCA0E /* Shiny */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */;
-			productName = Shiny;
 		};
 		D2C09DF92DA08AAC001DC17D /* JDStatusBarNotification */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D2C09DF82DA08AAC001DC17D /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */;
 			productName = JDStatusBarNotification;
 		};
-		D2DB71812D3D473B000DC325 /* Shiny */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Shiny;
-		};
 		D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ConfettiSwiftUI;
-		};
-		D2ECACD02D56092F007B83C4 /* Shiny */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D203113F2D3F1AB300EC980F /* XCLocalSwiftPackageReference "../shiny" */;
-			productName = Shiny;
 		};
 		D2ECACD32D569E12007B83C4 /* RainbowUI */ = {
 			isa = XCSwiftPackageProductDependency;

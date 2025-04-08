@@ -1,6 +1,15 @@
 {
-  "originHash" : "c8b2d7946316e9dfe52e340b2df785c4f739068f841d15c37b5a18ff1f72c19c",
+  "originHash" : "68cce9dc3a1c6c58736d168e5e218c0c3ac63c91eed7ea96209317f781c69e9e",
   "pins" : [
+    {
+      "identity" : "confettiswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sakrist/ConfettiSwiftUI",
+      "state" : {
+        "branch" : "master",
+        "revision" : "ffc46c1b1e208a4e93224ddf5db49ff5da0659d3"
+      }
+    },
     {
       "identity" : "jdstatusbarnotification",
       "kind" : "remoteSourceControl",
@@ -8,6 +17,15 @@
       "state" : {
         "revision" : "8214549f7e2a472174a743c4f9bf64f005f6aacc",
         "version" : "2.2.4"
+      }
+    },
+    {
+      "identity" : "rainbowui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sakrist/RainbowUI",
+      "state" : {
+        "branch" : "main",
+        "revision" : "ac982c9359a3847e6e78ae1959dc9869221c14cb"
       }
     }
   ],
