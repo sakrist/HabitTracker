@@ -34,7 +34,7 @@ struct MainListView: View {
                     HStack {
                         if hasEarlyRecords {
                             Button(action: {
-                                selectedDate = selectedDate.prevDay() ?? .now
+                                selectedDate = selectedDate.prevDay()
                                 fetchEntries()
                             }) {
                                 Image(systemName: "chevron.left")
@@ -121,7 +121,7 @@ struct MainListView: View {
         Task {
             self.entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
             
-            let entriesDayBefore = fetchHabitEntries(modelContext: modelContext, for: selectedDate.prevDay() ?? .now)
+            let entriesDayBefore = fetchHabitEntries(modelContext: modelContext, for: selectedDate.prevDay())
             hasEarlyRecords = entriesDayBefore.count > 0
         }
     }

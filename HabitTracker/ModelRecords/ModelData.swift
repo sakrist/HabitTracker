@@ -25,25 +25,29 @@ class ModelData {
         
     var notificationsEnabled: Bool = false
     
-    let modelContainer: ModelContainer
+    var modelContainer: ModelContainer
     
-    init() {
-
+    convenience init() {
         let schema = Schema(versionedSchema: SchemaLatest.self)
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-        
-            modelContainer = try ModelContainer(for: schema, migrationPlan: MigrationPlanV2toV3.self,
-                                                configurations: [modelConfiguration])
+            let container = try ModelContainer(for: schema, migrationPlan: MigrationPlanV2toV3.self,
+                                             configurations: [modelConfiguration])
+            self.init(container: container)
         } catch {
             do {
-                modelContainer = try ModelContainer(for: schema, migrationPlan: nil,
-                                                    configurations: [modelConfiguration])
+                let container = try ModelContainer(for: schema, migrationPlan: nil,
+                                                 configurations: [modelConfiguration])
+                self.init(container: container)
             } catch {
                 fatalError("Failed to create model container: \(error)")
             }
         }
+    }
+    
+    init(container: ModelContainer) {
+        self.modelContainer = container
         insertCategories()
     }
     

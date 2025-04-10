@@ -73,17 +73,19 @@ struct DayHabitsListView: View {
 
     private func changed(entry:DailyEntry, _ old:Bool, _ new:Bool) {
         ModelData.shared.saveContext()
-        let achievement = ModelData.shared.completedEntry(entry: entry)
-
-        if achievement != .none {
-            currentAchievement = achievement
-            showAchievement = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                showAchievement = false
-            }
-        }
         
         if (date.isToday()) {
+            
+            let achievement = ModelData.shared.completedEntry(entry: entry)
+
+            if achievement != .none {
+                currentAchievement = achievement
+                showAchievement = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    showAchievement = false
+                }
+            }
+            
             if (new) {
                 silenceTodaysNotification(identifier: entry.habit.id)
             } else {

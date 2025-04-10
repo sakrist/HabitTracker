@@ -165,7 +165,9 @@ func generateDailyEntries(for habits: [HabitItem], existingEntries: [DailyEntry]
         }
         
         // If no entry exists for the selected date, create a new one
-        if existingEntry == nil && habit.timestamp <= date {
+        if existingEntry == nil
+            && habit.timestamp <= date // don't create entries before habit created
+        {
             let newEntry = DailyEntry(habit: habit, date: date, isCompleted: false)
             dailyEntries.append(newEntry)
         }

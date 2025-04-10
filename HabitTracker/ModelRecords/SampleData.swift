@@ -99,7 +99,8 @@ extension HabitItem {
                 time: Calendar.current.date(bySettingHour: 7, minute: 0, second: 0, of: Date()),
                 note: "5 minutes of meditation",
                 weekdays: [.monday, .wednesday, .friday],
-                order: 1
+                order: 1,
+                timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
                 title: "Running",
@@ -108,7 +109,8 @@ extension HabitItem {
                 time: Calendar.current.date(bySettingHour: 6, minute: 30, second: 0, of: Date()),
                 note: "30 minutes of running",
                 weekdays: [.tuesday, .thursday, .saturday],
-                order: 2
+                order: 2,
+                timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
                 title: "Read a Book",
@@ -117,7 +119,8 @@ extension HabitItem {
                 time: Calendar.current.date(bySettingHour: 20, minute: 0, second: 0, of: Date()),
                 note: "Read for 30 minutes",
                 weekdays: [.monday, .wednesday, .friday, .sunday],
-                order: 3
+                order: 3,
+                timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
                 title: "Drink Water",
@@ -126,7 +129,8 @@ extension HabitItem {
                 time: nil,
                 note: "8 glasses of water",
                 weekdays: .init(Weekday.allCases),
-                order: 4
+                order: 4,
+                timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
                 title: "Plan Tomorrow",
@@ -135,7 +139,8 @@ extension HabitItem {
                 time: Calendar.current.date(bySettingHour: 21, minute: 0, second: 0, of: Date()),
                 note: "10 minutes to plan the next day",
                 weekdays: .init(Weekday.allCases),
-                order: 5
+                order: 5,
+                timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
                 title: "Stretch",
@@ -144,7 +149,8 @@ extension HabitItem {
                 time: Calendar.current.date(bySettingHour: 8, minute: 0, second: 0, of: Date()),
                 note: "5 minutes of stretching",
                 weekdays: [.tuesday, .thursday, .saturday],
-                order: 6
+                order: 6,
+                timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
                 title: "Write Journal",
@@ -153,7 +159,8 @@ extension HabitItem {
                 time: Calendar.current.date(bySettingHour: 22, minute: 0, second: 0, of: Date()),
                 note: "Reflect on the day",
                 weekdays: [.sunday],
-                order: 7
+                order: 7,
+                timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             )
         ]
         data[0].healthType = .category(.mindfulSession, .meditate)
