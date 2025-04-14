@@ -17,7 +17,6 @@ struct DayHabitsListView: View {
     @State var showAddHabit: Bool = false
     
     @State private var counter: Int = 0
-    @State private var audioPlayer: AVAudioPlayer?
     @State private var audioPlayer2: AVAudioPlayer?
     
     @State private var showMessage = false // Controls the visibility of the message
@@ -44,9 +43,6 @@ struct DayHabitsListView: View {
             }
             .listStyle(.plain)
             .confettiCannon(trigger: $counter, num: 100, rainHeight: 300)
-            .onAppear {
-                setupAudioPlayer()
-            }
             
             VStack {
                 // Overlay message
@@ -84,6 +80,9 @@ struct DayHabitsListView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     showAchievement = false
                 }
+                // play achivement sound
+                playSound(name: "achive-sound-4.caf")
+                
             }
             
             if (new) {
@@ -97,42 +96,17 @@ struct DayHabitsListView: View {
             if (contCompleted == entries.count) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     counter += 1
-                    playPopSound()
+                    playSound(name: "Balloon Pop.caf")
                     completeHabits()
                 }
             }
         }
     }
+
     
     // Set up the audio player
-    private func setupAudioPlayer() {
-        guard let soundURL =  Bundle.main.url(forResource: "clang", withExtension: "wav") else {
-            print("Audio file not found.")
-            return
-        }
-
-        do {
-#if os(iOS)
-            try AVAudioSession.sharedInstance()
-                .setCategory(.playback, options: .duckOthers)
-            try AVAudioSession.sharedInstance()
-                .setActive(true)
-#endif
-            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-            audioPlayer?.prepareToPlay()
-        } catch {
-            print("Error initializing audio player: \(error)")
-        }
-    }
-
-    // Play the audio
-    private func playSound() {
-        audioPlayer?.play()
-    }
-    
-    // Set up the audio player
-    private func playPopSound() {
-        guard let soundURL =  Bundle.main.url(forResource: "Balloon Pop", withExtension: "caf") else {
+    private func playSound(name: String) {
+        guard let soundURL = Bundle.main.url(forResource:name, withExtension: nil) else {
             print("Audio file not found.")
             return
         }

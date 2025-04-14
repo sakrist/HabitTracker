@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4F6D4AE72DA856920018448A /* AchievementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D4AE52DA856920018448A /* AchievementTests.swift */; };
+		4FAA66F62DAD9EC200586FC4 /* achive-sound-2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F22DAD9EC200586FC4 /* achive-sound-2.caf */; };
+		4FAA66F72DAD9EC200586FC4 /* achive-sound-3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F32DAD9EC200586FC4 /* achive-sound-3.caf */; };
+		4FAA66F82DAD9EC200586FC4 /* achive-sound-1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F12DAD9EC200586FC4 /* achive-sound-1.caf */; };
+		4FAA66F92DAD9EC200586FC4 /* achive-sound-4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F42DAD9EC200586FC4 /* achive-sound-4.caf */; };
+		4FAA66FA2DAD9EC200586FC4 /* achive-sound-5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F52DAD9EC200586FC4 /* achive-sound-5.caf */; };
 		D203113E2D3F1A0300EC980F /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */; };
 		D21E00F62DA5CE8600F92490 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = D21E00F52DA5CE8600F92490 /* RainbowUI */; };
 		D21E00F92DA5CEC100F92490 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D21E00F82DA5CEC100F92490 /* ConfettiSwiftUI */; };
@@ -121,6 +126,11 @@
 /* Begin PBXFileReference section */
 		4F6D4AE42DA855520018448A /* HabitTracker.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = HabitTracker.xctestplan; sourceTree = "<group>"; };
 		4F6D4AE52DA856920018448A /* AchievementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTests.swift; sourceTree = "<group>"; };
+		4FAA66F12DAD9EC200586FC4 /* achive-sound-1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-1.caf"; sourceTree = "<group>"; };
+		4FAA66F22DAD9EC200586FC4 /* achive-sound-2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-2.caf"; sourceTree = "<group>"; };
+		4FAA66F32DAD9EC200586FC4 /* achive-sound-3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-3.caf"; sourceTree = "<group>"; };
+		4FAA66F42DAD9EC200586FC4 /* achive-sound-4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-4.caf"; sourceTree = "<group>"; };
+		4FAA66F52DAD9EC200586FC4 /* achive-sound-5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-5.caf"; sourceTree = "<group>"; };
 		D25246272D370615003CEBF9 /* DailyExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = DailyExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25A7A352CA5D64B0000E843 /* HabitTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D25A7A482CA5D64D0000E843 /* HabitTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HabitTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,6 +382,11 @@
 		D2DB71672D3C6A6F000DC325 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4FAA66F12DAD9EC200586FC4 /* achive-sound-1.caf */,
+				4FAA66F22DAD9EC200586FC4 /* achive-sound-2.caf */,
+				4FAA66F32DAD9EC200586FC4 /* achive-sound-3.caf */,
+				4FAA66F42DAD9EC200586FC4 /* achive-sound-4.caf */,
+				4FAA66F52DAD9EC200586FC4 /* achive-sound-5.caf */,
 				D2DB71652D3C6A6F000DC325 /* Balloon Pop.caf */,
 				D2DB71662D3C6A6F000DC325 /* sparkle.wav */,
 				D2DB716A2D3D2A46000DC325 /* clang.wav */,
@@ -550,6 +565,11 @@
 			files = (
 				D2DB716B2D3D2A46000DC325 /* clang.wav in Resources */,
 				D25A7A852CA5D7EF0000E843 /* Preview Assets.xcassets in Resources */,
+				4FAA66F62DAD9EC200586FC4 /* achive-sound-2.caf in Resources */,
+				4FAA66F72DAD9EC200586FC4 /* achive-sound-3.caf in Resources */,
+				4FAA66F82DAD9EC200586FC4 /* achive-sound-1.caf in Resources */,
+				4FAA66F92DAD9EC200586FC4 /* achive-sound-4.caf in Resources */,
+				4FAA66FA2DAD9EC200586FC4 /* achive-sound-5.caf in Resources */,
 				D2DB71682D3C6A6F000DC325 /* Balloon Pop.caf in Resources */,
 				D2DB71692D3C6A6F000DC325 /* sparkle.wav in Resources */,
 				D25A7A862CA5D7EF0000E843 /* Assets.xcassets in Resources */,
