@@ -64,13 +64,13 @@ extension ModelData {
     }
     
     
-    func calculateStreak(habit: HabitItem, for selectedMonth:Date) -> (Int, Int, Int, Int) {
+    func calculateStreak(habit: HabitItem, for selectedMonth:Date, end: Date? = nil) -> (Int, Int, Int, Int) {
         
         let startDate = habit.timestamp.prevDay()
-        let endDate = Date.endOfDay()
+        let endDate = end ?? Date.endOfDay()
         
         var entries = fetchEntries(start: startDate, end: endDate, habit: habit, modelContext: modelContainer.mainContext)
-        entries.sort { $0.date < $1.date }
+        entries.sort { $0.date > $1.date }
         
         var streak:Int = 0
         var countStreak = true
@@ -84,15 +84,15 @@ extension ModelData {
         var total: Int = 0
         
         // remove first entry if it is today and not completed to make nice count
-        if !entries.isEmpty {
-            if (entries[0].date.isToday() && !entries[0].isCompleted) {
+        if let firstEntry = entries.first {
+            if (firstEntry.date.isToday() && !firstEntry.isCompleted) {
                 entries.removeFirst()
             }
         }
         
-        for item in entries.reversed() {
+        for item in entries {
             
-            if (countStreak && item.isCompleted) {
+            if countStreak && item.isCompleted {
                 streak += 1
             } else {
                 countStreak = false
@@ -107,9 +107,9 @@ extension ModelData {
                 currentStreak = 0
             }
             
-            if (item.date.isSameMonth(date: selectedMonth)) {
+            if item.date.isSameMonth(date: selectedMonth) {
                 daysInMonth += 1
-                if (item.isCompleted) {
+                if item.isCompleted {
                     completedInMonth += 1
                 }
             }

@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "9122E836-B041-40BC-AA3E-3527749552DF",
+      "id" : "8DE5595A-AEDA-459D-B5A5-1DE6A514B304",
       "name" : "Test Scheme Action",
       "options" : {
 
@@ -18,9 +18,6 @@
   },
   "testTargets" : [
     {
-      "selectedTags" : {
-        "includeXCTests" : true
-      },
       "target" : {
         "containerPath" : "container:HabitTracker.xcodeproj",
         "identifier" : "D25A7A472CA5D64D0000E843",
