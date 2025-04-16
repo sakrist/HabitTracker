@@ -38,6 +38,11 @@ struct ContentView: View {
                         firstTab = (selectedTab == 0) ? -1 : 0
                         postActive()
                     }
+                }.onAppear {
+// if playground
+#if DEBUG
+                    modelData.firstLaunch = false
+#endif
                 }
             
             HabitsListView(showAddHabit: $showAddHabit, navigationPath: $habitsNavigationPath)

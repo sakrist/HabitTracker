@@ -18,6 +18,7 @@ struct HabitTrackerApp: App {
 //    let sample = SampleData.shared
 #endif
     
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

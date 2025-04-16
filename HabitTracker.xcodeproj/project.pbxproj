@@ -239,6 +239,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F8301A12DB02FB70015ED4D /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
 		D25A7A2C2CA5D64B0000E843 = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +292,7 @@
 				D2DB71612D3BC877000DC325 /* Views */,
 				D2DB71602D3BC54A000DC325 /* Day View */,
 				D2DB715F2D3BC521000DC325 /* Habits List */,
+				4F8301A12DB02FB70015ED4D /* Timeline */,
 				D28309DB2CA9B33800C6B22A /* ModelRecords */,
 				D2C126492CB7370B005E5941 /* Extensions */,
 			);
@@ -364,7 +372,6 @@
 		D2DB71602D3BC54A000DC325 /* Day View */ = {
 			isa = PBXGroup;
 			children = (
-				D2C09DFC2DA08FE2001DC17D /* AchievementBanner.swift */,
 				D2C126472CB2DA9D005E5941 /* MainListView.swift */,
 				D2DB716C2D3D2F99000DC325 /* DayHabitsListView.swift */,
 				D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */,
@@ -379,6 +386,7 @@
 				D2D481052CD8246C00B1DF7C /* MonthlyView.swift */,
 				D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */,
 				D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */,
+				D2C09DFC2DA08FE2001DC17D /* AchievementBanner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
