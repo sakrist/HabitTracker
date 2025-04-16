@@ -14,7 +14,7 @@ struct HabitTrackerApp: App {
     @Environment(\.scenePhase) private var scenePhase
     
     // this will clear storage and populate sample data
-//    let sample = SampleData.shared
+    let sample = SampleData.shared
     
     var body: some Scene {
         WindowGroup {

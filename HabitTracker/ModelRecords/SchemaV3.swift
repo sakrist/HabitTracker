@@ -98,11 +98,11 @@ extension SchemaV3 {
              title: String,
              color: String = "#0000FF",
              category: HabitCategory?,
-             time: Date? = nil,
+             time: Date? = nil, // time for reminder
              note: String = "",
              weekdays: Set<Weekday> = [],
              order: Int = 0,
-             timestamp: Date = Date(),
+             timestamp: Date = Date(), // date when created habit
              active: Bool = true,
              hType: String? = "none") {
             self.id = id
@@ -207,9 +207,9 @@ extension SchemaV3 {
     @Model
     class DailyEntry : ObservableObject {
         var habit: HabitItem
-        var date: Date
+        var date: Date // date of entry
         var isCompleted: Bool = false
-        var completionDate: Date?
+        var completionDate: Date? // completion time, when isCompleted changed to true.
         
         init(habit: HabitItem, date: Date, isCompleted: Bool, completionDate: Date? = nil) {
             self.date = date

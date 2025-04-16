@@ -40,6 +40,8 @@ struct HabitsListView: View {
     
     @State private var showExportActivityView = false
     @State private var showImportFilePicker = false
+    @State private var showImportSuccessAlert = false
+    @State private var showImportFailureAlert = false
     
     @Binding var showAddHabit: Bool
     @Binding var navigationPath: NavigationPath
@@ -72,14 +74,14 @@ struct HabitsListView: View {
                 }
 #endif
                 
-                /*
+                
                 ToolbarItem {
                     Button(action: {
                         showExportActivityView = true
                     }) {
                         Label("Export", systemImage: "arrow.up.circle")
                     }.sheet(isPresented: $showExportActivityView) {
-                        if let fileURL = exportHabits() {
+                        if let fileURL = ExportImportData.shared.exportHabits() {
                             ActivityView(activityItems: [fileURL])
                         }
                     }
@@ -97,13 +99,32 @@ struct HabitsListView: View {
                         onCompletion: { result in
                             switch result {
                             case .success(let url):
-                                importHabits(from: url)
+                                Task {
+                                    print("url \(url)")
+                                    let completed = await ExportImportData.shared.importHabits(from: url)
+                                    if completed {
+                                        showImportSuccessAlert = true
+                                    } else {
+                                        showImportFailureAlert = true
+                                    }
+                                }
                             case .failure(let error):
                                 print("Failed to import habits: \(error)")
+                                showImportFailureAlert = true
                             }
                         }
                     )
-                }*/
+                    .alert("Import Successful", isPresented: $showImportSuccessAlert) {
+                        Button("OK", role: .cancel) { }
+                    } message: {
+                        Text("Your habits have been imported successfully.")
+                    }
+                    .alert("Import Failed", isPresented: $showImportFailureAlert) {
+                        Button("OK", role: .cancel) { }
+                    } message: {
+                        Text("There was an error importing your habits. Please try again.")
+                    }
+                }
                 
                 ToolbarItem {
                     Button(action: {
@@ -117,36 +138,6 @@ struct HabitsListView: View {
                 }
                 
             }
-        }
-    }
-    
-    func exportHabits() -> URL? {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        do {
-            let jsonData = try encoder.encode(allitems)
-            let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("HabitData.json")
-            try jsonData.write(to: tempURL)
-            return tempURL
-        } catch {
-            print("Error exporting habits: \(error)")
-            return nil
-        }
-    }
-    
-    func importHabits(from url: URL) {
-        do {
-            let jsonData = try Data(contentsOf: url)
-            let decoder = JSONDecoder()
-            let importedHabits = try decoder.decode([HabitItem].self, from: jsonData)
-            
-            // Add imported habits to your existing collection (e.g., SwiftData context)
-            for habit in importedHabits {
-                // Assuming you have a method to add these to SwiftData or your model context
-                // modelContext.insert(habit)
-            }
-        } catch {
-            print("Error importing habits: \(error)")
         }
     }
     

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4F6D4AE72DA856920018448A /* AchievementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D4AE52DA856920018448A /* AchievementTests.swift */; };
+		4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
+		4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
+		4F83019E2DAFBF940015ED4D /* ExportImportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */; };
+		4F8301A02DAFDD920015ED4D /* HabitTracker_Export.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F83019F2DAFDD920015ED4D /* HabitTracker_Export.json */; };
 		4FAA66F62DAD9EC200586FC4 /* achive-sound-2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F22DAD9EC200586FC4 /* achive-sound-2.caf */; };
 		4FAA66F72DAD9EC200586FC4 /* achive-sound-3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F32DAD9EC200586FC4 /* achive-sound-3.caf */; };
 		4FAA66F82DAD9EC200586FC4 /* achive-sound-1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F12DAD9EC200586FC4 /* achive-sound-1.caf */; };
@@ -127,6 +131,9 @@
 
 /* Begin PBXFileReference section */
 		4F6D4AE52DA856920018448A /* AchievementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTests.swift; sourceTree = "<group>"; };
+		4F83019A2DAFBB880015ED4D /* ExportImportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportData.swift; sourceTree = "<group>"; };
+		4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportTests.swift; sourceTree = "<group>"; };
+		4F83019F2DAFDD920015ED4D /* HabitTracker_Export.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HabitTracker_Export.json; sourceTree = "<group>"; };
 		4FAA66F12DAD9EC200586FC4 /* achive-sound-1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-1.caf"; sourceTree = "<group>"; };
 		4FAA66F22DAD9EC200586FC4 /* achive-sound-2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-2.caf"; sourceTree = "<group>"; };
 		4FAA66F32DAD9EC200586FC4 /* achive-sound-3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-3.caf"; sourceTree = "<group>"; };
@@ -287,11 +294,13 @@
 		D25A7A8C2CA5D8120000E843 /* HabitTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				4F83019F2DAFDD920015ED4D /* HabitTracker_Export.json */,
+				4F6D4AE52DA856920018448A /* AchievementTests.swift */,
+				4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */,
+				D25A7A8B2CA5D8120000E843 /* HabitTrackerTests.swift */,
+				D262C5E72D4FFCCE00CDCA0E /* HealthTypeTests.swift */,
 				D26D06F82DAF03E1009C15D4 /* ModelDataFetchTests.swift */,
 				D26D06F52DAEF1E0009C15D4 /* StreakTests.swift */,
-				D262C5E72D4FFCCE00CDCA0E /* HealthTypeTests.swift */,
-				4F6D4AE52DA856920018448A /* AchievementTests.swift */,
-				D25A7A8B2CA5D8120000E843 /* HabitTrackerTests.swift */,
 			);
 			path = HabitTrackerTests;
 			sourceTree = "<group>";
@@ -308,6 +317,10 @@
 		D28309DB2CA9B33800C6B22A /* ModelRecords */ = {
 			isa = PBXGroup;
 			children = (
+				4F83019A2DAFBB880015ED4D /* ExportImportData.swift */,
+				D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */,
+				D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */,
+				D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */,
 				D28309DC2CA9B3F200C6B22A /* SampleData.swift */,
 				D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */,
 				D25AED9A2D9C828E009C4B7B /* ModelData+achivments.swift */,
@@ -315,9 +328,6 @@
 				D2D457F02D45942200C67484 /* SchemaV1.swift */,
 				D2D457F32D463D9A00C67484 /* SchemaV2.swift */,
 				D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */,
-				D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */,
-				D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */,
-				D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */,
 			);
 			path = ModelRecords;
 			sourceTree = "<group>";
@@ -586,6 +596,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8301A02DAFDD920015ED4D /* HabitTracker_Export.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,6 +626,7 @@
 				D2DB717B2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
 				D2C09DF42DA07801001DC17D /* DailyEntry+extension.swift in Sources */,
 				D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */,
+				4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */,
 				D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */,
 				D2D457F42D463D9F00C67484 /* SchemaV2.swift in Sources */,
 				D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */,
@@ -655,6 +667,7 @@
 				D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */,
 				D25A7A8A2CA5D7EF0000E843 /* HabitItem+extension.swift in Sources */,
 				D2D457F52D463D9F00C67484 /* SchemaV2.swift in Sources */,
+				4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */,
 				D2D457F72D46559000C67484 /* ModelData+fetch.swift in Sources */,
 				D2D457F22D45942400C67484 /* SchemaV1.swift in Sources */,
 				D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */,
@@ -668,6 +681,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F83019E2DAFBF940015ED4D /* ExportImportTests.swift in Sources */,
 				D25A7A8D2CA5D8120000E843 /* HabitTrackerTests.swift in Sources */,
 				D26D06F92DAF03E1009C15D4 /* ModelDataFetchTests.swift in Sources */,
 				D26D06F62DAEF1E0009C15D4 /* StreakTests.swift in Sources */,

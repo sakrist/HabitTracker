@@ -93,6 +93,7 @@ extension HabitItem {
         let categories = ModelData.shared.fetchCategories()
         let data = [
             HabitItem(
+                id: "1234",
                 title: "Meditation",
                 color: "#3498DB",
                 category: categories[2],
@@ -103,6 +104,7 @@ extension HabitItem {
                 timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
+                id: "354",
                 title: "Running",
                 color: "#E74C3C",
                 category: categories[1],
@@ -113,6 +115,7 @@ extension HabitItem {
                 timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
+                id: "456",
                 title: "Read a Book",
                 color: "#9B59B6",
                 category: categories[2],
@@ -123,6 +126,7 @@ extension HabitItem {
                 timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
+                id: "6789",
                 title: "Drink Water",
                 color: "#1ABC9C",
                 category: categories[0],
@@ -133,6 +137,7 @@ extension HabitItem {
                 timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
+                id: "8912",
                 title: "Plan Tomorrow",
                 color: "#F1C40F",
                 category: categories[4],
@@ -143,6 +148,7 @@ extension HabitItem {
                 timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
+                id: "098234342",
                 title: "Stretch",
                 color: "#2ECC71",
                 category: categories[0],
@@ -153,6 +159,7 @@ extension HabitItem {
                 timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
             ),
             HabitItem(
+                id: "123123123",
                 title: "Write Journal",
                 color: "#E67E22",
                 category: categories[2],

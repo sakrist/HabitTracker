@@ -1,0 +1,524 @@
+{
+  "exportDate" : "2025-04-16T11:56:50Z",
+  "habits" : [
+    {
+      "title" : "Plan Tomorrow",
+      "categoryId" : "learning",
+      "categoryTitle" : "Learning",
+      "note" : "10 minutes to plan the next day",
+      "id" : "8912",
+      "weekdays" : [
+        5,
+        6,
+        3,
+        0,
+        4,
+        1,
+        2
+      ],
+      "completions" : [
+        {
+          "completed" : false,
+          "date" : "2025-04-16T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-15T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-14T11:55:57Z"
+        },
+        {
+          "completed" : true,
+          "completionDate" : "2025-04-16T11:56:15Z",
+          "date" : "2025-04-13T11:55:57Z"
+        },
+        {
+          "completed" : true,
+          "completionDate" : "2025-04-16T11:56:13Z",
+          "date" : "2025-04-12T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-11T11:55:57Z"
+        },
+        {
+          "completed" : true,
+          "completionDate" : "2025-04-16T11:56:11Z",
+          "date" : "2025-04-10T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-09T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-08T11:55:57Z"
+        },
+        {
+          "completed" : true,
+          "completionDate" : "2025-04-16T11:56:01Z",
+          "date" : "2025-04-07T11:55:57Z"
+        },
+        {
+          "completed" : true,
+          "completionDate" : "2025-04-16T11:56:03Z",
+          "date" : "2025-04-06T11:55:57Z"
+        },
+        {
+          "completed" : true,
+          "completionDate" : "2025-04-16T11:56:06Z",
+          "date" : "2025-04-05T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-04T11:55:57Z"
+        }
+      ],
+      "color" : "#F1C40F",
+      "timestamp" : "2025-01-01T00:00:00Z",
+      "order" : 4,
+      "time" : "2025-04-16T20:00:00Z",
+      "hType" : "none"
+    },
+    {
+      "title" : "Running",
+      "categoryId" : "growth",
+      "categoryTitle" : "Growth",
+      "note" : "30 minutes of running",
+      "id" : "354",
+      "weekdays" : [
+        1,
+        5,
+        3
+      ],
+      "completions" : [
+        {
+          "completed" : false,
+          "date" : "2025-04-16T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-15T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-14T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-13T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-12T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-11T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-10T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-09T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-08T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-07T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-06T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-05T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-04T11:55:57Z"
+        }
+      ],
+      "color" : "#E74C3C",
+      "timestamp" : "2025-01-01T00:00:00Z",
+      "order" : 1,
+      "time" : "2025-04-16T05:30:00Z",
+      "hType" : "none"
+    },
+    {
+      "title" : "Read a Book",
+      "categoryId" : "health",
+      "id" : "456",
+      "categoryTitle" : "Health",
+      "note" : "Read for 30 minutes",
+      "weekdays" : [
+        2,
+        4,
+        6,
+        0
+      ],
+      "completions" : [
+        {
+          "completed" : true,
+          "completionDate" : "2025-04-16T11:56:23Z",
+          "date" : "2025-04-16T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-15T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-14T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-13T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-12T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-11T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-10T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-09T11:55:57Z"
+        },
+        {
+          "completed" : false,
+          "date" : "2025-04-08T11:55:57Z"
+        },
+        {
+          "date" : "2025-04-07T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-06T11:55:57Z",
+          "completionDate" : "2025-04-16T11:56:04Z",
+          "completed" : true
+        },
+        {
+          "date" : "2025-04-05T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-04T11:55:57Z",
+          "completed" : false
+        }
+      ],
+      "color" : "#9B59B6",
+      "timestamp" : "2025-01-01T00:00:00Z",
+      "order" : 2,
+      "time" : "2025-04-16T19:00:00Z",
+      "hType" : "none"
+    },
+    {
+      "title" : "Write Journal",
+      "categoryId" : "health",
+      "id" : "123123123",
+      "categoryTitle" : "Health",
+      "note" : "Reflect on the day",
+      "weekdays" : [
+        6
+      ],
+      "completions" : [
+        {
+          "date" : "2025-04-16T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-15T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-14T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-13T11:55:57Z",
+          "completionDate" : "2025-04-16T11:56:15Z",
+          "completed" : true
+        },
+        {
+          "date" : "2025-04-12T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-11T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-10T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-09T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-08T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-07T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-06T11:55:57Z",
+          "completionDate" : "2025-04-16T11:56:03Z",
+          "completed" : true
+        },
+        {
+          "date" : "2025-04-05T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-04T11:55:57Z",
+          "completed" : false
+        }
+      ],
+      "color" : "#E67E22",
+      "timestamp" : "2025-01-01T00:00:00Z",
+      "order" : 6,
+      "time" : "2025-04-16T21:00:00Z",
+      "hType" : "none"
+    },
+    {
+      "title" : "Drink Water",
+      "categoryId" : "fitness",
+      "id" : "6789",
+      "categoryTitle" : "Fitness",
+      "note" : "8 glasses of water",
+      "weekdays" : [
+        0,
+        3,
+        4,
+        5,
+        2,
+        6,
+        1
+      ],
+      "completions" : [
+        {
+          "date" : "2025-04-16T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-15T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-14T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-13T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-12T11:55:57Z",
+          "completionDate" : "2025-04-16T11:56:13Z",
+          "completed" : true
+        },
+        {
+          "date" : "2025-04-11T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-10T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-09T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-08T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-07T11:55:57Z",
+          "completionDate" : "2025-04-16T11:56:02Z",
+          "completed" : true
+        },
+        {
+          "date" : "2025-04-06T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-05T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-04T11:55:57Z",
+          "completed" : false
+        }
+      ],
+      "color" : "#1ABC9C",
+      "timestamp" : "2025-01-01T00:00:00Z",
+      "order" : 3,
+      "hType" : "none"
+    },
+    {
+      "title" : "Meditation",
+      "categoryId" : "health",
+      "id" : "1234",
+      "categoryTitle" : "Health",
+      "note" : "5 minutes of meditation",
+      "weekdays" : [
+        0,
+        2,
+        4
+      ],
+      "completions" : [
+        {
+          "date" : "2025-04-16T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-15T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-14T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-13T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-12T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-11T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-10T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-09T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-08T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-07T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-06T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-05T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-04T11:55:57Z",
+          "completed" : false
+        }
+      ],
+      "color" : "#3498DB",
+      "timestamp" : "2025-01-01T00:00:00Z",
+      "order" : 0,
+      "time" : "2025-04-16T06:00:00Z",
+      "hType" : "category_HKCategoryTypeIdentifierMindfulSession_meditate"
+    },
+    {
+      "title" : "Stretch",
+      "categoryId" : "fitness",
+      "id" : "098234342",
+      "categoryTitle" : "Fitness",
+      "note" : "5 minutes of stretching",
+      "weekdays" : [
+        5,
+        3,
+        1
+      ],
+      "completions" : [
+        {
+          "date" : "2025-04-16T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-15T11:55:57Z",
+          "completionDate" : "2025-04-16T11:56:17Z",
+          "completed" : true
+        },
+        {
+          "date" : "2025-04-14T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-13T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-12T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-11T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-10T11:55:57Z",
+          "completionDate" : "2025-04-16T11:56:11Z",
+          "completed" : true
+        },
+        {
+          "date" : "2025-04-09T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-08T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-07T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-06T11:55:57Z",
+          "completed" : false
+        },
+        {
+          "date" : "2025-04-05T11:55:57Z",
+          "completionDate" : "2025-04-16T11:56:05Z",
+          "completed" : true
+        },
+        {
+          "date" : "2025-04-04T11:55:57Z",
+          "completed" : false
+        }
+      ],
+      "color" : "#2ECC71",
+      "timestamp" : "2025-01-01T00:00:00Z",
+      "order" : 5,
+      "time" : "2025-04-16T07:00:00Z",
+      "hType" : "none"
+    }
+  ],
+  "version" : 1
+}

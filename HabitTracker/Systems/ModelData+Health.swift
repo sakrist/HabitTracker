@@ -36,7 +36,7 @@ extension ModelData {
             print(sample.startDate)
             print(sample.endDate)
             print("type \(sample.sampleType)")
-            print(sample.metadata)
+            print(sample.metadata ?? "")
             print(sample.sourceRevision.source.name)
 #endif
             //                    print("Mindfulness session: \(sample)")
