@@ -13,80 +13,67 @@ extension ModelData {
     func process(_ samples: [HKSample]) {
         let entries = fetchHabitEntries(modelContext: modelContainer.mainContext, for: .now)
         
-        var completed: [HealthType] = []
+        // Group samples by their health type
+        var completions: [HealthType: [Date]] = [:]
         
         for sample in samples {
-            if (sample.sampleType == HKObjectType.workoutType()) {
-                if let workout = sample as? HKWorkout {
-                    completed.append(.workout(workout.workoutActivityType))
-                }
-            } else if sample.sampleType == HKCategoryType.init(.mindfulSession) {
-                if sample.sourceRevision.source.name == "Journal" {
-                    completed.append(.category(.mindfulSession, .journal))
-                } else {
-                    completed.append(.category(.mindfulSession, .meditate))
-                }
-            } else if sample.sampleType == HKCategoryType.init(.toothbrushingEvent) {
-                completed.append(.category(.toothbrushingEvent))
-            } else if sample.sampleType == HKQuantityType.init(.dietaryWater) {
-                completed.append(.quantity(.dietaryWater))
+            let healthType = extractHealthType(from: sample)
+            if let type = healthType {
+                completions[type, default: []].append(sample.endDate)
             }
-
-#if DEBUG
-            print(sample.startDate)
-            print(sample.endDate)
-            print("type \(sample.sampleType)")
-            print(sample.metadata ?? "")
-            print(sample.sourceRevision.source.name)
-#endif
-            //                    print("Mindfulness session: \(sample)")
         }
         
         for item in entries {
             if let healthType = item.habit.healthType {
-                if completed.contains(where: { $0 == healthType }) {
-                    item.setCompleted(true)
+                if let dates = completions[healthType] {
+                    // Add each completion date up to the target count
+                    for date in dates.prefix(item.habit.targetCount) {
+                        if !item.completionDates.contains(date) {
+                            item.completionDates.append(date)
+                        }
+                    }
                 }
             }
         }
     }
     
     func process(_ samples: [HKSample], entry: DailyEntry) {
-        
-        var completed: [HealthType] = []
+        // Group samples by their health type
+        var completions: [HealthType: [Date]] = [:]
         
         for sample in samples {
-            if (sample.sampleType == HKObjectType.workoutType()) {
-                if let workout = sample as? HKWorkout {
-                    completed.append(.workout(workout.workoutActivityType))
-                }
-            } else if sample.sampleType == HKCategoryType.init(.mindfulSession) {
-                if sample.sourceRevision.source.name == "Journal" {
-                    completed.append(.category(.mindfulSession, .journal))
-                } else {
-                    completed.append(.category(.mindfulSession, .meditate))
-                }
-            } else if sample.sampleType == HKCategoryType.init(.toothbrushingEvent) {
-                completed.append(.category(.toothbrushingEvent))
-            } else if sample.sampleType == HKQuantityType.init(.dietaryWater) {
-                completed.append(.quantity(.dietaryWater))
+            let healthType = extractHealthType(from: sample)
+            if let type = healthType {
+                completions[type, default: []].append(sample.endDate)
             }
-
-#if DEBUG
-            print(sample.startDate)
-            print(sample.endDate)
-            print("type \(sample.sampleType)")
-            print(sample.metadata)
-            print(sample.sourceRevision.source.name)
-#endif
-            //                    print("Mindfulness session: \(sample)")
         }
         
         if let healthType = entry.habit.healthType {
-            if completed.contains(where: { $0 == healthType }) {
-                entry.setCompleted(true)
+            if let dates = completions[healthType] {
+                // Add each completion date up to the target count
+                for date in dates.prefix(entry.habit.targetCount) {
+                    if !entry.completionDates.contains(date) {
+                        entry.completionDates.append(date)
+                    }
+                }
             }
         }
+    }
+    
+    private func extractHealthType(from sample: HKSample) -> HealthType? {
+        if sample.sampleType == HKObjectType.workoutType(),
+           let workout = sample as? HKWorkout {
+            return .workout(workout.workoutActivityType)
+        } else if sample.sampleType == HKCategoryType(.mindfulSession) {
+            return sample.sourceRevision.source.name == "Journal" 
+                ? .category(.mindfulSession, .journal)
+                : .category(.mindfulSession, .meditate)
+        } else if sample.sampleType == HKCategoryType(.toothbrushingEvent) {
+            return .category(.toothbrushingEvent)
+        } else if sample.sampleType == HKQuantityType(.dietaryWater) {
+            return .quantity(.dietaryWater)
+        }
+        return nil
     }
 }
 

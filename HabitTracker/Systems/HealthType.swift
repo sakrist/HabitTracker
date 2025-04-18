@@ -8,7 +8,7 @@
 
 import HealthKit
 
-enum HealthType : CaseIterable, Identifiable, Codable {
+enum HealthType : CaseIterable, Identifiable, Codable, Hashable {
     
     case none
     case workout(HKWorkoutActivityType)
@@ -188,5 +188,9 @@ enum HealthType : CaseIterable, Identifiable, Codable {
         }
         
         return .none
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
     }
 }

@@ -394,11 +394,11 @@
 		D2DB71612D3BC877000DC325 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D2C09DFC2DA08FE2001DC17D /* AchievementBanner.swift */,
+				D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */,
 				D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */,
 				D2D481052CD8246C00B1DF7C /* MonthlyView.swift */,
-				D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */,
 				D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */,
-				D2C09DFC2DA08FE2001DC17D /* AchievementBanner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
