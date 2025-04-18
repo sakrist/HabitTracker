@@ -254,6 +254,13 @@ extension SchemaV4 {
     }
 }
 
+extension SchemaV4.DailyEntry {
+    var isEditingAllowed: Bool {
+        let calendar = Calendar.current
+        let daysBetween = calendar.dateComponents([.day], from: date, to: Date()).day ?? 0
+        return daysBetween <= 3
+    }
+}
 
 extension SchemaV4.HabitItem {
     var healthType: HealthType? {

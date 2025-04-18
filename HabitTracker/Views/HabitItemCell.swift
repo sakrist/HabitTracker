@@ -56,6 +56,7 @@ struct CirclyStyle: ToggleStyle {
 struct HabitItemCell: View {
     let item: HabitItem
     var entry: DailyEntry?
+    @State private var showingAlertCannotEdit = false
     
     var body: some View {
         HStack {
@@ -83,18 +84,28 @@ struct HabitItemCell: View {
                     }
                     .contentShape(Rectangle())  // Make entire row tappable
                     .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.15)) {
-                            if entry.completionDates.count < item.targetCount {
-                                entry.setCompleted(true)
-                            } else {
-                                entry.setCompleted(false)
+                        if entry.isEditingAllowed {
+                            withAnimation(.easeInOut(duration: 0.15)) {
+                                if entry.completionDates.count < item.targetCount {
+                                    entry.setCompleted(true)
+                                } else {
+                                    entry.setCompleted(false)
+                                }
                             }
+                        } else {
+                            showingAlertCannotEdit = true
                         }
                     }
                 } else {
                     Toggle(item.title, isOn: Binding(
                         get: { entry.isCompleted },
-                        set: { entry.setCompleted($0) }
+                        set: { newValue in
+                            if entry.isEditingAllowed {
+                                entry.setCompleted(newValue)
+                            } else {
+                                showingAlertCannotEdit = true
+                            }
+                        }
                     ))
                     .toggleStyle(CheckboxStyle(checkColor: item.getColor()))
                 }
@@ -126,6 +137,11 @@ struct HabitItemCell: View {
             }
             
             Text(item.formattedTime)
+        }
+        .alert("Cannot Edit Past Records", isPresented: $showingAlertCannotEdit) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("For accuracy, habits can only be edited within 3 days of their completion date.")
         }
     }
 }
