@@ -75,7 +75,8 @@ final class ExportImportTests: XCTestCase {
             note: "Daily running",
             weekdays: [.monday, .wednesday, .friday],
             order: 0,
-            timestamp: Date().addingTimeInterval(-86400 * 30) // 30 days ago
+            timestamp: Date().addingTimeInterval(-86400 * 30), // 30 days ago
+            targetCount: 2
         )
         
         let habit2 = HabitItem(
@@ -86,28 +87,53 @@ final class ExportImportTests: XCTestCase {
             note: "Mindfulness practice",
             weekdays: [.tuesday, .thursday, .saturday, .sunday],
             order: 1,
-            timestamp: Date().addingTimeInterval(-86400 * 15) // 15 days ago
+            timestamp: Date().addingTimeInterval(-86400 * 15), // 15 days ago
+            targetCount: 3
+        )
+        
+        let habit3 = HabitItem(
+            id: "test_habit_3",
+            title: "Meditation",
+            color: "#00FF00",
+            category: testCategory,
+            note: "Mindfulness practice",
+            weekdays: [.tuesday, .thursday, .saturday, .sunday],
+            order: 1,
+            timestamp: Date().addingTimeInterval(-86400 * 15), // 15 days ago
+            targetCount: 3
         )
         
         mockContext.insert(habit1)
         mockContext.insert(habit2)
+        mockContext.insert(habit3)
         
         // Create entries for habit1
         let today = Date()
         let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: today)!
         
-        let entry1 = DailyEntry(habit: habit1, date: today, isCompleted: true, completionDate: today)
-        let entry2 = DailyEntry(habit: habit1, date: yesterday, isCompleted: false)
+        let entry1 = DailyEntry(habit: habit1, date: today)
+        entry1.completionDates = [today, today.addingTimeInterval(3600)] // Two completions today
+        
+        let entry2 = DailyEntry(habit: habit1, date: yesterday)
+        entry2.completionDates = [yesterday] // One completion yesterday
         
         mockContext.insert(entry1)
         mockContext.insert(entry2)
         
+        
         // Create entries for habit2
-        let entry3 = DailyEntry(habit: habit2, date: today, isCompleted: true, completionDate: today)
-        let entry4 = DailyEntry(habit: habit2, date: yesterday, isCompleted: true, completionDate: yesterday)
+        let entry3 = DailyEntry(habit: habit2, date: today)
+        entry3.completionDates = [today, today.addingTimeInterval(3600), today.addingTimeInterval(7200)] // Three completions today
+        
+        let entry4 = DailyEntry(habit: habit2, date: yesterday)
+        entry4.completionDates = [yesterday, yesterday.addingTimeInterval(3600), today.addingTimeInterval(7200)] // Two completions yesterday
         
         mockContext.insert(entry3)
         mockContext.insert(entry4)
+        
+        
+        let entry5 = DailyEntry(habit: habit3, date: yesterday)
+        mockContext.insert(entry5)
         
         try? mockContext.save()
         
@@ -150,7 +176,7 @@ final class ExportImportTests: XCTestCase {
                 let exportedHabits = try decoder.decode(ExportData.self, from: exportedData)
                 
                 // Verify habits count
-                XCTAssertEqual(exportedHabits.habits.count, 2, "Should export 2 habits")
+                XCTAssertEqual(exportedHabits.habits.count, 3, "Should export 3 habits")
                 
                 // Verify habit details
                 let habit1 = exportedHabits.habits.first { $0.id == "test_habit_1" }
@@ -236,8 +262,10 @@ final class ExportImportTests: XCTestCase {
                 let exportedHabits = try decoder.decode(ExportData.self, from: exportedData)
                 
                 // Should only export the active habit
-                XCTAssertEqual(exportedHabits.habits.count, 1, "Should only export active habits")
-                XCTAssertEqual(exportedHabits.habits[0].id, "test_habit_1", "Exported habit should be the active one")
+                XCTAssertEqual(exportedHabits.habits.count, 2, "Should only export active habits")
+                
+                let importedHabit1 = exportedHabits.habits.filter { $0.id == "test_habit_1" }
+                XCTAssertEqual(importedHabit1[0].id, "test_habit_1", "Exported habit should be the active one")
             } catch {
                 XCTFail("Failed to read or parse exported data: \(error)")
             }
@@ -276,10 +304,10 @@ final class ExportImportTests: XCTestCase {
             
             // Verify imported data
             let habitsAfterImport = try? self.mockContext.fetch(habitsFetchDescriptor)
-            XCTAssertEqual(habitsAfterImport?.count, 2, "Should import 2 habits")
+            XCTAssertEqual(habitsAfterImport?.count, 3, "Should import 3 habits")
             
             let entriesAfterImport = try? self.mockContext.fetch(entriesFetchDescriptor)
-            XCTAssertEqual(entriesAfterImport?.count, 4, "Should import 4 entries")
+            XCTAssertEqual(entriesAfterImport?.count, 5, "Should import 5 entries")
             
             // Verify habit details
             let importedHabit1 = habitsAfterImport?.first { $0.id == "test_habit_1" }
@@ -346,7 +374,7 @@ final class ExportImportTests: XCTestCase {
             let habitsAfterImport = try? self.mockContext.fetch(habitsFetchDescriptor)
             
             // Should have all three habits
-            XCTAssertEqual(habitsAfterImport?.count, 3, "Should have 3 habits after import")
+            XCTAssertEqual(habitsAfterImport?.count, 4, "Should have 4 habits after import")
             
             // Verify habit1 was reset to original name from export
             let importedHabit1 = habitsAfterImport?.first { $0.id == "test_habit_1" }
@@ -462,7 +490,7 @@ final class ExportImportTests: XCTestCase {
                 let habitIds = habitsAfterImport?.map { $0.id }
                 let uniqueHabitIds = Set(habitIds ?? [])
                 XCTAssertEqual(habitIds?.count, uniqueHabitIds.count, "Should have no duplicate habits")
-                XCTAssertEqual(uniqueHabitIds.count, 2, "Should maintain exactly 2 habits")
+                XCTAssertEqual(uniqueHabitIds.count, 3, "Should maintain exactly 3 habits")
                 
                 // Check each habit has exactly the expected number of entries
                 let habit1Entries = entriesAfterImport?.filter { $0.habit.id == "test_habit_1" }
@@ -542,6 +570,51 @@ final class ExportImportTests: XCTestCase {
                 }
                 print("===================\n")
             }
+        }
+    }
+    
+    func testExportImportWithMultipleCompletions() throws {
+        runAsyncTest {
+            // Create test data
+            let habits = await self.createTestHabits()
+            let exportImport = await ExportImportData()
+            await exportImport.setModelContext(self.mockContext)
+            
+            // Export
+            guard let exportURL = await exportImport.exportHabits() else {
+                XCTFail("Failed to export habits")
+                return
+            }
+            
+            // Clear database
+            try? self.mockContext.delete(model: HabitItem.self)
+            try? self.mockContext.delete(model: DailyEntry.self)
+            try? self.mockContext.save()
+            
+            // Import
+            let importSuccess = await exportImport.importHabits(from: exportURL)
+            XCTAssertTrue(importSuccess)
+            
+            // Verify imported data
+            let habitsFetchDescriptor = FetchDescriptor<HabitItem>()
+            let habitsAfterImport = try? self.mockContext.fetch(habitsFetchDescriptor)
+            
+            // Verify target counts
+            let habit1 = habitsAfterImport?.first { $0.id == "test_habit_1" }
+            XCTAssertEqual(habit1?.targetCount, 2)
+            
+            let habit2 = habitsAfterImport?.first { $0.id == "test_habit_2" }
+            XCTAssertEqual(habit2?.targetCount, 3)
+            
+            // Verify completion dates
+            let entriesFetchDescriptor = FetchDescriptor<DailyEntry>()
+            let entriesAfterImport = try? self.mockContext.fetch(entriesFetchDescriptor)
+            
+            let todayEntry1 = entriesAfterImport?.first { $0.habit.id == "test_habit_1" && Calendar.current.isDateInToday($0.date) }
+            XCTAssertEqual(todayEntry1?.completionDates.count, 2)
+            
+            let todayEntry2 = entriesAfterImport?.first { $0.habit.id == "test_habit_2" && Calendar.current.isDateInToday($0.date) }
+            XCTAssertEqual(todayEntry2?.completionDates.count, 3)
         }
     }
 }

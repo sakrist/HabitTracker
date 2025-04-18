@@ -163,8 +163,8 @@ struct DayHabitsListView: View {
                 }
                 // play achivement sound
                 playSound(name: "achive-sound-4.caf")
-                
             }
+            entry.achievement = achievement
             
             if (new) {
                 silenceTodaysNotification(identifier: entry.habit.id)
@@ -172,9 +172,9 @@ struct DayHabitsListView: View {
                 reScheduleWeekdayNotification(habitItem: entry.habit)
             }
         
-            let contCompleted = entries.reduce(0) { $0 + ($1.isCompleted ? 1 : 0)}
+            let countCompleted = entries.reduce(0) { $0 + ($1.isCompleted ? 1 : 0)}
             
-            if (contCompleted == entries.count) {
+            if (countCompleted == entries.count) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     counter += 1
                     playSound(name: "Balloon Pop.caf")

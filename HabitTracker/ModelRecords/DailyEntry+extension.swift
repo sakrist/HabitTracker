@@ -10,6 +10,25 @@ import SwiftData
 
 
 extension DailyEntry {
+    var title:String {
+        return self.habit.title
+    }
+}
+
+extension SchemaV3.HabitItem {
+    var targetCount:Int {
+        get { return 1 }
+        set {}
+    }
+}
+
+extension SchemaV3.DailyEntry {
+    
+    var achievement:Achievement? {
+        get { return Achievement.none }
+        set {}
+    }
+    
     func setCompleted(_ value:Bool) {
         self.isCompleted = value
         if value {
@@ -19,8 +38,24 @@ extension DailyEntry {
         }
     }
     
-    var title:String {
-        return self.habit.title
+    var completionDates:[Date] {
+        get {
+            return (completionDate != nil) ? [completionDate!] : []
+        }
+        set {
+            self.completionDate = newValue.first
+        }
+    }
+}
+
+extension SchemaV4.DailyEntry {
+    func setCompleted(_ value:Bool) {
+        if value && !isCompleted {
+            completionDates.append(Date())
+        } else if !value {
+            completionDates.removeAll()
+            achievement = Achievement.none
+        }
     }
 }
 

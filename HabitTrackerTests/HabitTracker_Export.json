@@ -31,12 +31,12 @@
         },
         {
           "completed" : true,
-          "completionDate" : "2025-04-16T11:56:15Z",
+          "completionDates" : ["2025-04-16T11:56:15Z"],
           "date" : "2025-04-13T11:55:57Z"
         },
         {
           "completed" : true,
-          "completionDate" : "2025-04-16T11:56:13Z",
+          "completionDates" : ["2025-04-16T11:56:13Z"],
           "date" : "2025-04-12T11:55:57Z"
         },
         {
@@ -45,7 +45,7 @@
         },
         {
           "completed" : true,
-          "completionDate" : "2025-04-16T11:56:11Z",
+          "completionDates" : ["2025-04-16T11:56:11Z"],
           "date" : "2025-04-10T11:55:57Z"
         },
         {
@@ -58,17 +58,17 @@
         },
         {
           "completed" : true,
-          "completionDate" : "2025-04-16T11:56:01Z",
+          "completionDates" : ["2025-04-16T11:56:01Z"],
           "date" : "2025-04-07T11:55:57Z"
         },
         {
           "completed" : true,
-          "completionDate" : "2025-04-16T11:56:03Z",
+          "completionDates" : ["2025-04-16T11:56:03Z"],
           "date" : "2025-04-06T11:55:57Z"
         },
         {
           "completed" : true,
-          "completionDate" : "2025-04-16T11:56:06Z",
+          "completionDates" : ["2025-04-16T11:56:06Z"],
           "date" : "2025-04-05T11:55:57Z"
         },
         {
@@ -168,7 +168,7 @@
       "completions" : [
         {
           "completed" : true,
-          "completionDate" : "2025-04-16T11:56:23Z",
+          "completionDates" : ["2025-04-16T11:56:23Z"],
           "date" : "2025-04-16T11:55:57Z"
         },
         {
@@ -209,7 +209,7 @@
         },
         {
           "date" : "2025-04-06T11:55:57Z",
-          "completionDate" : "2025-04-16T11:56:04Z",
+          "completionDates" : ["2025-04-16T11:56:04Z"],
           "completed" : true
         },
         {
@@ -251,7 +251,7 @@
         },
         {
           "date" : "2025-04-13T11:55:57Z",
-          "completionDate" : "2025-04-16T11:56:15Z",
+          "completionDates" : ["2025-04-16T11:56:15Z"],
           "completed" : true
         },
         {
@@ -280,7 +280,7 @@
         },
         {
           "date" : "2025-04-06T11:55:57Z",
-          "completionDate" : "2025-04-16T11:56:03Z",
+          "completionDates" : ["2025-04-16T11:56:03Z"],
           "completed" : true
         },
         {
@@ -332,7 +332,7 @@
         },
         {
           "date" : "2025-04-12T11:55:57Z",
-          "completionDate" : "2025-04-16T11:56:13Z",
+          "completionDates" : ["2025-04-16T11:56:13Z"],
           "completed" : true
         },
         {
@@ -353,7 +353,7 @@
         },
         {
           "date" : "2025-04-07T11:55:57Z",
-          "completionDate" : "2025-04-16T11:56:02Z",
+          "completionDates" : ["2025-04-16T11:56:02Z"],
           "completed" : true
         },
         {
@@ -463,7 +463,7 @@
         },
         {
           "date" : "2025-04-15T11:55:57Z",
-          "completionDate" : "2025-04-16T11:56:17Z",
+          "completionDates" : ["2025-04-16T11:56:17Z"],
           "completed" : true
         },
         {
@@ -484,7 +484,7 @@
         },
         {
           "date" : "2025-04-10T11:55:57Z",
-          "completionDate" : "2025-04-16T11:56:11Z",
+          "completionDates" : ["2025-04-16T11:56:11Z"],
           "completed" : true
         },
         {
@@ -505,7 +505,7 @@
         },
         {
           "date" : "2025-04-05T11:55:57Z",
-          "completionDate" : "2025-04-16T11:56:05Z",
+          "completionDates" : ["2025-04-16T11:56:05Z"],
           "completed" : true
         },
         {

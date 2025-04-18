@@ -30,17 +30,6 @@ final class ModelDataFetchTests: XCTestCase {
         wait(for: [expectation], timeout: 1.0)
     }
     
-//    @MainActor func testInsertCategories() throws {
-//        // Clear existing categories
-//        try mockContext.delete(model: HabitCategory.self)
-//        
-//        modelData.insertCategories()
-//        
-//        let categories = try mockContext.fetch(FetchDescriptor<HabitCategory>())
-//        XCTAssertFalse(categories.isEmpty)
-//        XCTAssertTrue(categories.contains(where: { $0.id == "default" }))
-//    }
-    
     @MainActor func testFetchCategories() throws {
         let categories = modelData.fetchCategories()
         XCTAssertFalse(categories.isEmpty)
@@ -139,5 +128,61 @@ final class ModelDataFetchTests: XCTestCase {
         
         XCTAssertEqual(generatedEntries.count, 1)
         XCTAssertTrue(generatedEntries.first?.isCompleted ?? false)
+    }
+    
+    @MainActor func testUpdateHabitTargetCount() throws {
+        // Create test habit with initial target count of 1
+        let habit = HabitItem(title: "Test Habit", color: "#FF0000", category: testCategory)
+        mockContext.insert(habit)
+        
+        // Create a completed entry
+        let today = Date()
+        let entry = DailyEntry(habit: habit, date: today)
+        entry.completionDates = [today]
+        mockContext.insert(entry)
+        
+        // Verify initial state
+        XCTAssertEqual(habit.targetCount, 1)
+        XCTAssertEqual(entry.completionDates.count, 1)
+        XCTAssertTrue(entry.isCompleted)
+        
+        // Update target count to 3
+        modelData.updateHabitTargetCount(habit, newCount: 3)
+        
+        // Verify the update
+        XCTAssertEqual(habit.targetCount, 3)
+        XCTAssertEqual(entry.completionDates.count, 3)
+        XCTAssertTrue(entry.isCompleted)
+        
+        // Verify all completion dates are the same
+        let firstDate = entry.completionDates[0]
+        XCTAssertTrue(entry.completionDates.allSatisfy { $0 == firstDate })
+    }
+    
+    @MainActor func testUpdateHabitReduceTargetCount() throws {
+        // Create test habit with initial target count of 3
+        let habit = HabitItem(title: "Test Habit", color: "#FF0000", category: testCategory)
+        habit.targetCount = 3
+        mockContext.insert(habit)
+        
+        // Create a completed entry with 3 completion dates
+        let today = Date()
+        let entry = DailyEntry(habit: habit, date: today)
+        entry.completionDates = [today, today, today]
+        mockContext.insert(entry)
+        
+        // Verify initial state
+        XCTAssertEqual(habit.targetCount, 3)
+        XCTAssertEqual(entry.completionDates.count, 3)
+        XCTAssertTrue(entry.isCompleted)
+        
+        // Reduce target count to 1
+        modelData.updateHabitTargetCount(habit, newCount: 1)
+        
+        // Verify the update maintains first completion
+        XCTAssertEqual(habit.targetCount, 1)
+        XCTAssertEqual(entry.completionDates.count, 1)
+        XCTAssertTrue(entry.isCompleted)
+        XCTAssertEqual(entry.completionDates.first, today)
     }
 }

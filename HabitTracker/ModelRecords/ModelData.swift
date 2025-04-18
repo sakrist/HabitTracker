@@ -11,7 +11,7 @@ import Foundation
 import SwiftUI
 import WidgetKit
 
-typealias SchemaLatest = SchemaV3
+typealias SchemaLatest = SchemaV4
 
 typealias HabitItem = SchemaLatest.HabitItem
 typealias HabitCategory = SchemaLatest.HabitCategory
@@ -32,7 +32,7 @@ class ModelData {
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-            let container = try ModelContainer(for: schema, migrationPlan: MigrationPlanV2toV3.self,
+            let container = try ModelContainer(for: schema, migrationPlan: MigrationPlanToLatest.self,
                                              configurations: [modelConfiguration])
             self.init(container: container)
         } catch {
@@ -107,35 +107,101 @@ enum MigrationPlanV1toV2: SchemaMigrationPlan {
     )
 }
 
-enum MigrationPlanV2toV3: SchemaMigrationPlan {
+enum MigrationPlanToLatest: SchemaMigrationPlan {
+    // Store completion dates during migration
+    private static var storedCompletionDates: [String: Date] = [:]
+    
     static var schemas: [any VersionedSchema.Type] {
-        [SchemaV2.self, SchemaV3.self]
+        [SchemaV2.self, SchemaV3.self, SchemaV4.self]
     }
     
     static var stages: [MigrationStage] {
-        [migrateV2toV3]
+        [migrateV2toV3, migrateV3toV4]
     }
     
     // MARK: Migration Stages
-    static let migrateV2toV3 = MigrationStage.custom(
-        fromVersion: SchemaV2.self,
-        toVersion: SchemaV3.self,
+        static let migrateV2toV3 = MigrationStage.custom(
+            fromVersion: SchemaV2.self,
+            toVersion: SchemaV3.self,
+            willMigrate: { context in
+            },
+            didMigrate: { context in
+                
+                let habits = try context.fetch(FetchDescriptor<SchemaV3.HabitItem>())
+                for item in habits {
+                    item.hType = "none"
+                }
+
+                try context.save()
+            }
+        )
+    
+    static let migrateV3toV4 = MigrationStage.custom(
+        fromVersion: SchemaV3.self,
+        toVersion: SchemaV4.self,
         willMigrate: { context in
-            print("migrateV2toV3.willMigrate()")
+            print("Starting migration from V3 to V4")
+            // Store completion dates before migration
+            let entries = try context.fetch(FetchDescriptor<SchemaV3.DailyEntry>())
+            print("Found \(entries.count) entries to store dates")
+            for entry in entries {
+                if let completionDate = entry.completionDate {
+                    // Use habit.id + date as unique key
+                    let key = "\(entry.habit.id)_\(entry.date.timeIntervalSince1970)"
+                    storedCompletionDates[key] = completionDate
+                }
+            }
+            print("Stored \(storedCompletionDates.count) completion dates")
         },
         didMigrate: { context in
-            print("migrateV2toV3.didMigrate()")
-            
-            let habits = try context.fetch(FetchDescriptor<SchemaV3.HabitItem>())
-            print("migrateV2toV3 - found \(habits.count) animals")
-            
-            // default all animals to not extinct
-            for item in habits {
-                item.hType = "none"
+            do {
+                // Migrate habits first
+                let habits = try context.fetch(FetchDescriptor<SchemaV4.HabitItem>())
+                print("Found \(habits.count) habits to migrate")
+                for item in habits {
+                    item.targetCount = 1
+                }
+                
+                // Migrate entries with stored completion dates
+                let entries = try context.fetch(FetchDescriptor<SchemaV4.DailyEntry>())
+                print("Found \(entries.count) entries to migrate")
+                for item in entries {
+                    let key = "\(item.habit.id)_\(item.date.timeIntervalSince1970)"
+                    if let storedDate = storedCompletionDates[key] {
+                        item.completionDates = [storedDate]
+                    }
+                    item.achievement = Achievement.none
+                }
+                
+                // Clear stored dates
+                storedCompletionDates.removeAll()
+                
+                try context.save()
+                print("Migration completed successfully")
+            } catch {
+                print("Migration failed: \(error)")
+                storedCompletionDates.removeAll()
+                throw error
             }
-
-            try context.save()
         }
     )
 }
 
+enum RollbackMigrationPlan: SchemaMigrationPlan {
+    static var schemas: [any VersionedSchema.Type] {
+        [SchemaV3.self, SchemaV4.self]
+    }
+    
+    static var stages: [MigrationStage] {
+        [migrateV4toV3]
+    }
+    
+    // MARK: Migration Stages
+    
+    static let migrateV4toV3 = MigrationStage.custom(
+        fromVersion: SchemaV4.self,
+        toVersion: SchemaV3.self,
+        willMigrate: nil,
+        didMigrate: nil
+    )
+}

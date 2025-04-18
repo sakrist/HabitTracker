@@ -46,9 +46,9 @@ final class StreakTests: XCTestCase {
             let entryDate = calendar.date(byAdding: .day, value: -i, to: startDate)!
             let entry = DailyEntry(
                 habit: testHabit,
-                date: entryDate,
-                isCompleted: completedDays.contains(i)
+                date: entryDate
             )
+            entry.setCompleted(completedDays.contains(i))
             mockContext.insert(entry)
         }
         try? mockContext.save()

@@ -31,6 +31,7 @@ struct AddHabitView: View {
     @State private var canEnableAutocomplete: Bool = false
     
     @State private var predefined:String = Health.customHabitName
+    @State private var targetCount: Int = 1
     
     private var habitItem: HabitItem?
     let supportedHabits = Health.shared.supportedHabits.keys.sorted {
@@ -44,6 +45,7 @@ struct AddHabitView: View {
         _enableAutocomplete = State(initialValue:(habitItem?.healthType != .none))
         _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(_title.wrappedValue))
         _selectedCategory = State(initialValue: habitItem?.category ?? ModelData.shared.defaultCategory())
+        _targetCount = State(initialValue: habitItem?.targetCount ?? 1)
 
         self.habitItem = habitItem
         if let habitItem = habitItem {
@@ -201,6 +203,31 @@ struct AddHabitView: View {
                     }
                 }
                 
+                Section(header: Text("Daily Target")) {
+                    Stepper("Times per day: \(targetCount)", value: $targetCount, in: 1...10)
+                    if habitItem != nil {
+                        Text("Note: Changing the target count might impact the chronological view of your habit progress.")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                    }
+                }
+                
+                if habitItem != nil {
+                    Section {
+                        Button(action: {
+                            habitItem?.active = false
+                            ModelData.shared.saveContext()
+                            dismiss()
+                        }) {
+                            HStack {
+                                Spacer()
+                                Text("Delete Habit")
+                                    .foregroundStyle(.red)
+                                Spacer()
+                            }
+                        }
+                    }
+                }
             }
             .navigationTitle(habitItem == nil ? "Add New Habit" : "Edit Habit")
             .toolbar {
@@ -249,16 +276,19 @@ struct AddHabitView: View {
     }
     
     private func saveHabit() {
-        
         if let habitItem = habitItem {
-            // Editing an existing habit
+            // Handle target count changes first
+            if habitItem.targetCount != targetCount {
+                ModelData.shared.updateHabitTargetCount(habitItem, newCount: targetCount)
+            }
+            
+            // Update other properties
             habitItem.title = title
             habitItem.color = selectedColor.toHex()
             habitItem.weekdays = activeWeekdays
             habitItem.time = (timeSensetive) ? time : nil
             habitItem.category = selectedCategory
         } else {
-            
             let exists = fetchHabits(modelContext: modelContext, predicate: #Predicate<HabitItem> {item in item.title == title && !item.active})
             
             if exists.count > 0 {
@@ -282,6 +312,7 @@ struct AddHabitView: View {
         
         // Creating a new habit
         let newHabit = HabitItem(title: title, color: selectedColor.toHex(), category: selectedCategory, timestamp: Date())
+        newHabit.targetCount = targetCount
         newHabit.weekdays = activeWeekdays
         if (timeSensetive) {
             newHabit.time = time
@@ -336,12 +367,13 @@ struct AddHabitView: View {
 //}
 
 #Preview("Edit Habit") {
-    AddHabitView(habitItem: HabitItem(
+    var habitItem = HabitItem(
         title: "Morning Run",
         color: Color.green.toHex(),
         category: HabitCategory(id: "default", title: "Other"),
-        timestamp: Date()
-    )).modelContainer(SampleData.shared.modelContainer)
+        timestamp: Date(),
+    )
+    AddHabitView(habitItem:habitItem ).modelContainer(SampleData.shared.modelContainer)
 }
 
 

@@ -106,7 +106,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -122,7 +122,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -138,7 +138,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -154,7 +154,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -170,7 +170,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -186,7 +186,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -208,7 +208,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -228,7 +228,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -246,7 +246,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -262,7 +262,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -278,7 +278,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -294,7 +294,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -312,7 +312,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -331,7 +331,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -347,7 +347,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = false
+            testEntry.setCompleted(false)
             testEntry.completionDate = nil
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -369,7 +369,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -389,7 +389,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -407,7 +407,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -426,7 +426,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
@@ -445,7 +445,7 @@ final class AchievementTests: XCTestCase {
                 XCTFail("Failed to fetch test entry")
                 return
             }
-            testEntry.isCompleted = true
+            testEntry.setCompleted(true)
             testEntry.completionDate = testEntry.date
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)

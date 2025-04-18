@@ -54,26 +54,69 @@ struct CirclyStyle: ToggleStyle {
 
 
 struct HabitItemCell: View {
-    let item:HabitItem
+    let item: HabitItem
     var entry: DailyEntry?
     
     var body: some View {
-        
         HStack {
             if let entry = entry {
+                if item.targetCount > 1 {
+                    HStack {
+                        ZStack {
+                            if entry.completionDates.count >= item.targetCount {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(item.getColor())
+                                    .font(.system(size: 24))
+                            } else {
+                                Image(systemName: "circle")
+                                    .foregroundColor(item.getColor())
+                                    .font(.system(size: 24))
+                                
+                                Text("\(entry.completionDates.count)")
+                                    .font(.system(size: 14, weight: .medium))
+                                    .foregroundColor(item.getColor())
+                            }
+                        }
+                        
+                        Text(item.title)
+                            .foregroundColor(.primary)
+                    }
+                    .contentShape(Rectangle())  // Make entire row tappable
+                    .onTapGesture {
+                        withAnimation(.easeInOut(duration: 0.15)) {
+                            if entry.completionDates.count < item.targetCount {
+                                entry.setCompleted(true)
+                            } else {
+                                entry.setCompleted(false)
+                            }
+                        }
+                    }
+                } else {
                     Toggle(item.title, isOn: Binding(
                         get: { entry.isCompleted },
                         set: { entry.setCompleted($0) }
                     ))
                     .toggleStyle(CheckboxStyle(checkColor: item.getColor()))
-                    .padding(0)
-                } else {
-                    Toggle(item.title, isOn: .constant(true))
-                        .toggleStyle(CirclyStyle(checkColor: item.getColor()))
-                        .padding(0)
                 }
+                
+            } else {
+                Toggle(item.title, isOn: .constant(true))
+                    .toggleStyle(CirclyStyle(checkColor: item.getColor()))
+                    .padding(0)
+            }
             
             Spacer()
+            
+            if let entry = entry, item.targetCount > 1 {
+                HStack(spacing: 4) {
+                    ForEach(0..<item.targetCount, id: \.self) { index in
+                        Circle()
+                            .fill(index < entry.completionDates.count ? item.getColor() : Color.gray.opacity(0.3))
+                            .frame(width: 8, height: 8)
+                    }
+                }
+                .padding(.horizontal, 4)
+            }
             
             if let type = item.healthType {
                 if type != .none {

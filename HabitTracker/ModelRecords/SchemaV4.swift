@@ -1,5 +1,5 @@
 //
-//  SchemaV3.swift
+//  SchemaV4.swift
 //  HabitTracker
 //
 //  Created by Volodymyr Boichentsov on 02/02/2025.
@@ -8,15 +8,15 @@
 import SwiftData
 import Foundation
 
-enum SchemaV3: VersionedSchema {
-    static var versionIdentifier = Schema.Version(3, 0, 0)
+enum SchemaV4: VersionedSchema {
+    static var versionIdentifier = Schema.Version(4, 0, 0)
     
     static var models: [any PersistentModel.Type] {
-        [SchemaV3.HabitItem.self, SchemaV3.HabitCategory.self, SchemaV3.DailyEntry.self]
+        [SchemaV4.HabitItem.self, SchemaV4.HabitCategory.self, SchemaV4.DailyEntry.self]
     }
 }
 
-extension SchemaV3 {
+extension SchemaV4 {
     @Model
     final class HabitItem : Codable {
         var id: String
@@ -32,6 +32,7 @@ extension SchemaV3 {
         var active: Bool = true
         
         var hType: String? = "none" // health data and fitness
+        var targetCount: Int = 1  // Default to 1 completion per day
     
         enum Weekday: Int, CaseIterable, Identifiable, Codable {
             
@@ -90,7 +91,7 @@ extension SchemaV3 {
         
         // Custom CodingKeys to handle encoding/decoding if needed
         private enum CodingKeys: String, CodingKey {
-            case id, title, color, category, time, note, weekdays, order, timestamp, active, healthType
+            case id, title, color, category, time, note, weekdays, order, timestamp, active, healthType, targetCount
         }
         
         
@@ -104,7 +105,8 @@ extension SchemaV3 {
              order: Int = 0,
              timestamp: Date = Date(), // date when created habit
              active: Bool = true,
-             hType: String? = "none") {
+             hType: String? = "none",
+             targetCount: Int = 1) {
             self.id = id
             self.title = title
             self.color = color
@@ -116,6 +118,7 @@ extension SchemaV3 {
             self.timestamp = timestamp
             self.active = active
             self.hType = hType
+            self.targetCount = targetCount
         }
         
         // Encoding method for Codable conformance
@@ -132,6 +135,7 @@ extension SchemaV3 {
             try container.encode(timestamp, forKey: .timestamp)
             try container.encode(active, forKey: .active)
             try container.encode(hType, forKey: .healthType)
+            try container.encode(targetCount, forKey: .targetCount)
         }
         
         // Decoding method for Codable conformance
@@ -148,6 +152,7 @@ extension SchemaV3 {
             let timestamp = try container.decode(Date.self, forKey: .timestamp)
             let active = try container.decode(Bool.self, forKey: .active)
             let hType = try container.decode(String.self, forKey: .healthType)
+            let targetCount = try container.decode(Int.self, forKey: .targetCount)
             
             self.init(id: id,
                       title: title,
@@ -159,7 +164,8 @@ extension SchemaV3 {
                       order: order,
                       timestamp: timestamp,
                       active: active,
-                      hType: hType)
+                      hType: hType,
+                      targetCount: targetCount)
         }
     }
     
@@ -208,22 +214,48 @@ extension SchemaV3 {
     class DailyEntry : ObservableObject {
         var habit: HabitItem
         var date: Date // date of entry
-        var isCompleted: Bool = false
-        var completionDate: Date? // completion time, when isCompleted changed to true.
+        var completionDates: [Date] = [] // Store all completion timestamps
+        var achievement: Achievement? = Achievement.none // Store earned achievement
         
-        init(habit: HabitItem, date: Date, isCompleted: Bool = false, completionDate: Date? = nil) {
-            self.date = date
-            self.isCompleted = isCompleted
-            self.habit = habit
-            self.completionDate = completionDate
+        var isCompleted: Bool {
+            get { completionDates.count >= habit.targetCount }
+//            set {
+//                if newValue && !isCompleted {
+//                    completionDates.append(Date())
+//                } else if !newValue {
+//                    completionDates.removeAll()
+//                    achievement = Achievement.none
+//                }
+//            }
         }
         
+        var completionDate: Date? {
+            get { completionDates.last }
+            set {
+                if let date = newValue {
+                    if !completionDates.contains(date) {
+                        completionDates.append(date)
+                    }
+                } else {
+                    completionDates.removeAll()
+                }
+            }
+        }
+                
+        init(habit: HabitItem, date: Date, isCompleted: Bool = false, completionDate: Date? = nil) {
+            self.habit = habit
+            self.date = date
+            self.achievement = Achievement.none
+            if (isCompleted) {
+                self.setCompleted(isCompleted)
+            }
+//            self.isCompleted = isCompleted
+        }
     }
-    
 }
 
 
-extension SchemaV3.HabitItem {
+extension SchemaV4.HabitItem {
     var healthType: HealthType? {
         get {
             if let healthType = self.hType {

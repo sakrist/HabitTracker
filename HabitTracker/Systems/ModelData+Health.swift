@@ -45,7 +45,7 @@ extension ModelData {
         for item in entries {
             if let healthType = item.habit.healthType {
                 if completed.contains(where: { $0 == healthType }) {
-                    item.isCompleted = true
+                    item.setCompleted(true)
                 }
             }
         }
@@ -84,7 +84,7 @@ extension ModelData {
         
         if let healthType = entry.habit.healthType {
             if completed.contains(where: { $0 == healthType }) {
-                entry.isCompleted = true
+                entry.setCompleted(true)
             }
         }
     }

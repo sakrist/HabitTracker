@@ -9,7 +9,7 @@
 import SwiftUI
 import Foundation
 
-enum Achievement: Int {
+enum Achievement: Int, CaseIterable, Codable {
     case none = 0
     case completionRenewed = 1 // completed habit that had not been completed between 2 days to the 2 weeks
     case completionRenewed2 = 2 // completed habit that had not been completed for more then 2-4 weeks
@@ -35,7 +35,7 @@ extension ModelData {
         guard entry.isCompleted else { return .none }
         
         // Check streak-based achievements
-        let (streak, completionRate, longest, total) = calculateStreak(habit: entry.habit, for: .endOfDay())
+        let (streak, _, _, total) = calculateStreak(habit: entry.habit, for: .endOfDay())
         
         // Log current streak for debugging
         print("Current streak for \(entry.habit.title): \(streak)")

@@ -23,11 +23,13 @@ struct ExportableHabit: Codable {
     var completions: [CompletionRecord]
     var time: Date?
     var hType: String?
+    var targetCount: Int?
     
     struct CompletionRecord: Codable {
         var date: Date
         var completed: Bool
-        var completionDate: Date?
+        var completionDates: [Date]?
+        var achievement: Int?
     }
 }
 
@@ -87,7 +89,8 @@ class ExportImportData {
                 ExportableHabit.CompletionRecord(
                     date: entry.date,
                     completed: entry.isCompleted,
-                    completionDate: entry.completionDate
+                    completionDates: entry.completionDates,
+                    achievement: entry.achievement?.rawValue ?? 0
                 )
             }
             
@@ -104,7 +107,8 @@ class ExportImportData {
                 timestamp: habit.timestamp,
                 completions: completions,
                 time: habit.time,
-                hType: habit.hType
+                hType: habit.hType,
+                targetCount: habit.targetCount
             )
             
             exportableHabits.append(exportableHabit)
@@ -173,6 +177,7 @@ class ExportImportData {
                     habit.active = true  // Set habit to active on import
                     habit.time = importedHabit.time
                     habit.hType = importedHabit.hType
+                    habit.targetCount = importedHabit.targetCount ?? 1
                     
                     // Convert weekdays
                     var weekdays = Set<HabitItem.Weekday>()
@@ -229,6 +234,7 @@ class ExportImportData {
                         timestamp: importedHabit.timestamp,
                         active: true  // Ensure the habit is active
                     )
+                    habit.targetCount = importedHabit.targetCount ?? 1
                     habit.hType = importedHabit.hType
                     modelContext.insert(habit)
                 }
@@ -238,9 +244,10 @@ class ExportImportData {
                     let entry = DailyEntry(
                         habit: habit,
                         date: completion.date,
-                        isCompleted: completion.completed,
-                        completionDate: completion.completionDate
+                        isCompleted: completion.completed
                     )
+                    entry.completionDates = completion.completionDates ?? []
+                    entry.achievement =  Achievement(rawValue: completion.achievement ?? 0)
                     modelContext.insert(entry)
                 }
             }
