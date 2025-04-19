@@ -8,6 +8,13 @@
 import SwiftUI
 import SwiftData
 
+private struct ScrollOffsetPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
 struct TimelineView: View {
     @Environment(\.modelContext) private var modelContext
     @Binding var reload: Bool
@@ -113,129 +120,6 @@ struct TimelineView: View {
         
         timelineItems.append(contentsOf: uniqueGroups)
         timelineItems.sort { $0.date > $1.date } // Ensure proper ordering
-    }
-}
-
-struct TimelineDayGroup: View {
-    let group: TimelineGroup
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text(group.date.formatted(date: .complete, time: .omitted))
-                .font(.headline)
-                .padding(.vertical, 8)
-            
-            ForEach(group.completionEntries.reversed()) { completionEntry in
-                TimelineEntryView(
-                    entry: completionEntry.entry,
-                    completionDate: completionEntry.completionDate,
-                    index: completionEntry.index,
-                    totalCompletions: completionEntry.entry.completionDates.count
-                )
-            }
-        }
-    }
-}
-
-struct TimelineEntryView: View {
-    let entry: DailyEntry
-    let completionDate: Date
-    let index: Int
-    let totalCompletions: Int
-    
-    init(entry: DailyEntry, completionDate: Date, index: Int = 0, totalCompletions: Int = 1) {
-        self.entry = entry
-        self.completionDate = completionDate
-        self.index = index
-        self.totalCompletions = totalCompletions
-    }
-    
-    var body: some View {
-        HStack(alignment: .center, spacing: 0) {
-            TimelineConnector(color: entry.habit.getColor())
-            
-            VStack(alignment: .leading) {
-                HStack {
-                    Text(entry.habit.title)
-                        .font(.system(.body, design: .rounded))
-                    
-                    if entry.habit.healthType != .none {
-                        Image(systemName: "heart.fill")
-                            .foregroundColor(.pink)
-                            .font(.caption)
-                    }
-                    
-                    if let achievement = entry.achievement, index == 0 {
-                        Text(achievementIcon(achievement: achievement))
-                    }
-                    
-                    if entry.habit.targetCount > 1 {
-                        Text("(\(index + 1)/\(entry.habit.targetCount))")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Spacer()
-                    
-                    Text(completionDate.formatted(date: .omitted, time: .shortened))
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                .padding(.vertical, 4)
-            }
-            .padding(.leading, 12)
-        }
-    }
-}
-
-struct TimelineConnector: View {
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            Rectangle()
-                .fill(color.opacity(0.3))
-                .frame(width: 2)
-            
-            Circle()
-                .fill(color)
-                .frame(width: 8, height: 8)
-            
-            Rectangle()
-                .fill(color.opacity(0.3))
-                .frame(width: 2)
-        }
-    }
-}
-
-// Model to hold completion entry info
-struct CompletionEntry: Identifiable {
-    let id = UUID()
-    let entry: DailyEntry
-    let completionDate: Date
-    let index: Int
-    
-    init(entry: DailyEntry, completionDate: Date) {
-        self.entry = entry
-        self.completionDate = completionDate
-        if let index = entry.completionDates.firstIndex(of: completionDate) {
-            self.index = index
-        } else {
-            self.index = 0
-        }
-    }
-}
-
-struct TimelineGroup: Identifiable {
-    let id = UUID()
-    let date: Date
-    let completionEntries: [CompletionEntry]
-}
-
-private struct ScrollOffsetPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
     }
 }
 

@@ -9,26 +9,33 @@ import SwiftUI
 
 struct SimpleHabitItemCell: View {
     let item: HabitItem
-    var entry: DailyEntry?
+    var entry: DailyEntry
 
     var body: some View {
         HStack {
             if item.targetCount > 1 {
                 // Custom indicator for multiple targets
+                
                 ZStack {
-                    Circle()
-                        .stroke(item.getColor(), lineWidth: 1.5)
-                        .frame(width: 18, height: 18)
-                    
-                    if let entry = entry {
+                    if entry.completionDates.count >= item.targetCount {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(item.getColor())
+//                            .font(.system(size: 24))
+                    } else {
+                        Image(systemName: "circle")
+                            .foregroundColor(item.getColor())
+//                            .font(.system(size: 24))
+                        
                         Text("\(entry.completionDates.count)")
                             .font(.system(size: 10, weight: .medium))
                             .foregroundColor(item.getColor())
                     }
                 }
+                
+                
             } else {
                 // Standard checkbox for single target
-                Image(systemName: (entry?.isCompleted ?? false) ? "checkmark.circle.fill" : "circle")
+                Image(systemName: entry.isCompleted ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(item.getColor())
             }
 
