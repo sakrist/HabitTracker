@@ -24,6 +24,35 @@ struct ActivityView: UIViewControllerRepresentable {
 }
 #endif
 
+struct LoadingOverlay: View {
+    var message: String
+    
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.4)
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 20) {
+                ProgressView()
+                    .scaleEffect(1.5)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                
+                Text(message)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .padding()
+            }
+            .padding(25)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(.systemBackground).opacity(0.8))
+            )
+            .shadow(radius: 10)
+        }
+    }
+}
+
 struct HabitsListView: View {
     @Environment(\.modelContext) private var modelContext
     
@@ -42,6 +71,11 @@ struct HabitsListView: View {
     @State private var showImportFilePicker = false
     @State private var showImportSuccessAlert = false
     @State private var showImportFailureAlert = false
+    
+    @State private var showHealthUpdateConfirmation = false
+    @State private var isUpdatingHealth = false
+    @State private var healthUpdateProgress = "Preparing to update health data..."
+    @State private var showHealthUpdateSuccessAlert = false
     
     @Binding var showAddHabit: Bool
     @Binding var navigationPath: NavigationPath
@@ -74,6 +108,21 @@ struct HabitsListView: View {
                 }
 #endif
                 
+                ToolbarItem {
+                    Button(action: {
+                        showHealthUpdateConfirmation = true
+                    }) {
+                        Label("Update HealthKit Habits", systemImage: "heart")
+                    }
+                    .alert("Update Health Data", isPresented: $showHealthUpdateConfirmation) {
+                        Button("Cancel", role: .cancel) {}
+                        Button("Update") {
+                            updateHealthData()
+                        }
+                    } message: {
+                        Text("This will update all habits with the latest health data from Apple Health. This may take a moment.")
+                    }
+                }
                 
                 ToolbarItem {
                     Button(action: {
@@ -138,6 +187,19 @@ struct HabitsListView: View {
                 }
                 
             }
+            .alert("Update Complete", isPresented: $showHealthUpdateSuccessAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("All habits have been updated with the latest health data.")
+            }
+            .overlay(
+                Group {
+                    if isUpdatingHealth {
+                        LoadingOverlay(message: healthUpdateProgress)
+                            .allowsHitTesting(true)
+                    }
+                }
+            )
         }
     }
     
@@ -163,6 +225,40 @@ struct HabitsListView: View {
             }
         }
         ModelData.shared.saveContext()
+    }
+    
+    private func updateHealthData() {
+        isUpdatingHealth = true
+        
+        Task {
+            // Get all entries, not just today
+            let allEntries = fetchAllHabitEntries(modelContext: modelContext)
+            
+            await MainActor.run {
+                healthUpdateProgress = "Fetching data from Apple Health..."
+            }
+            
+            // Process in chunks to keep UI responsive
+            let chunkSize = 50
+            for i in stride(from: 0, to: allEntries.count, by: chunkSize) {
+                let chunk = Array(allEntries[i..<min(i + chunkSize, allEntries.count)])
+                
+                await MainActor.run {
+                    healthUpdateProgress = "Updating \(i+1) to \(min(i + chunkSize, allEntries.count)) of \(allEntries.count) entries..."
+                }
+                
+                // Update health data for this chunk
+                await Health.shared.updateHabits(entries: chunk)
+                
+                // Small delay to allow UI updates
+                try? await Task.sleep(nanoseconds: 10_000_000) // 10ms
+            }
+            
+            await MainActor.run {
+                isUpdatingHealth = false
+                showHealthUpdateSuccessAlert = true
+            }
+        }
     }
 }
 

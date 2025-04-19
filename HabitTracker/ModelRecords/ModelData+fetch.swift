@@ -230,3 +230,15 @@ func fetchCategories(modelContext: ModelContext) -> [HabitCategory] {
         fatalError("Error fetching categories: \(error)")
     }
 }
+
+// Add this function to fetch all entries
+func fetchAllHabitEntries(modelContext: ModelContext) -> [DailyEntry] {
+    let fetchDescriptor = FetchDescriptor<DailyEntry>()
+    do {
+        let entries = try modelContext.fetch(fetchDescriptor)
+        return entries
+    } catch {
+        print("Error fetching all entries: \(error)")
+        return []
+    }
+}

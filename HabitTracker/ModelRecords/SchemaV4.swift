@@ -219,27 +219,10 @@ extension SchemaV4 {
         
         var isCompleted: Bool {
             get { completionDates.count >= habit.targetCount }
-//            set {
-//                if newValue && !isCompleted {
-//                    completionDates.append(Date())
-//                } else if !newValue {
-//                    completionDates.removeAll()
-//                    achievement = Achievement.none
-//                }
-//            }
         }
         
         var completionDate: Date? {
             get { completionDates.last }
-            set {
-                if let date = newValue {
-                    if !completionDates.contains(date) {
-                        completionDates.append(date)
-                    }
-                } else {
-                    completionDates.removeAll()
-                }
-            }
         }
                 
         init(habit: HabitItem, date: Date, isCompleted: Bool = false, completionDate: Date? = nil) {
@@ -249,7 +232,6 @@ extension SchemaV4 {
             if (isCompleted) {
                 self.setCompleted(isCompleted)
             }
-//            self.isCompleted = isCompleted
         }
     }
 }

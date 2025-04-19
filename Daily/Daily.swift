@@ -44,7 +44,7 @@ struct Provider: @preconcurrency IntentTimelineProvider {
     
         Task {
             let entries = await fetchEntries()
-            await Health.shared.updateHabits(entries: entries, for: .now)
+            await Health.shared.updateHabits(entries: entries)
             print(entries.count)
             let timelineEntry = HabitWidgetEntry(date: Date(), dailyEntries: entries, showCompleted: configuration.state.rawValue == 1)
             let timeline = Timeline(entries: [timelineEntry], policy: .atEnd)
