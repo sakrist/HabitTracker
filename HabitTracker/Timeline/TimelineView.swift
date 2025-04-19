@@ -40,22 +40,23 @@ struct TimelineView: View {
             }
             .padding(.horizontal)
         }
+        .onAppear {
+            if (timelineItems.isEmpty) {
+                loadInitialContent()
+            }
+        }
         .coordinateSpace(name: "scroll")
         .onPreferenceChange(ScrollOffsetPreferenceKey.self) { offset in
             if offset > -100 && !isLoading {
                 loadMoreContent()
             }
         }
-        .onAppear {
-            if (timelineItems.isEmpty) {
-                loadInitialContent()
-            }
-        }
         .onChange(of: reload) { _, newValue in
-            if newValue && !timelineItems.isEmpty && !isLoading {
+            if newValue && !isLoading {
                 timelineItems.removeAll()
                 loadedDates.removeAll()
-                currentDate = Date()
+                currentDate = Date() // Reset to today's date for a fresh start
+                currentDate = Calendar.current.date(byAdding: .day, value: -batchSize, to: currentDate) ?? currentDate
                 loadInitialContent()
                 DispatchQueue.main.async {
                     reload = false
