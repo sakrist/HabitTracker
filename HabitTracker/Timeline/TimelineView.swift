@@ -94,8 +94,6 @@ struct TimelineView: View {
         var groupedByDay: [Date: [CompletionEntry]] = [:]
         
         for entry in entries {
-            // Only include completed entries
-            guard entry.isCompleted else { continue }
             
             for completionDate in entry.completionDates {
                 let dayStart = calendar.startOfDay(for: completionDate)

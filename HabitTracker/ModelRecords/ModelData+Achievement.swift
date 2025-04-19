@@ -73,16 +73,20 @@ func achievementIcon(achievement:Achievement) -> String {
         return "🏆"
     case .completionYear:
         return "🎯"
-    case .completionRenewed, .completionRenewed2, .completionRenewed3:
-        return "🎉"
+    case .completionRenewed:
+        return "👍"
+    case .completionRenewed2:
+        return "🌱"
+    case .completionRenewed3:
+        return "🥹"
     case .completionTotal30:
-        return "🌠"
+        return "⭐️"
     case .completionTotal66:
         return "🧲"
     case .completionTotal100:
         return "💯"
     case .completionTotal365:
-        return "📆"
+        return "🥳"
     case .none:
         return ""
     }
