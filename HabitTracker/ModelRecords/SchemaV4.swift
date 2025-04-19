@@ -258,7 +258,11 @@ extension SchemaV4.DailyEntry {
     var isEditingAllowed: Bool {
         let calendar = Calendar.current
         let daysBetween = calendar.dateComponents([.day], from: date, to: Date()).day ?? 0
+#if DEBUG
+        return daysBetween <= 100
+#else
         return daysBetween <= 3
+#endif
     }
 }
 

@@ -134,7 +134,8 @@ extension HabitItem {
                 note: "8 glasses of water",
                 weekdays: .init(Weekday.allCases),
                 order: 4,
-                timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!
+                timestamp: Calendar.current.date(from: DateComponents(year: 2025, month: 1, day: 1))!,
+                targetCount: 3
             ),
             HabitItem(
                 id: "8912",

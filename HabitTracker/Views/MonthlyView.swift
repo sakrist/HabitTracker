@@ -38,6 +38,7 @@ struct MonthlyView: View {
             ForEach(daysInMonth, id: \.self) { date in
                 let completionRate = completionPercentage(for: date, in: entries)
                 let color = colorForCompletionRate(completionRate)
+                let achievement = getAchievement(for: date, in: entries)
                 
                 VStack {
                     ZStack {
@@ -45,13 +46,18 @@ struct MonthlyView: View {
                             .fill(color)
                             .frame(height: 30) // Smaller height for squares
                             .cornerRadius(6)
+                        
                         if (date.isSameDay(as: habit.timestamp)) {
                             Circle()
                                 .fill(.pink)
                                 .frame(height: 7)
                         }
+                        
+                        if let achievement = achievement {
+                            Text(achievementIcon(achievement: achievement))
+                                .font(.system(size: 12))
+                        }
                     }
-                    
                     
                     Text(shortDate(date))
                         .font(.caption)
@@ -111,6 +117,15 @@ struct MonthlyView: View {
         default: return Color.clear
         }
     }
+
+    private func getAchievement(for date: Date, in entries: [DailyEntry]) -> Achievement? {
+        entries.first { 
+            $0.date.isSameDay(as: date) && 
+            $0.achievement != Achievement.none && 
+            $0.achievement != nil
+        }?.achievement
+    }
+    
 }
 
 #Preview {

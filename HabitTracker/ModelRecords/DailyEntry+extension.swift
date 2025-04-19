@@ -49,14 +49,26 @@ extension SchemaV3.DailyEntry {
 }
 
 extension SchemaV4.DailyEntry {
-    func setCompleted(_ value:Bool) {
-        if value && !isCompleted {
-            completionDates.append(Date())
-        } else if !value {
-            completionDates.removeAll()
-            achievement = Achievement.none
+    func setCompleted(_ value: Bool) {
+    if value && !isCompleted {
+        let now = Date()
+        // Preserve time components from now but use date components from self.date
+        let calendar = Calendar.current
+        var components = calendar.dateComponents([.hour, .minute, .second], from: now)
+        let dateComponents = calendar.dateComponents([.year, .month, .day], from: self.date)
+        
+        components.year = dateComponents.year
+        components.month = dateComponents.month
+        components.day = dateComponents.day
+        
+        if let newDate = calendar.date(from: components) {
+            completionDates.append(newDate)
         }
+    } else if !value {
+        completionDates.removeAll()
+        achievement = Achievement.none
     }
+}
 }
 
 func sortDailyHabits(item1: DailyEntry, item2: DailyEntry) -> Bool {

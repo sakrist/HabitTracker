@@ -26,6 +26,67 @@ enum Achievement: Int, CaseIterable, Codable {
     case completionTotal365 = 366
 }
     
+func achievementTitle(achievement:Achievement) -> String {
+    switch achievement {
+    case .completionStreakWeek:
+        return "7 Day Streak!"
+    case .completionStreak2Weeks:
+        return "2 Week Warrior!"
+    case .completionMonth:
+        return "Monthly Master!"
+    case .completionStreak50:
+        return "50 Day Champion!"
+    case .completionStreak100:
+        return "100 Day Legend!"
+    case .completionYear:
+        return "Year of Excellence!"
+    case .completionRenewed:
+        return ["Back on track!" , "Keep it up!", "Glad you are back!", "You are back!"].randomElement() ?? "Yaaaay!"
+    case .completionRenewed2:
+        return "Fresh Start!"
+    case .completionRenewed3:
+        return "New Beginning!"
+    case .completionTotal30:
+        return "30 Total Completions!"
+    case .completionTotal66:
+        return "66 Sticking Point!"
+    case .completionTotal100:
+        return "Century Club!"
+    case .completionTotal365:
+        return "365 Days Complete!"
+    case .none:
+        return ""
+    }
+}
+
+func achievementIcon(achievement:Achievement) -> String {
+    switch achievement {
+    case .completionStreakWeek:
+        return "🔥"
+    case .completionStreak2Weeks:
+        return "💪"
+    case .completionMonth:
+        return "🌟"
+    case .completionStreak50:
+        return "👑"
+    case .completionStreak100:
+        return "🏆"
+    case .completionYear:
+        return "🎯"
+    case .completionRenewed, .completionRenewed2, .completionRenewed3:
+        return "🎉"
+    case .completionTotal30:
+        return "🌠"
+    case .completionTotal66:
+        return "🧲"
+    case .completionTotal100:
+        return "💯"
+    case .completionTotal365:
+        return "📆"
+    case .none:
+        return ""
+    }
+}
 
 
 extension ModelData {

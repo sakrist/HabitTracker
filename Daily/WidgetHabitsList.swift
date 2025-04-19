@@ -13,10 +13,24 @@ struct SimpleHabitItemCell: View {
 
     var body: some View {
         HStack {
-            // Static checkbox representation
-            Image(systemName: (entry?.isCompleted ?? false) ? "checkmark.circle.fill" : "circle")
-                .foregroundColor(item.getColor())
-//                .font(.system(size: 24))
+            if item.targetCount > 1 {
+                // Custom indicator for multiple targets
+                ZStack {
+                    Circle()
+                        .stroke(item.getColor(), lineWidth: 1.5)
+                        .frame(width: 18, height: 18)
+                    
+                    if let entry = entry {
+                        Text("\(entry.completionDates.count)")
+                            .font(.system(size: 10, weight: .medium))
+                            .foregroundColor(item.getColor())
+                    }
+                }
+            } else {
+                // Standard checkbox for single target
+                Image(systemName: (entry?.isCompleted ?? false) ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(item.getColor())
+            }
 
             // Habit title
             Text(item.title)
