@@ -18,6 +18,7 @@
 		4F86138A2DB1354C0005A15A /* MigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8613892DB1354C0005A15A /* MigrationTests.swift */; };
 		4F86138C2DB278F00005A15A /* ModelData+targetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F86138B2DB278F00005A15A /* ModelData+targetCount.swift */; };
 		4F86138D2DB278F00005A15A /* ModelData+targetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F86138B2DB278F00005A15A /* ModelData+targetCount.swift */; };
+		4F8613912DB2FB530005A15A /* TimelineVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8613902DB2FB530005A15A /* TimelineVIew.swift */; };
 		4FAA66F62DAD9EC200586FC4 /* achive-sound-2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F22DAD9EC200586FC4 /* achive-sound-2.caf */; };
 		4FAA66F72DAD9EC200586FC4 /* achive-sound-3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F32DAD9EC200586FC4 /* achive-sound-3.caf */; };
 		4FAA66F82DAD9EC200586FC4 /* achive-sound-1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F12DAD9EC200586FC4 /* achive-sound-1.caf */; };
@@ -143,6 +144,7 @@
 		4F8613822DB1110B0005A15A /* SchemaV4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV4.swift; sourceTree = "<group>"; };
 		4F8613892DB1354C0005A15A /* MigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationTests.swift; sourceTree = "<group>"; };
 		4F86138B2DB278F00005A15A /* ModelData+targetCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+targetCount.swift"; sourceTree = "<group>"; };
+		4F8613902DB2FB530005A15A /* TimelineVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineVIew.swift; sourceTree = "<group>"; };
 		4FAA66F12DAD9EC200586FC4 /* achive-sound-1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-1.caf"; sourceTree = "<group>"; };
 		4FAA66F22DAD9EC200586FC4 /* achive-sound-2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-2.caf"; sourceTree = "<group>"; };
 		4FAA66F32DAD9EC200586FC4 /* achive-sound-3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "achive-sound-3.caf"; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 		4F8301A12DB02FB70015ED4D /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				4F8613902DB2FB530005A15A /* TimelineVIew.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 				D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */,
 				D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */,
 				D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */,
+				4F8613912DB2FB530005A15A /* TimelineVIew.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

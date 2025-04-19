@@ -17,6 +17,8 @@ struct ContentView: View {
     @State private var selectedTab = -1
     @State private var firstTab = 0
     
+    @State private var reloadTimeline = false
+    
     // show view to add new habit
     @State private var showAddHabit = false
     @State private var habitsNavigationPath = NavigationPath()
@@ -38,6 +40,7 @@ struct ContentView: View {
                         firstTab = (selectedTab == 0) ? -1 : 0
                         postActive()
                     }
+                    reloadTimeline = (newValue == 2)
                 }.onAppear {
 // if playground
 #if DEBUG
@@ -50,6 +53,12 @@ struct ContentView: View {
                     Label("Habits List", systemImage: "list.bullet")
                 }
                 .tag(1)
+            
+            TimelineView(reload: $reloadTimeline)
+                .tabItem {
+                    Label("Timeline", systemImage: "calendar.day.timeline.leading")
+                }
+                .tag(2)
             
 //            HealthViewDebug().tabItem {
 //                Label("Debug", systemImage: "list.bullet")
