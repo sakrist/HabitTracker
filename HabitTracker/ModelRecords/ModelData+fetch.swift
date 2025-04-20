@@ -143,7 +143,12 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
     }
     do {
         updatedEntries = try updatedEntries.filter(#Predicate<DailyEntry>{ item in
-            item.habit.active && item.habit.weekdays.contains(weekday)
+            if let h = item.habit {
+                h.active && h.weekdays.contains(weekday)
+            } else {
+                false
+            }
+            
         })
     } catch {
         print("Error fetchHabitEntries habits: \(error)")
@@ -161,7 +166,7 @@ func generateDailyEntries(for habits: [HabitItem], existingEntries: [DailyEntry]
     for habit in habits {
         // Check if we already have an entry for this habit on the selected date
         let existingEntry = dailyEntries.first { entry in
-            entry.habit.id == habit.id && entry.date.isSameDay(as: date)
+            entry.habit?.id == habit.id && entry.date.isSameDay(as: date)
         }
         
         // If no entry exists for the selected date, create a new one
@@ -203,7 +208,11 @@ func fetchEntries(start: Date, end: Date, habit: HabitItem? = nil, modelContext:
     var predicate: Predicate<DailyEntry>
     if let habitID = habit?.id {
         predicate = #Predicate { (entry: DailyEntry) in
-            entry.date >= start && entry.date <= end && entry.habit.id == habitID
+            if let h = entry.habit {
+                entry.date >= start && entry.date <= end && h.id == habitID
+            } else {
+                false
+            }
         }
     } else {
         predicate = #Predicate { (entry: DailyEntry) in

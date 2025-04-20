@@ -8,7 +8,12 @@ extension ModelData {
         
         let descriptor = FetchDescriptor<DailyEntry>(
             predicate: #Predicate<DailyEntry> { entry in
-                entry.habit.id == habit.id
+                if let h = entry.habit  {
+                    h.id == habit.id
+                } else {
+                    false
+                }
+                
             }
         )
         

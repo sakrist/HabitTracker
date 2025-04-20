@@ -107,7 +107,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionStreakWeek, "7-day streak should return .completionStreakWeek")
@@ -123,7 +123,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .none, "8-day streak should return .none")
@@ -139,7 +139,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionStreak2Weeks, "14-day streak should return .completionStreak2Weeks")
@@ -155,7 +155,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionMonth, "30-day streak should return .completionMonth")
@@ -171,7 +171,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionStreak50, "50-day streak should return .completionStreak50")
@@ -187,7 +187,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionStreak100, "100-day streak should return .completionStreak100")
@@ -209,7 +209,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionTotal30, "30 total completions should return .completionTotal30")
@@ -229,7 +229,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionTotal66, "66 total completions should return .completionTotal66")
@@ -247,7 +247,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionRenewed, "Completion after 5 days should return .completionRenewed")
@@ -263,7 +263,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionRenewed2, "Completion after 20 days should return .completionRenewed2")
@@ -279,7 +279,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionRenewed3, "Completion after 35 days should return .completionRenewed3")
@@ -295,7 +295,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .none, "No special conditions met should return .none")
@@ -313,7 +313,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionYear, "365-day streak should return .completionYear")
@@ -332,7 +332,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .none, "Broken streak should return .none")
@@ -348,7 +348,6 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(false)
-            testEntry.completionDate = nil
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .none, "Incomplete entry should return .none")
@@ -370,7 +369,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionTotal100, "100 total completions should return .completionTotal100")
@@ -390,7 +389,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionTotal365, "365 total completions should return .completionTotal365")
@@ -408,7 +407,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .none, "One day should return .none")
@@ -427,7 +426,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .none, "Single day gap should not trigger renewal achievement")
@@ -446,7 +445,7 @@ final class AchievementTests: XCTestCase {
                 return
             }
             testEntry.setCompleted(true)
-            testEntry.completionDate = testEntry.date
+            testEntry.completionDates = [testEntry.date]
             
             let achievement = await self.modelData.completedEntry(entry: testEntry)
             XCTAssertEqual(achievement, .completionRenewed2, "Exactly 14 days should trigger .completionRenewed2")

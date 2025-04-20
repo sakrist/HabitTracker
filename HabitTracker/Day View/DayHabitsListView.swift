@@ -45,8 +45,8 @@ struct DayHabitsListView: View {
         ZStack {
             List {
                 ForEach(entries) { entry in
-                    NavigationLink(destination: HabitDetailProgressView(date: date, habit:entry.habit)) {
-                        HabitItemCell(item: entry.habit, entry: entry)
+                    NavigationLink(destination: HabitDetailProgressView(date: date, habit:entry.habitt)) {
+                        HabitItemCell(item: entry.habitt, entry: entry)
                             .contentShape(Rectangle())
                             .onChange(of: entry.isCompleted) { old, newValue in
                                 changed(entry: entry, old, newValue)
@@ -100,14 +100,14 @@ struct DayHabitsListView: View {
                     showAchievement = false
                 }
                 // play achivement sound
-                playSound(name: "achive-sound-4.caf")
+                playSound(name: "achive-sound-5.caf")
             }
             entry.achievement = achievement
             
             if (new) {
-                silenceTodaysNotification(identifier: entry.habit.id)
+                silenceTodaysNotification(identifier: entry.habitt.id)
             } else {
-                reScheduleWeekdayNotification(habitItem: entry.habit)
+                reScheduleWeekdayNotification(habitItem: entry.habitt)
             }
         
             let countCompleted = entries.reduce(0) { $0 + ($1.isCompleted ? 1 : 0)}

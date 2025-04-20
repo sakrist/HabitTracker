@@ -56,7 +56,7 @@ struct WidgetHabitsList: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
             ForEach(entries.prefix(showCount)) { entry in // Limit to 5 for small widget size
-                SimpleHabitItemCell(item: entry.habit, entry: entry)
+                SimpleHabitItemCell(item: entry.habitt, entry: entry)
             }.padding(0)
             
             if entries.count > showCount {

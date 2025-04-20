@@ -101,7 +101,7 @@ struct MonthlyView: View {
     private func completionPercentage(for date: Date, in entries: [DailyEntry]) -> Int {
         let weekday = HabitItem.Weekday(date: date)
         let todayEntries = entries.filter {
-            $0.date.isSameDay(as: date) && $0.habit.weekdays.contains(weekday)
+            $0.date.isSameDay(as: date) && $0.habitt.weekdays.contains(weekday)
         }
         let completedEntries = todayEntries.filter { $0.isCompleted }
         
@@ -130,6 +130,6 @@ struct MonthlyView: View {
 
 #Preview {
     let entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext, for: Date())
-    MonthlyView(startDate: Date(), habit: entries[0].habit)
+    MonthlyView(startDate: Date(), habit: entries[0].habitt)
         .modelContainer(ModelData.shared.modelContainer)
 }

@@ -1,0 +1,243 @@
+//
+//  OnboardingView.swift
+//  HabitTracker
+//
+
+import SwiftUI
+import SwiftData
+
+struct OnboardingView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Environment(ModelData.self) private var modelData
+    
+    @State private var currentPage = 0
+    @State private var selectedHabits: [Bool] = Array(repeating: false, count: commonHabits.count)
+    @State private var selectedSubscription: SubscriptionOption = .free
+    
+    @Binding var showOnboarding: Bool
+    
+    var body: some View {
+        VStack {
+            // Page indicator
+            HStack {
+                ForEach(0..<3) { index in
+                    Circle()
+                        .fill(currentPage == index ? Color.blue : Color.gray.opacity(0.3))
+                        .frame(width: 10, height: 10)
+                }
+            }
+            .padding(.top)
+            
+            // Page content
+            TabView(selection: $currentPage) {
+                OnboardingIntroView()
+                    .tag(0)
+                
+                OnboardingHabitsView(selectedHabits: $selectedHabits)
+                    .tag(1)
+                
+                OnboardingSubscriptionView(selectedOption: $selectedSubscription)
+                    .tag(2)
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            
+            // Navigation buttons
+            HStack {
+                if currentPage > 0 {
+                    Button("Back") {
+                        withAnimation {
+                            currentPage -= 1
+                        }
+                    }
+                    .padding()
+                } else {
+                    Spacer()
+                        .frame(width: 80)
+                }
+                
+                Spacer()
+                
+                if currentPage < 2 {
+                    Button("Next") {
+                        withAnimation {
+                            currentPage += 1
+                        }
+                    }
+                    .padding()
+                    .buttonStyle(.borderedProminent)
+                } else {
+                    Button("Get Started") {
+                        completeOnboarding()
+                    }
+                    .padding()
+                    .buttonStyle(.borderedProminent)
+                }
+            }
+            .padding(.bottom)
+        }
+        .padding()
+    }
+    
+    private func completeOnboarding() {
+        // Create selected habits
+        addSelectedHabits()
+        
+        // Save subscription choice
+        UserDefaults.standard.set(selectedSubscription.rawValue, forKey: "SelectedSubscription")
+        
+        // Mark onboarding as completed
+        UserDefaults.standard.set(true, forKey: "OnboardingCompleted")
+        
+        // Dismiss onboarding
+        showOnboarding = false
+    }
+    
+    private func addSelectedHabits() {
+        for (index, isSelected) in selectedHabits.enumerated() {
+            if isSelected && index < commonHabits.count {
+                let habit = commonHabits[index]
+                
+                // Create new habit
+                let newHabit = HabitItem(
+                    title: habit.title,
+                    color: habit.color,
+                    category: modelData.defaultCategory(),
+                    timestamp: Date()
+                )
+                
+                // Set appropriate habit properties
+                newHabit.weekdays = Set(HabitItem.Weekday.allCases)
+                newHabit.healthType = habit.healthType
+                newHabit.order = index
+                
+                if newHabit.healthType != .none {
+                    Health.shared.enableHabitBackgroundDelivery(habit:newHabit) { value in
+                        if (!value) {
+                            newHabit.healthType = HealthType.none
+                        }
+                    }
+                }
+                
+                // Insert into data model
+                modelContext.insert(newHabit)
+            }
+        }
+        
+        ModelData.shared.saveContext()
+    }
+}
+
+// Common habits that will be shown in the second onboarding screen
+struct CommonHabit {
+    let title: String
+    let color: String
+    let healthType: HealthType
+    let icon: String
+    let description: String
+}
+
+let commonHabits: [CommonHabit] = [
+    CommonHabit(
+        title: "Running",
+        color: Color.blue.toHex(),
+        healthType: .workout(.running),
+        icon: "figure.run",
+        description: "Start your day with a refreshing run"
+    ),
+    CommonHabit(
+        title: "Drink Water",
+        color: Color.cyan.toHex(),
+        healthType: .quantity(.dietaryWater),
+        icon: "drop.fill",
+        description: "Stay hydrated throughout the day"
+    ),
+    CommonHabit(
+        title: "Meditation",
+        color: Color.purple.toHex(),
+        healthType: .category(.mindfulSession, .meditate),
+        icon: "brain.head.profile",
+        description: "Take time to clear your mind"
+    ),
+    CommonHabit(
+        title: "Read Book",
+        color: Color.orange.toHex(),
+        healthType: .none,
+        icon: "book.fill",
+        description: "Expand your knowledge daily"
+    ),
+    CommonHabit(
+        title: "Strength Training",
+        color: Color.red.toHex(),
+        healthType: .workout(.traditionalStrengthTraining),
+        icon: "dumbbell.fill",
+        description: "Stay strong with regular gym workouts"
+    ),
+    CommonHabit(
+        title: "Floss",
+        color: Color.mint.toHex(),
+        healthType: .none,
+        icon: "mouth.fill",
+        description: "Maintain good dental hygiene"
+    ),
+    CommonHabit(
+        title: "Tooth brushing",
+        color: Color.teal.toHex(),
+        healthType: .category(.toothbrushingEvent),
+        icon: "mouth.fill",
+        description: "Keep your teeth clean and healthy"
+    ),
+    CommonHabit(
+        title: "Eat Vegetables",
+        color: Color.green.toHex(),
+        healthType: .none,
+        icon: "carrot.fill",
+        description: "Ensure you get proper nutrition"
+    )
+]
+
+enum SubscriptionOption: String, CaseIterable {
+    case free = "Free"
+    case monthly = "Monthly"
+    case yearly = "Yearly"
+    case lifetime = "Lifetime"
+    
+    var description: String {
+        switch self {
+        case .free:
+            return "Up to 5 habits, one health habit, basic features"
+        case .monthly:
+            return "$0.99/month - All features unlocked"
+        case .yearly:
+            return "$9.99/year - All features unlocked (save 16%)"
+        case .lifetime:
+            return "$14.99 one-time - Lifetime access to all features"
+        }
+    }
+    
+    var benefits: [String] {
+        switch self {
+        case .free:
+            return [
+                "Up to 5 habits",
+                "Basic tracking",
+                "Daily progress view"
+            ]
+        default:
+            return [
+                "Unlimited habits",
+                "Health integrations",
+                "Import/export capabilities",
+                "Timeline view",
+                "More achievements to unlock",
+                "All future improvements",
+                "Priority support"
+            ]
+        }
+    }
+}
+
+#Preview {
+    OnboardingView(showOnboarding: .constant(true))
+        .environment(ModelData.shared)
+        .modelContainer(SampleData.shared.modelContainer)
+}

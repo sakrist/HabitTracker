@@ -19,8 +19,8 @@ enum SchemaV3: VersionedSchema {
 extension SchemaV3 {
     @Model
     final class HabitItem : Codable {
-        var id: String
-        var title: String
+        var id: String = UUID().uuidString
+        var title: String = ""
         var color: String = "#0000FF"
         var category: HabitCategory?
         var time: Date?
@@ -28,7 +28,7 @@ extension SchemaV3 {
         var weekdays: Set<HabitItem.Weekday>
         
         var order: Int = 0
-        var timestamp: Date // created date
+        var timestamp: Date = Date()// created date
         var active: Bool = true
         
         var hType: String? = "none" // health data and fitness
@@ -166,9 +166,9 @@ extension SchemaV3 {
     
     @Model
     final class HabitCategory : Codable, Equatable, Hashable {
-        var id: String
-        var title:String
-        var color: String
+        var id: String = UUID().uuidString
+        var title:String = ""
+        var color: String = "#CCCCCC"
         
         // Custom CodingKeys to handle encoding/decoding if needed
         private enum CodingKeys: String, CodingKey {

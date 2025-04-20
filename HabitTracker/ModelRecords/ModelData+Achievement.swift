@@ -100,10 +100,10 @@ extension ModelData {
         guard entry.isCompleted else { return .none }
         
         // Check streak-based achievements
-        let (streak, _, _, total) = calculateStreak(habit: entry.habit, for: .endOfDay())
+        let (streak, _, _, total) = calculateStreak(habit: entry.habitt, for: .endOfDay())
         
         // Log current streak for debugging
-        print("Current streak for \(entry.habit.title): \(streak)")
+        print("Current streak for \(entry.habitt.title): \(streak)")
         
         // Check if this is a milestone streak
         switch streak {
@@ -140,10 +140,10 @@ extension ModelData {
         
         // Check for habit renewal patterns (when a habit is resumed after a break)
         // First, find the previous completion date
-        let startDate = entry.habit.timestamp.prevDay()
+        let startDate = entry.habitt.timestamp.prevDay()
         let endDate = Date.endOfDay().prevDay()
         
-        var previousEntries = fetchEntries(start: startDate, end: endDate, habit: entry.habit, modelContext: modelContainer.mainContext)
+        var previousEntries = fetchEntries(start: startDate, end: endDate, habit: entry.habitt, modelContext: modelContainer.mainContext)
         previousEntries.sort { $0.date > $1.date }
         
         // If this is the first completion or we have a limited history, don't show renewal

@@ -75,66 +75,20 @@ class ModelData {
 
 // MARK: Migration Plans
 
-enum MigrationPlanV1toV2: SchemaMigrationPlan {
-    static var schemas: [any VersionedSchema.Type] {
-        [SchemaV1.self, SchemaV2.self]
-    }
-    
-    static var stages: [MigrationStage] {
-        [migrateV1toV2]
-    }
-    
-    // MARK: Migration Stages
-    static let migrateV1toV2 = MigrationStage.custom(
-        fromVersion: SchemaV1.self,
-        toVersion: SchemaV2.self,
-        willMigrate: { context in
-            print("migrateV1toV2.willMigrate()")
-        },
-        didMigrate: { context in
-            print("migrateV1toV2.didMigrate()")
-            
-            let habits = try context.fetch(FetchDescriptor<SchemaV2.HabitItem>())
-            print("migrateV1toV2 - found \(habits.count) animals")
-            
-            // default all animals to not extinct
-            for item in habits {
-                item.trackingType = .manual
-            }
-
-            try context.save()
-        }
-    )
-}
 
 enum MigrationPlanToLatest: SchemaMigrationPlan {
     // Store completion dates during migration
     private static var storedCompletionDates: [String: Date] = [:]
     
     static var schemas: [any VersionedSchema.Type] {
-        [SchemaV2.self, SchemaV3.self, SchemaV4.self]
+        [SchemaV3.self, SchemaV4.self]
     }
     
     static var stages: [MigrationStage] {
-        [migrateV2toV3, migrateV3toV4]
+        [migrateV3toV4]
     }
     
     // MARK: Migration Stages
-        static let migrateV2toV3 = MigrationStage.custom(
-            fromVersion: SchemaV2.self,
-            toVersion: SchemaV3.self,
-            willMigrate: { context in
-            },
-            didMigrate: { context in
-                
-                let habits = try context.fetch(FetchDescriptor<SchemaV3.HabitItem>())
-                for item in habits {
-                    item.hType = "none"
-                }
-
-                try context.save()
-            }
-        )
     
     static let migrateV3toV4 = MigrationStage.custom(
         fromVersion: SchemaV3.self,
@@ -166,7 +120,7 @@ enum MigrationPlanToLatest: SchemaMigrationPlan {
                 let entries = try context.fetch(FetchDescriptor<SchemaV4.DailyEntry>())
                 print("Found \(entries.count) entries to migrate")
                 for item in entries {
-                    let key = "\(item.habit.id)_\(item.date.timeIntervalSince1970)"
+                    let key = "\(item.habitt.id)_\(item.date.timeIntervalSince1970)"
                     if let storedDate = storedCompletionDates[key] {
                         item.completionDates = [storedDate]
                     }

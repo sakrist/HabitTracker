@@ -18,7 +18,7 @@ struct TimelineEntryView: View {
             // Show achievement above the habit if present
             if let achievement = entry.achievement, achievement != .none && index == totalCompletions-1 {
                 HStack(alignment: .center, spacing: 0) {
-                    TimelineConnector(color: entry.habit.getColor())
+                    TimelineConnector(color: entry.habitt.getColor())
                     
                     HStack {
                         Text(achievementIcon(achievement: achievement))
@@ -30,10 +30,10 @@ struct TimelineEntryView: View {
                     .padding(.horizontal, 10)
                     .background(
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(entry.habit.getColor().opacity(0.15))
+                            .fill(entry.habitt.getColor().opacity(0.15))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .strokeBorder(entry.habit.getColor().opacity(0.3), lineWidth: 1)
+                                    .strokeBorder(entry.habitt.getColor().opacity(0.3), lineWidth: 1)
                             )
                     )
                     .padding(.leading, 12)
@@ -43,21 +43,21 @@ struct TimelineEntryView: View {
             
             // Show the habit entry
             HStack(alignment: .center, spacing: 0) {
-                TimelineConnector(color: entry.habit.getColor())
+                TimelineConnector(color: entry.habitt.getColor())
                 
                 VStack(alignment: .leading) {
                     HStack {
-                        Text(entry.habit.title)
+                        Text(entry.habitt.title)
                             .font(.system(.body, design: .rounded))
                         
-                        if entry.habit.healthType != .none {
+                        if entry.habitt.healthType != .none {
                             Image(systemName: "heart.fill")
                                 .foregroundColor(.pink)
                                 .font(.caption)
                         }
                         
-                        if entry.habit.targetCount > 1 {
-                            Text("(\(index + 1)/\(entry.habit.targetCount))")
+                        if entry.habitt.targetCount > 1 {
+                            Text("(\(index + 1)/\(entry.habitt.targetCount))")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }

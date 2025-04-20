@@ -24,10 +24,10 @@ extension ModelData {
         }
         
         for item in entries {
-            if let healthType = item.habit.healthType {
+            if let healthType = item.habitt.healthType {
                 if let dates = completions[healthType] {
                     // Add each completion date up to the target count
-                    for date in dates.prefix(item.habit.targetCount) {
+                    for date in dates.prefix(item.habitt.targetCount) {
                         if !item.completionDates.contains(date) {
                             item.completionDates.append(date)
                         }
@@ -48,10 +48,10 @@ extension ModelData {
             }
         }
         
-        if let healthType = entry.habit.healthType {
+        if let healthType = entry.habitt.healthType {
             if let dates = completions[healthType] {
                 // Add each completion date up to the target count
-                for date in dates.prefix(entry.habit.targetCount) {
+                for date in dates.prefix(entry.habitt.targetCount) {
                     if !entry.completionDates.contains(date) {
                         entry.completionDates.append(date)
                     }

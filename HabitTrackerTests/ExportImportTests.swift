@@ -319,10 +319,10 @@ final class ExportImportTests: XCTestCase {
             XCTAssertEqual(importedHabit2?.title, "Meditation")
             
             // Verify entry counts
-            let habit1Entries = entriesAfterImport?.filter { $0.habit.id == "test_habit_1" } ?? []
+            let habit1Entries = entriesAfterImport?.filter { $0.habitt.id == "test_habit_1" } ?? []
             XCTAssertEqual(habit1Entries.count, 2, "First habit should have 2 entries")
             
-            let habit2Entries = entriesAfterImport?.filter { $0.habit.id == "test_habit_2" } ?? []
+            let habit2Entries = entriesAfterImport?.filter { $0.habitt.id == "test_habit_2" } ?? []
             XCTAssertEqual(habit2Entries.count, 2, "Second habit should have 2 entries")
             
             // Verify completion status
@@ -493,8 +493,8 @@ final class ExportImportTests: XCTestCase {
                 XCTAssertEqual(uniqueHabitIds.count, 3, "Should maintain exactly 3 habits")
                 
                 // Check each habit has exactly the expected number of entries
-                let habit1Entries = entriesAfterImport?.filter { $0.habit.id == "test_habit_1" }
-                let habit2Entries = entriesAfterImport?.filter { $0.habit.id == "test_habit_2" }
+                let habit1Entries = entriesAfterImport?.filter { $0.habitt.id == "test_habit_1" }
+                let habit2Entries = entriesAfterImport?.filter { $0.habitt.id == "test_habit_2" }
                 
                 XCTAssertEqual(habit1Entries?.count, 2, "First habit should have exactly 2 entries")
                 XCTAssertEqual(habit2Entries?.count, 2, "Second habit should have exactly 2 entries")
@@ -565,7 +565,7 @@ final class ExportImportTests: XCTestCase {
                 print("Total habits: \(habits.count)")
                 for habit in habits {
                     print("Habit: \(habit.title) (ID: \(habit.id))")
-                    let habitEntries = entriesAfterSecondImport?.filter { $0.habit.id == habit.id }
+                    let habitEntries = entriesAfterSecondImport?.filter { $0.habitt.id == habit.id }
                     print("  Entries: \(habitEntries?.count ?? 0)")
                 }
                 print("===================\n")
@@ -610,10 +610,10 @@ final class ExportImportTests: XCTestCase {
             let entriesFetchDescriptor = FetchDescriptor<DailyEntry>()
             let entriesAfterImport = try? self.mockContext.fetch(entriesFetchDescriptor)
             
-            let todayEntry1 = entriesAfterImport?.first { $0.habit.id == "test_habit_1" && Calendar.current.isDateInToday($0.date) }
+            let todayEntry1 = entriesAfterImport?.first { $0.habitt.id == "test_habit_1" && Calendar.current.isDateInToday($0.date) }
             XCTAssertEqual(todayEntry1?.completionDates.count, 2)
             
-            let todayEntry2 = entriesAfterImport?.first { $0.habit.id == "test_habit_2" && Calendar.current.isDateInToday($0.date) }
+            let todayEntry2 = entriesAfterImport?.first { $0.habitt.id == "test_habit_2" && Calendar.current.isDateInToday($0.date) }
             XCTAssertEqual(todayEntry2?.completionDates.count, 3)
         }
     }

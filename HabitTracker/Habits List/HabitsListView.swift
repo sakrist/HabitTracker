@@ -71,6 +71,8 @@ struct HabitsListView: View {
     @State private var showImportFilePicker = false
     @State private var showImportSuccessAlert = false
     @State private var showImportFailureAlert = false
+    @State private var showImportOptions = false
+    @State private var importURL: URL? = nil
     
     @State private var showHealthUpdateConfirmation = false
     @State private var isUpdatingHealth = false
@@ -148,21 +150,32 @@ struct HabitsListView: View {
                         onCompletion: { result in
                             switch result {
                             case .success(let url):
-                                Task {
-                                    print("url \(url)")
-                                    let completed = await ExportImportData.shared.importHabits(from: url)
-                                    if completed {
-                                        showImportSuccessAlert = true
-                                    } else {
-                                        showImportFailureAlert = true
-                                    }
-                                }
+                                // Store URL and show options dialog
+                                importURL = url
+                                showImportOptions = true
                             case .failure(let error):
                                 print("Failed to import habits: \(error)")
                                 showImportFailureAlert = true
                             }
                         }
                     )
+                    .confirmationDialog(
+                        "Import Options",
+                        isPresented: $showImportOptions,
+                        titleVisibility: .visible
+                    ) {
+                        Button("Merge with existing data") {
+                            importData(replace: false)
+                        }
+                        
+                        Button("Replace all existing data", role: .destructive) {
+                            importData(replace: true)
+                        }
+                        
+                        Button("Cancel", role: .cancel) { }
+                    } message: {
+                        Text("Do you want to merge with your existing data or replace everything?")
+                    }
                     .alert("Import Successful", isPresented: $showImportSuccessAlert) {
                         Button("OK", role: .cancel) { }
                     } message: {
@@ -257,6 +270,55 @@ struct HabitsListView: View {
             await MainActor.run {
                 isUpdatingHealth = false
                 showHealthUpdateSuccessAlert = true
+            }
+        }
+    }
+    
+    private func importData(replace: Bool) {
+        guard let url = importURL else {
+            showImportFailureAlert = true
+            return
+        }
+        
+        // Start file access
+        guard url.startAccessingSecurityScopedResource() else {
+            print("Failed to access the selected file")
+            showImportFailureAlert = true
+            return
+        }
+        
+        Task {
+            defer {
+                url.stopAccessingSecurityScopedResource()
+            }
+            
+            // Create a secure bookmarked copy
+            do {
+                let tempDirectory = FileManager.default.temporaryDirectory
+                let tempFileURL = tempDirectory.appendingPathComponent(
+                    "import_\(UUID().uuidString).json"
+                )
+                
+                try FileManager.default.copyItem(at: url, to: tempFileURL)
+                
+                let completed: Bool
+                if replace {
+                    completed = await ExportImportData.shared.replaceAllWithImport(from: tempFileURL)
+                } else {
+                    completed = await ExportImportData.shared.importHabits(from: tempFileURL)
+                }
+                
+                // Clean up temp file
+                try? FileManager.default.removeItem(at: tempFileURL)
+                
+                if completed {
+                    showImportSuccessAlert = true
+                } else {
+                    showImportFailureAlert = true
+                }
+            } catch {
+                print("Import error: \(error.localizedDescription)")
+                showImportFailureAlert = true
             }
         }
     }

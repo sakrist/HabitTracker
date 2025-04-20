@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F092E802DB5248200FA334C /* OnboardingHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E7A2DB5248200FA334C /* OnboardingHabitsView.swift */; };
+		4F092E812DB5248200FA334C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E7E2DB5248200FA334C /* OnboardingView.swift */; };
+		4F092E822DB5248200FA334C /* OnboardingIntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E7B2DB5248200FA334C /* OnboardingIntroView.swift */; };
+		4F092E832DB5248200FA334C /* OnboardingSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E7D2DB5248200FA334C /* OnboardingSubscriptionView.swift */; };
+		4F092E842DB5248200FA334C /* OnboardingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E7C2DB5248200FA334C /* OnboardingPreview.swift */; };
+		4F092E862DB5315C00FA334C /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E852DB5315800FA334C /* AppIcon.swift */; };
+		4F092E872DB5315C00FA334C /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E852DB5315800FA334C /* AppIcon.swift */; };
 		4F6D4AE72DA856920018448A /* AchievementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D4AE52DA856920018448A /* AchievementTests.swift */; };
 		4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
 		4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
@@ -78,10 +85,6 @@
 		D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */; };
 		D2CFF5592D35885500D09F01 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */; };
 		D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */; };
-		D2D457F12D45942400C67484 /* SchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F02D45942200C67484 /* SchemaV1.swift */; };
-		D2D457F22D45942400C67484 /* SchemaV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F02D45942200C67484 /* SchemaV1.swift */; };
-		D2D457F42D463D9F00C67484 /* SchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F32D463D9A00C67484 /* SchemaV2.swift */; };
-		D2D457F52D463D9F00C67484 /* SchemaV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F32D463D9A00C67484 /* SchemaV2.swift */; };
 		D2D457F72D46559000C67484 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62D46558800C67484 /* ModelData+fetch.swift */; };
 		D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62D46558800C67484 /* ModelData+fetch.swift */; };
 		D2D457FA2D4AE71000C67484 /* HealthViewDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F92D4AE70C00C67484 /* HealthViewDebug.swift */; };
@@ -141,6 +144,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F092E7A2DB5248200FA334C /* OnboardingHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingHabitsView.swift; sourceTree = "<group>"; };
+		4F092E7B2DB5248200FA334C /* OnboardingIntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingIntroView.swift; sourceTree = "<group>"; };
+		4F092E7C2DB5248200FA334C /* OnboardingPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPreview.swift; sourceTree = "<group>"; };
+		4F092E7D2DB5248200FA334C /* OnboardingSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSubscriptionView.swift; sourceTree = "<group>"; };
+		4F092E7E2DB5248200FA334C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		4F092E852DB5315800FA334C /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
 		4F6D4AE52DA856920018448A /* AchievementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTests.swift; sourceTree = "<group>"; };
 		4F83019A2DAFBB880015ED4D /* ExportImportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportData.swift; sourceTree = "<group>"; };
 		4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportTests.swift; sourceTree = "<group>"; };
@@ -198,8 +207,6 @@
 		D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysSelectorView.swift; sourceTree = "<group>"; };
 		D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
 		D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
-		D2D457F02D45942200C67484 /* SchemaV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV1.swift; sourceTree = "<group>"; };
-		D2D457F32D463D9A00C67484 /* SchemaV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV2.swift; sourceTree = "<group>"; };
 		D2D457F62D46558800C67484 /* ModelData+fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+fetch.swift"; sourceTree = "<group>"; };
 		D2D457F92D4AE70C00C67484 /* HealthViewDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewDebug.swift; sourceTree = "<group>"; };
 		D2D481052CD8246C00B1DF7C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
@@ -258,6 +265,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F092E7F2DB5248200FA334C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				4F092E7A2DB5248200FA334C /* OnboardingHabitsView.swift */,
+				4F092E7B2DB5248200FA334C /* OnboardingIntroView.swift */,
+				4F092E7C2DB5248200FA334C /* OnboardingPreview.swift */,
+				4F092E7D2DB5248200FA334C /* OnboardingSubscriptionView.swift */,
+				4F092E7E2DB5248200FA334C /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		4F8301A12DB02FB70015ED4D /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +331,7 @@
 				D25A7A7F2CA5D7EE0000E843 /* Assets.xcassets */,
 				D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */,
 				D25A7A802CA5D7EE0000E843 /* ContentView.swift */,
+				4F092E7F2DB5248200FA334C /* Onboarding */,
 				D2DB71622D3C48BF000DC325 /* Systems */,
 				D2DB71612D3BC877000DC325 /* Views */,
 				D2DB71602D3BC54A000DC325 /* Day View */,
@@ -359,8 +379,6 @@
 				D25AED9A2D9C828E009C4B7B /* ModelData+Achievement.swift */,
 				D2D457F62D46558800C67484 /* ModelData+fetch.swift */,
 				4F86138B2DB278F00005A15A /* ModelData+targetCount.swift */,
-				D2D457F02D45942200C67484 /* SchemaV1.swift */,
-				D2D457F32D463D9A00C67484 /* SchemaV2.swift */,
 				D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */,
 				4F8613822DB1110B0005A15A /* SchemaV4.swift */,
 			);
@@ -370,6 +388,7 @@
 		D2C126492CB7370B005E5941 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4F092E852DB5315800FA334C /* AppIcon.swift */,
 				D2C09DF12DA0680F001DC17D /* UIApplication.swift */,
 				D2C1264A2CB73717005E5941 /* Date.swift */,
 				D25A7A952CA5DD420000E843 /* Color+extension.swift */,
@@ -651,6 +670,7 @@
 			files = (
 				D25246412D3706A3003CEBF9 /* Date.swift in Sources */,
 				D25246422D3706A3003CEBF9 /* Color+extension.swift in Sources */,
+				4F092E862DB5315C00FA334C /* AppIcon.swift in Sources */,
 				D252463A2D370659003CEBF9 /* HabitCategory+extension.swift in Sources */,
 				D262C5E22D4FA77A00CDCA0E /* SchemaV3.swift in Sources */,
 				D252463C2D370659003CEBF9 /* ModelData.swift in Sources */,
@@ -666,11 +686,9 @@
 				D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */,
 				4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */,
 				D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */,
-				D2D457F42D463D9F00C67484 /* SchemaV2.swift in Sources */,
 				D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */,
 				D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
 				D252463D2D370659003CEBF9 /* SampleData.swift in Sources */,
-				D2D457F12D45942400C67484 /* SchemaV1.swift in Sources */,
 				D252463F2D370659003CEBF9 /* HabitItem+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,6 +697,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F092E802DB5248200FA334C /* OnboardingHabitsView.swift in Sources */,
+				4F092E812DB5248200FA334C /* OnboardingView.swift in Sources */,
+				4F092E822DB5248200FA334C /* OnboardingIntroView.swift in Sources */,
+				4F092E832DB5248200FA334C /* OnboardingSubscriptionView.swift in Sources */,
+				4F092E842DB5248200FA334C /* OnboardingPreview.swift in Sources */,
 				D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */,
 				D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */,
 				D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */,
@@ -692,6 +715,7 @@
 				D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */,
 				D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */,
 				D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */,
+				4F092E872DB5315C00FA334C /* AppIcon.swift in Sources */,
 				D25AED9B2D9C82B0009C4B7B /* ModelData+Achievement.swift in Sources */,
 				D2C126482CB2DAAC005E5941 /* MainListView.swift in Sources */,
 				D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */,
@@ -710,10 +734,8 @@
 				D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
 				D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */,
 				D25A7A8A2CA5D7EF0000E843 /* HabitItem+extension.swift in Sources */,
-				D2D457F52D463D9F00C67484 /* SchemaV2.swift in Sources */,
 				4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */,
 				D2D457F72D46559000C67484 /* ModelData+fetch.swift in Sources */,
-				D2D457F22D45942400C67484 /* SchemaV1.swift in Sources */,
 				D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */,
 				D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */,
 				D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */,
@@ -976,6 +998,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1020,6 +1043,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

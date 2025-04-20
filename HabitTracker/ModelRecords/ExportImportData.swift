@@ -75,7 +75,11 @@ class ExportImportData {
         for habit in habits {
             // Fetch all entries for this habit
             let entriesPredicate = #Predicate<DailyEntry> { entry in
-                entry.habit.id == habit.id
+                if let h = entry.habit {
+                    h.id == habit.id
+                } else {
+                    false
+                }
             }
             let entriesFetchDescriptor = FetchDescriptor<DailyEntry>(predicate: entriesPredicate)
             
@@ -190,7 +194,11 @@ class ExportImportData {
                     
                     // Delete existing entries to avoid duplicates
                     let entryPredicate = #Predicate<DailyEntry> { entry in
-                        entry.habit.id == habit.id
+                        if let h = entry.habit {
+                            h.id == habit.id
+                        } else {
+                            false
+                        }
                     }
                     try modelContext.delete(model: DailyEntry.self, where: entryPredicate)
                 } else {
@@ -257,6 +265,52 @@ class ExportImportData {
             return true
         } catch {
             print("Failed to import habits: \(error)")
+            return false
+        }
+    }
+    
+    // New method to replace all data with imported data
+    func replaceAllWithImport(from url: URL) async -> Bool {
+        do {
+            // Start by deleting all existing data
+            await deleteAllData()
+            
+            // Then import the new data
+            return await importHabits(from: url)
+        } catch {
+            print("Failed to replace data: \(error)")
+            return false
+        }
+    }
+    
+    // Helper method to delete all data
+    private func deleteAllData() async {
+        do {
+            // Delete all entries first (due to relationships)
+            try modelContext.delete(model: DailyEntry.self)
+            
+            // Delete all habits
+            try modelContext.delete(model: HabitItem.self)
+            
+            // Note: We're not deleting categories since they may be system defaults
+            // If you want to delete categories too, uncomment:
+            // try modelContext.delete(model: HabitCategory.self)
+            // Then re-create default categories
+            // ModelData.shared.insertCategories()
+            
+            try modelContext.save()
+        } catch {
+            print("Error deleting data: \(error)")
+        }
+    }
+    
+    // Adding a convenience method to expose this functionality
+    func clearAllData() async -> Bool {
+        do {
+            await deleteAllData()
+            return true
+        } catch {
+            print("Failed to clear data: \(error)")
             return false
         }
     }

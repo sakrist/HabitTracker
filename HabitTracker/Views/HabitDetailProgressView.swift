@@ -141,7 +141,7 @@ struct Preview_HabitMonthView : View {
             NavigationView {
                 VStack {
                     
-                    NavigationLink(destination: HabitDetailProgressView(date: Date(), habit:entries[0].habit), isActive: $isLinkActive
+                    NavigationLink(destination: HabitDetailProgressView(date: Date(), habit:entries[0].habitt), isActive: $isLinkActive
                     ) {
                         // Button to activate the NavigationLink
                         Button("Go to Detail View") {

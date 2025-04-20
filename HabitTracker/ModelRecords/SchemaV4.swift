@@ -19,20 +19,25 @@ enum SchemaV4: VersionedSchema {
 extension SchemaV4 {
     @Model
     final class HabitItem : Codable {
-        var id: String
-        var title: String
+        var id: String = UUID().uuidString
+        var title: String = ""
         var color: String = "#0000FF"
+        
+        @Relationship(inverse: \HabitCategory.habits)
         var category: HabitCategory?
         var time: Date?
         var note: String = ""
-        var weekdays: Set<HabitItem.Weekday>
+        var weekdays: Set<HabitItem.Weekday> = Set(HabitItem.Weekday.allCases)
         
         var order: Int = 0
-        var timestamp: Date // created date
+        var timestamp: Date = Date()// created date
         var active: Bool = true
         
         var hType: String? = "none" // health data and fitness
         var targetCount: Int = 1  // Default to 1 completion per day
+        
+        @Relationship(inverse: \DailyEntry.habit)
+        var entries: [DailyEntry]? = []
     
         enum Weekday: Int, CaseIterable, Identifiable, Codable {
             
@@ -172,9 +177,12 @@ extension SchemaV4 {
     
     @Model
     final class HabitCategory : Codable, Equatable, Hashable {
-        var id: String
-        var title:String
-        var color: String
+        var id: String = UUID().uuidString
+        var title:String = ""
+        var color: String = "#CCCCCC"
+        
+        @Relationship
+        var habits: [HabitItem]? = []
         
         // Custom CodingKeys to handle encoding/decoding if needed
         private enum CodingKeys: String, CodingKey {
@@ -212,13 +220,22 @@ extension SchemaV4 {
     
     @Model
     class DailyEntry : ObservableObject {
-        var habit: HabitItem
-        var date: Date // date of entry
+        @Relationship
+        var habit: HabitItem?
+        
+        var date: Date = Date() // date of entry
         var completionDates: [Date] = [] // Store all completion timestamps
         var achievement: Achievement? = Achievement.none // Store earned achievement
         
+        // to enable cloud kit and don't break things 
+        var habitt:HabitItem {
+            get {
+                return self.habit!
+            }
+        }
+        
         var isCompleted: Bool {
-            get { completionDates.count >= habit.targetCount }
+            get { completionDates.count >= habitt.targetCount }
         }
         
         var completionDate: Date? {

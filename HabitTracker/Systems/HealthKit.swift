@@ -196,7 +196,7 @@ class Health {
     @MainActor
     func updateHabits(entries: [DailyEntry]) async {
         for entry in entries {
-            if let healthType = entry.habit.healthType, healthType != .none {
+            if let healthType = entry.habitt.healthType, healthType != .none {
                 if let type = healthType.sampleType() {
                     query(type: type, predicate: Health.datePredicate(date: entry.date)) { samples in
                         ModelData.shared.process(samples, entry:entry)
