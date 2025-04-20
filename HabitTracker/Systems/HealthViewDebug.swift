@@ -17,13 +17,13 @@ struct HealthViewDebug: View {
     var body: some View {
         VStack {
             Text("Debug HealthView")
-            let categories: [String] = Health.shared.fullList()
-            Picker("Health records", selection: $selectedCategory) {
-                ForEach(categories, id: \.self) { category in
-                    Text(category).tag(category)
-                }
-            }
-            .pickerStyle(MenuPickerStyle())
+//            let categories: [String] = Health.shared.fullList()
+//            Picker("Health records", selection: $selectedCategory) {
+//                ForEach(categories, id: \.self) { category in
+//                    Text(category).tag(category)
+//                }
+//            }
+//            .pickerStyle(MenuPickerStyle())
             
             
             Button("sessions") {

@@ -160,6 +160,8 @@ class ExportImportData {
             // Use the injected modelContext
             
             // Process each imported habit
+            var importedHabits: [HabitItem] = []
+            
             for importedHabit in importedData.habits {
                 // Check if habit already exists
                 let habitPredicate = #Predicate<HabitItem> { item in
@@ -258,14 +260,52 @@ class ExportImportData {
                     entry.achievement =  Achievement(rawValue: completion.achievement ?? 0)
                     modelContext.insert(entry)
                 }
+                
+                // Add the habit to our tracking array
+                importedHabits.append(habit)
             }
             
             // Save changes
             try modelContext.save()
+            
+            // Request Health authorizations for any habits with health tracking
+            await requestHealthPermissions(for: importedHabits)
+            
             return true
         } catch {
             print("Failed to import habits: \(error)")
             return false
+        }
+    }
+    
+    private func requestHealthPermissions(for habits: [HabitItem]) async {
+        // Filter for habits with health integrations
+        let healthHabits = habits.filter { 
+            $0.healthType != nil && $0.healthType != .none 
+        }
+        
+        if !healthHabits.isEmpty {
+            // Request health permissions for all health types at once
+            await withCheckedContinuation { continuation in
+                Health.shared.requestBulkHealthAuthorization(for: healthHabits) { success in
+                    if success {
+                        print("Successfully authorized health access for imported habits")
+                    } else {
+                        print("Failed to authorize some health types for imported habits")
+                    }
+                    
+                    // Set up background delivery for authorized habits
+                    Task {
+                        for habit in healthHabits {
+                            if Health.shared.verifyHealthAuthorization(for: habit) {
+                                Health.shared.enableHabitBackgroundDelivery(habit: habit) { _ in }
+                            }
+                        }
+                    }
+                    
+                    continuation.resume()
+                }
+            }
         }
     }
     

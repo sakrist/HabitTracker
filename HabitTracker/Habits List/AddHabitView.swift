@@ -33,37 +33,38 @@ struct AddHabitView: View {
     @State private var predefined:String = Health.customHabitName
     @State private var targetCount: Int = 1
     
+    @State private var selectedTemplateId: String = Health.customHabitName
+    @State private var selectedHealthType: HealthType = .none
+    
     private var habitItem: HabitItem?
-    let supportedHabits = Health.shared.supportedHabits.keys.sorted {
-        $0 == Health.customHabitName ? true : ($1 == Health.customHabitName ? false : $0 < $1)
-    }
 
     init(habitItem: HabitItem? = nil) {
         _title = State(initialValue: habitItem?.title ?? "")
         _selectedColor = State(initialValue: habitItem?.getColor() ?? .random())
         _note = State(initialValue: habitItem?.note ?? "")
         _enableAutocomplete = State(initialValue:(habitItem?.healthType != .none))
-        _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(_title.wrappedValue))
+        _canEnableAutocomplete = State(initialValue:Health.shared.isSupported(habitItem?.healthType?.id ?? ""))
         _selectedCategory = State(initialValue: habitItem?.category ?? ModelData.shared.defaultCategory())
         _targetCount = State(initialValue: habitItem?.targetCount ?? 1)
 
-        self.habitItem = habitItem
         if let habitItem = habitItem {
+            _selectedHealthType = State(initialValue: habitItem.healthType ?? .none)
             activeWeekdays = habitItem.weekdays
             timeSensetive = (habitItem.time != nil)
             time = habitItem.time ?? Date.now
             selectedCategory = habitItem.category
         } else {
+            _selectedTemplateId = State(initialValue: Health.customHabitName)
+            _selectedHealthType = State(initialValue: .none)
             activeWeekdays = Set(HabitItem.Weekday.allCases)
             timeSensetive = false
             time = Date.now
         }
+        
+        self.habitItem = habitItem
     }
     
     func openSettings() {
-//        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-//            return
-//        }
         guard let settingsUrl = URL(string: "x-apple-health://") else {
             return
         }
@@ -96,21 +97,15 @@ struct AddHabitView: View {
     }
     
     func healthAutocomplete() {
-        let status = Health.shared.isHabitAuthroised(title: title)
-        if (status == .notDetermined) {
+        let typeId = selectedHealthType.id
+        let status = Health.shared.isHabitAuthroised(typeId: typeId)
+        if (status == .notDetermined || status == .sharingDenied) {
             Task {
-                Health.shared.requestHabitAuthroisation(title: title) { value in
+                Health.shared.requestHabitAuthroisation(typeId: typeId) { value in
                     enableAutocomplete = value
                 }
             }
         }
-        
-        // apple not indicating if read data is available
-        // https://developer.apple.com/documentation/healthkit/hkhealthstore/1614154-authorizationstatus#discussion
-//        else if (status == .sharingDenied) {
-//            enableAutocomplete = false
-//            showReauthorizationAlert()
-//        }
     }
     
     var body: some View {
@@ -119,42 +114,17 @@ struct AddHabitView: View {
                 Section(header: Text("Name")) {
                     HStack {
                         TextField("Enter a habit name...", text: $title)
-                            .disabled(canEnableAutocomplete)
-                            .foregroundColor(.primary.opacity(canEnableAutocomplete ? 0.5 : 1.0))
-                            .onChange(of: title) { oldValue, newValue in
-                                if supportedHabits.contains(title) && title != Health.customHabitName {
-                                    predefined = title
-                                }
+                        
+                        ActivityTypePickerView(
+                            selectedHealthType: $selectedHealthType,
+                            title: $title,
+                            selectedColor: $selectedColor,
+                            habitItem: habitItem,
+                            predefined: predefined,
+                            onSelectActivity: { hasHealthComponent in
+                                canEnableAutocomplete = hasHealthComponent
                             }
-
-                        ZStack {
-                            
-                            if #available(macOS 15.0, *) {
-                                Picker(selection: $predefined) {
-                                    ForEach(supportedHabits, id: \.self) { habitName in
-                                        Text(habitName).tag(habitName as String?)
-                                    }
-                                } label: {
-                                    //                                Image(systemName: (canEnableAutocomplete) ? "heart.fill" : "heart")
-                                    //                                    .foregroundStyle(.red)
-                                } currentValueLabel: {
-                                    Image(systemName: (canEnableAutocomplete) ? "heart.fill" : "heart")
-                                        .foregroundStyle(.red)
-                                }.pickerStyle(.menu)
-                                    .onChange(of: predefined) { _, _ in
-                                        // Trigger animation when the title changes
-                                        if let habitType = Health.shared.supportedHabits[predefined] {
-                                            withAnimation {
-                                                canEnableAutocomplete = (habitType != .none)
-                                            }
-                                            title = (habitType != .none) ? predefined : ""
-                                            enableAutocomplete = false
-                                        }
-                                    }
-                            } else {
-                                // Fallback on earlier versions
-                            }
-                        }
+                        )
                     }
                 }
                 
@@ -166,9 +136,8 @@ struct AddHabitView: View {
                                     healthAutocomplete()
                                 }
                             }
-                    }.transition(.opacity)
+                    }
                 }
-                
                 
                 Section(header: Text("Active Days")) {
                     WeekdaysView(activeWeekdays:$activeWeekdays)
@@ -327,28 +296,23 @@ struct AddHabitView: View {
         }
     }
     
-    
-    
-    func finalise(_ habit:HabitItem) {
-        
+    func finalise(_ habit: HabitItem) {
         if (canEnableAutocomplete && enableAutocomplete) {
-            habit.healthType = Health.shared.supportedHabits[title] ?? HealthType.none
+            habit.healthType = selectedHealthType
         } else {
             habit.healthType = HealthType.none
         }
         
-        if habit.healthType != HealthType.none {
-            Health.shared.enableHabitBackgroundDelivery(habit:habit) { value in
-                // TODO: show error
+        if habit.healthType != .none {
+            Health.shared.enableHabitBackgroundDelivery(habit: habit) { value in
                 if (!value) {
                     habit.healthType = HealthType.none
                     enableAutocomplete = false
                 }
             }
         } else {
-            Health.shared.disableHabitBackgroundDelivery(habit:habit)
+            Health.shared.disableHabitBackgroundDelivery(habit: habit)
         }
-        
         
         // setup Notificaitons
         reScheduleWeekdayNotification(habitItem: habit)
@@ -358,13 +322,7 @@ struct AddHabitView: View {
         
         dismiss()
     }
-    
 }
-
-
-//#Preview("New Habit") {
-//    AddHabitView()
-//}
 
 #Preview("Edit Habit") {
     var habitItem = HabitItem(

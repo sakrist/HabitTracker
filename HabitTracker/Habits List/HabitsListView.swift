@@ -150,9 +150,19 @@ struct HabitsListView: View {
                         onCompletion: { result in
                             switch result {
                             case .success(let url):
-                                // Store URL and show options dialog
+                                // Store URL
                                 importURL = url
-                                showImportOptions = true
+                                
+                                // Check if there are any existing habits
+                                let hasExistingHabits = !items.isEmpty
+                                
+                                if hasExistingHabits {
+                                    // If we have habits, show options dialog
+                                    showImportOptions = true
+                                } else {
+                                    // If no habits, import directly (nothing to merge with)
+                                    importData(replace: false)
+                                }
                             case .failure(let error):
                                 print("Failed to import habits: \(error)")
                                 showImportFailureAlert = true

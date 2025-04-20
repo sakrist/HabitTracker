@@ -14,6 +14,13 @@
 		4F092E842DB5248200FA334C /* OnboardingPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E7C2DB5248200FA334C /* OnboardingPreview.swift */; };
 		4F092E862DB5315C00FA334C /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E852DB5315800FA334C /* AppIcon.swift */; };
 		4F092E872DB5315C00FA334C /* AppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F092E852DB5315800FA334C /* AppIcon.swift */; };
+		4F28D9D42DB57CF0000D9807 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F28D9D22DB57CF0000D9807 /* Localizable.strings */; };
+		4F28D9D52DB57CF0000D9807 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F28D9D22DB57CF0000D9807 /* Localizable.strings */; };
+		4F28D9D72DB57D23000D9807 /* HealthActivityTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9D62DB57D23000D9807 /* HealthActivityTemplate.swift */; };
+		4F28D9D82DB57D23000D9807 /* HealthActivityTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9D62DB57D23000D9807 /* HealthActivityTemplate.swift */; };
+		4F28D9DA2DB583E1000D9807 /* ActivityTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9D92DB583E1000D9807 /* ActivityTypePickerView.swift */; };
+		4F28D9DC2DB5928C000D9807 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9DB2DB59286000D9807 /* Notification.swift */; };
+		4F28D9DD2DB5928C000D9807 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9DB2DB59286000D9807 /* Notification.swift */; };
 		4F6D4AE72DA856920018448A /* AchievementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D4AE52DA856920018448A /* AchievementTests.swift */; };
 		4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
 		4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
@@ -150,6 +157,10 @@
 		4F092E7D2DB5248200FA334C /* OnboardingSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSubscriptionView.swift; sourceTree = "<group>"; };
 		4F092E7E2DB5248200FA334C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4F092E852DB5315800FA334C /* AppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcon.swift; sourceTree = "<group>"; };
+		4F28D9D12DB57CF0000D9807 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4F28D9D62DB57D23000D9807 /* HealthActivityTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthActivityTemplate.swift; sourceTree = "<group>"; };
+		4F28D9D92DB583E1000D9807 /* ActivityTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypePickerView.swift; sourceTree = "<group>"; };
+		4F28D9DB2DB59286000D9807 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		4F6D4AE52DA856920018448A /* AchievementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTests.swift; sourceTree = "<group>"; };
 		4F83019A2DAFBB880015ED4D /* ExportImportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportData.swift; sourceTree = "<group>"; };
 		4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportTests.swift; sourceTree = "<group>"; };
@@ -277,6 +288,14 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		4F28D9D32DB57CF0000D9807 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F28D9D22DB57CF0000D9807 /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4F8301A12DB02FB70015ED4D /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +343,7 @@
 		D25A7A842CA5D7EE0000E843 /* HabitTracker */ = {
 			isa = PBXGroup;
 			children = (
+				4F28D9D32DB57CF0000D9807 /* Resources */,
 				D2A78ABA2D3F0D190091DFB2 /* Info.plist */,
 				D25A7A7D2CA5D7EE0000E843 /* Preview Content */,
 				D25A7A812CA5D7EE0000E843 /* HabitTracker.entitlements */,
@@ -370,6 +390,7 @@
 		D28309DB2CA9B33800C6B22A /* ModelRecords */ = {
 			isa = PBXGroup;
 			children = (
+				4F28D9DB2DB59286000D9807 /* Notification.swift */,
 				4F83019A2DAFBB880015ED4D /* ExportImportData.swift */,
 				D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */,
 				D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */,
@@ -408,6 +429,7 @@
 		D2DB715F2D3BC521000DC325 /* Habits List */ = {
 			isa = PBXGroup;
 			children = (
+				4F28D9D92DB583E1000D9807 /* ActivityTypePickerView.swift */,
 				D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */,
 				D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */,
 				D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */,
@@ -440,6 +462,7 @@
 		D2DB71622D3C48BF000DC325 /* Systems */ = {
 			isa = PBXGroup;
 			children = (
+				4F28D9D62DB57D23000D9807 /* HealthActivityTemplate.swift */,
 				D2DB71632D3C48D3000DC325 /* NotificationCenter.swift */,
 				D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */,
 				D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */,
@@ -626,6 +649,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2DB71762D3D30DB000DC325 /* Assets.xcassets in Resources */,
+				4F28D9D42DB57CF0000D9807 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +659,7 @@
 			files = (
 				D2DB716B2D3D2A46000DC325 /* clang.wav in Resources */,
 				D25A7A852CA5D7EF0000E843 /* Preview Assets.xcassets in Resources */,
+				4F28D9D52DB57CF0000D9807 /* Localizable.strings in Resources */,
 				4FAA66F62DAD9EC200586FC4 /* achive-sound-2.caf in Resources */,
 				4FAA66F72DAD9EC200586FC4 /* achive-sound-3.caf in Resources */,
 				4FAA66F82DAD9EC200586FC4 /* achive-sound-1.caf in Resources */,
@@ -686,7 +711,9 @@
 				D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */,
 				4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */,
 				D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */,
+				4F28D9D72DB57D23000D9807 /* HealthActivityTemplate.swift in Sources */,
 				D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */,
+				4F28D9DC2DB5928C000D9807 /* Notification.swift in Sources */,
 				D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
 				D252463D2D370659003CEBF9 /* SampleData.swift in Sources */,
 				D252463F2D370659003CEBF9 /* HabitItem+extension.swift in Sources */,
@@ -702,6 +729,7 @@
 				4F092E822DB5248200FA334C /* OnboardingIntroView.swift in Sources */,
 				4F092E832DB5248200FA334C /* OnboardingSubscriptionView.swift in Sources */,
 				4F092E842DB5248200FA334C /* OnboardingPreview.swift in Sources */,
+				4F28D9DD2DB5928C000D9807 /* Notification.swift in Sources */,
 				D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */,
 				D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */,
 				D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */,
@@ -720,6 +748,7 @@
 				D2C126482CB2DAAC005E5941 /* MainListView.swift in Sources */,
 				D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */,
 				D2DB715C2D39B30C000DC325 /* HabitDetailProgressView.swift in Sources */,
+				4F28D9DA2DB583E1000D9807 /* ActivityTypePickerView.swift in Sources */,
 				4F86138C2DB278F00005A15A /* ModelData+targetCount.swift in Sources */,
 				D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */,
 				D2D457FA2D4AE71000C67484 /* HealthViewDebug.swift in Sources */,
@@ -727,6 +756,7 @@
 				D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */,
 				D2C09DFD2DA09001001DC17D /* AchievementBanner.swift in Sources */,
 				4F8613832DB1110B0005A15A /* SchemaV4.swift in Sources */,
+				4F28D9D82DB57D23000D9807 /* HealthActivityTemplate.swift in Sources */,
 				D2DB716D2D3D2F99000DC325 /* DayHabitsListView.swift in Sources */,
 				D262C5E32D4FA77A00CDCA0E /* SchemaV3.swift in Sources */,
 				D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */,
@@ -786,6 +816,17 @@
 			targetProxy = D25A7A532CA5D64D0000E843 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4F28D9D22DB57CF0000D9807 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F28D9D12DB57CF0000D9807 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D25246382D370617003CEBF9 /* Debug */ = {
@@ -989,9 +1030,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -999,6 +1041,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1007,6 +1050,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1034,9 +1078,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
 				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1044,6 +1089,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1052,6 +1098,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

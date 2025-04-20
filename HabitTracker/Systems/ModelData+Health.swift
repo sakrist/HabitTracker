@@ -65,7 +65,7 @@ extension ModelData {
            let workout = sample as? HKWorkout {
             return .workout(workout.workoutActivityType)
         } else if sample.sampleType == HKCategoryType(.mindfulSession) {
-            return sample.sourceRevision.source.name == "Journal" 
+            return sample.sourceRevision.source.bundleIdentifier == "com.apple.journal"
                 ? .category(.mindfulSession, .journal)
                 : .category(.mindfulSession, .meditate)
         } else if sample.sampleType == HKCategoryType(.toothbrushingEvent) {

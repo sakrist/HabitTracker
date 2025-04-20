@@ -1,0 +1,15 @@
+/* Health activity names */
+"custom_habit" = "Custom Habit";
+"workout_13" = "Cycling";
+"workout_37" = "Running";
+"workout_52" = "Walking";
+"workout_46" = "Swimming";
+"workout_50" = "Strength Training";
+"workout_11" = "Cross Training";
+"workout_57" = "Yoga";
+"workout_24" = "Hiking";
+"workout_66" = "Pilates";
+"category_HKCategoryTypeIdentifierToothbrushingEvent_no" = "Tooth Brushing";
+"category_HKCategoryTypeIdentifierMindfulSession_meditate" = "Meditation";
+"category_HKCategoryTypeIdentifierMindfulSession_journal" = "Journaling";
+"quantity_HKQuantityTypeIdentifierDietaryWater" = "Water Intake";

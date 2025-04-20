@@ -30,7 +30,7 @@ class ModelData {
     convenience init() {
         let schema = Schema(versionedSchema: SchemaLatest.self)
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
+        
         do {
             let container = try ModelContainer(for: schema, migrationPlan: MigrationPlanToLatest.self,
                                              configurations: [modelConfiguration])

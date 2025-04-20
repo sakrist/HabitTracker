@@ -38,7 +38,7 @@ struct ContentView: View {
                         showAddHabit = false
                         habitsNavigationPath = NavigationPath()
                         firstTab = (selectedTab == 0) ? -1 : 0
-                        postActive()
+                        NotificationCenter.default.postActive()
                     }
                     reloadTimeline = (newValue == 2)
                 }.onAppear {
@@ -68,15 +68,7 @@ struct ContentView: View {
         }
     }
     
-    func postActive() {
-        #if canImport(UIKit)
-        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
-        #elseif canImport(AppKit)
-        NotificationCenter.default.post(name: NSApplication.didBecomeActiveNotification, object: nil)
-        #else
-        fatalError("Unsupported platform")
-        #endif
-    }
+    
 }
 
 #Preview {

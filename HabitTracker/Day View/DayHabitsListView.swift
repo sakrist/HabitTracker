@@ -15,7 +15,7 @@ func motivationMessage() -> String {
     
     let motivationalQuotes: Set<String> = [
     "All done for today!",
-    "You crushed it! ✅",
+    "You crushed it! ⭐️",
     "Daily streak complete!",
     "Nothing left — you nailed it!",
     "You're on fire! 🔥",

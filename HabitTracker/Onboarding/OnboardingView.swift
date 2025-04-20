@@ -93,6 +93,9 @@ struct OnboardingView: View {
     }
     
     private func addSelectedHabits() {
+        // First, create habits but don't yet request health permissions
+        var createdHabits: [HabitItem] = []
+        
         for (index, isSelected) in selectedHabits.enumerated() {
             if isSelected && index < commonHabits.count {
                 let habit = commonHabits[index]
@@ -110,20 +113,44 @@ struct OnboardingView: View {
                 newHabit.healthType = habit.healthType
                 newHabit.order = index
                 
-                if newHabit.healthType != .none {
-                    Health.shared.enableHabitBackgroundDelivery(habit:newHabit) { value in
-                        if (!value) {
-                            newHabit.healthType = HealthType.none
-                        }
-                    }
-                }
-                
                 // Insert into data model
                 modelContext.insert(newHabit)
+                createdHabits.append(newHabit)
             }
         }
         
+        // Save initial context
         ModelData.shared.saveContext()
+        
+        // Now request health permissions for all health-enabled habits at once
+        let healthHabits = createdHabits.filter { $0.healthType != nil && $0.healthType != .none }
+        
+        if !healthHabits.isEmpty {
+            Task {
+                // Request health authorizations in bulk
+                let _ = await withCheckedContinuation { continuation in
+                    Health.shared.requestBulkHealthAuthorization(for: healthHabits) { result in
+                        continuation.resume(returning: result)
+                    }
+                }
+                
+                // Set up background delivery for authorized habits
+                for habit in healthHabits {
+                    if Health.shared.verifyHealthAuthorization(for: habit) {
+                        Health.shared.enableHabitBackgroundDelivery(habit: habit) { _ in }
+                    } else {
+                        // If authorization failed, remove health integration
+                        habit.healthType = HealthType.none
+                    }
+                }
+                
+                // Save again after authorizations
+                await MainActor.run {
+                    ModelData.shared.saveContext()
+                    NotificationCenter.default.postActive()
+                }
+            }
+        }
     }
 }
 
@@ -138,7 +165,7 @@ struct CommonHabit {
 
 let commonHabits: [CommonHabit] = [
     CommonHabit(
-        title: "Running",
+        title: "Morning Run",
         color: Color.blue.toHex(),
         healthType: .workout(.running),
         icon: "figure.run",
@@ -166,7 +193,7 @@ let commonHabits: [CommonHabit] = [
         description: "Expand your knowledge daily"
     ),
     CommonHabit(
-        title: "Strength Training",
+        title: "Gym",
         color: Color.red.toHex(),
         healthType: .workout(.traditionalStrengthTraining),
         icon: "dumbbell.fill",

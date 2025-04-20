@@ -268,8 +268,8 @@ extension SchemaV4.DailyEntry {
 extension SchemaV4.HabitItem {
     var healthType: HealthType? {
         get {
-            if let healthType = self.hType {
-                return HealthType.fromID(healthType)
+            if let healthTypeId = self.hType {
+                return HealthType.fromID(healthTypeId)
             }
             return nil
         }

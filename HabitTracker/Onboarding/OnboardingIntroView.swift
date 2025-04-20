@@ -24,7 +24,7 @@ struct OnboardingIntroView: View {
                 .rainbowRun()
                 .padding(.bottom, 10)
             
-            // App description
+            
             VStack(alignment: .leading, spacing: 20) {
                 FeatureRow(
                     icon: "checkmark.circle.fill", 
