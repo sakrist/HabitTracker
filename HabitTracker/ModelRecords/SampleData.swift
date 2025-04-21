@@ -89,8 +89,9 @@ class SampleData {
 
 extension HabitItem {
     @MainActor
-    static func sampleData() -> [HabitItem] {
-        let categories = ModelData.shared.fetchCategories()
+    static func sampleData(_ modelData:ModelData? = nil) -> [HabitItem] {
+        let modelData = modelData ?? ModelData.shared
+        let categories =  modelData.fetchCategories()
         let data = [
             HabitItem(
                 id: "1234",
@@ -177,8 +178,8 @@ extension HabitItem {
 }
 
 
-@MainActor func sampleDailyEntries() -> [DailyEntry] {
-    let sampleData = HabitItem.sampleData()
+@MainActor func sampleDailyEntries(_ modelData:ModelData? = nil) -> [DailyEntry] {
+    let sampleData = HabitItem.sampleData(modelData)
     return [
         DailyEntry(habit: sampleData[0], date: Date(), isCompleted: false),
         DailyEntry(habit: sampleData[1], date: Date(), isCompleted: true),

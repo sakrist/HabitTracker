@@ -7,7 +7,7 @@
 
 import WidgetKit
 import SwiftUI
-
+import SwiftData
 
 
 struct HabitWidgetEntry: TimelineEntry {
@@ -30,13 +30,38 @@ struct Provider: @preconcurrency IntentTimelineProvider {
         return fetchHabitEntries(modelContext: modelData.modelContainer.mainContext, for: Date())
     }
     
+    @MainActor
+    func fetchPlaceholderEntries() -> [DailyEntry] {
+        do {
+            let schema = Schema(versionedSchema: SchemaLatest.self)
+            let config = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+            let container = try ModelContainer(for: schema, configurations: [config])
+            
+            let modelData = ModelData()
+            modelData.modelContainer = container
+            return sampleDailyEntries(modelData)
+        } catch {
+            
+        }
+        
+        return []
+    }
+    
+    
     @MainActor func placeholder(in context: Context) -> HabitWidgetEntry {
-        HabitWidgetEntry(date: Date(), dailyEntries: sampleDailyEntries(), showCompleted: true)
+        var entries = fetchEntries()
+        if (entries.isEmpty) {
+            entries = fetchPlaceholderEntries()
+        }
+        return HabitWidgetEntry(date: Date(), dailyEntries: fetchEntries(), showCompleted: true)
     }
 
     @MainActor
     func getSnapshot(for configuration: Intent, in context: Context, completion: @escaping (HabitWidgetEntry) -> Void) {
-        let sampleEntries = sampleDailyEntries()
+        var sampleEntries = fetchEntries()
+        if (sampleEntries.isEmpty) {
+            sampleEntries = fetchPlaceholderEntries()
+        }
         completion(HabitWidgetEntry(date: Date(), dailyEntries: sampleEntries, showCompleted: configuration.state.rawValue == 1))
     }
 

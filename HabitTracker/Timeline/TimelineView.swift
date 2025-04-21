@@ -102,6 +102,9 @@ struct TimelineView: View {
         
         // Add completion entries
         for entry in entries {
+            if (!entry.habitt.active) {
+                continue
+            }
             for completionDate in entry.completionDates {
                 let dayStart = calendar.startOfDay(for: completionDate)
                 if groupedByDay[dayStart] == nil {
