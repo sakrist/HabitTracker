@@ -237,7 +237,7 @@ enum SubscriptionOption: String, CaseIterable {
         case .yearly:
             return "$9.99/year - All features unlocked (save 16%)"
         case .lifetime:
-            return "$14.99 one-time - Lifetime access to all features"
+            return "$19.99 one-time - Lifetime access to all features"
         }
     }
     
@@ -257,7 +257,6 @@ enum SubscriptionOption: String, CaseIterable {
                 "Timeline view",
                 "More achievements to unlock",
                 "All future improvements",
-                "Priority support"
             ]
         }
     }

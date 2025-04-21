@@ -18,7 +18,7 @@ struct OnboardingSubscriptionView: View {
             Text("Select the option that works best for you")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-                .padding(.bottom)
+//                .padding(.bottom)
             
             // Subscription options
             VStack(spacing: 15) {
@@ -44,16 +44,16 @@ struct OnboardingSubscriptionView: View {
                     action: { selectedOption = .yearly }
                 )
                 
-                // Lifetime option
-                SubscriptionCard(
-                    option: .lifetime,
-                    isSelected: selectedOption == .lifetime,
-                    action: { selectedOption = .lifetime }
-                )
+//                // Lifetime option
+//                SubscriptionCard(
+//                    option: .lifetime,
+//                    isSelected: selectedOption == .lifetime,
+//                    action: { selectedOption = .lifetime }
+//                )
             }
             .padding(.horizontal)
             
-            Spacer()
+//            Spacer()
             
             // Disclaimer text
             Group {

@@ -18,7 +18,7 @@ struct ProgressCardView: View {
                 Text("Current Streak")
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                Text("\(currentStreak) days")
+                Text(String(format: NSLocalizedString("days_count", comment: "Number of days"), currentStreak))
                     .font(.title3.bold())
             }
             .frame(maxWidth: .infinity, alignment: .leading)

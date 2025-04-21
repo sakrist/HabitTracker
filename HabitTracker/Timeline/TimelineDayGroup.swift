@@ -9,13 +9,8 @@ struct TimelineDayGroup: View {
                 .font(.headline)
                 .padding(.vertical, 8)
             
-            ForEach(group.completionEntries.reversed()) { completionEntry in
-                TimelineEntryView(
-                    entry: completionEntry.entry,
-                    completionDate: completionEntry.completionDate,
-                    index: completionEntry.index,
-                    totalCompletions: completionEntry.entry.completionDates.count
-                )
+            ForEach(group.entries) { entry in
+                TimelineEntryView(timelineEntry: entry)
             }
         }
     }
@@ -23,11 +18,16 @@ struct TimelineDayGroup: View {
 
 #Preview {
     let sampleHabit = HabitItem.sampleData().first!
-    let entry = DailyEntry(habit: sampleHabit, date: Date())
-    entry.completionDates = [Date()]
     
-    let completionEntry = CompletionEntry(entry: entry, completionDate: Date())
-    let group = TimelineGroup(date: Date(), completionEntries: [completionEntry])
+    // Create a sample creation entry
+    let creationEntry = TimelineEntry(habit: sampleHabit)
+    
+    // Create a sample completion entry
+    let dailyEntry = DailyEntry(habit: sampleHabit, date: Date())
+    dailyEntry.completionDates = [Date()]
+    let completionEntry = TimelineEntry(entry: dailyEntry, completionDate: Date())
+    
+    let group = TimelineGroup(date: Date(), entries: [creationEntry, completionEntry])
     
     return TimelineDayGroup(group: group)
 }

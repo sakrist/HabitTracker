@@ -78,7 +78,7 @@ struct HabitDetailProgressView : View {
                             Text("Longest Streak")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
-                            Text("\(longest) days")
+                            Text(String(format: NSLocalizedString("days_count", comment: "Number of days"), longest))
                                 .font(.title3.bold())
                             
                         }
@@ -86,10 +86,10 @@ struct HabitDetailProgressView : View {
                         
                         // Completion Rate Section
                         VStack(alignment: .trailing, spacing: 4) {
-                            Text("Total Days")
+                            Text("Total")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
-                            Text("\(total)")
+                            Text(String(format: NSLocalizedString("days_count", comment: "Number of days"), total))
                                 .font(.title3.bold())
                         }
                         .frame(maxWidth: .infinity, alignment: .trailing)

@@ -57,7 +57,9 @@ struct DayHabitsListView: View {
             .overlay(alignment: .top) {
                 let title = achievementTitle(achievement: currentAchievement)
                 let icon = achievementIcon(achievement: currentAchievement)
-                AchievementBanner(title: title, icon: icon,  isPresented: $showAchievement)
+                // Use the color of the habit that triggered the achievement
+                let color = entries.first(where: { $0.achievement == currentAchievement })?.habitt.getColor() ?? .blue
+                AchievementBanner(title: title, icon: icon, color: color, isPresented: $showAchievement)
             }
             .listStyle(.plain)
             .confettiCannon(trigger: $counter, num: 100, rainHeight: 250)

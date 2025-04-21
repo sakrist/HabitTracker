@@ -13,3 +13,12 @@
 "category_HKCategoryTypeIdentifierMindfulSession_meditate" = "Meditation";
 "category_HKCategoryTypeIdentifierMindfulSession_journal" = "Journaling";
 "quantity_HKQuantityTypeIdentifierDietaryWater" = "Water Intake";
+
+
+"day" = "day";
+"days" = "days";
+
+"Longest Streak" = "Longest Streak";
+"Total" = "Total";
+"Current Streak" = "Current Streak";
+"Completion Rate" = "Completion Rate";

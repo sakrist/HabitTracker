@@ -88,28 +88,45 @@ struct TimelineView: View {
         }
         loadedDates.insert(startDay)
         
+        // Fetch completion entries
         let entries = fetchEntries(start: startDate, end: endDate, modelContext: modelContext)
         
-        // Group entries by completion date
-        var groupedByDay: [Date: [CompletionEntry]] = [:]
+        // Fetch habits created in this date range
+        let habitsPredicate = #Predicate<HabitItem> {
+            $0.timestamp >= startDate && $0.timestamp <= endDate
+        }
+        let habits = try? modelContext.fetch(FetchDescriptor<HabitItem>(predicate: habitsPredicate))
         
+        // Group entries by date
+        var groupedByDay: [Date: [TimelineEntry]] = [:]
+        
+        // Add completion entries
         for entry in entries {
-            
             for completionDate in entry.completionDates {
                 let dayStart = calendar.startOfDay(for: completionDate)
                 if groupedByDay[dayStart] == nil {
                     groupedByDay[dayStart] = []
                 }
                 
-                groupedByDay[dayStart]?.append(CompletionEntry(entry: entry, completionDate: completionDate))
+                groupedByDay[dayStart]?.append(TimelineEntry(entry: entry, completionDate: completionDate))
             }
+        }
+        
+        // Add habit creation entries
+        for habit in habits ?? [] {
+            let dayStart = calendar.startOfDay(for: habit.timestamp)
+            if groupedByDay[dayStart] == nil {
+                groupedByDay[dayStart] = []
+            }
+            
+            groupedByDay[dayStart]?.append(TimelineEntry(habit: habit))
         }
         
         // Convert to timeline groups
         let newGroups = groupedByDay.map { date, entries in
             TimelineGroup(
                 date: date,
-                completionEntries: entries.sorted { $0.completionDate < $1.completionDate }
+                entries: entries.sorted { $0.date > $1.date }
             )
         }.sorted { $0.date > $1.date }
         

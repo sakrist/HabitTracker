@@ -21,6 +21,9 @@
 		4F28D9DA2DB583E1000D9807 /* ActivityTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9D92DB583E1000D9807 /* ActivityTypePickerView.swift */; };
 		4F28D9DC2DB5928C000D9807 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9DB2DB59286000D9807 /* Notification.swift */; };
 		4F28D9DD2DB5928C000D9807 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9DB2DB59286000D9807 /* Notification.swift */; };
+		4F28D9E02DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4F28D9DF2DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit */; };
+		4F28D9E32DB64617000D9807 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 4F28D9E12DB64617000D9807 /* Localizable.stringsdict */; };
+		4F28D9E42DB64617000D9807 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 4F28D9E12DB64617000D9807 /* Localizable.stringsdict */; };
 		4F6D4AE72DA856920018448A /* AchievementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D4AE52DA856920018448A /* AchievementTests.swift */; };
 		4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
 		4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
@@ -161,6 +164,8 @@
 		4F28D9D62DB57D23000D9807 /* HealthActivityTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthActivityTemplate.swift; sourceTree = "<group>"; };
 		4F28D9D92DB583E1000D9807 /* ActivityTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTypePickerView.swift; sourceTree = "<group>"; };
 		4F28D9DB2DB59286000D9807 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		4F28D9DF2DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyDailyHabitsTracker.storekit; sourceTree = "<group>"; };
+		4F28D9E22DB64617000D9807 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		4F6D4AE52DA856920018448A /* AchievementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTests.swift; sourceTree = "<group>"; };
 		4F83019A2DAFBB880015ED4D /* ExportImportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportData.swift; sourceTree = "<group>"; };
 		4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportTests.swift; sourceTree = "<group>"; };
@@ -291,9 +296,18 @@
 		4F28D9D32DB57CF0000D9807 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F28D9E12DB64617000D9807 /* Localizable.stringsdict */,
 				4F28D9D22DB57CF0000D9807 /* Localizable.strings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4F28D9DE2DB5C56F000D9807 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				4F28D9DF2DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		4F8301A12DB02FB70015ED4D /* Timeline */ = {
@@ -351,6 +365,7 @@
 				D25A7A7F2CA5D7EE0000E843 /* Assets.xcassets */,
 				D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */,
 				D25A7A802CA5D7EE0000E843 /* ContentView.swift */,
+				4F28D9DE2DB5C56F000D9807 /* Store */,
 				4F092E7F2DB5248200FA334C /* Onboarding */,
 				D2DB71622D3C48BF000DC325 /* Systems */,
 				D2DB71612D3BC877000DC325 /* Views */,
@@ -598,7 +613,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					D25246262D370615003CEBF9 = {
 						CreatedOnToolsVersion = 16.2;
@@ -650,6 +665,7 @@
 			files = (
 				D2DB71762D3D30DB000DC325 /* Assets.xcassets in Resources */,
 				4F28D9D42DB57CF0000D9807 /* Localizable.strings in Resources */,
+				4F28D9E42DB64617000D9807 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +673,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F28D9E02DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit in Resources */,
 				D2DB716B2D3D2A46000DC325 /* clang.wav in Resources */,
 				D25A7A852CA5D7EF0000E843 /* Preview Assets.xcassets in Resources */,
 				4F28D9D52DB57CF0000D9807 /* Localizable.strings in Resources */,
@@ -664,6 +681,7 @@
 				4FAA66F72DAD9EC200586FC4 /* achive-sound-3.caf in Resources */,
 				4FAA66F82DAD9EC200586FC4 /* achive-sound-1.caf in Resources */,
 				4FAA66F92DAD9EC200586FC4 /* achive-sound-4.caf in Resources */,
+				4F28D9E32DB64617000D9807 /* Localizable.stringsdict in Resources */,
 				4FAA66FA2DAD9EC200586FC4 /* achive-sound-5.caf in Resources */,
 				D2DB71682D3C6A6F000DC325 /* Balloon Pop.caf in Resources */,
 				D2DB71692D3C6A6F000DC325 /* sparkle.wav in Resources */,
@@ -826,6 +844,14 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		4F28D9E12DB64617000D9807 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F28D9E22DB64617000D9807 /* en */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -836,8 +862,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = Daily/Daily.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = DHKZ7WR43P;
+				CURRENT_PROJECT_VERSION = 15;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Daily/Info.plist;
@@ -858,7 +884,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker.Daily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = NO;
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -877,8 +903,8 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = Daily/Daily.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
-				DEVELOPMENT_TEAM = DHKZ7WR43P;
+				CURRENT_PROJECT_VERSION = 15;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Daily/Info.plist;
@@ -899,7 +925,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker.Daily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = NO;
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -945,7 +971,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1006,7 +1034,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1033,15 +1063,15 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
-				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1062,7 +1092,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = NO;
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -1081,15 +1111,15 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"HabitTracker/Preview Content\"";
-				DEVELOPMENT_TEAM = DHKZ7WR43P;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTracker/Info.plist;
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1110,7 +1140,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				REGISTER_APP_GROUPS = NO;
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -1127,7 +1157,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DHKZ7WR43P;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -1151,7 +1181,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DHKZ7WR43P;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -1174,7 +1204,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DHKZ7WR43P;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
@@ -1197,7 +1227,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = DHKZ7WR43P;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
