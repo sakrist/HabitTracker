@@ -63,7 +63,7 @@ struct MainListView: View {
                 VStack {
                     DayHabitsListView(date: $selectedDate, entries: entries)
                     
-                    if(entries.count == 0 || modelData.firstLaunch) {
+                    if(entries.count == 0) {
                         VStack {
                             // show button add habits which will navigate to Habits tab
                             Text("Start by adding habits you already do daily.\n")
