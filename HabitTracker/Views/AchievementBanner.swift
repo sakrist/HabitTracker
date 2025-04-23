@@ -43,7 +43,7 @@ struct AchievementBanner: View {
                     ZStack {
                         // White background base layer
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.white)
+                            .fill(Color(uiColor: UIColor.systemBackground))
                         
                         // Colored overlay
                         RoundedRectangle(cornerRadius: 12)
