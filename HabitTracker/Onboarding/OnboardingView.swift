@@ -13,6 +13,7 @@ struct OnboardingView: View {
     @State private var currentPage = 0
     @State private var selectedHabits: [Bool] = Array(repeating: false, count: commonHabits.count)
     @State private var selectedSubscription: SubscriptionOption = .free
+    @State private var isLoading = false
     
     @Binding var showOnboarding: Bool
     
@@ -79,17 +80,51 @@ struct OnboardingView: View {
     }
     
     private func completeOnboarding() {
+        // Purchase subscription if needed
+        if selectedSubscription != .free {
+            Task {
+                isLoading = true
+                let purchased = await SubscriptionService.shared.purchase(option: selectedSubscription)
+                
+                if !purchased {
+                    // Fall back to free plan if purchase fails
+                    selectedSubscription = .free
+                }
+                
+                await MainActor.run {
+                    isLoading = false
+                    
+                    // Continue with habit creation and completion
+                    createSelectedHabits()
+                    
+                    // Save subscription choice
+                    UserDefaults.standard.set(selectedSubscription.rawValue, forKey: "SelectedSubscription")
+                    
+                    // Mark onboarding as completed
+                    UserDefaults.standard.set(true, forKey: "OnboardingCompleted")
+                    
+                    // Dismiss onboarding
+                    showOnboarding = false
+                }
+            }
+        } else {
+            // If free plan, just continue with habit creation
+            createSelectedHabits()
+            
+            // Save subscription choice
+            UserDefaults.standard.set(selectedSubscription.rawValue, forKey: "SelectedSubscription")
+            
+            // Mark onboarding as completed
+            UserDefaults.standard.set(true, forKey: "OnboardingCompleted")
+            
+            // Dismiss onboarding
+            showOnboarding = false
+        }
+    }
+    
+    private func createSelectedHabits() {
         // Create selected habits
         addSelectedHabits()
-        
-        // Save subscription choice
-        UserDefaults.standard.set(selectedSubscription.rawValue, forKey: "SelectedSubscription")
-        
-        // Mark onboarding as completed
-        UserDefaults.standard.set(true, forKey: "OnboardingCompleted")
-        
-        // Dismiss onboarding
-        showOnboarding = false
     }
     
     private func addSelectedHabits() {
@@ -233,12 +268,20 @@ enum SubscriptionOption: String, CaseIterable {
         case .free:
             return "Up to 5 habits, one health habit, basic features"
         case .monthly:
-            return "$0.99/month - All features unlocked"
+            return "All features unlocked"
         case .yearly:
-            return "$9.99/year - All features unlocked (save 16%)"
+            return "All features unlocked"
         case .lifetime:
-            return "$19.99 one-time - Lifetime access to all features"
+            return "One-time purchase, all features forever"
         }
+    }
+    
+    var isPurchase: Bool {
+        return self == .lifetime
+    }
+    
+    var isSubscription: Bool {
+        return self == .monthly || self == .yearly
     }
     
     var benefits: [String] {

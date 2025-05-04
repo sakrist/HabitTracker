@@ -1,5 +1,5 @@
 {
-  "originHash" : "68cce9dc3a1c6c58736d168e5e218c0c3ac63c91eed7ea96209317f781c69e9e",
+  "originHash" : "7ae333829d71d8d3d88c098d45498c9fc5070521d66c5bfebf2d852d5c1664c5",
   "pins" : [
     {
       "identity" : "confettiswiftui",
@@ -22,10 +22,10 @@
     {
       "identity" : "rainbowui",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/sakrist/RainbowUI",
+      "location" : "https://github.com/sakrist/RainbowUI.git",
       "state" : {
         "branch" : "main",
-        "revision" : "ac982c9359a3847e6e78ae1959dc9869221c14cb"
+        "revision" : "a07e1dee2c56f18b050d794c86bcf686fd28a51e"
       }
     }
   ],

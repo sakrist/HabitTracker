@@ -24,7 +24,13 @@
 		4F28D9E02DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4F28D9DF2DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit */; };
 		4F28D9E32DB64617000D9807 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 4F28D9E12DB64617000D9807 /* Localizable.stringsdict */; };
 		4F28D9E42DB64617000D9807 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 4F28D9E12DB64617000D9807 /* Localizable.stringsdict */; };
+		4F28D9E72DB66081000D9807 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9E52DB66081000D9807 /* StoreManager.swift */; };
+		4F28D9E82DB66081000D9807 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F28D9E62DB66081000D9807 /* SubscriptionService.swift */; };
+		4F28D9EB2DB7A77A000D9807 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F28D9EA2DB7A77A000D9807 /* RainbowUI */; };
+		4F46FB502DC7D54300627B71 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F46FB4F2DC7D54300627B71 /* StoreKit.framework */; };
+		4F46FB532DC7D68700627B71 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F46FB522DC7D68700627B71 /* RainbowUI */; };
 		4F6D4AE72DA856920018448A /* AchievementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D4AE52DA856920018448A /* AchievementTests.swift */; };
+		4F82A4F62DB8DC1C00F57137 /* SubscriptionManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F82A4F42DB8DC1C00F57137 /* SubscriptionManagementView.swift */; };
 		4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
 		4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
 		4F83019E2DAFBF940015ED4D /* ExportImportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */; };
@@ -46,7 +52,6 @@
 		4FAA66F92DAD9EC200586FC4 /* achive-sound-4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F42DAD9EC200586FC4 /* achive-sound-4.caf */; };
 		4FAA66FA2DAD9EC200586FC4 /* achive-sound-5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4FAA66F52DAD9EC200586FC4 /* achive-sound-5.caf */; };
 		D203113E2D3F1A0300EC980F /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */; };
-		D21E00F62DA5CE8600F92490 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = D21E00F52DA5CE8600F92490 /* RainbowUI */; };
 		D21E00F92DA5CEC100F92490 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D21E00F82DA5CEC100F92490 /* ConfettiSwiftUI */; };
 		D25246282D370615003CEBF9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */; };
 		D25246292D370615003CEBF9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */; };
@@ -80,7 +85,6 @@
 		D26D06F92DAF03E1009C15D4 /* ModelDataFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26D06F82DAF03E1009C15D4 /* ModelDataFetchTests.swift */; };
 		D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
-		D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */; };
 		D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
 		D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */; };
 		D2C09DF22DA0680F001DC17D /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C09DF12DA0680F001DC17D /* UIApplication.swift */; };
@@ -166,7 +170,11 @@
 		4F28D9DB2DB59286000D9807 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		4F28D9DF2DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = MyDailyHabitsTracker.storekit; sourceTree = "<group>"; };
 		4F28D9E22DB64617000D9807 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		4F28D9E52DB66081000D9807 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
+		4F28D9E62DB66081000D9807 /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
+		4F46FB4F2DC7D54300627B71 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4F6D4AE52DA856920018448A /* AchievementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTests.swift; sourceTree = "<group>"; };
+		4F82A4F42DB8DC1C00F57137 /* SubscriptionManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagementView.swift; sourceTree = "<group>"; };
 		4F83019A2DAFBB880015ED4D /* ExportImportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportData.swift; sourceTree = "<group>"; };
 		4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportTests.swift; sourceTree = "<group>"; };
 		4F83019F2DAFDD920015ED4D /* HabitTracker_Export.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HabitTracker_Export.json; sourceTree = "<group>"; };
@@ -208,7 +216,6 @@
 		D26D06F82DAF03E1009C15D4 /* ModelDataFetchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataFetchTests.swift; sourceTree = "<group>"; };
 		D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyEntry+extension.swift"; sourceTree = "<group>"; };
 		D28309DC2CA9B3F200C6B22A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
-		D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoHabitsYet.swift; sourceTree = "<group>"; };
 		D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCardView.swift; sourceTree = "<group>"; };
 		D2A78ABA2D3F0D190091DFB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -255,12 +262,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D21E00F62DA5CE8600F92490 /* RainbowUI in Frameworks */,
 				D2ECACD42D569E12007B83C4 /* RainbowUI in Frameworks */,
+				4F46FB532DC7D68700627B71 /* RainbowUI in Frameworks */,
+				4F46FB502DC7D54300627B71 /* StoreKit.framework in Frameworks */,
 				D203113E2D3F1A0300EC980F /* ConfettiSwiftUI in Frameworks */,
 				D2C09DFA2DA08AAC001DC17D /* JDStatusBarNotification in Frameworks */,
 				D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */,
 				D21E00F92DA5CEC100F92490 /* ConfettiSwiftUI in Frameworks */,
+				4F28D9EB2DB7A77A000D9807 /* RainbowUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,8 +315,18 @@
 			isa = PBXGroup;
 			children = (
 				4F28D9DF2DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit */,
+				4F28D9E52DB66081000D9807 /* StoreManager.swift */,
+				4F28D9E62DB66081000D9807 /* SubscriptionService.swift */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		4F82A4F52DB8DC1C00F57137 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4F82A4F42DB8DC1C00F57137 /* SubscriptionManagementView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		4F8301A12DB02FB70015ED4D /* Timeline */ = {
@@ -368,6 +387,7 @@
 				4F28D9DE2DB5C56F000D9807 /* Store */,
 				4F092E7F2DB5248200FA334C /* Onboarding */,
 				D2DB71622D3C48BF000DC325 /* Systems */,
+				4F82A4F52DB8DC1C00F57137 /* Settings */,
 				D2DB71612D3BC877000DC325 /* Views */,
 				D2DB71602D3BC54A000DC325 /* Day View */,
 				D2DB715F2D3BC521000DC325 /* Habits List */,
@@ -435,6 +455,7 @@
 		D2CFF5632D35ABE200D09F01 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4F46FB4F2DC7D54300627B71 /* StoreKit.framework */,
 				D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */,
 				D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */,
 			);
@@ -457,7 +478,6 @@
 			children = (
 				D2C126472CB2DA9D005E5941 /* MainListView.swift */,
 				D2DB716C2D3D2F99000DC325 /* DayHabitsListView.swift */,
-				D2A78AA72D3D769E0091DFB2 /* NoHabitsYet.swift */,
 			);
 			path = "Day View";
 			sourceTree = "<group>";
@@ -558,8 +578,9 @@
 				D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */,
 				D2ECACD32D569E12007B83C4 /* RainbowUI */,
 				D2C09DF92DA08AAC001DC17D /* JDStatusBarNotification */,
-				D21E00F52DA5CE8600F92490 /* RainbowUI */,
 				D21E00F82DA5CEC100F92490 /* ConfettiSwiftUI */,
+				4F28D9EA2DB7A77A000D9807 /* RainbowUI */,
+				4F46FB522DC7D68700627B71 /* RainbowUI */,
 			);
 			productName = HabitTracker;
 			productReference = D25A7A352CA5D64B0000E843 /* HabitTracker.app */;
@@ -642,8 +663,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				D2C09DF82DA08AAC001DC17D /* XCRemoteSwiftPackageReference "JDStatusBarNotification" */,
-				D21E00F42DA5CE8600F92490 /* XCRemoteSwiftPackageReference "RainbowUI" */,
 				D21E00F72DA5CEC100F92490 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				4F46FB512DC7D68700627B71 /* XCRemoteSwiftPackageReference "RainbowUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = D25A7A362CA5D64B0000E843 /* Products */;
@@ -744,6 +765,7 @@
 			files = (
 				4F092E802DB5248200FA334C /* OnboardingHabitsView.swift in Sources */,
 				4F092E812DB5248200FA334C /* OnboardingView.swift in Sources */,
+				4F82A4F62DB8DC1C00F57137 /* SubscriptionManagementView.swift in Sources */,
 				4F092E822DB5248200FA334C /* OnboardingIntroView.swift in Sources */,
 				4F092E832DB5248200FA334C /* OnboardingSubscriptionView.swift in Sources */,
 				4F092E842DB5248200FA334C /* OnboardingPreview.swift in Sources */,
@@ -751,7 +773,6 @@
 				D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */,
 				D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */,
 				D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */,
-				D2A78AA82D3D76A50091DFB2 /* NoHabitsYet.swift in Sources */,
 				D2C1264B2CB7371D005E5941 /* Date.swift in Sources */,
 				D2CFF5592D35885500D09F01 /* HabitCategory+extension.swift in Sources */,
 				4F8613962DB3FC1C0005A15A /* TimelineConnector.swift in Sources */,
@@ -789,6 +810,8 @@
 				D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */,
 				D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */,
 				4F8613912DB2FB530005A15A /* TimelineView.swift in Sources */,
+				4F28D9E72DB66081000D9807 /* StoreManager.swift in Sources */,
+				4F28D9E82DB66081000D9807 /* SubscriptionService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1296,9 +1319,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D21E00F42DA5CE8600F92490 /* XCRemoteSwiftPackageReference "RainbowUI" */ = {
+		4F46FB512DC7D68700627B71 /* XCRemoteSwiftPackageReference "RainbowUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sakrist/RainbowUI";
+			repositoryURL = "https://github.com/sakrist/RainbowUI.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -1323,14 +1346,18 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4F28D9EA2DB7A77A000D9807 /* RainbowUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RainbowUI;
+		};
+		4F46FB522DC7D68700627B71 /* RainbowUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F46FB512DC7D68700627B71 /* XCRemoteSwiftPackageReference "RainbowUI" */;
+			productName = RainbowUI;
+		};
 		D203113D2D3F1A0300EC980F /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ConfettiSwiftUI;
-		};
-		D21E00F52DA5CE8600F92490 /* RainbowUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D21E00F42DA5CE8600F92490 /* XCRemoteSwiftPackageReference "RainbowUI" */;
-			productName = RainbowUI;
 		};
 		D21E00F82DA5CEC100F92490 /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
