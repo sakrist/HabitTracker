@@ -5,13 +5,16 @@
 
 import SwiftUI
 
+
 struct OnboardingSubscriptionView: View {
+    var title: String = "Choose Your Plan"
     @Binding var selectedOption: SubscriptionOption
     @StateObject private var storeManager = StoreManager.shared
+    var hideFreeOption: Bool = false
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Choose Your Plan")
+            Text(title)
                 .font(.title)
                 .fontWeight(.bold)
                 .padding(.top)
@@ -24,12 +27,15 @@ struct OnboardingSubscriptionView: View {
             
             ScrollView {
                 VStack(spacing: 16) {
-                    // Free option
-                    SubscriptionCard(
-                        option: .free,
-                        isSelected: selectedOption == .free,
-                        onSelect: { selectedOption = .free }
-                    )
+                    
+                    if !hideFreeOption {
+                        // Free option
+                        SubscriptionCard(
+                            option: .free,
+                            isSelected: selectedOption == .free,
+                            onSelect: { selectedOption = .free }
+                        )
+                    }
                     
                     // Monthly option
                     SubscriptionCard(
@@ -58,6 +64,7 @@ struct OnboardingSubscriptionView: View {
                     )
                 }
                 .padding(.horizontal)
+                .padding(.vertical, 2)
             }
             
             if storeManager.isLoading {

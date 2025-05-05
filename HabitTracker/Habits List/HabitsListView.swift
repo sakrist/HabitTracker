@@ -74,6 +74,12 @@ struct HabitsListView: View {
     @State private var showImportOptions = false
     @State private var importURL: URL? = nil
     
+    @State private var showBuySubscription: Bool = false
+    @State private var showSubscriptionView: Bool = false
+    @State private var isRestoringPurchases: Bool = false
+    @State private var showRestoreSuccessAlert = false
+    @State private var showRestoreFailureAlert = false
+    
     @State private var showHealthUpdateConfirmation = false
     @State private var isUpdatingHealth = false
     @State private var healthUpdateProgress = "Preparing to update health data..."
@@ -104,34 +110,14 @@ struct HabitsListView: View {
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
 #endif
             .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                
-                ToolbarItem {
-                    Button(action: {
-                        showHealthUpdateConfirmation = true
-                    }) {
-                        Label("Update HealthKit Habits", systemImage: "heart")
-                    }
-                    .alert("Update Health Data", isPresented: $showHealthUpdateConfirmation) {
-                        Button("Cancel", role: .cancel) {}
-                        Button("Update") {
-                            updateHealthData()
-                        }
-                    } message: {
-                        Text("This will update all habits with the latest health data from Apple Health. This may take a moment.")
-                    }
-                }
                 
                 ToolbarItem {
                     Button(action: {
                         showExportActivityView = true
                     }) {
                         Label("Export", systemImage: "arrow.up.circle")
-                    }.sheet(isPresented: $showExportActivityView) {
+                    }.disabled(!StoreManager.shared.isSubscribed)
+                    .sheet(isPresented: $showExportActivityView) {
                         if let fileURL = ExportImportData.shared.exportHabits() {
                             ActivityView(activityItems: [fileURL])
                         }
@@ -144,6 +130,7 @@ struct HabitsListView: View {
                     }) {
                         Label("Import", systemImage: "arrow.down.circle")
                     }
+                    .disabled(!StoreManager.shared.isSubscribed)
                     .fileImporter(
                         isPresented: $showImportFilePicker,
                         allowedContentTypes: [.json],
@@ -200,6 +187,10 @@ struct HabitsListView: View {
                 
                 ToolbarItem {
                     Button(action: {
+                        if !StoreManager.shared.isSubscribed && items.count == 5 {
+                            showBuySubscription = true
+                            return
+                        }
                         showAddHabit = true
                     }) {
                         Label("Add Item", systemImage: "plus")
@@ -209,20 +200,83 @@ struct HabitsListView: View {
                     }
                 }
                 
+#if os(iOS)
+                ToolbarItem() {
+                    EditButton()
+                }
+#endif
+                
+                ToolbarItem {
+                    Button(action: {
+                        restorePurchases()
+                    }) {
+                        Label("Restore Purchases", systemImage: "arrow.clockwise.circle")
+                    }
+                    .disabled(isRestoringPurchases)
+                }
+                
+                ToolbarItem {
+                    Button(action: {
+                        showHealthUpdateConfirmation = true
+                    }) {
+                        Label("Update HealthKit Habits", systemImage: "heart")
+                    }
+                    .disabled(!StoreManager.shared.isSubscribed)
+                    .alert("Update Health Data", isPresented: $showHealthUpdateConfirmation) {
+                        Button("Cancel", role: .cancel) {}
+                        Button("Update") {
+                            updateHealthData()
+                        }
+                    } message: {
+                        Text("This will update all habits with the latest health data from Apple Health. This may take a moment.")
+                    }
+                }
+                
             }
             .alert("Update Complete", isPresented: $showHealthUpdateSuccessAlert) {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text("All habits have been updated with the latest health data.")
             }
+            .alert("Subscription Required", isPresented: $showBuySubscription) {
+                Button("Subscribe") {
+                    showSubscriptionView = true
+                }
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                Text("You need a subscription to add more than 5 habits.")
+            }
+            .alert("Purchases Restored", isPresented: $showRestoreSuccessAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("Your purchases have been successfully restored.")
+            }
+            .alert("Restore Failed", isPresented: $showRestoreFailureAlert) {
+                Button("Subscribe") {
+                    showSubscriptionView = true
+                }
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text("No previous purchases were found to restore.")
+            }
             .overlay(
                 Group {
-                    if isUpdatingHealth {
-                        LoadingOverlay(message: healthUpdateProgress)
+                    if isUpdatingHealth || isRestoringPurchases {
+                        LoadingOverlay(message: isUpdatingHealth ? healthUpdateProgress : "Restoring purchases...")
                             .allowsHitTesting(true)
                     }
                 }
             )
+            .sheet(isPresented: $showSubscriptionView) {
+                PurchaseSubscriptionView(onComplete: { success in
+                    if success {
+                        // If purchase was successful, refresh the subscription status
+                        Task {
+                            await SubscriptionService.shared.updateSubscriptionStatus()
+                        }
+                    }
+                })
+            }
         }
     }
     
@@ -329,6 +383,23 @@ struct HabitsListView: View {
             } catch {
                 print("Import error: \(error.localizedDescription)")
                 showImportFailureAlert = true
+            }
+        }
+    }
+    
+    private func restorePurchases() {
+        isRestoringPurchases = true
+        
+        Task {
+            let success = await SubscriptionService.shared.restorePurchases()
+            
+            await MainActor.run {
+                isRestoringPurchases = false
+                if success {
+                    showRestoreSuccessAlert = true
+                } else {
+                    showRestoreFailureAlert = true
+                }
             }
         }
     }

@@ -14,13 +14,27 @@
 
   ],
   "products" : [
-
+    {
+      "displayPrice" : "12.99",
+      "familyShareable" : true,
+      "internalID" : "6745454321",
+      "localizations" : [
+        {
+          "description" : "Lifetime",
+          "displayName" : "Lifetime",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.sakrist.HabitTracker.lifetime",
+      "referenceName" : "Lifetime",
+      "type" : "NonConsumable"
+    }
   ],
   "settings" : {
     "_applicationInternalID" : "6741164200",
     "_developerTeamID" : "DHKZ7WR43P",
     "_failTransactionsEnabled" : false,
-    "_lastSynchronizedDate" : 768070250.94207704,
+    "_lastSynchronizedDate" : 768134599.80065596,
     "_locale" : "en_US",
     "_storefront" : "USA",
     "_storeKitErrors" : [

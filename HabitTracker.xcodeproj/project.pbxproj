@@ -29,6 +29,7 @@
 		4F28D9EB2DB7A77A000D9807 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F28D9EA2DB7A77A000D9807 /* RainbowUI */; };
 		4F46FB502DC7D54300627B71 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F46FB4F2DC7D54300627B71 /* StoreKit.framework */; };
 		4F46FB532DC7D68700627B71 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F46FB522DC7D68700627B71 /* RainbowUI */; };
+		4F46FB552DC8F97700627B71 /* PurchaseSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46FB542DC8F97700627B71 /* PurchaseSubscriptionView.swift */; };
 		4F6D4AE72DA856920018448A /* AchievementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D4AE52DA856920018448A /* AchievementTests.swift */; };
 		4F82A4F62DB8DC1C00F57137 /* SubscriptionManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F82A4F42DB8DC1C00F57137 /* SubscriptionManagementView.swift */; };
 		4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
@@ -173,6 +174,7 @@
 		4F28D9E52DB66081000D9807 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		4F28D9E62DB66081000D9807 /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		4F46FB4F2DC7D54300627B71 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		4F46FB542DC8F97700627B71 /* PurchaseSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSubscriptionView.swift; sourceTree = "<group>"; };
 		4F6D4AE52DA856920018448A /* AchievementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTests.swift; sourceTree = "<group>"; };
 		4F82A4F42DB8DC1C00F57137 /* SubscriptionManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManagementView.swift; sourceTree = "<group>"; };
 		4F83019A2DAFBB880015ED4D /* ExportImportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportData.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				4F28D9DF2DB5C5B6000D9807 /* MyDailyHabitsTracker.storekit */,
+				4F46FB542DC8F97700627B71 /* PurchaseSubscriptionView.swift */,
 				4F28D9E52DB66081000D9807 /* StoreManager.swift */,
 				4F28D9E62DB66081000D9807 /* SubscriptionService.swift */,
 			);
@@ -811,6 +814,7 @@
 				D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */,
 				4F8613912DB2FB530005A15A /* TimelineView.swift in Sources */,
 				4F28D9E72DB66081000D9807 /* StoreManager.swift in Sources */,
+				4F46FB552DC8F97700627B71 /* PurchaseSubscriptionView.swift in Sources */,
 				4F28D9E82DB66081000D9807 /* SubscriptionService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1117,7 +1121,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1165,7 +1169,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
