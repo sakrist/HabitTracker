@@ -55,6 +55,7 @@ struct LoadingOverlay: View {
 
 struct HabitsListView: View {
     @Environment(\.modelContext) private var modelContext
+    @StateObject private var storeManager = StoreManager.shared
     
     @Query var allitems: [HabitItem]
     @Query var progressEntries: [DailyEntry]
@@ -117,11 +118,11 @@ struct HabitsListView: View {
                     }) {
                         Label("Export", systemImage: "arrow.up.circle")
                     }.disabled(!StoreManager.shared.isSubscribed)
-                    .sheet(isPresented: $showExportActivityView) {
-                        if let fileURL = ExportImportData.shared.exportHabits() {
-                            ActivityView(activityItems: [fileURL])
+                        .sheet(isPresented: $showExportActivityView) {
+                            if let fileURL = ExportImportData.shared.exportHabits() {
+                                ActivityView(activityItems: [fileURL])
+                            }
                         }
-                    }
                 }
                 
                 ToolbarItem {
@@ -206,14 +207,29 @@ struct HabitsListView: View {
                 }
 #endif
                 
-                ToolbarItem {
-                    Button(action: {
-                        restorePurchases()
-                    }) {
-                        Label("Restore Purchases", systemImage: "arrow.clockwise.circle")
+                if (!storeManager.isSubscribed) {
+                    ToolbarItem {
+                        Button(action: {
+                            restorePurchases()
+                        }) {
+                            Label("Restore Purchases", systemImage: "arrow.clockwise.circle")
+                        }
+                        .disabled(isRestoringPurchases)
                     }
-                    .disabled(isRestoringPurchases)
                 }
+                
+                if (storeManager.isSubscribed) {
+                    ToolbarItem {
+                        Button(action: {
+                            if let url = URL(string: "https://apps.apple.com/account/subscriptions") {
+                                UIApplication.shared.open(url)
+                            }
+                        }) {
+                            Label("Manage Purchases", systemImage: "arrow.clockwise.circle")
+                        }
+                    }
+                }
+                
                 
                 ToolbarItem {
                     Button(action: {
