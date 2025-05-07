@@ -188,7 +188,7 @@ struct HabitsListView: View {
                 
                 ToolbarItem {
                     Button(action: {
-                        if !StoreManager.shared.isSubscribed && items.count == 5 {
+                        if !StoreManager.shared.isSubscribed && items.count >= 5 {
                             showBuySubscription = true
                             return
                         }
