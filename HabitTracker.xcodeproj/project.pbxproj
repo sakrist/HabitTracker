@@ -1100,8 +1100,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Habits Tracker";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress to update habits completion.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress to update habits completion.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1149,8 +1149,8 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Habits Tracker";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app uses Health data to track your activities and progress to update habits completion.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app uses Health data to track your activities and progress to update habits completion.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

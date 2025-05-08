@@ -130,12 +130,35 @@ struct AddHabitView: View {
                 
                 if canEnableAutocomplete {
                     Section(header: Text("Health and Fitness")) {
-                        Toggle("Smart Autocomplete", isOn: $enableAutocomplete)
-                            .onChange(of: enableAutocomplete) { oldValue, newValue in
-                                if (newValue) {
-                                    healthAutocomplete()
+                        // Toggle("Smart Autocomplete", isOn: $enableAutocomplete)
+                        //     .onChange(of: enableAutocomplete) { oldValue, newValue in
+                        //         if (newValue) {
+                        //             healthAutocomplete()
+                        //         }
+                        //     }
+                        HStack {
+                            Toggle("Smart Autocomplete", isOn: $enableAutocomplete)
+                                .onChange(of: enableAutocomplete) { oldValue, newValue in
+                                    if (newValue) {
+                                        healthAutocomplete()
+                                    }
                                 }
+                            Button(action: {
+                                let alert = UIAlertController(
+                                    title: "Smart Autocomplete",
+                                    message: "This app uses Health data to track your activities and progress to update habits completion.",
+                                    preferredStyle: .alert
+                                )
+                                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                                if let topController = UIApplication.shared.windows.first?.rootViewController {
+                                    topController.present(alert, animated: true, completion: nil)
+                                }
+                            }) {
+                                Image(systemName: "info.circle")
+                                    .foregroundColor(.blue)
                             }
+                            .buttonStyle(BorderlessButtonStyle())
+                        }
                     }
                 }
                 

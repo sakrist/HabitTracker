@@ -71,6 +71,45 @@ struct OnboardingSubscriptionView: View {
                 ProgressView()
             }
             
+            if !storeManager.isSubscribed {
+                Button(action: {
+                    Task {
+                        await storeManager.restorePurchases()
+                        if storeManager.purchasedIdentifiers.isEmpty {
+                            storeManager.errorMessage = "No previous purchases found to restore."
+                        } else {
+                            storeManager.errorMessage = "Your purchases have been restored!"
+                        }
+                    }
+                }) {
+                    Text("Restore Purchases")
+                        .font(.headline)
+                        .cornerRadius(8)
+                }
+                .padding(.top, 8)
+            }
+            
+            VStack(spacing: 4) {
+                Text("By subscribing, you agree to our")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                HStack(spacing: 4) {
+                    Link("EULA", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                        .font(.caption)
+                        .foregroundColor(.blue)
+                    
+                    Text("and")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    Link("Privacy Policy", destination: URL(string: "https://habit-app.sakrist.com/privacy/")!)
+                        .font(.caption)
+                        .foregroundColor(.blue)
+                }
+            }
+            .padding(.top, 8)
+
             Text(footerText)
                 .font(.caption)
                 .foregroundColor(.secondary)
