@@ -178,10 +178,23 @@ struct SubscriptionCard: View {
                         .lineLimit(2)
                     
                     if !price.isEmpty && option != .free {
-                        Text(price)
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundColor(.blue)
+                        if option == .monthly {
+                            Text("\(price) / month")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.blue)
+                        } else if option == .yearly {
+                            Text("\(price) / year")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.blue)
+                        } else {
+                            Text(price)
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.blue)
+                        }
+                        
                     }
                     
                     // Just show a few key benefits

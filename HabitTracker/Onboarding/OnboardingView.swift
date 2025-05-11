@@ -266,13 +266,13 @@ enum SubscriptionOption: String, CaseIterable {
     var description: String {
         switch self {
         case .free:
-            return "Up to 5 habits, one health habit, basic features"
+            return "Up to 5 habits, basic features"
         case .monthly:
-            return "All features unlocked"
+            return "Unlimited habits"
         case .yearly:
-            return "All features unlocked"
+            return "Unlimited habits"
         case .lifetime:
-            return "One-time purchase, all features forever"
+            return "One-time purchase, unlimited habits, all future updates"
         }
     }
     
