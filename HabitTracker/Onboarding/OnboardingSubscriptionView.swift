@@ -4,6 +4,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 
 struct OnboardingSubscriptionView: View {
@@ -72,21 +73,30 @@ struct OnboardingSubscriptionView: View {
             }
             
             if !storeManager.isSubscribed {
-                Button(action: {
-                    Task {
-                        await storeManager.restorePurchases()
-                        if storeManager.purchasedIdentifiers.isEmpty {
-                            storeManager.errorMessage = "No previous purchases found to restore."
-                        } else {
-                            storeManager.errorMessage = "Your purchases have been restored!"
+                HStack {
+                    Button(action: {
+                        Task {
+                            await storeManager.restorePurchases()
+                            if storeManager.purchasedIdentifiers.isEmpty {
+                                storeManager.errorMessage = "No previous purchases found to restore."
+                            } else {
+                                storeManager.errorMessage = "Your purchases have been restored!"
+                            }
                         }
+                    }) {
+                        Text("Restore Purchases")
+                            .font(.headline)
                     }
-                }) {
-                    Text("Restore Purchases")
-                        .font(.headline)
-                        .cornerRadius(8)
-                }
-                .padding(.top, 8)
+                    .padding(.top, 8)
+                    Spacer()
+                    Button(action: {
+                        redeemCode()
+                    }) {
+                        Text("Redeem Code")
+                            .font(.headline)
+                    }
+                    .padding(.top, 8)
+                }.padding(.horizontal, 20)
             }
             
             VStack(spacing: 4) {
@@ -108,13 +118,7 @@ struct OnboardingSubscriptionView: View {
                         .foregroundColor(.blue)
                 }
             }
-            .padding(.top, 8)
-
-            Text(footerText)
-                .font(.caption)
-                .foregroundColor(.secondary)
         }
-        .padding()
         .onAppear {
             // Load prices when view appears
             Task {
@@ -155,6 +159,17 @@ struct OnboardingSubscriptionView: View {
         
         return ""
     }
+    
+    private func redeemCode() {
+        if let window = UIApplication.shared.connectedScenes.first {
+            Task {
+                // Use StoreKit's recommended API instead of direct URL
+                try? await AppStore.presentOfferCodeRedeemSheet(in: window as! UIWindowScene)
+                await StoreManager.shared.restorePurchases()
+            }
+        }
+    }
+    
 }
 
 struct SubscriptionCard: View {
