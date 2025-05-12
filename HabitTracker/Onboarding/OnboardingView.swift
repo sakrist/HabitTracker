@@ -268,11 +268,17 @@ enum SubscriptionOption: String, CaseIterable {
         case .free:
             return "Up to 5 habits, basic features"
         case .monthly:
-            return "Unlimited habits"
+            return """
+Unlimited habits
+Import and export capabilities
+"""
         case .yearly:
-            return "Unlimited habits"
+            return """
+Unlimited habits
+Import and export capabilities
+"""
         case .lifetime:
-            return "One-time purchase, unlimited habits, all future updates"
+            return "One-time purchase\nUnlimited habits, all future updates"
         }
     }
     

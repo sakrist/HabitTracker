@@ -24,9 +24,28 @@ struct MainListView: View {
     
     @Binding var navigationPath: NavigationPath
     
+    // Calculate progress for the day considering targetCount
+    private var dayProgress: Double {
+        guard !entries.isEmpty else { return 0 }
+        
+        var totalTargetCount = 0
+        var totalCompletedCount = 0
+        
+        for entry in entries {
+            let targetCount = entry.habit?.targetCount ?? 1
+            totalTargetCount += targetCount
+            totalCompletedCount += min(entry.completionDates.count, targetCount)
+        }
+        
+        return totalTargetCount > 0 ? Double(totalCompletedCount) / Double(totalTargetCount) : 0
+    }
+    
+    // Check if we have at least one completion
+    private var hasCompletions: Bool {
+        return entries.contains { !$0.completionDates.isEmpty }
+    }
     
     var body: some View {
-//        NavigationStack(path: $navigationPath) {
         NavigationView {
             VStack {
                 // Display the selected date
@@ -58,6 +77,22 @@ struct MainListView: View {
                         }
                     }
                     
+                    // Progress bar - only show when at least one habit has completions
+                    if hasCompletions {
+                        HStack {
+                            ProgressView(value: dayProgress)
+                                .progressViewStyle(.linear)
+                                .frame(height: 4) // Make it slim
+                                .padding(.horizontal)
+                            
+                                Text("\(Int(dayProgress * 100))%")
+                                    .font(.caption.bold())
+                                    .foregroundColor(.secondary)
+                        }
+                        .padding(.vertical, 4)
+                        .padding(.horizontal)
+//                        .animation(.easeInOut, value: dayProgress)
+                    }
                 }
 
                 VStack {

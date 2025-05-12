@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import SwiftData
-
+import StoreKit
 import UniformTypeIdentifiers
 
 #if os(iOS)
@@ -221,9 +221,7 @@ struct HabitsListView: View {
                 if (storeManager.isSubscribed) {
                     ToolbarItem {
                         Button(action: {
-                            if let url = URL(string: "https://apps.apple.com/account/subscriptions") {
-                                UIApplication.shared.open(url)
-                            }
+                            manageSubscription()
                         }) {
                             Label("Manage Purchases", systemImage: "arrow.clockwise.circle")
                         }
@@ -419,6 +417,17 @@ struct HabitsListView: View {
             }
         }
     }
+    
+    private func manageSubscription() {
+        if let window = UIApplication.shared.connectedScenes.first {
+            Task {
+                // Use StoreKit's recommended API instead of direct URL
+                try? await AppStore.showManageSubscriptions(in: window as! UIWindowScene)
+                await StoreManager.shared.restorePurchases()
+            }
+        }
+    }
+        
 }
 
 

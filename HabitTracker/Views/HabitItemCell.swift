@@ -153,4 +153,9 @@ struct HabitItemCell: View {
     HabitItemCell(item: item, entry: entry)
     
     HabitItemCell(item: item, entry: nil)
+    
+    var item2 = HabitItem.init(title: "Morning run", color: Color.blue.toHex(), category: HabitCategory(id: "default", title: "Other"), timestamp: .now, targetCount: 3)
+    
+    let entry2 = DailyEntry.init(habit: item2, date: Date(), isCompleted: false)
+    HabitItemCell(item: item2, entry: entry2)
 }
