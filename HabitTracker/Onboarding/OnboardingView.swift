@@ -96,6 +96,7 @@ struct OnboardingView: View {
                     
                     // Continue with habit creation and completion
                     createSelectedHabits()
+                    requestHealthPermissionsForAllHabits()
                     
                     // Save subscription choice
                     UserDefaults.standard.set(selectedSubscription.rawValue, forKey: "SelectedSubscription")
@@ -110,6 +111,7 @@ struct OnboardingView: View {
         } else {
             // If free plan, just continue with habit creation
             createSelectedHabits()
+            requestHealthPermissionsForAllHabits()
             
             // Save subscription choice
             UserDefaults.standard.set(selectedSubscription.rawValue, forKey: "SelectedSubscription")
@@ -127,10 +129,42 @@ struct OnboardingView: View {
         addSelectedHabits()
     }
     
+    private func requestHealthPermissionsForAllHabits() {
+        let descriptor = FetchDescriptor<HabitItem>()
+        if let habits = try? modelContext.fetch(descriptor) {
+            let healthHabits = habits.filter { $0.healthType != nil && $0.healthType != .none }
+            
+            if !healthHabits.isEmpty {
+                Task {
+                    // Request health authorizations in bulk
+                    let _ = await withCheckedContinuation { continuation in
+                        Health.shared.requestBulkHealthAuthorization(for: healthHabits) { result in
+                            continuation.resume(returning: result)
+                        }
+                    }
+                    
+                    // Set up background delivery for authorized habits
+                    for habit in healthHabits {
+                        if Health.shared.verifyHealthAuthorization(for: habit) {
+                            Health.shared.enableHabitBackgroundDelivery(habit: habit) { _ in }
+                        } else {
+                            // If authorization failed, remove health integration
+                            habit.healthType = HealthType.none
+                        }
+                    }
+                    
+                    // Save after authorizations
+                    await MainActor.run {
+                        ModelData.shared.saveContext()
+                        NotificationCenter.default.postActive()
+                    }
+                }
+            }
+        }
+    }
+    
     private func addSelectedHabits() {
         // First, create habits but don't yet request health permissions
-        var createdHabits: [HabitItem] = []
-        
         for (index, isSelected) in selectedHabits.enumerated() {
             if isSelected && index < commonHabits.count {
                 let habit = commonHabits[index]
@@ -150,42 +184,11 @@ struct OnboardingView: View {
                 
                 // Insert into data model
                 modelContext.insert(newHabit)
-                createdHabits.append(newHabit)
             }
         }
         
         // Save initial context
         ModelData.shared.saveContext()
-        
-        // Now request health permissions for all health-enabled habits at once
-        let healthHabits = createdHabits.filter { $0.healthType != nil && $0.healthType != .none }
-        
-        if !healthHabits.isEmpty {
-            Task {
-                // Request health authorizations in bulk
-                let _ = await withCheckedContinuation { continuation in
-                    Health.shared.requestBulkHealthAuthorization(for: healthHabits) { result in
-                        continuation.resume(returning: result)
-                    }
-                }
-                
-                // Set up background delivery for authorized habits
-                for habit in healthHabits {
-                    if Health.shared.verifyHealthAuthorization(for: habit) {
-                        Health.shared.enableHabitBackgroundDelivery(habit: habit) { _ in }
-                    } else {
-                        // If authorization failed, remove health integration
-                        habit.healthType = HealthType.none
-                    }
-                }
-                
-                // Save again after authorizations
-                await MainActor.run {
-                    ModelData.shared.saveContext()
-                    NotificationCenter.default.postActive()
-                }
-            }
-        }
     }
 }
 
