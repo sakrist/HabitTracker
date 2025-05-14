@@ -130,17 +130,21 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
     // Query for existing entries
     let existingEntries = fetchEntries(for: date, modelContext: modelContext)
     
+    // Check for and remove duplicates in existing entries before proceeding
+    let dedupedExistingEntries = deduplicateEntries(existingEntries, modelContext: modelContext)
+    
     let items = fetchHabits(modelContext: modelContext, predicate: #Predicate<HabitItem>{item in
         item.active
     })
     
     // Generate missing entries for the selected date
-    var updatedEntries = generateDailyEntries(for: items, existingEntries: existingEntries, date: date)
+    var updatedEntries = generateDailyEntries(for: items, existingEntries: dedupedExistingEntries, date: date)
 
     // Save new entries in your data store if any are created
-    for entry in updatedEntries where !existingEntries.contains(entry) {
+    for entry in updatedEntries where !dedupedExistingEntries.contains(entry) {
         modelContext.insert(entry)
     }
+    
     do {
         updatedEntries = try updatedEntries.filter(#Predicate<DailyEntry>{ item in
             if let h = item.habit {
@@ -148,15 +152,63 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
             } else {
                 false
             }
-            
         })
     } catch {
         print("Error fetchHabitEntries habits: \(error)")
     }
+    // Final deduplication check before returning
+    updatedEntries = deduplicateEntries(updatedEntries, modelContext: modelContext)
+    
     updatedEntries = updatedEntries.sorted(by: sortDailyHabits)
     
     try? modelContext.save()
     return updatedEntries
+}
+
+// New function to deduplicate entries
+func deduplicateEntries(_ entries: [DailyEntry], modelContext: ModelContext) -> [DailyEntry] {
+    // Create a dictionary to track unique entries by habit ID + date
+    var uniqueEntries: [String: DailyEntry] = [:]
+    var duplicatesToDelete: [DailyEntry] = []
+    
+    for entry in entries {
+        guard let habit = entry.habit else { continue }
+        
+        // Create a unique key from habit ID and date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: entry.date)
+        let key = "\(habit.id)_\(dateString)"
+        
+        if let existingEntry = uniqueEntries[key] {
+            // Found a duplicate, decide which one to keep
+            if entry.completionDates.count > existingEntry.completionDates.count {
+                // Keep the entry with more completion data
+                duplicatesToDelete.append(existingEntry)
+                uniqueEntries[key] = entry
+            } else {
+                // Keep the existing entry
+                duplicatesToDelete.append(entry)
+            }
+            
+            print("⚠️ Found duplicate entry for habit \(habit.title) on \(dateString)")
+        } else {
+            // This is the first occurrence
+            uniqueEntries[key] = entry
+        }
+    }
+    
+    // Delete the duplicates
+    for duplicate in duplicatesToDelete {
+        modelContext.delete(duplicate)
+    }
+    
+    if !duplicatesToDelete.isEmpty {
+        print("🔄 Removed \(duplicatesToDelete.count) duplicate entries")
+        try? modelContext.save()
+    }
+    
+    return Array(uniqueEntries.values)
 }
 
 // Generate daily entries for a specific date
@@ -164,15 +216,14 @@ func generateDailyEntries(for habits: [HabitItem], existingEntries: [DailyEntry]
     var dailyEntries = existingEntries
     
     for habit in habits {
-        // Check if we already have an entry for this habit on the selected date
+        // Improved check for existing entries using both habit ID and date
         let existingEntry = dailyEntries.first { entry in
-            entry.habit?.id == habit.id && entry.date.isSameDay(as: date)
+            guard let entryHabit = entry.habit else { return false }
+            return entryHabit.id == habit.id && entry.date.isSameDay(as: date)
         }
         
         // If no entry exists for the selected date, create a new one
-        if existingEntry == nil
-            && habit.timestamp <= date // don't create entries before habit created
-        {
+        if existingEntry == nil && habit.timestamp <= date {
             let newEntry = DailyEntry(habit: habit, date: date, isCompleted: false)
             dailyEntries.append(newEntry)
         }
