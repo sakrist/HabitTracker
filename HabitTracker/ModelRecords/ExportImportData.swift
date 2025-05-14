@@ -157,7 +157,8 @@ class ExportImportData {
             decoder.dateDecodingStrategy = .iso8601
             let importedData = try decoder.decode(ExportData.self, from: data)
             
-            // Use the injected modelContext
+
+            modelContext.undoManager = nil
             
             // Process each imported habit
             var importedHabits: [HabitItem] = []
@@ -270,6 +271,9 @@ class ExportImportData {
             
             // Request Health authorizations for any habits with health tracking
             await requestHealthPermissions(for: importedHabits)
+            
+            
+            modelContext.undoManager = ModelData.undoManager
             
             return true
         } catch {

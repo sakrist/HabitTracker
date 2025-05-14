@@ -148,7 +148,10 @@ struct MainListView: View {
                         }
                     }
                 }
-        )
+        ).withUndoRedo {
+            // Refresh entries after undo
+            self.entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext , for: selectedDate)
+        }
         
     }
     

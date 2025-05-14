@@ -50,6 +50,7 @@ extension SchemaV3.DailyEntry {
 
 extension SchemaV4.DailyEntry {
     func setCompleted(_ value: Bool) {
+    
     if value && !isCompleted {
         let now = Date()
         // Preserve time components from now but use date components from self.date

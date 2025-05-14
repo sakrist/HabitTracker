@@ -22,6 +22,7 @@ typealias DailyEntry = SchemaLatest.DailyEntry
 @Observable
 class ModelData {
     static let shared = ModelData()
+    static let undoManager = UndoManager()
         
     var notificationsEnabled: Bool = false
     
@@ -34,11 +35,13 @@ class ModelData {
         do {
             let container = try ModelContainer(for: schema, migrationPlan: MigrationPlanToLatest.self,
                                              configurations: [modelConfiguration])
+            container.mainContext.undoManager = ModelData.undoManager
             self.init(container: container)
         } catch {
             do {
                 let container = try ModelContainer(for: schema, migrationPlan: nil,
                                                  configurations: [modelConfiguration])
+                container.mainContext.undoManager = ModelData.undoManager
                 self.init(container: container)
             } catch {
                 fatalError("Failed to create model container: \(error)")
@@ -48,6 +51,7 @@ class ModelData {
     
     init(container: ModelContainer) {
         self.modelContainer = container
+        self.modelContainer.mainContext.undoManager = ModelData.undoManager
         insertCategories()
     }
     
