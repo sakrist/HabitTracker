@@ -15,6 +15,7 @@ extension HabitItem {
     
     func deactivate() {
         active.toggle()
+        deactivated = .now
     }
     
     var isActive: Bool {

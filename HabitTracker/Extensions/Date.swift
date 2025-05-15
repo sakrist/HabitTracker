@@ -32,6 +32,12 @@ extension Date {
         return isSameMonth(date:Date())
     }
     
+    func daysBetween(to date: Date) -> Int {
+        let calendar = Calendar.current
+        let dateComponents = calendar.dateComponents([.day], from: self, to: date)
+        return dateComponents.day ?? 0
+    }
+    
     func isSameMonth(date:Date) -> Bool {
         let calendar = Calendar.current
         

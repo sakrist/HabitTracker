@@ -310,7 +310,7 @@ struct HabitsListView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                sortedItems[index].active.toggle()
+                sortedItems[index].deactivate()
                 
                 cancelNotifications(baseIdentifier: sortedItems[index].id)
             }

@@ -31,6 +31,7 @@ extension SchemaV4 {
         
         var order: Int = 0
         var timestamp: Date = Date()// created date
+        var deactivated: Date?
         var active: Bool = true
         
         var hType: String? = "none" // health data and fitness

@@ -284,7 +284,13 @@ struct AddHabitView: View {
             let exists = fetchHabits(modelContext: modelContext, predicate: #Predicate<HabitItem> {item in item.title == title && !item.active})
             
             if exists.count > 0 {
-                existingItem = exists.first!
+                // suggest to recover only recent deleted habit
+                for item in exists {
+                    if let d = item.deactivated, d.daysBetween(to: .now) < 3 {
+                        existingItem = item
+                        break
+                    }
+                }
                 showingDuplicateAlert = true
                 return
             } else {
@@ -299,6 +305,7 @@ struct AddHabitView: View {
     
     private func createNewHabit() {
         showingDuplicateAlert = false
+        existingItem = nil
         
         let habits = fetchHabits(modelContext: modelContext)
         
