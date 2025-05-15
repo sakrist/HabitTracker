@@ -258,12 +258,11 @@ struct AddHabitView: View {
     }
     
     private func recoverOldItem() {
-        showingDuplicateAlert = false
+        existingItem?.active = true
+        existingItem?.deactivated = nil
+        ModelData.shared.saveContext()
         
-        if let existingItem {
-            existingItem.active = true
-            ModelData.shared.saveContext()
-        }
+        showingDuplicateAlert = false
         dismiss()
     }
     
@@ -285,12 +284,7 @@ struct AddHabitView: View {
             
             if exists.count > 0 {
                 // suggest to recover only recent deleted habit
-                for item in exists {
-                    if let d = item.deactivated, d.daysBetween(to: .now) < 3 {
-                        existingItem = item
-                        break
-                    }
-                }
+                existingItem = exists.first
                 showingDuplicateAlert = true
                 return
             } else {

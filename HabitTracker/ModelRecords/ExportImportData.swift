@@ -22,6 +22,7 @@ struct ExportableHabit: Codable {
     var timestamp: Date
     var completions: [CompletionRecord]
     var time: Date?
+    var active: Bool?
     var hType: String?
     var targetCount: Int?
     
@@ -111,6 +112,7 @@ class ExportImportData {
                 timestamp: habit.timestamp,
                 completions: completions,
                 time: habit.time,
+                active: habit.active,
                 hType: habit.hType,
                 targetCount: habit.targetCount
             )
@@ -181,7 +183,7 @@ class ExportImportData {
                     habit.note = importedHabit.note
                     habit.order = importedHabit.order
                     habit.timestamp = importedHabit.timestamp
-                    habit.active = true  // Set habit to active on import
+                    habit.active = importedHabit.active ?? true  // Set habit to active on import
                     habit.time = importedHabit.time
                     habit.hType = importedHabit.hType
                     habit.targetCount = importedHabit.targetCount ?? 1
@@ -243,7 +245,7 @@ class ExportImportData {
                         weekdays: weekdays,
                         order: importedHabit.order,
                         timestamp: importedHabit.timestamp,
-                        active: true  // Ensure the habit is active
+                        active: importedHabit.active ?? true  // Ensure the habit is active
                     )
                     habit.targetCount = importedHabit.targetCount ?? 1
                     habit.hType = importedHabit.hType

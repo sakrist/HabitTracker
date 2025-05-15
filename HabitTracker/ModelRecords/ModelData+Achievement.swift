@@ -163,7 +163,7 @@ extension ModelData {
                 return .completionRenewed3
             } else if daysSinceLastCompletion >= 14 { // 2-4 weeks
                 return .completionRenewed2
-            } else if daysSinceLastCompletion >= 3 { // 3 days to 2 weeks
+            } else if daysSinceLastCompletion >= 5 { // 5 days to 2 weeks
                 return .completionRenewed
             }
         }

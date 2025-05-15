@@ -216,6 +216,9 @@ func generateDailyEntries(for habits: [HabitItem], existingEntries: [DailyEntry]
     var dailyEntries = existingEntries
     
     for habit in habits {
+        // skip deactivated
+        if habit.isActive == false { continue }
+        
         // Improved check for existing entries using both habit ID and date
         let existingEntry = dailyEntries.first { entry in
             guard let entryHabit = entry.habit else { return false }

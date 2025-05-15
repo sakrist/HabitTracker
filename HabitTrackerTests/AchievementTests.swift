@@ -71,7 +71,13 @@ final class AchievementTests: XCTestCase {
     /// Creates a sequence of daily entries with specified completion pattern
     func createEntrySequence(daysCount: Int, completedDays: Set<Int>, startDate: Date = Date()) {
         // Clear any existing entries
-        try? mockContext.delete(model: DailyEntry.self)
+        let descriptor = FetchDescriptor<DailyEntry>()
+        if let existingEntries = try? mockContext.fetch(descriptor) {
+            for entry in existingEntries {
+                mockContext.delete(entry)
+            }
+        }
+        try? mockContext.save()
         
         let calendar = Calendar.current
         for i in 0..<daysCount {
