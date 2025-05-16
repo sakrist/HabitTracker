@@ -54,7 +54,7 @@ struct ContentView: View {
                 }
                 .tag(1)
             
-            TimelineView(reload: $reloadTimeline)
+            TimelineView(reload: $reloadTimeline, navigationPath: $habitsNavigationPath)
                 .tabItem {
                     Label("Timeline", systemImage: "calendar.day.timeline.leading")
                 }

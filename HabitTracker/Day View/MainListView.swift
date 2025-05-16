@@ -49,7 +49,7 @@ struct MainListView: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $navigationPath) {
             VStack {
                 // Display the selected date
                 if entries.count != 0 {
@@ -156,7 +156,6 @@ struct MainListView: View {
         .gesture(
             LongPressGesture()
                 .onEnded { _ in
-                    generateMarkdown()
                     showShareSheet = true
                 }
         )
@@ -165,11 +164,13 @@ struct MainListView: View {
             self.entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext, for: selectedDate)
         }
         .sheet(isPresented: $showShareSheet) {
-#if os(iOS)
-            ActivityView(activityItems: [markdownText])
-#else
-            ShareLink(item: markdownText)
-#endif
+            if let text = generateMarkdown() {
+                #if os(iOS)
+                ActivityView(activityItems: [text])
+                #else
+                ShareLink(item: markdownText)
+                #endif
+            }
         }
     }
 
@@ -192,7 +193,7 @@ struct MainListView: View {
         #endif
     }
     
-    private func generateMarkdown() {
+    private func generateMarkdown() -> String? {
         var markdown = "# Habit Entries for \(selectedDate.formatted(date: .complete, time: .omitted))\n\n"
         if entries.isEmpty {
             markdown += "No entries for this day.\n"
@@ -200,10 +201,10 @@ struct MainListView: View {
             for entry in entries {
                 let habitTitle = entry.habit?.title ?? "Unknown Habit"
                 let completionTimes = entry.completionDates.map { $0.formatted(date: .omitted, time: .shortened) }.joined(separator: ", ")
-                markdown += "- **\(habitTitle)**: \(completionTimes.isEmpty ? "Not completed" : completionTimes)\n"
+                markdown += "- [\(entry.isCompleted ? "*" : "")] \(habitTitle) - \(completionTimes.isEmpty ? "" : completionTimes)\n"
             }
         }
-        markdownText = markdown
+        return markdown
     }
 }
 

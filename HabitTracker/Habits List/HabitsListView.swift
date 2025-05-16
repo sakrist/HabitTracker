@@ -11,18 +11,6 @@ import SwiftData
 import StoreKit
 import UniformTypeIdentifiers
 
-#if os(iOS)
-struct ActivityView: UIViewControllerRepresentable {
-    var activityItems: [Any]
-    var applicationActivities: [UIActivity]? = nil
-    
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        return UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
-    }
-    
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
-}
-#endif
 
 struct LoadingOverlay: View {
     var message: String

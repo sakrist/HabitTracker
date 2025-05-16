@@ -84,6 +84,7 @@
 		D26D06F92DAF03E1009C15D4 /* ModelDataFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26D06F82DAF03E1009C15D4 /* ModelDataFetchTests.swift */; };
 		D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
+		D29141182DD7DA6600B911E5 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29141172DD7DA6600B911E5 /* ActivityView.swift */; };
 		D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
 		D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */; };
 		D2C09DF22DA0680F001DC17D /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C09DF12DA0680F001DC17D /* UIApplication.swift */; };
@@ -217,6 +218,7 @@
 		D26D06F82DAF03E1009C15D4 /* ModelDataFetchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataFetchTests.swift; sourceTree = "<group>"; };
 		D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyEntry+extension.swift"; sourceTree = "<group>"; };
 		D28309DC2CA9B3F200C6B22A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		D29141172DD7DA6600B911E5 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCardView.swift; sourceTree = "<group>"; };
 		D2A78ABA2D3F0D190091DFB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -367,8 +369,8 @@
 				D2A78ABA2D3F0D190091DFB2 /* Info.plist */,
 				D25A7A7F2CA5D7EE0000E843 /* Assets.xcassets */,
 				D25A7A812CA5D7EE0000E843 /* HabitTracker.entitlements */,
-				D25A7A802CA5D7EE0000E843 /* ContentView.swift */,
 				D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */,
+				D25A7A802CA5D7EE0000E843 /* ContentView.swift */,
 				D2DB71602D3BC54A000DC325 /* Day View */,
 				D2C126492CB7370B005E5941 /* Extensions */,
 				D2DB715F2D3BC521000DC325 /* Habits List */,
@@ -473,6 +475,7 @@
 		D2DB71612D3BC877000DC325 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D29141172DD7DA6600B911E5 /* ActivityView.swift */,
 				D2C09DFC2DA08FE2001DC17D /* AchievementBanner.swift */,
 				D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */,
 				D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */,
@@ -792,6 +795,7 @@
 				D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
 				D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */,
 				D25A7A8A2CA5D7EF0000E843 /* HabitItem+extension.swift in Sources */,
+				D29141182DD7DA6600B911E5 /* ActivityView.swift in Sources */,
 				4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */,
 				D2D457F72D46559000C67484 /* ModelData+fetch.swift in Sources */,
 				D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */,
@@ -875,7 +879,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = Daily/Daily.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -894,7 +898,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker.Daily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -916,7 +920,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = Daily/Daily.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -935,7 +939,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker.Daily;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -1076,7 +1080,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1102,7 +1106,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -1124,7 +1128,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 25;
+				CURRENT_PROJECT_VERSION = 26;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1150,7 +1154,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
