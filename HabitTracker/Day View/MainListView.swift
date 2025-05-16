@@ -24,6 +24,9 @@ struct MainListView: View {
     
     @Binding var navigationPath: NavigationPath
     
+    @State private var showShareSheet = false
+    @State private var markdownText: String = ""
+
     // Calculate progress for the day considering targetCount
     private var dayProgress: Double {
         guard !entries.isEmpty else { return 0 }
@@ -98,12 +101,12 @@ struct MainListView: View {
                 VStack {
                     DayHabitsListView(date: $selectedDate, entries: entries)
                     
-                    if(entries.count == 0) {
+                    if entries.isEmpty {
                         VStack {
-                            // show button add habits which will navigate to Habits tab
+                            // Show button to add habits
                             Text("Start by adding habits you already do daily.\n")
                             Button {
-                                // navigate to Habits tab
+                                // Navigate to Habits tab
                                 selectedTab = 1
                                 showAddHabit = true
                             } label: {
@@ -116,45 +119,60 @@ struct MainListView: View {
                             Spacer()
                         }
                     }
-                    
                 }
                 .onAppear {
                     fetchEntries()
                 }
             }
-        }.onReceive(notificationPublisher) { _ in
-            // check if selected date is the same
+        }
+        .onReceive(notificationPublisher) { _ in
+            // Check if selected date is the same
             selectedDate = Date()
             fetchEntries()
-        }.refreshable {
+        }
+        .refreshable {
             self.entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
             await Health.shared.updateHabits(entries: self.entries)
-            
-        }.gesture(
+        }
+        .gesture(
             DragGesture()
                 .onEnded { value in
                     let threshold: CGFloat = 50
                     if value.translation.width < -threshold {
                         // Swipe Left - Move Forward
-                        if (!selectedDate.isToday()) {
+                        if !selectedDate.isToday() {
                             selectedDate = selectedDate.nextDay()
                             fetchEntries()
                         }
                     } else if value.translation.width > threshold {
                         // Swipe Right - Move Backward
-                        if (hasEarlyRecords) {
+                        if hasEarlyRecords {
                             selectedDate = selectedDate.prevDay()
                             fetchEntries()
                         }
                     }
                 }
-        ).withUndoRedo {
+        )
+        .gesture(
+            LongPressGesture()
+                .onEnded { _ in
+                    generateMarkdown()
+                    showShareSheet = true
+                }
+        )
+        .withUndoRedo {
             // Refresh entries after undo
-            self.entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext , for: selectedDate)
+            self.entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext, for: selectedDate)
         }
-        
+        .sheet(isPresented: $showShareSheet) {
+#if os(iOS)
+            ActivityView(activityItems: [markdownText])
+#else
+            ShareLink(item: markdownText)
+#endif
+        }
     }
-    
+
     func fetchEntries() {
         Task {
             self.entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
@@ -174,6 +192,19 @@ struct MainListView: View {
         #endif
     }
     
+    private func generateMarkdown() {
+        var markdown = "# Habit Entries for \(selectedDate.formatted(date: .complete, time: .omitted))\n\n"
+        if entries.isEmpty {
+            markdown += "No entries for this day.\n"
+        } else {
+            for entry in entries {
+                let habitTitle = entry.habit?.title ?? "Unknown Habit"
+                let completionTimes = entry.completionDates.map { $0.formatted(date: .omitted, time: .shortened) }.joined(separator: ", ")
+                markdown += "- **\(habitTitle)**: \(completionTimes.isEmpty ? "Not completed" : completionTimes)\n"
+            }
+        }
+        markdownText = markdown
+    }
 }
 
 #Preview {
