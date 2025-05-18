@@ -30,7 +30,10 @@ class ModelData {
     
     convenience init() {
         let schema = Schema(versionedSchema: SchemaLatest.self)
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let modelConfiguration = ModelConfiguration(schema: schema,
+                                                    isStoredInMemoryOnly: false,
+                                                    groupContainer: .automatic,
+                                                    cloudKitDatabase: .automatic)
         
         do {
             let container = try ModelContainer(for: schema, migrationPlan: MigrationPlanToLatest.self,

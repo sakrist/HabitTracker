@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-#if os(iOS)
+#if os(iOS) || os(tvOS) || os(watchOS)
 typealias AColor = UIColor
 #elseif os(macOS)
 typealias AColor = NSColor
@@ -20,6 +20,14 @@ extension NSColor {
 }
 #endif
 
+#if os(watchOS)
+extension UIColor {
+    static let systemBackground: UIColor = .white
+    static let systemGray6: UIColor = .gray
+}
+#endif
+    
+    
 
 extension Color {
     // Convert Color to hex string

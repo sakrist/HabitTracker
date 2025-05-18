@@ -6,10 +6,11 @@
 //
 import SwiftUI
 import SwiftData
-import ConfettiSwiftUI
 import AVFoundation
+#if !os(watchOS)
 import RainbowUI
-
+import ConfettiSwiftUI
+#endif
 
 func motivationMessage() -> String {
     
@@ -62,15 +63,19 @@ struct DayHabitsListView: View {
                 AchievementBanner(title: title, icon: icon, color: color, isPresented: $showAchievement)
             }
             .listStyle(.plain)
+#if !os(watchOS)
             .confettiCannon(trigger: $counter, num: 100, rainHeight: 250)
-            
+#endif
             VStack {
                 // Overlay message
                 if showMessage {
                     Text(motivationMessage())
                         .font(.largeTitle)
                         .multilineTextAlignment(.center)
-                        .fontWeight(.bold).rainbowRun()
+                        .fontWeight(.bold)
+#if !os(watchOS)
+                        .rainbowRun()
+#endif
                         .opacity(showMessage ? 1 : 0) // Fade in and out
                 }
             }
@@ -105,12 +110,13 @@ struct DayHabitsListView: View {
             }
             entry.achievement = achievement
             
+#if !os(watchOS)
             if (new) {
                 silenceTodaysNotification(identifier: entry.habitt.id)
             } else {
                 reScheduleWeekdayNotification(habitItem: entry.habitt)
             }
-        
+#endif
             let countCompleted = entries.reduce(0) { $0 + ($1.isCompleted ? 1 : 0)}
             
             if (countCompleted == entries.count) {

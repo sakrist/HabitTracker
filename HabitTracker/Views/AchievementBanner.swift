@@ -33,7 +33,9 @@ struct AchievementBanner: View {
                             .font(.system(.body, design: .rounded))
                             .fontWeight(.bold)
                             .foregroundStyle(Color.primary)
+                        #if os(iOS)
                             .rainbowRun()
+                        #endif
                     }
                     .padding(.vertical, 12)
                 }
