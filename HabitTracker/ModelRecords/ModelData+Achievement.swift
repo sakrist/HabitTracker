@@ -159,13 +159,13 @@ extension ModelData {
             ).day ?? 0)
             
             // Return appropriate renewal achievement based on gap duration
-            if daysSinceLastCompletion >= 28 { // 4+ weeks
-                return .completionRenewed3
-            } else if daysSinceLastCompletion >= 14 { // 2-4 weeks
-                return .completionRenewed2
-            } else if daysSinceLastCompletion >= 5 { // 5 days to 2 weeks
-                return .completionRenewed
-            }
+//            if daysSinceLastCompletion >= 28 { // 4+ weeks
+//                return .completionRenewed3
+//            } else if daysSinceLastCompletion >= 14 { // 2-4 weeks
+//                return .completionRenewed2
+//            } else if daysSinceLastCompletion >= 5 { // 5 days to 2 weeks
+//                return .completionRenewed
+//            }
         }
         
         // No special achievements apply
