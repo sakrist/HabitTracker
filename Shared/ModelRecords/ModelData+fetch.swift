@@ -138,7 +138,7 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
     })
     
     // Generate missing entries for the selected date
-    var updatedEntries = generateDailyEntries(for: items, existingEntries: dedupedExistingEntries, date: date)
+    var (updatedEntries, new) = generateDailyEntries(for: items, existingEntries: dedupedExistingEntries, date: date)
 
     // Save new entries in your data store if any are created
     for entry in updatedEntries where !dedupedExistingEntries.contains(entry) {
@@ -161,7 +161,10 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
     
     updatedEntries = updatedEntries.sorted(by: sortDailyHabits)
     
-    try? modelContext.save()
+    if (new) {
+        try? modelContext.save()
+    }
+    
     return updatedEntries
 }
 
@@ -212,9 +215,9 @@ func deduplicateEntries(_ entries: [DailyEntry], modelContext: ModelContext) -> 
 }
 
 // Generate daily entries for a specific date
-func generateDailyEntries(for habits: [HabitItem], existingEntries: [DailyEntry], date: Date) -> [DailyEntry] {
+func generateDailyEntries(for habits: [HabitItem], existingEntries: [DailyEntry], date: Date) -> ([DailyEntry], Bool) {
     var dailyEntries = existingEntries
-    
+    var newEntries = false
     for habit in habits {
         // skip deactivated
         if habit.isActive == false { continue }
@@ -227,12 +230,13 @@ func generateDailyEntries(for habits: [HabitItem], existingEntries: [DailyEntry]
         
         // If no entry exists for the selected date, create a new one
         if existingEntry == nil && habit.timestamp <= date {
+            newEntries = true
             let newEntry = DailyEntry(habit: habit, date: date, isCompleted: false)
             dailyEntries.append(newEntry)
         }
     }
     
-    return dailyEntries
+    return (dailyEntries, newEntries)
 }
 
 func fetchHabits(modelContext: ModelContext, predicate: Predicate<HabitItem>? = nil) -> [HabitItem] {

@@ -13,17 +13,12 @@ struct ContentView: View {
     @Environment(ModelData.self) private var modelData
     @Environment(\.scenePhase) private var scenePhase
     
-    @State private var entries: [DailyEntry] = []
     @State private var selectedDate: Date = Date()  // The currently selected date
     
     var body: some View {
         NavigationStack {
-            DayHabitsListView(date: $selectedDate, entries: entries)
+            DayHabitsListView(date: selectedDate)
                 .navigationTitle("Habits")
-        }
-        .onAppear() {
-            // Set to today's date and refresh when the view appears
-            resetToToday()
         }
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
@@ -31,21 +26,6 @@ struct ContentView: View {
                 resetToToday()
             }
         }
-        .onChange(of: selectedDate) { _, _ in
-            refreshEntries()
-        }.refreshable {
-            // Just refresh data but don't change the selected date when manually refreshed
-            refreshEntries()
-        }
-    }
-    
-    private func refreshEntries() {
-        // Force a refresh of data from CloudKit
-        modelData.refreshData()
-        
-        logger.log("Refreshing entries for date: \(selectedDate)")
-        // Fetch entries for the selected date
-        self.entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
     }
     
     private func resetToToday() {
@@ -56,9 +36,6 @@ struct ContentView: View {
         if !Calendar.current.isDate(selectedDate, inSameDayAs: today) {
             logger.log("Resetting to today's date: \(today)")
             selectedDate = today
-        } else {
-            // If it's already today, just refresh the entries
-            refreshEntries()
         }
     }
 }

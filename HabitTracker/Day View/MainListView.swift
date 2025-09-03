@@ -16,8 +16,9 @@ struct MainListView: View {
     @Binding var selectedTab: Int
     @Binding var showAddHabit: Bool
     
-    @State private var entries: [DailyEntry] = []
     @State private var selectedDate: Date = Date()  // The currently selected date
+                                          
+    @State private var entries: [DailyEntry] = []
     
     @State private var counter: Int = 0
     @State private var hasEarlyRecords: Bool = true
@@ -57,12 +58,10 @@ struct MainListView: View {
                         if hasEarlyRecords {
                             Button(action: {
                                 selectedDate = selectedDate.prevDay()
-                                fetchEntries()
                             }) {
                                 Image(systemName: "chevron.left")
                             }
                         }
-                        
                         
                         Text(selectedDate, style: .date)  // Show the current selected date
                             .font(.title.bold())
@@ -71,7 +70,6 @@ struct MainListView: View {
                         if !selectedDate.isToday() {
                             Button(action: {
                                 selectedDate = selectedDate.nextDay()
-                                fetchEntries()
                             }) {
                                 Image(systemName: "chevron.right")
                             }
@@ -99,7 +97,7 @@ struct MainListView: View {
                 }
 
                 VStack {
-                    DayHabitsListView(date: $selectedDate, entries: entries)
+                    DayHabitsListView(date: selectedDate)
                     
                     if entries.isEmpty {
                         VStack {
@@ -128,10 +126,8 @@ struct MainListView: View {
         .onReceive(notificationPublisher) { _ in
             // Check if selected date is the same
             selectedDate = Date()
-            fetchEntries()
         }
         .refreshable {
-            self.entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
             await Health.shared.updateHabits(entries: self.entries)
         }
         .gesture(
@@ -142,13 +138,11 @@ struct MainListView: View {
                         // Swipe Left - Move Forward
                         if !selectedDate.isToday() {
                             selectedDate = selectedDate.nextDay()
-                            fetchEntries()
                         }
                     } else if value.translation.width > threshold {
                         // Swipe Right - Move Backward
                         if hasEarlyRecords {
                             selectedDate = selectedDate.prevDay()
-                            fetchEntries()
                         }
                     }
                 }
@@ -159,10 +153,6 @@ struct MainListView: View {
                     showShareSheet = true
                 }
         )
-        .withUndoRedo {
-            // Refresh entries after undo
-            self.entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext, for: selectedDate)
-        }
         .sheet(isPresented: $showShareSheet) {
             if let text = generateMarkdown() {
                 #if os(iOS)
@@ -171,11 +161,14 @@ struct MainListView: View {
                 ShareLink(item: markdownText)
                 #endif
             }
+        }.onChange(of: selectedDate) { _, newValue in
+            fetchEntries()
         }
     }
 
     func fetchEntries() {
         Task {
+            // this line would also generate habits for today
             self.entries = fetchHabitEntries(modelContext: modelContext, for: selectedDate)
             
             let entriesDayBefore = fetchHabitEntries(modelContext: modelContext, for: selectedDate.prevDay())

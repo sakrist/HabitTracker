@@ -29,8 +29,13 @@ func motivationMessage() -> String {
 
 
 struct DayHabitsListView: View {
-    @Binding var date:Date
-    let entries: [DailyEntry]
+    var date:Date
+    @Query private var entries: [DailyEntry]
+    
+    var filteredEntries: [DailyEntry] {
+        let wd = HabitItem.Weekday(date: date)
+        return entries.filter { $0.habit?.weekdays.contains(wd) == true }.sorted(by: sortDailyHabits)
+    }
     
     @State var showAddHabit: Bool = false
     
@@ -42,16 +47,29 @@ struct DayHabitsListView: View {
     @State private var showAchievement = false
     @State private var currentAchievement: Achievement = .none
     
+    init(date: Date) {
+        self.date = date
+
+        let calendar = Calendar.current
+        let start = calendar.startOfDay(for: date)
+        let end = calendar.date(byAdding: .day, value: 1, to: start)!
+
+        _entries = Query(
+            filter: #Predicate<DailyEntry> { entry in
+                entry.date >= start && entry.date < end &&
+                entry.habit?.active == true
+            }
+        )
+    }
+    
     var body: some View {
         ZStack {
             List {
-                ForEach(entries) { entry in
+                ForEach(filteredEntries) { entry in
                     NavigationLink(destination: HabitDetailProgressView(date: date, habit:entry.habitt)) {
                         HabitItemCell(item: entry.habitt, entry: entry)
                             .contentShape(Rectangle())
-                            .onChange(of: entry.isCompleted) { old, newValue in
-                                changed(entry: entry, old, newValue)
-                            }.onChange(of: entry.completionDates) { oldValue, newValue in
+                            .onChange(of: entry.completionDates) { oldValue, newValue in
                                 ModelData.shared.saveContext()
                             }
                     }
@@ -61,7 +79,7 @@ struct DayHabitsListView: View {
                 let title = achievementTitle(achievement: currentAchievement)
                 let icon = achievementIcon(achievement: currentAchievement)
                 // Use the color of the habit that triggered the achievement
-                let color = entries.first(where: { $0.achievement == currentAchievement })?.habitt.getColor() ?? .blue
+                let color = filteredEntries.first(where: { $0.achievement == currentAchievement })?.habitt.getColor() ?? .blue
                 AchievementBanner(title: title, icon: icon, color: color, isPresented: $showAchievement)
             }
             .listStyle(.plain)
@@ -119,9 +137,9 @@ struct DayHabitsListView: View {
                 reScheduleWeekdayNotification(habitItem: entry.habitt)
             }
 #endif
-            let countCompleted = entries.reduce(0) { $0 + ($1.isCompleted ? 1 : 0)}
+            let countCompleted = filteredEntries.reduce(0) { $0 + ($1.isCompleted ? 1 : 0)}
             
-            if (countCompleted == entries.count) {
+            if (countCompleted == filteredEntries.count) {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     counter += 1
                     playSound(name: "Balloon Pop.caf")
@@ -158,5 +176,5 @@ struct DayHabitsListView: View {
 
 #Preview {
     let entries = fetchHabitEntries(modelContext: ModelData.shared.modelContainer.mainContext, for: Date())
-    DayHabitsListView(date: .constant(Date()), entries: entries)
+    DayHabitsListView(date: Date())
 }

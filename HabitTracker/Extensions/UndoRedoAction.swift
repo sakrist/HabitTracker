@@ -27,8 +27,8 @@ struct UndoRedoAwareModifier: ViewModifier {
                 Button("Cancel", role: .cancel) { }
                 Button("Undo", role: .destructive) {
                     ModelData.undoManager.undo()
-                    ModelData.shared.saveContext()
                     action()
+                    ModelData.shared.saveContext()
                 }
             } message: {
                 Text("Would you like to undo your last action?")
