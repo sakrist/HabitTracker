@@ -154,7 +154,7 @@ func fetchHabitEntries(modelContext: ModelContext, for date: Date) -> [DailyEntr
             }
         })
     } catch {
-        print("Error fetchHabitEntries habits: \(error)")
+        logger.error("Error fetchHabitEntries habits: \(error)")
     }
     // Final deduplication check before returning
     updatedEntries = deduplicateEntries(updatedEntries, modelContext: modelContext)
@@ -191,7 +191,7 @@ func deduplicateEntries(_ entries: [DailyEntry], modelContext: ModelContext) -> 
                 duplicatesToDelete.append(entry)
             }
             
-            print("⚠️ Found duplicate entry for habit \(habit.title) on \(dateString)")
+            logger.warning("⚠️ Found duplicate entry for habit \(habit.title) on \(dateString)")
         } else {
             // This is the first occurrence
             uniqueEntries[key] = entry
@@ -204,7 +204,7 @@ func deduplicateEntries(_ entries: [DailyEntry], modelContext: ModelContext) -> 
     }
     
     if !duplicatesToDelete.isEmpty {
-        print("🔄 Removed \(duplicatesToDelete.count) duplicate entries")
+        logger.warning("🔄 Removed \(duplicatesToDelete.count) duplicate entries")
         try? modelContext.save()
     }
     
@@ -301,7 +301,7 @@ func fetchAllHabitEntries(modelContext: ModelContext) -> [DailyEntry] {
         let entries = try modelContext.fetch(fetchDescriptor)
         return entries
     } catch {
-        print("Error fetching all entries: \(error)")
+        logger.error("Error fetching all entries: \(error)")
         return []
     }
 }

@@ -31,16 +31,9 @@
 		4F46FB532DC7D68700627B71 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = 4F46FB522DC7D68700627B71 /* RainbowUI */; };
 		4F46FB552DC8F97700627B71 /* PurchaseSubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F46FB542DC8F97700627B71 /* PurchaseSubscriptionView.swift */; };
 		4F6D4AE72DA856920018448A /* AchievementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6D4AE52DA856920018448A /* AchievementTests.swift */; };
-		4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
-		4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
 		4F83019E2DAFBF940015ED4D /* ExportImportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */; };
 		4F8301A02DAFDD920015ED4D /* HabitTracker_Export.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F83019F2DAFDD920015ED4D /* HabitTracker_Export.json */; };
-		4F8613812DB0FAC10005A15A /* ModelData+Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AED9A2D9C828E009C4B7B /* ModelData+Achievement.swift */; };
-		4F8613832DB1110B0005A15A /* SchemaV4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8613822DB1110B0005A15A /* SchemaV4.swift */; };
-		4F8613842DB1110B0005A15A /* SchemaV4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8613822DB1110B0005A15A /* SchemaV4.swift */; };
 		4F86138A2DB1354C0005A15A /* MigrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8613892DB1354C0005A15A /* MigrationTests.swift */; };
-		4F86138C2DB278F00005A15A /* ModelData+targetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F86138B2DB278F00005A15A /* ModelData+targetCount.swift */; };
-		4F86138D2DB278F00005A15A /* ModelData+targetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F86138B2DB278F00005A15A /* ModelData+targetCount.swift */; };
 		4F8613912DB2FB530005A15A /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8613902DB2FB530005A15A /* TimelineView.swift */; };
 		4F8613962DB3FC1C0005A15A /* TimelineConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8613922DB3FC1C0005A15A /* TimelineConnector.swift */; };
 		4F8613972DB3FC1C0005A15A /* TimelineModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8613952DB3FC1C0005A15A /* TimelineModels.swift */; };
@@ -56,47 +49,26 @@
 		D25246282D370615003CEBF9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */; };
 		D25246292D370615003CEBF9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */; };
 		D25246352D370617003CEBF9 /* DailyExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = D25246272D370615003CEBF9 /* DailyExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D252463A2D370659003CEBF9 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */; };
-		D252463C2D370659003CEBF9 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */; };
-		D252463D2D370659003CEBF9 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
-		D252463F2D370659003CEBF9 /* HabitItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */; };
 		D25246412D3706A3003CEBF9 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1264A2CB73717005E5941 /* Date.swift */; };
 		D25246422D3706A3003CEBF9 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A952CA5DD420000E843 /* Color+extension.swift */; };
 		D25A7A862CA5D7EF0000E843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D25A7A7F2CA5D7EE0000E843 /* Assets.xcassets */; };
 		D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A802CA5D7EE0000E843 /* ContentView.swift */; };
 		D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */; };
-		D25A7A8A2CA5D7EF0000E843 /* HabitItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */; };
 		D25A7A8D2CA5D8120000E843 /* HabitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A8B2CA5D8120000E843 /* HabitTrackerTests.swift */; };
 		D25A7A912CA5D8120000E843 /* HabitTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A8E2CA5D8120000E843 /* HabitTrackerUITests.swift */; };
 		D25A7A922CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A8F2CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift */; };
 		D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A952CA5DD420000E843 /* Color+extension.swift */; };
 		D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */; };
-		D25AED9B2D9C82B0009C4B7B /* ModelData+Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AED9A2D9C828E009C4B7B /* ModelData+Achievement.swift */; };
 		D262C5DF2D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */; };
 		D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */; };
-		D262C5E22D4FA77A00CDCA0E /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */; };
-		D262C5E32D4FA77A00CDCA0E /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */; };
 		D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E42D4FAE5400CDCA0E /* HealthType.swift */; };
 		D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E42D4FAE5400CDCA0E /* HealthType.swift */; };
 		D262C5E82D4FFCD700CDCA0E /* HealthTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E72D4FFCCE00CDCA0E /* HealthTypeTests.swift */; };
 		D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
 		D26D06F62DAEF1E0009C15D4 /* StreakTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26D06F52DAEF1E0009C15D4 /* StreakTests.swift */; };
 		D26D06F92DAF03E1009C15D4 /* ModelDataFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26D06F82DAF03E1009C15D4 /* ModelDataFetchTests.swift */; };
-		D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
-		D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
 		D29141182DD7DA6600B911E5 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D29141172DD7DA6600B911E5 /* ActivityView.swift */; };
 		D29141272DD7E5B900B911E5 /* HabitTrackerWatchApp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D291411D2DD7E5B700B911E5 /* HabitTrackerWatchApp.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D29141322DD9D28200B911E5 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */; };
-		D29141332DD9D28B00B911E5 /* ModelData+targetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F86138B2DB278F00005A15A /* ModelData+targetCount.swift */; };
-		D29141342DD9D28B00B911E5 /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */; };
-		D29141352DD9D28B00B911E5 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62D46558800C67484 /* ModelData+fetch.swift */; };
-		D29141362DD9D28B00B911E5 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */; };
-		D29141372DD9D28B00B911E5 /* ModelData+Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25AED9A2D9C828E009C4B7B /* ModelData+Achievement.swift */; };
-		D29141382DD9D28B00B911E5 /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F83019A2DAFBB880015ED4D /* ExportImportData.swift */; };
-		D29141392DD9D28B00B911E5 /* SchemaV4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8613822DB1110B0005A15A /* SchemaV4.swift */; };
-		D291413A2DD9D28B00B911E5 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309DC2CA9B3F200C6B22A /* SampleData.swift */; };
-		D291413B2DD9D28B00B911E5 /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
-		D291413C2DD9D28B00B911E5 /* HabitItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */; };
 		D291413D2DD9D2B100B911E5 /* HealthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5E42D4FAE5400CDCA0E /* HealthType.swift */; };
 		D291413E2DD9D2B800B911E5 /* ModelData+Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */; };
 		D291413F2DD9D2BE00B911E5 /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB22D3D96EA0091DFB2 /* HealthKit.swift */; };
@@ -119,21 +91,16 @@
 		D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A78AB82D3EC15C0091DFB2 /* ProgressCardView.swift */; };
 		D2C09DF22DA0680F001DC17D /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C09DF12DA0680F001DC17D /* UIApplication.swift */; };
 		D2C09DF32DA0680F001DC17D /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C09DF12DA0680F001DC17D /* UIApplication.swift */; };
-		D2C09DF42DA07801001DC17D /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */; };
 		D2C09DFA2DA08AAC001DC17D /* JDStatusBarNotification in Frameworks */ = {isa = PBXBuildFile; productRef = D2C09DF92DA08AAC001DC17D /* JDStatusBarNotification */; };
 		D2C09DFD2DA09001001DC17D /* AchievementBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C09DFC2DA08FE2001DC17D /* AchievementBanner.swift */; };
 		D2C126482CB2DAAC005E5941 /* MainListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C126472CB2DA9D005E5941 /* MainListView.swift */; };
 		D2C1264B2CB7371D005E5941 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C1264A2CB73717005E5941 /* Date.swift */; };
 		D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */; };
-		D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */; };
 		D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */; };
 		D2CDC5D82DD52E60000F5AEE /* DeviceShakeViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CDC5D72DD52E60000F5AEE /* DeviceShakeViewModifier.swift */; };
 		D2CDC5D92DD52E60000F5AEE /* DeviceShakeViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CDC5D72DD52E60000F5AEE /* DeviceShakeViewModifier.swift */; };
 		D2CDC5DC2DD530CD000F5AEE /* UndoRedoAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CDC5DA2DD530CD000F5AEE /* UndoRedoAction.swift */; };
-		D2CFF5592D35885500D09F01 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */; };
 		D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */; };
-		D2D457F72D46559000C67484 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62D46558800C67484 /* ModelData+fetch.swift */; };
-		D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F62D46558800C67484 /* ModelData+fetch.swift */; };
 		D2D457FA2D4AE71000C67484 /* HealthViewDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F92D4AE70C00C67484 /* HealthViewDebug.swift */; };
 		D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481052CD8246C00B1DF7C /* MonthlyView.swift */; };
 		D2DB715C2D39B30C000DC325 /* HabitDetailProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */; };
@@ -150,6 +117,42 @@
 		D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB71742D3D30DB000DC325 /* WidgetHabitsList.swift */; };
 		D2DB71852D3D4BD9000DC325 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2DB71842D3D4BD9000DC325 /* ConfettiSwiftUI */; };
 		D2ECACD42D569E12007B83C4 /* RainbowUI in Frameworks */ = {isa = PBXBuildFile; productRef = D2ECACD32D569E12007B83C4 /* RainbowUI */; };
+		D2F502F22E6774DE00A08548 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EE2E6774DE00A08548 /* SampleData.swift */; };
+		D2F502F32E6774DE00A08548 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E82E6774DE00A08548 /* HabitCategory+extension.swift */; };
+		D2F502F42E6774DE00A08548 /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E72E6774DE00A08548 /* ExportImportData.swift */; };
+		D2F502F52E6774DE00A08548 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EA2E6774DE00A08548 /* ModelData.swift */; };
+		D2F502F62E6774DE00A08548 /* SchemaV4.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502F02E6774DE00A08548 /* SchemaV4.swift */; };
+		D2F502F72E6774DE00A08548 /* HabitItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E92E6774DE00A08548 /* HabitItem+extension.swift */; };
+		D2F502F82E6774DE00A08548 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EC2E6774DE00A08548 /* ModelData+fetch.swift */; };
+		D2F502F92E6774DE00A08548 /* ModelData+Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EB2E6774DE00A08548 /* ModelData+Achievement.swift */; };
+		D2F502FA2E6774DE00A08548 /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E62E6774DE00A08548 /* DailyEntry+extension.swift */; };
+		D2F502FB2E6774DE00A08548 /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EF2E6774DE00A08548 /* SchemaV3.swift */; };
+		D2F502FC2E6774DE00A08548 /* ModelData+targetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502ED2E6774DE00A08548 /* ModelData+targetCount.swift */; };
+		D2F502FD2E6774DE00A08548 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EE2E6774DE00A08548 /* SampleData.swift */; };
+		D2F502FE2E6774DE00A08548 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E82E6774DE00A08548 /* HabitCategory+extension.swift */; };
+		D2F502FF2E6774DE00A08548 /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E72E6774DE00A08548 /* ExportImportData.swift */; };
+		D2F503002E6774DE00A08548 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EA2E6774DE00A08548 /* ModelData.swift */; };
+		D2F503012E6774DE00A08548 /* SchemaV4.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502F02E6774DE00A08548 /* SchemaV4.swift */; };
+		D2F503022E6774DE00A08548 /* HabitItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E92E6774DE00A08548 /* HabitItem+extension.swift */; };
+		D2F503032E6774DE00A08548 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EC2E6774DE00A08548 /* ModelData+fetch.swift */; };
+		D2F503042E6774DE00A08548 /* ModelData+Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EB2E6774DE00A08548 /* ModelData+Achievement.swift */; };
+		D2F503052E6774DE00A08548 /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E62E6774DE00A08548 /* DailyEntry+extension.swift */; };
+		D2F503062E6774DE00A08548 /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EF2E6774DE00A08548 /* SchemaV3.swift */; };
+		D2F503072E6774DE00A08548 /* ModelData+targetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502ED2E6774DE00A08548 /* ModelData+targetCount.swift */; };
+		D2F503082E6774DE00A08548 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EE2E6774DE00A08548 /* SampleData.swift */; };
+		D2F503092E6774DE00A08548 /* HabitCategory+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E82E6774DE00A08548 /* HabitCategory+extension.swift */; };
+		D2F5030A2E6774DE00A08548 /* ExportImportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E72E6774DE00A08548 /* ExportImportData.swift */; };
+		D2F5030B2E6774DE00A08548 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EA2E6774DE00A08548 /* ModelData.swift */; };
+		D2F5030C2E6774DE00A08548 /* SchemaV4.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502F02E6774DE00A08548 /* SchemaV4.swift */; };
+		D2F5030D2E6774DE00A08548 /* HabitItem+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E92E6774DE00A08548 /* HabitItem+extension.swift */; };
+		D2F5030E2E6774DE00A08548 /* ModelData+fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EC2E6774DE00A08548 /* ModelData+fetch.swift */; };
+		D2F5030F2E6774DE00A08548 /* ModelData+Achievement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EB2E6774DE00A08548 /* ModelData+Achievement.swift */; };
+		D2F503102E6774DE00A08548 /* DailyEntry+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502E62E6774DE00A08548 /* DailyEntry+extension.swift */; };
+		D2F503112E6774DE00A08548 /* SchemaV3.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502EF2E6774DE00A08548 /* SchemaV3.swift */; };
+		D2F503122E6774DE00A08548 /* ModelData+targetCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F502ED2E6774DE00A08548 /* ModelData+targetCount.swift */; };
+		D2F9411F2E682C6A005B6524 /* MigrationPlanToLatest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9411E2E682C6A005B6524 /* MigrationPlanToLatest.swift */; };
+		D2F941202E682C6A005B6524 /* MigrationPlanToLatest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9411E2E682C6A005B6524 /* MigrationPlanToLatest.swift */; };
+		D2F941212E682C6A005B6524 /* MigrationPlanToLatest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F9411E2E682C6A005B6524 /* MigrationPlanToLatest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -226,12 +229,9 @@
 		4F46FB4F2DC7D54300627B71 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4F46FB542DC8F97700627B71 /* PurchaseSubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseSubscriptionView.swift; sourceTree = "<group>"; };
 		4F6D4AE52DA856920018448A /* AchievementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementTests.swift; sourceTree = "<group>"; };
-		4F83019A2DAFBB880015ED4D /* ExportImportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportData.swift; sourceTree = "<group>"; };
 		4F83019D2DAFBF940015ED4D /* ExportImportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportTests.swift; sourceTree = "<group>"; };
 		4F83019F2DAFDD920015ED4D /* HabitTracker_Export.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HabitTracker_Export.json; sourceTree = "<group>"; };
-		4F8613822DB1110B0005A15A /* SchemaV4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV4.swift; sourceTree = "<group>"; };
 		4F8613892DB1354C0005A15A /* MigrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationTests.swift; sourceTree = "<group>"; };
-		4F86138B2DB278F00005A15A /* ModelData+targetCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+targetCount.swift"; sourceTree = "<group>"; };
 		4F8613902DB2FB530005A15A /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		4F8613922DB3FC1C0005A15A /* TimelineConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineConnector.swift; sourceTree = "<group>"; };
 		4F8613932DB3FC1C0005A15A /* TimelineDayGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineDayGroup.swift; sourceTree = "<group>"; };
@@ -251,22 +251,17 @@
 		D25A7A802CA5D7EE0000E843 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D25A7A812CA5D7EE0000E843 /* HabitTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HabitTracker.entitlements; sourceTree = "<group>"; };
 		D25A7A822CA5D7EE0000E843 /* HabitTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerApp.swift; sourceTree = "<group>"; };
-		D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitItem+extension.swift"; sourceTree = "<group>"; };
 		D25A7A8B2CA5D8120000E843 /* HabitTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerTests.swift; sourceTree = "<group>"; };
 		D25A7A8E2CA5D8120000E843 /* HabitTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITests.swift; sourceTree = "<group>"; };
 		D25A7A8F2CA5D8120000E843 /* HabitTrackerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTrackerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D25A7A952CA5DD420000E843 /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
 		D25A7A992CA5DE4B0000E843 /* HabitItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitItemCell.swift; sourceTree = "<group>"; };
-		D25AED9A2D9C828E009C4B7B /* ModelData+Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+Achievement.swift"; sourceTree = "<group>"; };
 		D262C5DE2D4EAA4300CDCA0E /* ModelData+Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+Health.swift"; sourceTree = "<group>"; };
-		D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV3.swift; sourceTree = "<group>"; };
 		D262C5E42D4FAE5400CDCA0E /* HealthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthType.swift; sourceTree = "<group>"; };
 		D262C5E72D4FFCCE00CDCA0E /* HealthTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthTypeTests.swift; sourceTree = "<group>"; };
 		D26D06F52DAEF1E0009C15D4 /* StreakTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakTests.swift; sourceTree = "<group>"; };
 		D26D06F72DAEF20D009C15D4 /* HabitTracker.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = HabitTracker.xctestplan; sourceTree = "<group>"; };
 		D26D06F82DAF03E1009C15D4 /* ModelDataFetchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataFetchTests.swift; sourceTree = "<group>"; };
-		D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyEntry+extension.swift"; sourceTree = "<group>"; };
-		D28309DC2CA9B3F200C6B22A /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		D29141172DD7DA6600B911E5 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		D291411D2DD7E5B700B911E5 /* HabitTrackerWatchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitTrackerWatchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D29141492DD9D60C00B911E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -281,15 +276,12 @@
 		D2C126472CB2DA9D005E5941 /* MainListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListView.swift; sourceTree = "<group>"; };
 		D2C1264A2CB73717005E5941 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D2C43F2F2CA74E6D006AD5F5 /* HabitsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsListView.swift; sourceTree = "<group>"; };
-		D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		D2CB31482CBC396A0097B7B4 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 		D2CDC5D72DD52E60000F5AEE /* DeviceShakeViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceShakeViewModifier.swift; sourceTree = "<group>"; };
 		D2CDC5DA2DD530CD000F5AEE /* UndoRedoAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoRedoAction.swift; sourceTree = "<group>"; };
-		D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitCategory+extension.swift"; sourceTree = "<group>"; };
 		D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysSelectorView.swift; sourceTree = "<group>"; };
 		D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
 		D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
-		D2D457F62D46558800C67484 /* ModelData+fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+fetch.swift"; sourceTree = "<group>"; };
 		D2D457F92D4AE70C00C67484 /* HealthViewDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewDebug.swift; sourceTree = "<group>"; };
 		D2D481052CD8246C00B1DF7C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 		D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailProgressView.swift; sourceTree = "<group>"; };
@@ -305,6 +297,18 @@
 		D2DB71722D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = HabitWidgetConfiguration.intentdefinition; sourceTree = "<group>"; };
 		D2DB71732D3D30DB000DC325 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2DB71742D3D30DB000DC325 /* WidgetHabitsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetHabitsList.swift; sourceTree = "<group>"; };
+		D2F502E62E6774DE00A08548 /* DailyEntry+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyEntry+extension.swift"; sourceTree = "<group>"; };
+		D2F502E72E6774DE00A08548 /* ExportImportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportImportData.swift; sourceTree = "<group>"; };
+		D2F502E82E6774DE00A08548 /* HabitCategory+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitCategory+extension.swift"; sourceTree = "<group>"; };
+		D2F502E92E6774DE00A08548 /* HabitItem+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitItem+extension.swift"; sourceTree = "<group>"; };
+		D2F502EA2E6774DE00A08548 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		D2F502EB2E6774DE00A08548 /* ModelData+Achievement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+Achievement.swift"; sourceTree = "<group>"; };
+		D2F502EC2E6774DE00A08548 /* ModelData+fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+fetch.swift"; sourceTree = "<group>"; };
+		D2F502ED2E6774DE00A08548 /* ModelData+targetCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelData+targetCount.swift"; sourceTree = "<group>"; };
+		D2F502EE2E6774DE00A08548 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		D2F502EF2E6774DE00A08548 /* SchemaV3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV3.swift; sourceTree = "<group>"; };
+		D2F502F02E6774DE00A08548 /* SchemaV4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchemaV4.swift; sourceTree = "<group>"; };
+		D2F9411E2E682C6A005B6524 /* MigrationPlanToLatest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationPlanToLatest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -438,7 +442,6 @@
 				D2DB71602D3BC54A000DC325 /* Day View */,
 				D2C126492CB7370B005E5941 /* Extensions */,
 				D2DB715F2D3BC521000DC325 /* Habits List */,
-				D28309DB2CA9B33800C6B22A /* ModelRecords */,
 				4F092E7F2DB5248200FA334C /* Onboarding */,
 				4F28D9D32DB57CF0000D9807 /* Resources */,
 				D2DB71672D3C6A6F000DC325 /* Sounds */,
@@ -474,27 +477,10 @@
 			path = HabitTrackerUITests;
 			sourceTree = "<group>";
 		};
-		D28309DB2CA9B33800C6B22A /* ModelRecords */ = {
-			isa = PBXGroup;
-			children = (
-				D28309D92CA9B32100C6B22A /* DailyEntry+extension.swift */,
-				4F83019A2DAFBB880015ED4D /* ExportImportData.swift */,
-				D2CFF5582D35884E00D09F01 /* HabitCategory+extension.swift */,
-				D25A7A832CA5D7EE0000E843 /* HabitItem+extension.swift */,
-				D2CB31462CBC1EBB0097B7B4 /* ModelData.swift */,
-				D25AED9A2D9C828E009C4B7B /* ModelData+Achievement.swift */,
-				D2D457F62D46558800C67484 /* ModelData+fetch.swift */,
-				4F86138B2DB278F00005A15A /* ModelData+targetCount.swift */,
-				D28309DC2CA9B3F200C6B22A /* SampleData.swift */,
-				D262C5E12D4FA77A00CDCA0E /* SchemaV3.swift */,
-				4F8613822DB1110B0005A15A /* SchemaV4.swift */,
-			);
-			path = ModelRecords;
-			sourceTree = "<group>";
-		};
 		D29141482DD9D5EE00B911E5 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D2F502F12E6774DE00A08548 /* ModelRecords */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -608,6 +594,25 @@
 				D2DB71732D3D30DB000DC325 /* Info.plist */,
 			);
 			path = Widget;
+			sourceTree = "<group>";
+		};
+		D2F502F12E6774DE00A08548 /* ModelRecords */ = {
+			isa = PBXGroup;
+			children = (
+				D2F502E62E6774DE00A08548 /* DailyEntry+extension.swift */,
+				D2F502E72E6774DE00A08548 /* ExportImportData.swift */,
+				D2F502E82E6774DE00A08548 /* HabitCategory+extension.swift */,
+				D2F502E92E6774DE00A08548 /* HabitItem+extension.swift */,
+				D2F502EA2E6774DE00A08548 /* ModelData.swift */,
+				D2F9411E2E682C6A005B6524 /* MigrationPlanToLatest.swift */,
+				D2F502EB2E6774DE00A08548 /* ModelData+Achievement.swift */,
+				D2F502EC2E6774DE00A08548 /* ModelData+fetch.swift */,
+				D2F502ED2E6774DE00A08548 /* ModelData+targetCount.swift */,
+				D2F502EE2E6774DE00A08548 /* SampleData.swift */,
+				D2F502EF2E6774DE00A08548 /* SchemaV3.swift */,
+				D2F502F02E6774DE00A08548 /* SchemaV4.swift */,
+			);
+			path = ModelRecords;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -841,28 +846,29 @@
 				D25246412D3706A3003CEBF9 /* Date.swift in Sources */,
 				D25246422D3706A3003CEBF9 /* Color+extension.swift in Sources */,
 				4F092E862DB5315C00FA334C /* AppIcon.swift in Sources */,
-				D252463A2D370659003CEBF9 /* HabitCategory+extension.swift in Sources */,
-				D262C5E22D4FA77A00CDCA0E /* SchemaV3.swift in Sources */,
-				D252463C2D370659003CEBF9 /* ModelData.swift in Sources */,
 				D2DB71782D3D30DB000DC325 /* Daily.swift in Sources */,
-				4F8613842DB1110B0005A15A /* SchemaV4.swift in Sources */,
 				D2C09DF32DA0680F001DC17D /* UIApplication.swift in Sources */,
 				D2DB71792D3D30DB000DC325 /* DailyBundle.swift in Sources */,
-				4F86138D2DB278F00005A15A /* ModelData+targetCount.swift in Sources */,
+				D2F502F22E6774DE00A08548 /* SampleData.swift in Sources */,
+				D2F502F32E6774DE00A08548 /* HabitCategory+extension.swift in Sources */,
+				D2F502F42E6774DE00A08548 /* ExportImportData.swift in Sources */,
+				D2F502F52E6774DE00A08548 /* ModelData.swift in Sources */,
+				D2F502F62E6774DE00A08548 /* SchemaV4.swift in Sources */,
+				D2F502F72E6774DE00A08548 /* HabitItem+extension.swift in Sources */,
+				D2F502F82E6774DE00A08548 /* ModelData+fetch.swift in Sources */,
+				D2F502F92E6774DE00A08548 /* ModelData+Achievement.swift in Sources */,
+				D2F502FA2E6774DE00A08548 /* DailyEntry+extension.swift in Sources */,
+				D2F502FB2E6774DE00A08548 /* SchemaV3.swift in Sources */,
+				D2F502FC2E6774DE00A08548 /* ModelData+targetCount.swift in Sources */,
+				D2F941202E682C6A005B6524 /* MigrationPlanToLatest.swift in Sources */,
 				D2DB717A2D3D30DB000DC325 /* HabitWidgetConfiguration.intentdefinition in Sources */,
 				D2CDC5D82DD52E60000F5AEE /* DeviceShakeViewModifier.swift in Sources */,
-				4F8613812DB0FAC10005A15A /* ModelData+Achievement.swift in Sources */,
 				D2DB717B2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
-				D2C09DF42DA07801001DC17D /* DailyEntry+extension.swift in Sources */,
-				D2D457F82D46559000C67484 /* ModelData+fetch.swift in Sources */,
-				4F83019B2DAFBB990015ED4D /* ExportImportData.swift in Sources */,
 				D262C5E62D4FAF4D00CDCA0E /* HealthType.swift in Sources */,
 				4F28D9D72DB57D23000D9807 /* HealthActivityTemplate.swift in Sources */,
 				D262C61E2D5375E800CDCA0E /* HealthKit.swift in Sources */,
 				4F28D9DC2DB5928C000D9807 /* Notification.swift in Sources */,
 				D262C5E02D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
-				D252463D2D370659003CEBF9 /* SampleData.swift in Sources */,
-				D252463F2D370659003CEBF9 /* HabitItem+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,46 +886,47 @@
 				D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */,
 				D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */,
 				D2C1264B2CB7371D005E5941 /* Date.swift in Sources */,
-				D2CFF5592D35885500D09F01 /* HabitCategory+extension.swift in Sources */,
 				4F8613962DB3FC1C0005A15A /* TimelineConnector.swift in Sources */,
 				4F8613972DB3FC1C0005A15A /* TimelineModels.swift in Sources */,
+				D2F941212E682C6A005B6524 /* MigrationPlanToLatest.swift in Sources */,
 				4F8613982DB3FC1C0005A15A /* TimelineEntryView.swift in Sources */,
 				4F8613992DB3FC1C0005A15A /* TimelineDayGroup.swift in Sources */,
 				D25A7A962CA5DD460000E843 /* Color+extension.swift in Sources */,
 				D2CDC5D92DD52E60000F5AEE /* DeviceShakeViewModifier.swift in Sources */,
-				D28309DA2CA9B32100C6B22A /* DailyEntry+extension.swift in Sources */,
 				D2DB71642D3C48DB000DC325 /* NotificationCenter.swift in Sources */,
 				4F092E872DB5315C00FA334C /* AppIcon.swift in Sources */,
 				D2CDC5DC2DD530CD000F5AEE /* UndoRedoAction.swift in Sources */,
-				D25AED9B2D9C82B0009C4B7B /* ModelData+Achievement.swift in Sources */,
 				D2C126482CB2DAAC005E5941 /* MainListView.swift in Sources */,
 				D2CB31492CBC396B0097B7B4 /* AddHabitView.swift in Sources */,
 				D2DB715C2D39B30C000DC325 /* HabitDetailProgressView.swift in Sources */,
 				4F28D9DA2DB583E1000D9807 /* ActivityTypePickerView.swift in Sources */,
-				4F86138C2DB278F00005A15A /* ModelData+targetCount.swift in Sources */,
 				D25A7A882CA5D7EF0000E843 /* ContentView.swift in Sources */,
 				D2D457FA2D4AE71000C67484 /* HealthViewDebug.swift in Sources */,
 				D2C09DF22DA0680F001DC17D /* UIApplication.swift in Sources */,
 				D25A7A892CA5D7EF0000E843 /* HabitTrackerApp.swift in Sources */,
 				D2C09DFD2DA09001001DC17D /* AchievementBanner.swift in Sources */,
-				4F8613832DB1110B0005A15A /* SchemaV4.swift in Sources */,
 				4F28D9D82DB57D23000D9807 /* HealthActivityTemplate.swift in Sources */,
 				D2DB716D2D3D2F99000DC325 /* DayHabitsListView.swift in Sources */,
-				D262C5E32D4FA77A00CDCA0E /* SchemaV3.swift in Sources */,
-				D28309DD2CA9B3F200C6B22A /* SampleData.swift in Sources */,
 				D262C5DF2D4EAA4A00CDCA0E /* ModelData+Health.swift in Sources */,
 				D2DB717C2D3D30DB000DC325 /* WidgetHabitsList.swift in Sources */,
 				D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */,
-				D25A7A8A2CA5D7EF0000E843 /* HabitItem+extension.swift in Sources */,
 				D29141182DD7DA6600B911E5 /* ActivityView.swift in Sources */,
-				4F83019C2DAFBB990015ED4D /* ExportImportData.swift in Sources */,
-				D2D457F72D46559000C67484 /* ModelData+fetch.swift in Sources */,
 				D2A78AB32D3D96F40091DFB2 /* HealthKit.swift in Sources */,
 				D2C43F302CA74F7F006AD5F5 /* HabitsListView.swift in Sources */,
-				D2CB31472CBC1EC20097B7B4 /* ModelData.swift in Sources */,
 				D2A78AB92D3EC15E0091DFB2 /* ProgressCardView.swift in Sources */,
 				4F8613912DB2FB530005A15A /* TimelineView.swift in Sources */,
 				4F28D9E72DB66081000D9807 /* StoreManager.swift in Sources */,
+				D2F502FD2E6774DE00A08548 /* SampleData.swift in Sources */,
+				D2F502FE2E6774DE00A08548 /* HabitCategory+extension.swift in Sources */,
+				D2F502FF2E6774DE00A08548 /* ExportImportData.swift in Sources */,
+				D2F503002E6774DE00A08548 /* ModelData.swift in Sources */,
+				D2F503012E6774DE00A08548 /* SchemaV4.swift in Sources */,
+				D2F503022E6774DE00A08548 /* HabitItem+extension.swift in Sources */,
+				D2F503032E6774DE00A08548 /* ModelData+fetch.swift in Sources */,
+				D2F503042E6774DE00A08548 /* ModelData+Achievement.swift in Sources */,
+				D2F503052E6774DE00A08548 /* DailyEntry+extension.swift in Sources */,
+				D2F503062E6774DE00A08548 /* SchemaV3.swift in Sources */,
+				D2F503072E6774DE00A08548 /* ModelData+targetCount.swift in Sources */,
 				4F46FB552DC8F97700627B71 /* PurchaseSubscriptionView.swift in Sources */,
 				4F28D9E82DB66081000D9807 /* SubscriptionService.swift in Sources */,
 			);
@@ -955,30 +962,31 @@
 				D29141422DD9D2ED00B911E5 /* Color+extension.swift in Sources */,
 				D29141582DD9E31600B911E5 /* AchievementBanner.swift in Sources */,
 				D29141432DD9D2ED00B911E5 /* UIApplication.swift in Sources */,
+				D2F503082E6774DE00A08548 /* SampleData.swift in Sources */,
+				D2F503092E6774DE00A08548 /* HabitCategory+extension.swift in Sources */,
+				D2F5030A2E6774DE00A08548 /* ExportImportData.swift in Sources */,
+				D2F5030B2E6774DE00A08548 /* ModelData.swift in Sources */,
+				D2F5030C2E6774DE00A08548 /* SchemaV4.swift in Sources */,
+				D2F5030D2E6774DE00A08548 /* HabitItem+extension.swift in Sources */,
+				D2F5030E2E6774DE00A08548 /* ModelData+fetch.swift in Sources */,
+				D2F5030F2E6774DE00A08548 /* ModelData+Achievement.swift in Sources */,
+				D2F503102E6774DE00A08548 /* DailyEntry+extension.swift in Sources */,
+				D2F503112E6774DE00A08548 /* SchemaV3.swift in Sources */,
+				D2F503122E6774DE00A08548 /* ModelData+targetCount.swift in Sources */,
 				D29141452DD9D2ED00B911E5 /* Date.swift in Sources */,
 				D29141462DD9D2ED00B911E5 /* AppIcon.swift in Sources */,
-				D29141332DD9D28B00B911E5 /* ModelData+targetCount.swift in Sources */,
+				D2F9411F2E682C6A005B6524 /* MigrationPlanToLatest.swift in Sources */,
 				D29141562DD9E2A300B911E5 /* HabitItemCell.swift in Sources */,
-				D29141342DD9D28B00B911E5 /* SchemaV3.swift in Sources */,
-				D29141352DD9D28B00B911E5 /* ModelData+fetch.swift in Sources */,
-				D29141362DD9D28B00B911E5 /* HabitCategory+extension.swift in Sources */,
 				D291415A2DD9E4E500B911E5 /* MonthlyView.swift in Sources */,
 				D29141522DD9E23E00B911E5 /* DayHabitsListView.swift in Sources */,
-				D29141372DD9D28B00B911E5 /* ModelData+Achievement.swift in Sources */,
-				D29141382DD9D28B00B911E5 /* ExportImportData.swift in Sources */,
 				D29141552DD9E29700B911E5 /* HabitDetailProgressView.swift in Sources */,
 				D291413F2DD9D2BE00B911E5 /* HealthKit.swift in Sources */,
 				D29141592DD9E4D800B911E5 /* ProgressCardView.swift in Sources */,
-				D29141392DD9D28B00B911E5 /* SchemaV4.swift in Sources */,
 				D29141512DD9D69D00B911E5 /* WidgetHabitsList.swift in Sources */,
-				D291413A2DD9D28B00B911E5 /* SampleData.swift in Sources */,
 				D291413E2DD9D2B800B911E5 /* ModelData+Health.swift in Sources */,
-				D291413B2DD9D28B00B911E5 /* DailyEntry+extension.swift in Sources */,
 				D291414F2DD9D60C00B911E5 /* ContentView.swift in Sources */,
 				D29141502DD9D60C00B911E5 /* HabitTrackerWatchApp.swift in Sources */,
 				D291413D2DD9D2B100B911E5 /* HealthType.swift in Sources */,
-				D291413C2DD9D28B00B911E5 /* HabitItem+extension.swift in Sources */,
-				D29141322DD9D28200B911E5 /* ModelData.swift in Sources */,
 				D29141402DD9D2D400B911E5 /* HealthActivityTemplate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1236,7 +1244,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1284,7 +1292,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTracker/HabitTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 29;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1426,7 +1434,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTrackerWatchApp/HabitTrackerWatchApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 29;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTrackerWatchApp/Info.plist;
@@ -1437,7 +1445,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1457,7 +1465,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = HabitTrackerWatchApp/HabitTrackerWatchApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 29;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HabitTrackerWatchApp/Info.plist;
@@ -1468,7 +1476,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sakrist.HabitTracker.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

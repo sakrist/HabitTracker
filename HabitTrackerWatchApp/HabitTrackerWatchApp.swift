@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct HabitTrackerWatchApp: App {
     
 //    let sample = SampleData.shared
     let modelData = ModelData.shared
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
         WindowGroup {

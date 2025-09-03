@@ -51,6 +51,8 @@ struct DayHabitsListView: View {
                             .contentShape(Rectangle())
                             .onChange(of: entry.isCompleted) { old, newValue in
                                 changed(entry: entry, old, newValue)
+                            }.onChange(of: entry.completionDates) { oldValue, newValue in
+                                ModelData.shared.saveContext()
                             }
                     }
                 }

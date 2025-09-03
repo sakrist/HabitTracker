@@ -34,6 +34,11 @@ struct HabitTrackerApp: App {
                         if newPhase == .background {
                             
                         }
+                        
+                        if newPhase == .active {
+                            // Refresh data when app becomes active to sync with Watch app
+                            modelData.refreshData()
+                        }
                     }
                     .opacity(showOnboarding ? 0 : 1)
                     .disabled(showOnboarding)
