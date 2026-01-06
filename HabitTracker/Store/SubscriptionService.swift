@@ -6,11 +6,9 @@ import SwiftUI
 class SubscriptionService: ObservableObject {
     static let shared = SubscriptionService()
     
-    // Max habits allowed for free users
-    let maxFreeHabits = 5
-    
     @Published private(set) var currentPlan: SubscriptionOption = .free
     @Published private(set) var hasFullAccess = false
+    @Published private(set) var isAdFree = false
     
     @AppStorage("SelectedSubscription") private var savedPlan: String = SubscriptionOption.free.rawValue
     
@@ -36,19 +34,23 @@ class SubscriptionService: ObservableObject {
         if storeManager.hasLifetimePurchase {
             currentPlan = .lifetime
             hasFullAccess = true
+            isAdFree = true
             savePlanStatus(.lifetime)
         } else if storeManager.hasYearlySubscription {
             currentPlan = .yearly
             hasFullAccess = true
+            isAdFree = true
             savePlanStatus(.yearly)
         } else if storeManager.hasMonthlySubscription {
             currentPlan = .monthly
             hasFullAccess = true
+            isAdFree = true
             savePlanStatus(.monthly)
         } else {
-            // Default to free if no active subscription or lifetime purchase
+            // Free plan now has full access (only ads are different)
             currentPlan = .free
-            hasFullAccess = false
+            hasFullAccess = true
+            isAdFree = false
             savePlanStatus(.free)
         }
     }
@@ -57,21 +59,6 @@ class SubscriptionService: ObservableObject {
         savedPlan = option.rawValue
     }
     
-    // Check if user can add more habits
-    func canAddMoreHabits(currentCount: Int) -> Bool {
-        if currentPlan == .free {
-            return currentCount < maxFreeHabits
-        }
-        return true
-    }
-    
-    // Check if health integration is allowed
-    func canUseHealthIntegration(healthHabitsCount: Int) -> Bool {
-        if currentPlan == .free {
-            return healthHabitsCount < 1
-        }
-        return true
-    }
     
     // Purchase a subscription or non-consumable purchase
     func purchase(option: SubscriptionOption) async -> Bool {

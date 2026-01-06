@@ -63,7 +63,6 @@ struct HabitsListView: View {
     @State private var showImportOptions = false
     @State private var importURL: URL? = nil
     
-    @State private var showBuySubscription: Bool = false
     @State private var showSubscriptionView: Bool = false
     @State private var isRestoringPurchases: Bool = false
     @State private var showRestoreSuccessAlert = false
@@ -105,12 +104,12 @@ struct HabitsListView: View {
                         showExportActivityView = true
                     }) {
                         Label("Export", systemImage: "arrow.up.circle")
-                    }.disabled(!StoreManager.shared.isSubscribed)
-                        .sheet(isPresented: $showExportActivityView) {
-                            if let fileURL = ExportImportData.shared.exportHabits() {
-                                ActivityView(activityItems: [fileURL])
-                            }
+                    }
+                    .sheet(isPresented: $showExportActivityView) {
+                        if let fileURL = ExportImportData.shared.exportHabits() {
+                            ActivityView(activityItems: [fileURL])
                         }
+                    }
                 }
                 
                 ToolbarItem {
@@ -119,7 +118,6 @@ struct HabitsListView: View {
                     }) {
                         Label("Import", systemImage: "arrow.down.circle")
                     }
-                    .disabled(!StoreManager.shared.isSubscribed)
                     .fileImporter(
                         isPresented: $showImportFilePicker,
                         allowedContentTypes: [.json],
@@ -176,10 +174,6 @@ struct HabitsListView: View {
                 
                 ToolbarItem {
                     Button(action: {
-                        if !StoreManager.shared.isSubscribed && items.count >= 5 {
-                            showBuySubscription = true
-                            return
-                        }
                         showAddHabit = true
                     }) {
                         Label("Add Item", systemImage: "plus")
@@ -223,7 +217,6 @@ struct HabitsListView: View {
                     }) {
                         Label("Update HealthKit Habits", systemImage: "heart")
                     }
-                    .disabled(!StoreManager.shared.isSubscribed)
                     .alert("Update Health Data", isPresented: $showHealthUpdateConfirmation) {
                         Button("Cancel", role: .cancel) {}
                         Button("Update") {
@@ -239,14 +232,6 @@ struct HabitsListView: View {
                 Button("OK", role: .cancel) { }
             } message: {
                 Text("All habits have been updated with the latest health data.")
-            }
-            .alert("Subscription Required", isPresented: $showBuySubscription) {
-                Button("Subscribe") {
-                    showSubscriptionView = true
-                }
-                Button("Cancel", role: .cancel) { }
-            } message: {
-                Text("You need a subscription to add more than 5 habits.")
             }
             .alert("Purchases Restored", isPresented: $showRestoreSuccessAlert) {
                 Button("OK", role: .cancel) { }

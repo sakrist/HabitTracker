@@ -269,19 +269,19 @@ enum SubscriptionOption: String, CaseIterable {
     var description: String {
         switch self {
         case .free:
-            return "Up to 5 habits, basic features"
+            return "Full features with ads"
         case .monthly:
             return """
-Unlimited habits
-Import and export capabilities
+Full features
+No ads
 """
         case .yearly:
             return """
-Unlimited habits
-Import and export capabilities
+Full features
+No ads
 """
         case .lifetime:
-            return "One-time purchase\nUnlimited habits, all future updates"
+            return "One-time purchase\nFull features\nNo ads"
         }
     }
     
@@ -297,18 +297,21 @@ Import and export capabilities
         switch self {
         case .free:
             return [
-                "Up to 5 habits",
-                "Basic tracking",
-                "Daily progress view"
+                "All features included",
+                "Unlimited habits",
+                "Health integrations",
+                "Import/export",
+                "Timeline & achievements",
+                "Supported by ads"
             ]
         default:
             return [
+                "All features included",
                 "Unlimited habits",
                 "Health integrations",
-                "Import/export capabilities",
-                "Timeline view",
-                "More achievements to unlock",
-                "All future improvements",
+                "Import/export",
+                "Timeline & achievements",
+                "No ads"
             ]
         }
     }

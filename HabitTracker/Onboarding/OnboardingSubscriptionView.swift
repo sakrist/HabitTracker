@@ -130,7 +130,7 @@ struct OnboardingSubscriptionView: View {
     private var footerText: String {
         (selectedOption == .monthly || selectedOption == .yearly) ?
             "You can change your plan at any time in the app settings" :
-            (selectedOption == .lifetime ? "One-time payment, no recurring charges" : "Free plan with basic features")
+            (selectedOption == .lifetime ? "One-time payment, no recurring charges" : "Free plan with all features, supported by ads")
     }
     
     private func calculateYearlySavings() -> String {

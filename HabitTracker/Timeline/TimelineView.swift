@@ -22,48 +22,74 @@ struct TimelineView: View {
     @State private var isLoading = false
     @State private var currentDate = Date()
     @State private var loadedDates = Set<Date>() // Track loaded dates
+    @State private var isCompactMode = false
     let batchSize = 30 // Days to load at a time
     
     @Binding var navigationPath: NavigationPath
 
     var body: some View {
         NavigationStack(path: $navigationPath) {
-            ScrollView {
-                LazyVStack(alignment: .leading, spacing: 0) {
-                    ForEach(timelineItems) { group in
-                        TimelineDayGroup(group: group)
-                    }
-                    
-                    if !isLoading {
-                        GeometryReader { proxy in
-                            Color.clear.preference(key: ScrollOffsetPreferenceKey.self, value: proxy.frame(in: .named("scroll")).minY)
+            Group {
+                if isCompactMode {
+                    CompactTimelineView()
+                } else {
+                    standardTimelineView
+                }
+            }
+            .navigationTitle("Timeline")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        withAnimation {
+                            isCompactMode.toggle()
                         }
-                        .frame(height: 20)
+                    }) {
+                        Label(
+                            isCompactMode ? "Standard View" : "Compact View",
+                            systemImage: isCompactMode ? "list.bullet" : "square.grid.3x3"
+                        )
                     }
                 }
-                .padding(.horizontal)
             }
-            .onAppear {
-                if (timelineItems.isEmpty) {
-                    loadInitialContent()
+        }
+    }
+    
+    private var standardTimelineView: some View {
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ForEach(timelineItems) { group in
+                    TimelineDayGroup(group: group)
                 }
-            }
-            .coordinateSpace(name: "scroll")
-            .onPreferenceChange(ScrollOffsetPreferenceKey.self) { offset in
-                if offset > -100 && !isLoading {
-                    loadMoreContent()
-                }
-            }
-            .onChange(of: reload) { _, newValue in
-                if newValue && !isLoading {
-                    timelineItems.removeAll()
-                    loadedDates.removeAll()
-                    currentDate = Date() // Reset to today's date for a fresh start
-                    currentDate = Calendar.current.date(byAdding: .day, value: -batchSize, to: currentDate) ?? currentDate
-                    loadInitialContent()
-                    DispatchQueue.main.async {
-                        reload = false
+                
+                if !isLoading {
+                    GeometryReader { proxy in
+                        Color.clear.preference(key: ScrollOffsetPreferenceKey.self, value: proxy.frame(in: .named("scroll")).minY)
                     }
+                    .frame(height: 20)
+                }
+            }
+            .padding(.horizontal)
+        }
+        .onAppear {
+            if (timelineItems.isEmpty) {
+                loadInitialContent()
+            }
+        }
+        .coordinateSpace(name: "scroll")
+        .onPreferenceChange(ScrollOffsetPreferenceKey.self) { offset in
+            if offset > -100 && !isLoading {
+                loadMoreContent()
+            }
+        }
+        .onChange(of: reload) { _, newValue in
+            if newValue && !isLoading {
+                timelineItems.removeAll()
+                loadedDates.removeAll()
+                currentDate = Date() // Reset to today's date for a fresh start
+                currentDate = Calendar.current.date(byAdding: .day, value: -batchSize, to: currentDate) ?? currentDate
+                loadInitialContent()
+                DispatchQueue.main.async {
+                    reload = false
                 }
             }
         }

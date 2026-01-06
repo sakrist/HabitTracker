@@ -101,6 +101,7 @@
 		D2CDC5D92DD52E60000F5AEE /* DeviceShakeViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CDC5D72DD52E60000F5AEE /* DeviceShakeViewModifier.swift */; };
 		D2CDC5DC2DD530CD000F5AEE /* UndoRedoAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CDC5DA2DD530CD000F5AEE /* UndoRedoAction.swift */; };
 		D2CFF55D2D35A52200D09F01 /* WeekdaysSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */; };
+		D2D323652F0C0C8300F6C61E /* CompactTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D323642F0C0C8200F6C61E /* CompactTimelineView.swift */; };
 		D2D457FA2D4AE71000C67484 /* HealthViewDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D457F92D4AE70C00C67484 /* HealthViewDebug.swift */; };
 		D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D481052CD8246C00B1DF7C /* MonthlyView.swift */; };
 		D2DB715C2D39B30C000DC325 /* HabitDetailProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */; };
@@ -282,6 +283,7 @@
 		D2CFF55C2D35A52200D09F01 /* WeekdaysSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdaysSelectorView.swift; sourceTree = "<group>"; };
 		D2CFF5642D35ABE200D09F01 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
 		D2CFF5662D35ABE200D09F01 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = /System/Library/Frameworks/SwiftUI.framework; sourceTree = "<absolute>"; };
+		D2D323642F0C0C8200F6C61E /* CompactTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactTimelineView.swift; sourceTree = "<group>"; };
 		D2D457F92D4AE70C00C67484 /* HealthViewDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthViewDebug.swift; sourceTree = "<group>"; };
 		D2D481052CD8246C00B1DF7C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 		D2DB715B2D39B2FA000DC325 /* HabitDetailProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitDetailProgressView.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 		4F8301A12DB02FB70015ED4D /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
+				D2D323642F0C0C8200F6C61E /* CompactTimelineView.swift */,
 				4F8613922DB3FC1C0005A15A /* TimelineConnector.swift */,
 				4F8613932DB3FC1C0005A15A /* TimelineDayGroup.swift */,
 				4F8613942DB3FC1C0005A15A /* TimelineEntryView.swift */,
@@ -883,6 +886,7 @@
 				4F092E842DB5248200FA334C /* OnboardingPreview.swift in Sources */,
 				4F28D9DD2DB5928C000D9807 /* Notification.swift in Sources */,
 				D25A7A9A2CA5DE4B0000E843 /* HabitItemCell.swift in Sources */,
+				D2D323652F0C0C8300F6C61E /* CompactTimelineView.swift in Sources */,
 				D262C5E52D4FAE5500CDCA0E /* HealthType.swift in Sources */,
 				D2D481062CD8246C00B1DF7C /* MonthlyView.swift in Sources */,
 				D2C1264B2CB7371D005E5941 /* Date.swift in Sources */,
