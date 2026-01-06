@@ -144,6 +144,8 @@ class StoreManager: ObservableObject {
     func updatePurchasedProducts() async {
         var purchasedProducts = Set<String>()
         
+        print("🔍 StoreManager: Checking current entitlements...")
+        
         // Check for subscription status
         for await result in Transaction.currentEntitlements {
             do {
@@ -152,12 +154,20 @@ class StoreManager: ObservableObject {
                 // Add to purchased products if not expired
                 if transaction.revocationDate == nil {
                     purchasedProducts.insert(transaction.productID)
+                    print("✅ StoreManager: Found active purchase: \(transaction.productID)")
+                } else {
+                    print("⚠️ StoreManager: Found revoked purchase: \(transaction.productID)")
                 }
                 
             } catch {
-                print("Transaction verification failed: \(error)")
+                print("❌ StoreManager: Transaction verification failed: \(error)")
             }
         }
+        
+        print("📊 StoreManager: Total active purchases: \(purchasedProducts.count)")
+        print("   - Monthly: \(purchasedProducts.contains(monthlySubscriptionID))")
+        print("   - Yearly: \(purchasedProducts.contains(yearlySubscriptionID))")
+        print("   - Lifetime: \(purchasedProducts.contains(lifetimeID))")
         
         self.purchasedIdentifiers = purchasedProducts
     }
@@ -250,14 +260,20 @@ class StoreManager: ObservableObject {
         isLoading = true
         defer { isLoading = false }
         
+        print("🔄 StoreManager: Starting restore purchases...")
+        
         // This will automatically update purchasedIdentifiers
         await updatePurchasedProducts()
+        
+        print("📦 StoreManager: Restore complete. Found \(purchasedIdentifiers.count) purchases")
         
         // Show a message to the user
         if purchasedIdentifiers.isEmpty {
             errorMessage = "No previous purchases found to restore."
+            print("ℹ️ StoreManager: No purchases to restore")
         } else {
             errorMessage = "Your purchases have been restored!"
+            print("✅ StoreManager: Purchases restored: \(purchasedIdentifiers)")
         }
     }
     

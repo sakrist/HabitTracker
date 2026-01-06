@@ -35,22 +35,26 @@ class SubscriptionService: ObservableObject {
             currentPlan = .lifetime
             hasFullAccess = true
             isAdFree = true
+            print("✅ SubscriptionService: isAdFree set to TRUE (Lifetime)")
             savePlanStatus(.lifetime)
         } else if storeManager.hasYearlySubscription {
             currentPlan = .yearly
             hasFullAccess = true
             isAdFree = true
+            print("✅ SubscriptionService: isAdFree set to TRUE (Yearly)")
             savePlanStatus(.yearly)
         } else if storeManager.hasMonthlySubscription {
             currentPlan = .monthly
             hasFullAccess = true
             isAdFree = true
+            print("✅ SubscriptionService: isAdFree set to TRUE (Monthly)")
             savePlanStatus(.monthly)
         } else {
             // Free plan now has full access (only ads are different)
             currentPlan = .free
             hasFullAccess = true
             isAdFree = false
+            print("ℹ️ SubscriptionService: isAdFree set to FALSE (Free plan)")
             savePlanStatus(.free)
         }
     }
@@ -81,6 +85,6 @@ class SubscriptionService: ObservableObject {
     func restorePurchases() async -> Bool {
         await StoreManager.shared.restorePurchases()
         await updateSubscriptionStatus()
-        return hasFullAccess
+        return isAdFree // Return whether user has ad-free status, not full access
     }
 }

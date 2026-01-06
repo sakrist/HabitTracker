@@ -239,7 +239,7 @@ struct HabitsListView: View {
                 Text("Your purchases have been successfully restored.")
             }
             .alert("Restore Failed", isPresented: $showRestoreFailureAlert) {
-                Button("Subscribe") {
+                Button("Upgrade") {
                     showSubscriptionView = true
                 }
                 Button("OK", role: .cancel) { }
@@ -382,6 +382,7 @@ struct HabitsListView: View {
             
             await MainActor.run {
                 isRestoringPurchases = false
+                // Success means found purchases (isAdFree), not just hasFullAccess
                 if success {
                     showRestoreSuccessAlert = true
                 } else {

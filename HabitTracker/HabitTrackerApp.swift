@@ -57,7 +57,7 @@ struct HabitTrackerApp: App {
             .onAppear {
                 // Check if we need to show onboarding
                 let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "OnboardingCompleted")
-                showOnboarding = true//!hasCompletedOnboarding
+                showOnboarding = !hasCompletedOnboarding
             }
             .animation(.easeInOut, value: showOnboarding)
         }
