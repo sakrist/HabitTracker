@@ -10,6 +10,7 @@ import AVFoundation
 #if !os(watchOS)
 import RainbowUI
 import ConfettiSwiftUI
+import GoogleMobileAds
 #endif
 
 func motivationMessage() -> String {
@@ -64,16 +65,27 @@ struct DayHabitsListView: View {
     
     var body: some View {
         ZStack {
-            List {
-                ForEach(filteredEntries) { entry in
-                    NavigationLink(destination: HabitDetailProgressView(date: date, habit:entry.habitt)) {
-                        HabitItemCell(item: entry.habitt, entry: entry)
-                            .contentShape(Rectangle())
-                            .onChange(of: entry.completionDates) { oldValue, newValue in
-                                ModelData.shared.saveContext()
-                            }
+            VStack(spacing: 0) {
+                List {
+                    ForEach(filteredEntries) { entry in
+                        NavigationLink(destination: HabitDetailProgressView(date: date, habit:entry.habitt)) {
+                            HabitItemCell(item: entry.habitt, entry: entry)
+                                .contentShape(Rectangle())
+                                .onChange(of: entry.completionDates) { oldValue, newValue in
+                                    ModelData.shared.saveContext()
+                                }
+                        }
                     }
                 }
+                .listStyle(.plain)
+                
+                // Show banner ad if user is not ad-free
+#if !os(watchOS)
+                if !SubscriptionService.shared.isAdFree {
+                    BannerAdView(adUnitID: AdConfiguration.bannerAdUnitID)
+                        .background(Color(.systemBackground))
+                }
+#endif
             }
             .overlay(alignment: .top) {
                 let title = achievementTitle(achievement: currentAchievement)

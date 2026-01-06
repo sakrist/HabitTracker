@@ -7,9 +7,15 @@
 
 import SwiftUI
 import SwiftData
+import GoogleMobileAds
 
 @main
 struct HabitTrackerApp: App {
+    
+    init() {
+        // Initialize Google Mobile Ads SDK
+        MobileAds.shared.start()
+    }
     let modelData = ModelData.shared
     @Environment(\.scenePhase) private var scenePhase
     
@@ -51,7 +57,7 @@ struct HabitTrackerApp: App {
             .onAppear {
                 // Check if we need to show onboarding
                 let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "OnboardingCompleted")
-                showOnboarding = !hasCompletedOnboarding
+                showOnboarding = true//!hasCompletedOnboarding
             }
             .animation(.easeInOut, value: showOnboarding)
         }
