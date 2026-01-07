@@ -48,6 +48,9 @@ struct DayHabitsListView: View {
     @State private var showAchievement = false
     @State private var currentAchievement: Achievement = .none
     
+    @State private var isBannerLoaded = false
+    @State private var showBannerSpace = true // Show space while loading
+    
     init(date: Date) {
         self.date = date
 
@@ -81,9 +84,24 @@ struct DayHabitsListView: View {
                 
                 // Show banner ad if user is not ad-free
 #if !os(watchOS)
-                if !SubscriptionService.shared.isAdFree {
-                    BannerAdView(adUnitID: AdConfiguration.bannerAdUnitID)
+                if !SubscriptionService.shared.isAdFree && showBannerSpace {
+                    BannerAdView(adUnitID: AdConfiguration.bannerAdUnitID, isLoaded: $isBannerLoaded)
                         .background(Color(.systemBackground))
+                        .onAppear {
+                            // Hide banner space after 5 seconds if ad hasn't loaded
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                                if !isBannerLoaded {
+                                    print("⏱️ Banner ad timeout - hiding space")
+                                    showBannerSpace = false
+                                }
+                            }
+                        }
+                        .onChange(of: isBannerLoaded) { _, loaded in
+                            if loaded {
+                                // Keep space visible when ad loads
+                                showBannerSpace = true
+                            }
+                        }
                 }
 #endif
             }
