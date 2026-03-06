@@ -44,7 +44,7 @@ struct ContentView: View {
                 }.onAppear {
 // if playground
 #if DEBUG
-                    modelData.firstLaunch = false
+//                    modelData.firstLaunch = true
 #endif
                 }
             

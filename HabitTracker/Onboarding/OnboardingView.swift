@@ -12,8 +12,6 @@ struct OnboardingView: View {
     
     @State private var currentPage = 0
     @State private var selectedHabits: [Bool] = Array(repeating: false, count: commonHabits.count)
-    @State private var selectedSubscription: SubscriptionOption = .free
-    @State private var isLoading = false
     
     @Binding var showOnboarding: Bool
     
@@ -21,7 +19,7 @@ struct OnboardingView: View {
         VStack {
             // Page indicator
             HStack {
-                ForEach(0..<3) { index in
+                ForEach(0..<2) { index in
                     Circle()
                         .fill(currentPage == index ? Color.blue : Color.gray.opacity(0.3))
                         .frame(width: 10, height: 10)
@@ -36,9 +34,6 @@ struct OnboardingView: View {
                 
                 OnboardingHabitsView(selectedHabits: $selectedHabits)
                     .tag(1)
-                
-                OnboardingSubscriptionView(selectedOption: $selectedSubscription)
-                    .tag(2)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
@@ -58,7 +53,7 @@ struct OnboardingView: View {
                 
                 Spacer()
                 
-                if currentPage < 2 {
+                if currentPage < 1 {
                     Button("Next") {
                         withAnimation {
                             currentPage += 1
@@ -80,48 +75,11 @@ struct OnboardingView: View {
     }
     
     private func completeOnboarding() {
-        // Purchase subscription if needed
-        if selectedSubscription != .free {
-            Task {
-                isLoading = true
-                let purchased = await SubscriptionService.shared.purchase(option: selectedSubscription)
-                
-                if !purchased {
-                    // Fall back to free plan if purchase fails
-                    selectedSubscription = .free
-                }
-                
-                await MainActor.run {
-                    isLoading = false
-                    
-                    // Continue with habit creation and completion
-                    createSelectedHabits()
-                    requestHealthPermissionsForAllHabits()
-                    
-                    // Save subscription choice
-                    UserDefaults.standard.set(selectedSubscription.rawValue, forKey: "SelectedSubscription")
-                    
-                    // Mark onboarding as completed
-                    UserDefaults.standard.set(true, forKey: "OnboardingCompleted")
-                    
-                    // Dismiss onboarding
-                    showOnboarding = false
-                }
-            }
-        } else {
-            // If free plan, just continue with habit creation
-            createSelectedHabits()
-            requestHealthPermissionsForAllHabits()
-            
-            // Save subscription choice
-            UserDefaults.standard.set(selectedSubscription.rawValue, forKey: "SelectedSubscription")
-            
-            // Mark onboarding as completed
-            UserDefaults.standard.set(true, forKey: "OnboardingCompleted")
-            
-            // Dismiss onboarding
-            showOnboarding = false
-        }
+        createSelectedHabits()
+        requestHealthPermissionsForAllHabits()
+        UserDefaults.standard.set(SubscriptionOption.free.rawValue, forKey: "SelectedSubscription")
+        UserDefaults.standard.set(true, forKey: "OnboardingCompleted")
+        showOnboarding = false
     }
     
     private func createSelectedHabits() {
@@ -269,19 +227,19 @@ enum SubscriptionOption: String, CaseIterable {
     var description: String {
         switch self {
         case .free:
-            return "Up to 5 habits, basic features"
+            return "Full features with ads"
         case .monthly:
             return """
-Unlimited habits
-Import and export capabilities
+Full features
+No ads
 """
         case .yearly:
             return """
-Unlimited habits
-Import and export capabilities
+Full features
+No ads
 """
         case .lifetime:
-            return "One-time purchase\nUnlimited habits, all future updates"
+            return "One-time purchase\nFull features\nNo ads"
         }
     }
     
@@ -297,18 +255,21 @@ Import and export capabilities
         switch self {
         case .free:
             return [
-                "Up to 5 habits",
-                "Basic tracking",
-                "Daily progress view"
+                "All features included",
+                "Unlimited habits",
+                "Health integrations",
+                "Import/export",
+                "Timeline & achievements",
+                "Supported by ads"
             ]
         default:
             return [
+                "All features included",
                 "Unlimited habits",
                 "Health integrations",
-                "Import/export capabilities",
-                "Timeline view",
-                "More achievements to unlock",
-                "All future improvements",
+                "Import/export",
+                "Timeline & achievements",
+                "No ads"
             ]
         }
     }

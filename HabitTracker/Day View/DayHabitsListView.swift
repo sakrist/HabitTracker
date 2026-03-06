@@ -64,16 +64,19 @@ struct DayHabitsListView: View {
     
     var body: some View {
         ZStack {
-            List {
-                ForEach(filteredEntries) { entry in
-                    NavigationLink(destination: HabitDetailProgressView(date: date, habit:entry.habitt)) {
-                        HabitItemCell(item: entry.habitt, entry: entry)
-                            .contentShape(Rectangle())
-                            .onChange(of: entry.completionDates) { oldValue, newValue in
-                                ModelData.shared.saveContext()
-                            }
+            VStack(spacing: 0) {
+                List {
+                    ForEach(filteredEntries) { entry in
+                        NavigationLink(destination: HabitDetailProgressView(date: date, habit:entry.habitt)) {
+                            HabitItemCell(item: entry.habitt, entry: entry)
+                                .contentShape(Rectangle())
+                                .onChange(of: entry.completionDates) { oldValue, newValue in
+                                    ModelData.shared.saveContext()
+                                }
+                        }
                     }
                 }
+                .listStyle(.plain)
             }
             .overlay(alignment: .top) {
                 let title = achievementTitle(achievement: currentAchievement)
