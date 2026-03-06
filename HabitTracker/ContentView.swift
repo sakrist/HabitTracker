@@ -23,8 +23,6 @@ struct ContentView: View {
     @State private var showAddHabit = false
     @State private var habitsNavigationPath = NavigationPath()
     
-    @StateObject private var interstitialAdManager = InterstitialAdManager()
-    
     var body: some View {
         TabView(selection: $selectedTab) {
             MainListView(selectedTab: $selectedTab,
@@ -42,14 +40,11 @@ struct ContentView: View {
                         firstTab = (selectedTab == 0) ? -1 : 0
                         NotificationCenter.default.postActive()
                     }
-                    reloadTimeline = (newValue == 2)                    
-                    // Show interstitial ad when switching to Timeline tab
-                    if newValue == 2 {
-                        _ = interstitialAdManager.showAdIfReady()
-                    }                }.onAppear {
+                    reloadTimeline = (newValue == 2)
+                }.onAppear {
 // if playground
 #if DEBUG
-                    modelData.firstLaunch = false
+//                    modelData.firstLaunch = true
 #endif
                 }
             

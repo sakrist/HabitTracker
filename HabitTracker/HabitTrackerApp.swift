@@ -7,15 +7,9 @@
 
 import SwiftUI
 import SwiftData
-import GoogleMobileAds
 
 @main
 struct HabitTrackerApp: App {
-    
-    init() {
-        // Initialize Google Mobile Ads SDK
-        MobileAds.shared.start()
-    }
     let modelData = ModelData.shared
     @Environment(\.scenePhase) private var scenePhase
     

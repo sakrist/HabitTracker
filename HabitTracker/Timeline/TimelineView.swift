@@ -22,7 +22,7 @@ struct TimelineView: View {
     @State private var isLoading = false
     @State private var currentDate = Date()
     @State private var loadedDates = Set<Date>() // Track loaded dates
-    @State private var isCompactMode = false
+    @State private var isCompactMode = true
     let batchSize = 30 // Days to load at a time
     
     @Binding var navigationPath: NavigationPath

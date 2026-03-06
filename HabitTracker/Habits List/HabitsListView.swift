@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 import SwiftData
-import StoreKit
 import UniformTypeIdentifiers
 
 
@@ -43,7 +42,6 @@ struct LoadingOverlay: View {
 
 struct HabitsListView: View {
     @Environment(\.modelContext) private var modelContext
-    @StateObject private var storeManager = StoreManager.shared
     
     @Query var allitems: [HabitItem]
     @Query var progressEntries: [DailyEntry]
@@ -62,11 +60,6 @@ struct HabitsListView: View {
     @State private var showImportFailureAlert = false
     @State private var showImportOptions = false
     @State private var importURL: URL? = nil
-    
-    @State private var showSubscriptionView: Bool = false
-    @State private var isRestoringPurchases: Bool = false
-    @State private var showRestoreSuccessAlert = false
-    @State private var showRestoreFailureAlert = false
     
     @State private var showHealthUpdateConfirmation = false
     @State private var isUpdatingHealth = false
@@ -189,28 +182,6 @@ struct HabitsListView: View {
                 }
 #endif
                 
-                if (!storeManager.isSubscribed) {
-                    ToolbarItem {
-                        Button(action: {
-                            restorePurchases()
-                        }) {
-                            Label("Restore Purchases", systemImage: "arrow.clockwise.circle")
-                        }
-                        .disabled(isRestoringPurchases)
-                    }
-                }
-                
-                if (storeManager.isSubscribed) {
-                    ToolbarItem {
-                        Button(action: {
-                            manageSubscription()
-                        }) {
-                            Label("Manage Purchases", systemImage: "arrow.clockwise.circle")
-                        }
-                    }
-                }
-                
-                
                 ToolbarItem {
                     Button(action: {
                         showHealthUpdateConfirmation = true
@@ -233,37 +204,14 @@ struct HabitsListView: View {
             } message: {
                 Text("All habits have been updated with the latest health data.")
             }
-            .alert("Purchases Restored", isPresented: $showRestoreSuccessAlert) {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text("Your purchases have been successfully restored.")
-            }
-            .alert("Restore Failed", isPresented: $showRestoreFailureAlert) {
-                Button("Upgrade") {
-                    showSubscriptionView = true
-                }
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text("No previous purchases were found to restore.")
-            }
             .overlay(
                 Group {
-                    if isUpdatingHealth || isRestoringPurchases {
-                        LoadingOverlay(message: isUpdatingHealth ? healthUpdateProgress : "Restoring purchases...")
+                    if isUpdatingHealth {
+                        LoadingOverlay(message: healthUpdateProgress)
                             .allowsHitTesting(true)
                     }
                 }
             )
-            .sheet(isPresented: $showSubscriptionView) {
-                PurchaseSubscriptionView(onComplete: { success in
-                    if success {
-                        // If purchase was successful, refresh the subscription status
-                        Task {
-                            await SubscriptionService.shared.updateSubscriptionStatus()
-                        }
-                    }
-                })
-            }
         }
     }
     
@@ -374,34 +322,7 @@ struct HabitsListView: View {
         }
     }
     
-    private func restorePurchases() {
-        isRestoringPurchases = true
-        
-        Task {
-            let success = await SubscriptionService.shared.restorePurchases()
-            
-            await MainActor.run {
-                isRestoringPurchases = false
-                // Success means found purchases (isAdFree), not just hasFullAccess
-                if success {
-                    showRestoreSuccessAlert = true
-                } else {
-                    showRestoreFailureAlert = true
-                }
-            }
-        }
-    }
-    
-    private func manageSubscription() {
-        if let window = UIApplication.shared.connectedScenes.first {
-            Task {
-                // Use StoreKit's recommended API instead of direct URL
-                try? await AppStore.showManageSubscriptions(in: window as! UIWindowScene)
-                await StoreManager.shared.restorePurchases()
-            }
-        }
-    }
-        
+
 }
 
 
