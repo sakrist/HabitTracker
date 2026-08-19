@@ -56,7 +56,14 @@ struct CirclyStyle: ToggleStyle {
 struct HabitItemCell: View {
     let item: HabitItem
     var entry: DailyEntry?
+    private let previewCurrentStreak: Int?
     @State private var showingAlertCannotEdit = false
+    
+    init(item: HabitItem, entry: DailyEntry? = nil, previewCurrentStreak: Int? = nil) {
+        self.item = item
+        self.entry = entry
+        self.previewCurrentStreak = previewCurrentStreak
+    }
     
     var body: some View {
         HStack {
@@ -118,6 +125,22 @@ struct HabitItemCell: View {
             
             Spacer()
             
+            if currentStreak > 0 {
+                HStack(spacing: 3) {
+                    Image(systemName: "flame.fill")
+                    Text("\(currentStreak)")
+                }
+                .font(.caption.bold())
+                .foregroundColor(item.getColor())
+                .padding(.horizontal, 6)
+                .padding(.vertical, 3)
+                .background(
+                    Capsule()
+                        .fill(item.getColor().opacity(0.12))
+                )
+                .accessibilityLabel("\(currentStreak) day streak")
+            }
+            
             if let entry = entry, item.targetCount > 1 {
                 HStack(spacing: 4) {
                     ForEach(0..<item.targetCount, id: \.self) { index in
@@ -144,18 +167,44 @@ struct HabitItemCell: View {
             Text("For accuracy, habits can only be edited within 3 days of their completion date.")
         }
     }
+    
+    private var currentStreak: Int {
+        if let previewCurrentStreak {
+            return previewCurrentStreak
+        }
+        
+        guard let entry else {
+            return 0
+        }
+        
+        let (streak, _, _, _) = ModelData.shared.calculateStreak(habit: item, for: entry.date, end: entry.date.endOfDay)
+        return streak
+    }
+}
+
+private extension Date {
+    var endOfDay: Date {
+        Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: self) ?? self
+    }
 }
 
 
 #Preview {
     let item = HabitItem.init(title: "Task 1", color: Color.red.toHex(), category: HabitCategory(id: "default", title: "Other"), timestamp: .now)
     let entry = DailyEntry.init(habit: item, date: Date(), isCompleted: false)
-    HabitItemCell(item: item, entry: entry)
     
-    HabitItemCell(item: item, entry: nil)
+    let completedItem = HabitItem.init(title: "Read book", color: Color.green.toHex(), category: HabitCategory(id: "default", title: "Other"), timestamp: .now)
+    let completedEntry = DailyEntry.init(habit: completedItem, date: Date(), isCompleted: true)
     
-    var item2 = HabitItem.init(title: "Morning run", color: Color.blue.toHex(), category: HabitCategory(id: "default", title: "Other"), timestamp: .now, targetCount: 3)
-    
+    let item2 = HabitItem.init(title: "Morning run", color: Color.blue.toHex(), category: HabitCategory(id: "default", title: "Other"), timestamp: .now, targetCount: 3)
     let entry2 = DailyEntry.init(habit: item2, date: Date(), isCompleted: false)
-    HabitItemCell(item: item2, entry: entry2)
+    entry2.completionDates = [Date(), Date()]
+
+    return VStack(alignment: .leading, spacing: 16) {
+        HabitItemCell(item: item, entry: entry, previewCurrentStreak: 0)
+        HabitItemCell(item: completedItem, entry: completedEntry, previewCurrentStreak: 5)
+        HabitItemCell(item: item2, entry: entry2, previewCurrentStreak: 12)
+        HabitItemCell(item: item, entry: nil)
+    }
+    .padding()
 }
